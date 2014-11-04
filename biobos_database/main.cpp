@@ -1,9 +1,12 @@
 #include <QCoreApplication>
 #include <iostream>
 #include <iomanip>
+#include <QSqlDatabase>
 #include <QSqlError>
 
 #include <databasehandler.h>
+
+
 
 int main(int argc, char *argv[])
 {
