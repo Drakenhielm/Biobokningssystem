@@ -2,17 +2,29 @@
 #define DATABASEHANDLER_H
 
 #include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QFileInfo>
+
+//temp for debugging
+#include <QDebug>
+#include <iostream>
+#include <iomanip>
 
 class DatabaseHandler
 {
 public:
-    DatabaseHandler();
+    DatabaseHandler(const QString & fileName);
 
+    //functions
     bool databaseExist();
-    void createDatabase();
     bool openDatabase();
 
 private:
+    //variables
+    QString fileName;
+
+    //functions
+    void createDatabase();
 };
 
 #endif // DATABASEHANDLER_H
