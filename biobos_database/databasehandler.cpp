@@ -53,16 +53,16 @@ void DatabaseHandler::createDatabase()
                +QString("SeatNr INTEGER, ")
                +QString("HallID, INTEGER)"));
 
-    //create movie table
-    query.exec(QString("CREATE TABLE movie(")
-               +QString("MovieID INTEGER PRIMARY KEY, ")
-               +QString("Title TEXT, ")
-               +QString("Playtime TEXT, ")
-               +QString("AgeLimit INTEGER, ")
-               +QString("Description, TEXT, ")
-               +QString("Genre TEXT, ")
-               +QString("Year INTEGER, ")
-               +QString("MoviePoster TEXT, "));
+    //create show table
+    query.exec(QString("CREATE TABLE show(")
+               +QString("ShowID INTEGER PRIMARY KEY, ")
+               +QString("DateTime TEXT, ")
+               +QString("Price REAL, ")
+               +QString("3D INTEGER, ")
+               +QString("Subtitles, INTEGER, ")
+               +QString("Language TEXT, ")
+               +QString("MovieID INTEGER, ")
+               +QString("HallID TEXT"));
 
     //create booking table
     query.exec(QString("CREATE TABLE booking(")

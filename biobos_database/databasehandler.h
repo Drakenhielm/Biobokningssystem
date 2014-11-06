@@ -18,13 +18,13 @@ public:
     //functions
     bool databaseExist();
     bool openDatabase();
+    void createDatabase();
 
 private:
     //variables
     QString fileName;
 
     //functions
-    void createDatabase();
 };
 
 #endif // DATABASEHANDLER_H
