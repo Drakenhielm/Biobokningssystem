@@ -16,8 +16,8 @@ public:
     DatabaseHandler(const QString & fileName);
 
     //functions
-    bool databaseExist();
     bool openDatabase();
+    bool databaseComplete();
     void createDatabase();
 
 private:

@@ -17,6 +17,7 @@ bool bookingTableOk();
 bool visitorTableOk();
 void printTableList();
 
+//Test program
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -24,17 +25,25 @@ int main(int argc, char *argv[])
     QString fileName = "cinema.sqlite";
 
     DatabaseHandler databaseHandler(fileName);
-    std::cout << "1. Open database" << std::endl;
+    std::cout << "1. Open database: ";
     if(databaseHandler.openDatabase())
-        std::cout << "OK" << std::endl;
+        std::cout << "OK" << std::endl << std::endl;
     else
-        std::cout << QSqlError().text().toStdString() << std::endl;
+        std::cout << QSqlError().text().toStdString() << std::endl << std::endl;
 
-    std::cout << "2. Test all tables" << std::endl;
+    std::cout << "2. Complete database: " << std::boolalpha << databaseHandler.databaseComplete() << std::endl << std::endl;
+
+    if(!databaseHandler.databaseComplete())
+        databaseHandler.createDatabase();
+
+    std::cout << "3. Test all tables" << std::endl;
     printTableTest();
+    std::cout << std::endl;
 
-    std::cout << "3. Print table list" << std::endl;
+    std::cout << "4. Print table list" << std::endl;
     printTableList();
+
+    std::cout << QSqlError().text().toStdString() << std::endl;
     return a.exec();
 }
 
@@ -86,25 +95,40 @@ bool movieTableOk()
 bool seatTableOk()
 {
     QSqlRecord record = QSqlDatabase::database().record("seat");
-    return (record.indexOf("HallID") == 0
-            && record.indexOf("Name") > 0
-            && record.indexOf("SoundSystem") > 0
-            && record.indexOf("ScreenSize") > 0);
+    return (record.indexOf("SeatID") == 0
+            && record.indexOf("Row") > 0
+            && record.indexOf("Column") > 0
+            && record.indexOf("SeatNr") > 0
+            && record.indexOf("HallID") > 0);
 }
 
 bool showTableOk()
 {
-    return false;
+    QSqlRecord record = QSqlDatabase::database().record("show");
+    return (record.indexOf("ShowID") == 0
+            && record.indexOf("DateTime") > 0
+            && record.indexOf("Price") > 0
+            && record.indexOf("ThreeD") > 0
+            && record.indexOf("Subtitles") > 0
+            && record.indexOf("Language") > 0
+            && record.indexOf("MovieID") > 0
+            && record.indexOf("HallID") > 0);
 }
 
 bool bookingTableOk()
 {
-    return false;
+    QSqlRecord record = QSqlDatabase::database().record("booking");
+    return (record.indexOf("BookingID") == 0
+            && record.indexOf("ShowID") > 0
+            && record.indexOf("SeatID") > 0
+            && record.indexOf("VisitorID") > 0);
 }
 
 bool visitorTableOk()
 {
-    return false;
+    QSqlRecord record = QSqlDatabase::database().record("visitor");
+    return (record.indexOf("VisitorID") == 0
+            && record.indexOf("Phone") > 0);
 }
 
 void printTableList()
