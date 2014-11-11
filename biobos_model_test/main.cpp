@@ -6,13 +6,13 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    /*DatabaseHandler dh("movietest.sqlite");
+    DatabaseHandler dh("movietest.sqlite");
     dh.openDatabase();
     if(!dh.databaseComplete())
-        dh.createDatabase();*/
+        dh.createDatabase();
 
     MainWindow w;
-    w.show();
+    w.showMaximized();
 
     return a.exec();
 }

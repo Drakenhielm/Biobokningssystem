@@ -44,7 +44,7 @@ void DatabaseHandler::createDatabase()
                +QString("Title TEXT, ")
                +QString("Playtime TEXT, ")
                +QString("AgeLimit INTEGER, ")
-               +QString("Description, TEXT, ")
+               +QString("Description TEXT, ")
                +QString("Genre TEXT, ")
                +QString("Year INTEGER, ")
                +QString("MoviePoster TEXT)"));

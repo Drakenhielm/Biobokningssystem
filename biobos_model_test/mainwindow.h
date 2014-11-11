@@ -24,7 +24,7 @@ private:
     QSqlRelationalTableModel* model;
     void setUpTable();
     void insertValues(int nrOfRows);
-    void deleteValues(int nrOfRows);
+    void deleteValues(int startRow, int nrOfRows);
 };
 
 #endif // MAINWINDOW_H
