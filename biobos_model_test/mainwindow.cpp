@@ -75,3 +75,8 @@ void MainWindow::deleteValues(int startRow, int nrOfRows)
             model->lastError().text();
     }
 }
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    model->setFilter("MovieID = 3");
+}
