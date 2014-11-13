@@ -11,12 +11,12 @@ MainWindow::MainWindow()
 
     QLabel *rowsLabel = new QLabel(tr("Rader"));
     QSpinBox *rowSpinBox = new QSpinBox;
-        rowSpinBox->setRange(1, 20);
+        rowSpinBox->setRange(1, 25);
         rowSpinBox->setSingleStep(1);
         rowSpinBox->setValue(5);
     QLabel *columnsnLabel = new QLabel(tr("Kolumner"));
     QSpinBox *columnSpinBox = new QSpinBox;
-        columnSpinBox->setRange(1, 20);
+        columnSpinBox->setRange(1, 25);
         columnSpinBox->setSingleStep(1);
         columnSpinBox->setValue(5);
 

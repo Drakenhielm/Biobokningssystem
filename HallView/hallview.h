@@ -32,11 +32,11 @@ protected:
     //void mouseMoveEvent(QMouseEvent *event);
     //void mousePressEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
+    void reSizeSeats();
 private:
     int row_count;
     int column_count;
-    int squareLenght;
-    int squareHeight;
+    int squareSize;
 };
 
 #endif

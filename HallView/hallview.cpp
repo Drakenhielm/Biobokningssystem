@@ -9,8 +9,7 @@ HallView::HallView(QWidget *parent)
 
     row_count = 5;
     column_count = 5;
-    squareLenght = 20;
-    squareHeight = 16;
+    squareSize = 20;
     //setMouseTracking(true);
 }
 
@@ -24,13 +23,29 @@ QSize HallView::sizeHint() const
 void HallView::setColumns(int columns)
 {
     column_count = columns;
+    reSizeSeats();
     update();
 }
 
 void HallView::setRows(int rows)
 {
     row_count = rows;
+    reSizeSeats();
     update();
+}
+
+void HallView::reSizeSeats()
+{
+    if(row_count >= 16 || column_count >= 16)
+    {
+        if(row_count > column_count)
+            squareSize = 20 - (row_count - 15);
+        else
+            squareSize = 20 - (column_count - 15);
+    }else
+    {
+        squareSize = 20;
+    }
 }
 
 void HallView::paintEvent(QPaintEvent *event)
@@ -47,11 +62,12 @@ void HallView::paintEvent(QPaintEvent *event)
     */
     int row_spacing = 5;
     int column_spacing = 5;
-    painter.setPen(QPen(Qt::black));
+    painter.setBrush(QBrush(QColor(150, 150, 255)));
+    //painter.setPen(QPen(Qt::red));
     for (int row = 0; row < row_count; ++row) {
         for (int column = 0; column < column_count; ++column) {
 
-            painter.drawRect(column*squareLenght + column*column_spacing + (maximumSize().width()/2-((squareLenght+column_spacing)*column_count)/2), row*squareHeight + row*row_spacing, squareLenght, squareHeight);
+            painter.drawRect(column*squareSize + column*column_spacing + (maximumSize().width()/2-((squareSize+column_spacing)*column_count)/2), row*squareSize + row*row_spacing, squareSize, squareSize);
             //painter.drawRect(column*squareSize, row*squareSize, squareSize, squareSize);
         }
     }
