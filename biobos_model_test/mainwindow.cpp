@@ -7,8 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setUpTable();
-    insertValues(5);
-    //deleteValues(0, 2);
+    insertValues(0);
+    deleteValues(0, 1000);
     ui->tableView->hideColumn(0);
 }
 
