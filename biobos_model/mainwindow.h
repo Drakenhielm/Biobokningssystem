@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QtSql>
 
+#include <moviemodel.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -24,10 +26,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QSqlRelationalTableModel* model;
+    MovieModel *movieModel;
     void setUpTable();
     void insertValues(int nrOfRows);
     void deleteValues(int startRow, int nrOfRows);
+
 };
 
 #endif // MAINWINDOW_H

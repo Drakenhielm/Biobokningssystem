@@ -7,29 +7,24 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setUpTable();
-    insertValues(0);
-    deleteValues(0, 1000);
-    ui->tableView->hideColumn(0);
+    movieModel->insertMovie("Bilar", 120, 11, "bla bla", "Familj", 2008);
+    qDebug() << movieModel->tableName();
 }
 
 MainWindow::~MainWindow()
 {
-    delete model;
     delete ui;
 }
 
 void MainWindow::setUpTable()
 {
-    model = new QSqlRelationalTableModel;
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->setTable("movie");
-    model->select();
-    ui->tableView->setModel(model);
+    movieModel = new MovieModel();
+    ui->tableView->setModel(movieModel);
 }
 
 void MainWindow::insertValues(int nrOfRows)
 {
-    model->database().transaction();
+    /*model->database().transaction();
     int rowCount = model->rowCount();
     qDebug() << rowCount;
     if(!model->insertRows(rowCount, nrOfRows)) {
@@ -55,12 +50,12 @@ void MainWindow::insertValues(int nrOfRows)
         qDebug() << "Database Write Error" <<
             "The database reported an error: " <<
             model->lastError().text();
-    }
+    }*/
 }
 
 void MainWindow::deleteValues(int startRow, int nrOfRows)
 {
-    model->database().transaction();
+    /*model->database().transaction();
     if(!model->removeRows(startRow, nrOfRows)) {
         qDebug() << "removeRows" << model->lastError().text();
         return;
@@ -73,10 +68,10 @@ void MainWindow::deleteValues(int startRow, int nrOfRows)
         qDebug() << "Database Delete Error" <<
             "The database reported an error: " <<
             model->lastError().text();
-    }
+    }*/
 }
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    model->setFilter("MovieID = 3");
+    //model->setFilter("MovieID = 3");
 }
