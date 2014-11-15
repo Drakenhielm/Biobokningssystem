@@ -5,7 +5,7 @@ MovieModel::MovieModel(QObject *parent)
 {
 }
 
-void MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
+bool MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                  const QString & genre, int year)
 {
     database().transaction();
@@ -14,7 +14,7 @@ void MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, 
     if(!insertRow(rowCount))
     {
         qDebug() << "insertRows" << lastError().text();
-        return;
+        return false;
     }
 
     setData(index(rowCount,1), title);
@@ -26,7 +26,7 @@ void MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, 
 
     if(submitAll())
     {
-        database().commit();
+        return database().commit();
     }
     else
     {
@@ -34,5 +34,8 @@ void MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, 
         qDebug() << "Database Write Error" <<
             "The database reported an error: " <<
             lastError().text();
+        return false;
     }
 }
+
+

@@ -11,7 +11,7 @@ class MovieModel : public BaseModel
 public:
     MovieModel(QObject *parent = 0);
 
-    void insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
+    bool insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                      const QString & genre, int year);
 };
 

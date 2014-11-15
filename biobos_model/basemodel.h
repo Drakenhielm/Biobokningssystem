@@ -10,9 +10,14 @@ public:
     BaseModel(const QString &tableName, QObject *parent = 0);
     BaseModel(const QString & tableName, const QString & query = QString(), QObject *parent = 0);
 
+    bool removeRows(const QString & where = QString(), const QModelIndex & parent = QModelIndex());
+
 signals:
 
 public slots:
+
+protected:
+    //bool insertRow(const QList<QVariant> & values);
 
 private:
     //hide derived functions
