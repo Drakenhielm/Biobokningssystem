@@ -36,7 +36,7 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Filmer:</string>
+             <string>Movies:</string>
             </property>
            </widget>
           </item>
@@ -61,14 +61,14 @@
             <item>
              <widget class="QPushButton" name="pushButton_2">
               <property name="text">
-               <string>Lägg till</string>
+               <string>Add</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButton">
               <property name="text">
-               <string>Ta bort</string>
+               <string>Delete</string>
               </property>
              </widget>
             </item>
@@ -108,7 +108,7 @@
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Visningar:</string>
+             <string>Show:</string>
             </property>
            </widget>
           </item>
@@ -133,14 +133,14 @@
             <item>
              <widget class="QPushButton" name="pushButton_4">
               <property name="text">
-               <string>Lägg till</string>
+               <string>Add</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_3">
               <property name="text">
-               <string>Ta bort</string>
+               <string>Delete</string>
               </property>
              </widget>
             </item>
@@ -185,7 +185,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QTextBrowser" name="textBrowser"/>
+           <widget class="QTextBrowser" name="textBrowser">
+            <property name="html">
+             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -205,7 +213,7 @@
             <item>
              <widget class="QPushButton" name="pushButton_5">
               <property name="text">
-               <string>Redigera</string>
+               <string>Edit</string>
               </property>
              </widget>
             </item>
@@ -262,7 +270,7 @@
             <item>
              <widget class="QPushButton" name="pushButton_6">
               <property name="text">
-               <string>Sök</string>
+               <string>Search</string>
               </property>
              </widget>
             </item>
@@ -288,6 +296,27 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAdd_movie">
+    <property name="title">
+     <string>Manage</string>
+    </property>
+    <addaction name="actionAdd_movie"/>
+    <addaction name="actionAdd_show"/>
+    <addaction name="actionAdd_hall"/>
+    <addaction name="separator"/>
+    <addaction name="actionBook"/>
+    <addaction name="actionDelete_booking"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete_movie"/>
+    <addaction name="actionDelete_show"/>
+    <addaction name="actionDelete_hall"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdit_text"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menuAdd_movie"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -298,6 +327,59 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAdd_movie">
+   <property name="text">
+    <string>Add movie</string>
+   </property>
+  </action>
+  <action name="actionAdd_show">
+   <property name="text">
+    <string>Add show</string>
+   </property>
+  </action>
+  <action name="actionAdd_hall">
+   <property name="text">
+    <string>Add hall</string>
+   </property>
+  </action>
+  <action name="actionDelete_movie">
+   <property name="text">
+    <string>Delete movie</string>
+   </property>
+  </action>
+  <action name="actionDelete_show">
+   <property name="text">
+    <string>Delete show</string>
+   </property>
+  </action>
+  <action name="actionDelete_hall">
+   <property name="text">
+    <string>Delete hall</string>
+   </property>
+  </action>
+  <action name="actionBook">
+   <property name="text">
+    <string>Book</string>
+   </property>
+  </action>
+  <action name="actionDelete_booking">
+   <property name="text">
+    <string>Delete booking</string>
+   </property>
+  </action>
+  <action name="actionEdit_text">
+   <property name="text">
+    <string>Edit text</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Qui</string>
+   </property>
+   <property name="toolTip">
+    <string>Qui</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
