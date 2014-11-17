@@ -6,6 +6,7 @@
 
 #include <QDebug>
 #include <QSqlRecord>
+#include <QSqlQuery>
 
 
 class BaseModel : public QSqlRelationalTableModel
@@ -16,9 +17,10 @@ public:
     BaseModel(const QString & tableName, const QString & query = QString(), QObject *parent = 0);
 
     //reimplemented functions
+    bool submitAll(bool insideTransaction = true);
     bool insertRow(const QMap<int, QVariant> & values, bool submit = true);
     bool insertRows(const QList<QMap<int, QVariant> > & values, bool submit = true);
-    bool removeRow(int row, bool submit = true);
+    //bool removeWhere(const QString & where);
 
 signals:
 
@@ -26,9 +28,6 @@ public slots:
 
 private:
     void initBaseModel(const QString & tableName, const QString & query = QString());
-
-    bool startTransaction();
-    bool endTransaction();
 
     //hide derived functions
     void setTable(const QString &tableName);

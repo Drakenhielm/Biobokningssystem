@@ -14,7 +14,7 @@ public:
     MovieModel(QObject *parent = 0);
 
     bool insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
-                     const QString & genre, int year, bool submit = true);
+                     const QString & genre, int year);
 };
 
 #endif // MOVIEMODEL_H

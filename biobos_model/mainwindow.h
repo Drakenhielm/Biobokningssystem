@@ -6,6 +6,7 @@
 #include <QSqlRelationalTableModel>
 #include <QDebug>
 #include <QtSql>
+#include <QElapsedTimer>
 
 #include <moviemodel.h>
 

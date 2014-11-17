@@ -7,9 +7,33 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setUpTable();
-    movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008, false);
-    //movieModel->removeRow(0);
+    QElapsedTimer timer;
+    timer.start();
+    //QSqlDatabase::database().transaction();
+    //QSqlQuery query;
+    //insertValues(2000);
+    //bool ok = true;
+    for(int i = 0; i < 500; i++)
+        //ok = query.prepare("insert into movie(title, playTime) values('flygplan', '122')");
+        /*qDebug() << movieModel->removeRows(0, 256);
+        qDebug() << movieModel->removeRows(257, 300);
+        qDebug() << movieModel->removeRows(0, 256);*/
+        movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008);
+    movieModel->submitAll(true);
+    /*if(movieModel->QSqlTableModel::submitAll())
+    if(ok && query.exec())
+    {
+        QSqlDatabase::database().commit();
+    }
+    else
+    {
+        QSqlDatabase::database().rollback();
+        qDebug() << "The database reported an error: "
+                 << QSqlDatabase::database().lastError().text();
+    }*/
+    qDebug() << timer.elapsed();
     movieModel->select();
+    ui->tableView->setModel(movieModel);
 }
 
 MainWindow::~MainWindow()
@@ -20,39 +44,36 @@ MainWindow::~MainWindow()
 void MainWindow::setUpTable()
 {
     movieModel = new MovieModel();
-    ui->tableView->setModel(movieModel);
     movieModel->select();
 }
 
 void MainWindow::insertValues(int nrOfRows)
 {
-    /*model->database().transaction();
-    int rowCount = model->rowCount();
-    qDebug() << rowCount;
-    if(!model->insertRows(rowCount, nrOfRows)) {
-        qDebug() << "insertRows" << model->lastError().text();
+    movieModel->database().transaction();
+    int rowCount = movieModel->rowCount();
+    if(!movieModel->QSqlTableModel::insertRows(rowCount, nrOfRows)) {
+        qDebug() << "insertRows" << movieModel->lastError().text();
         return;
     }
 
     for(int i = 0; i < nrOfRows; i++)
     {
-        model->setData(model->index(rowCount+i,0), rowCount+i);
-        model->setData(model->index(rowCount+i,1), "Star Wars: Episode VII - The Force Awakens");
-        model->setData(model->index(rowCount+i,2), 127);
-        model->setData(model->index(rowCount+i,3), 11);
-        model->setData(model->index(rowCount+i,4), "Bla bla");
-        model->setData(model->index(rowCount+i,5), "Sci-Fi");
-        model->setData(model->index(rowCount+i,6), 2015);
+        movieModel->setData(movieModel->index(rowCount+i,1), "Star Wars: Episode VII - The Force Awakens");
+        movieModel->setData(movieModel->index(rowCount+i,2), 127);
+        movieModel->setData(movieModel->index(rowCount+i,3), 11);
+        movieModel->setData(movieModel->index(rowCount+i,4), "Bla bla");
+        movieModel->setData(movieModel->index(rowCount+i,5), "Sci-Fi");
+        movieModel->setData(movieModel->index(rowCount+i,6), 2015);
     }
 
-    if(model->submitAll()) {
-        model->database().commit();
+    if(movieModel->submitAll()) {
+        movieModel->database().commit();
     } else {
-        model->database().rollback();
+        movieModel->database().rollback();
         qDebug() << "Database Write Error" <<
             "The database reported an error: " <<
-            model->lastError().text();
-    }*/
+            movieModel->lastError().text();
+    }
 }
 
 void MainWindow::deleteValues(int startRow, int nrOfRows)

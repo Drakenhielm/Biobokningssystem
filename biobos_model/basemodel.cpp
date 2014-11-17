@@ -20,9 +20,29 @@ void BaseModel::initBaseModel(const QString & tableName, const QString & query)
     setEditStrategy(OnManualSubmit);
 }
 
+bool BaseModel::submitAll(bool insideTransaction)
+{
+    if(insideTransaction)
+    {
+        database().transaction();
+        if(QSqlTableModel::submitAll())
+        {
+            return database().commit();
+        }
+        else
+        {
+            database().rollback();
+            qDebug() << "The database reported an error: "
+                     << lastError().text();
+            return false;
+        }
+    }
+    return QSqlTableModel::submitAll();
+}
+
 bool BaseModel::insertRow(const QMap<int, QVariant> & values, bool submit)
 {
-    qDebug() << "Insert into table:" << tableName();
+    //qDebug() << "Insert into table:" << tableName();
     /*if(submit && editStrategy() == OnManualSubmit)
     {
         startTransaction();
@@ -55,74 +75,28 @@ bool BaseModel::insertRow(const QMap<int, QVariant> & values, bool submit)
     for(QMap<int, QVariant>::const_iterator it = values.cbegin(); it != values.cend(); it++)
     {
         record.setValue(it.key(), it.value());
-        qDebug() << it.key() << ", " << it.value();
+        //qDebug() << it.key() << ", " << it.value();
     }
     insertRecord(-1, record);
 }
 
 bool BaseModel::insertRows(const QList<QMap<int, QVariant> > &values, bool submit)
 {
-    qDebug() << "Insert rows into table:" << tableName();
-    if(submit && editStrategy() == OnManualSubmit)
-    {
-        startTransaction();
-    }
-
     bool ok = true;
     for(QList<QMap<int, QVariant> >::const_iterator it = values.cbegin(); it != values.cend(); it++)
     {
         ok = insertRow(*it, false);
     }
-
-    if(submit && editStrategy() == OnManualSubmit)
-    {
-        return endTransaction();
-    }
-    else
-    {
-        return ok;
-    }
+    return ok;
 }
 
-bool BaseModel::removeRow(int row, bool submit)
+/*bool BaseModel::removeWhere(const QString & where)
 {
-    qDebug() << "Delete row:" << row;
-    if(submit && editStrategy() == OnManualSubmit)
-    {
-        startTransaction();
-    }
+    BaseModel tmpModel(this->tableName(), this->selectStatement());
+    tmpModel.setFilter(where);
 
-    bool ok = QSqlTableModel::removeRow(row);
-
-    if(submit && editStrategy() == OnManualSubmit)
-    {
-        return endTransaction();
-    }
-    else
-    {
-        return ok;
-    }
-}
-
-bool BaseModel::startTransaction()
-{
-    return this->database().transaction();
-}
-
-bool BaseModel::endTransaction()
-{
-    if(submitAll())
-    {
-        return database().commit();
-    }
-    else
-    {
-        database().rollback();
-        qDebug() << "The database reported an error: "
-                 << lastError().text();
-        return false;
-    }
-}
+    return false;//QSqlTableModel::removeRow(row);
+}*/
 
 void BaseModel::setTable(const QString &tableName)
 {
