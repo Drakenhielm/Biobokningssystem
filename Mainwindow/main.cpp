@@ -7,5 +7,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    std::string movie;
+    // movie is used to test textbrowser (HTML) module.
+
     return a.exec();
 }
