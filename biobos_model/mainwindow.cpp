@@ -7,8 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setUpTable();
-    movieModel->insertMovie("Bilar", 120, 11, "bla bla", "Familj", 2008);
-    qDebug() << movieModel->tableName();
+    movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008, false);
+    //movieModel->removeRow(0);
+    movieModel->select();
 }
 
 MainWindow::~MainWindow()
@@ -20,6 +21,7 @@ void MainWindow::setUpTable()
 {
     movieModel = new MovieModel();
     ui->tableView->setModel(movieModel);
+    movieModel->select();
 }
 
 void MainWindow::insertValues(int nrOfRows)
@@ -56,8 +58,8 @@ void MainWindow::insertValues(int nrOfRows)
 void MainWindow::deleteValues(int startRow, int nrOfRows)
 {
     /*model->database().transaction();
-    if(!model->removeRows(startRow, nrOfRows)) {
-        qDebug() << "removeRows" << model->lastError().text();
+    if(!movieModel->removeRows(startRow, nrOfRows)) {
+        qDebug() << "removeRows" << movieModel->lastError().text();
         return;
     }
 
