@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "moviemodel.h"
+
+#include <QDebug>
+
 
 namespace Ui {
 class MainWindow;
@@ -20,8 +24,18 @@ private slots:
 
     void on_pushButton_info_edit_clicked();
 
+    void on_pushButton_movies_add_clicked();
+
+    void on_pushButton_movies_delete_clicked();
+
+
+
+    void on_listView_movies_clicked(const QModelIndex &index);
+
+
 private:
     Ui::MainWindow *ui;
+    MovieModel *movieModel;
 };
 
 #endif // MAINWINDOW_H
