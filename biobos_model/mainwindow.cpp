@@ -10,16 +10,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
     //QSqlDatabase::database().transaction();
-    //QSqlQuery query;
+    QSqlQuery query;
     //insertValues(2000);
-    //bool ok = true;
-    for(int i = 0; i < 500; i++)
-        //ok = query.prepare("insert into movie(title, playTime) values('flygplan', '122')");
-        /*qDebug() << movieModel->removeRows(0, 256);
-        qDebug() << movieModel->removeRows(257, 300);
-        qDebug() << movieModel->removeRows(0, 256);*/
-        movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008);
+    bool ok = true;
+        ok = query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
+        query.bindValue(":val", 6);
+        qDebug() << query.exec();
+        //qDebug() << movieModel->removeRows(257, 300);
+        //qDebug() << movieModel->removeRows(0, 256);
+        //movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008);
     movieModel->submitAll(true);
+
     /*if(movieModel->QSqlTableModel::submitAll())
     if(ok && query.exec())
     {

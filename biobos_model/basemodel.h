@@ -20,7 +20,7 @@ public:
     bool submitAll(bool insideTransaction = true);
     bool insertRow(const QMap<int, QVariant> & values, bool submit = true);
     bool insertRows(const QList<QMap<int, QVariant> > & values, bool submit = true);
-    //bool removeWhere(const QString & where);
+    bool deleteWhere(const QString &column, const QVariant &value);
 
 signals:
 

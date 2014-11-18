@@ -90,13 +90,15 @@ bool BaseModel::insertRows(const QList<QMap<int, QVariant> > &values, bool submi
     return ok;
 }
 
-/*bool BaseModel::removeWhere(const QString & where)
+bool BaseModel::deleteWhere(const QString &column, const QVariant &value)
 {
-    BaseModel tmpModel(this->tableName(), this->selectStatement());
-    tmpModel.setFilter(where);
-
-    return false;//QSqlTableModel::removeRow(row);
-}*/
+    QSqlQuery query;
+    query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg(tableName()).arg(column));
+    query.bindValue(":val", value);
+    bool ok = query.exec();
+    qDebug() << query.lastError().text();
+    return ok;
+}
 
 void BaseModel::setTable(const QString &tableName)
 {
