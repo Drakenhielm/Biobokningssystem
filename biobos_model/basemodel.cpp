@@ -104,3 +104,18 @@ void BaseModel::setTable(const QString &tableName)
 {
     QSqlRelationalTableModel::setTable(tableName);
 }
+
+/*QString query = selectStatement();
+    if (query.isEmpty())
+        return false;
+
+    revertAll();
+    QSqlQuery qu(query, d->db);
+    setQuery(qu);
+
+    if (!qu.isActive() || lastError().isValid()) {
+        // something went wrong - revert to non-select state
+        d->initRecordAndPrimaryIndex();
+        return false;
+    }
+    return true;*/

@@ -10,17 +10,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
     //QSqlDatabase::database().transaction();
-    QSqlQuery query;
+    //QSqlQuery query;
     //insertValues(2000);
-    bool ok = true;
-        ok = query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
-        query.bindValue(":val", 6);
-        qDebug() << query.exec();
+    //bool ok = true;
+        //ok = query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
+        //query.bindValue(":val", 6);
+        //qDebug() << query.exec();
         //qDebug() << movieModel->removeRows(257, 300);
         //qDebug() << movieModel->removeRows(0, 256);
-        //movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008);
+    movieModel->sort(1, Qt::AscendingOrder);
+    //for(int i = 0; i < 1; i++)
+        movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008);
+        movieModel->insertMovie("BCD", 120, 11, "bla bla", "Familj", 2008);
+        movieModel->insertMovie("Abc", 120, 11, "bla bla", "Familj", 2008);
     movieModel->submitAll(true);
-
+    model->insertRows(0, 3);
     /*if(movieModel->QSqlTableModel::submitAll())
     if(ok && query.exec())
     {
@@ -44,6 +48,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::setUpTable()
 {
+    model = new QSqlQueryModel();
+    model->setQuery("select * from movie order by MovieID asc");
+    ui->tableView_2->setModel(model);
     movieModel = new MovieModel();
     movieModel->select();
 }

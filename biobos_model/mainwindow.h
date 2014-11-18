@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
+#include <QSqlQueryModel>
 #include <QDebug>
 #include <QtSql>
 #include <QElapsedTimer>
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     MovieModel *movieModel;
+    QSqlQueryModel *model;
     void setUpTable();
     void insertValues(int nrOfRows);
     void deleteValues(int startRow, int nrOfRows);
