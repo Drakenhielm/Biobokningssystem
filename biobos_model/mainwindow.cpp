@@ -10,21 +10,24 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
     //QSqlDatabase::database().transaction();
-    //QSqlQuery query;
+    QSqlQuery query;
     //insertValues(2000);
-    //bool ok = true;
-        //ok = query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
+    bool ok = true;
+        ok = query.prepare("insert into movie(Title) values('Valkyra')");//query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
         //query.bindValue(":val", 6);
-        //qDebug() << query.exec();
+        qDebug() << query.exec();
         //qDebug() << movieModel->removeRows(257, 300);
-        //qDebug() << movieModel->removeRows(0, 256);
+        qDebug() << movieModel->removeRows(0, 3);
     movieModel->sort(1, Qt::AscendingOrder);
-    //for(int i = 0; i < 1; i++)
-        movieModel->insertMovie("Flygplan\"", 120, 11, "bla bla", "Familj", 2008);
-        movieModel->insertMovie("BCD", 120, 11, "bla bla", "Familj", 2008);
-        movieModel->insertMovie("Abc", 120, 11, "bla bla", "Familj", 2008);
-    movieModel->submitAll(true);
-    model->insertRows(0, 3);
+    movieModel->setJoinMode(QSqlRelationalTableModel::LeftJoin);
+    movieModel->setRelation(3, QSqlRelation("show", "ShowID", "ThreeD"));
+    //movieModel->setFilter("Title='Abc'");
+    for(int i = 0; i < 1000; i++){
+        movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
+    }
+    movieModel->submitAll();
+    qDebug() << movieModel->data(movieModel->index(0, 3));
+    //model->insertRows(0, 3);
     /*if(movieModel->QSqlTableModel::submitAll())
     if(ok && query.exec())
     {
@@ -37,8 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
                  << QSqlDatabase::database().lastError().text();
     }*/
     qDebug() << timer.elapsed();
-    movieModel->select();
-    ui->tableView->setModel(movieModel);
+    //movieModel->select();
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +55,9 @@ void MainWindow::setUpTable()
     ui->tableView_2->setModel(model);
     movieModel = new MovieModel();
     movieModel->select();
+    ui->tableView->setModel(movieModel);
+    ui->tableView_2->setModel(movieModel);
+    qDebug() << movieModel->rowCount();
 }
 
 void MainWindow::insertValues(int nrOfRows)
@@ -104,5 +109,18 @@ void MainWindow::deleteValues(int startRow, int nrOfRows)
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    //model->setFilter("MovieID = 3");
+    /*QSqlQuery query;
+    query.exec("insert into movie(Title) values('Valkyra')");
+    int rows = movieModel->rowCount();
+    qDebug() << rows;
+    movieModel->selectRow(rows);*/
+    /*for(int i = 0; i < 1500; i++){
+    movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
+    movieModel->submitAll(true);
+    QVariant id = movieModel->query().lastInsertId();
+    movieModel->setData(movieModel->index(0,0), id);
+    qDebug() << movieModel->select();//selectRow(0);
+    ui->tableView->selectRow(0);
+    }*/
+    //qDebug() << movieModel->record(0).value(1);//movieModel->match(movieModel->index(0,0), Qt::DisplayRole, "377", -1, Qt::MatchExactly).first().row();
 }
