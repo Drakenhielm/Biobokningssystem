@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
     //QSqlDatabase::database().transaction();
-    QSqlQuery query;
+    /*QSqlQuery query;
     //insertValues(2000);
     bool ok = true;
         ok = query.prepare("insert into movie(Title) values('Valkyra')");//query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
@@ -39,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "The database reported an error: "
                  << QSqlDatabase::database().lastError().text();
     }*/
+    movieModel->deleteWhere("Genre", "Familj");
+    qDebug() << movieModel->insertMovie("Saw", 120, 11, "bla bla", "Hej", 2008);
+    movieModel->select();
     qDebug() << timer.elapsed();
     //movieModel->select();
 }
@@ -57,7 +60,7 @@ void MainWindow::setUpTable()
     movieModel->select();
     ui->tableView->setModel(movieModel);
     ui->tableView_2->setModel(movieModel);
-    qDebug() << movieModel->rowCount();
+    //qDebug() << movieModel->rowCount();
 }
 
 void MainWindow::insertValues(int nrOfRows)

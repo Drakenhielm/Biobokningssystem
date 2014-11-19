@@ -8,6 +8,8 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 
+#include <databasehandler.h>
+
 
 class BaseModel : public QSqlRelationalTableModel
 {
@@ -18,7 +20,7 @@ public:
 
     //reimplemented functions
     bool submitAll(bool insideTransaction = true);
-    bool insertRow(const QMap<int, QVariant> & values, bool submit = true);
+    bool insertRow(const QSqlRecord &record);
     bool insertRows(const QList<QMap<int, QVariant> > & values, bool submit = true);
     bool deleteWhere(const QString &column, const QVariant &value);
 
@@ -26,9 +28,12 @@ signals:
 
 public slots:
 
+protected:
+    //variables
+    DatabaseHandler dh;
+
 private:
     void initBaseModel(const QString & tableName, const QString & query = QString());
-
     //hide derived functions
     void setTable(const QString &tableName);
 

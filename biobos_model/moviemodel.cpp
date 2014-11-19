@@ -5,7 +5,7 @@ MovieModel::MovieModel(QObject *parent)
 {
 }
 
-bool MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
+int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                  const QString & genre, int year)
 {
     /*QMap<int, QVariant> values;
@@ -23,7 +23,8 @@ bool MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, 
     record.setValue(Description, description);
     record.setValue(Genre, genre);
     record.setValue(Year, year);
-    insertRecord(0, record);
+    //insertRecord(0, record);
+    return insertRow(record);
 }
 
 
