@@ -15,7 +15,6 @@ class HallView : public QWidget
 
 public:
     HallView(QWidget *parent = 0);
-    //QSize sizeHint() const;
 
 public slots:
     //vector<int>getSelectedSeats();
@@ -36,7 +35,6 @@ protected:
 private:
     int row_count;
     int column_count;
-    int squareSize;
 };
 
 #endif
