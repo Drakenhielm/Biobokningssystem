@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "moviemodel.h"
+#include <QItemSelection>
 
 #include <QDebug>
 
@@ -28,10 +29,9 @@ private slots:
 
     void on_pushButton_movies_delete_clicked();
 
-
-
     void on_listView_movies_clicked(const QModelIndex &index);
 
+    void on_listView_movies_activated(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
