@@ -25,7 +25,7 @@ public slots:
     //void setModel();
 
 signals:
-    void characterSelected(const QString &character);
+
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);

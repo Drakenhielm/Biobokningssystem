@@ -10,7 +10,7 @@ HallView::HallView(QWidget *parent)
     spacing = 3;
     offset = 0;
 
-    setMouseTracking(true);
+    setMouseTracking(true); //Needed for mouseMoveEvent.
 }
 
 void HallView::setColumns(int columns)
@@ -30,8 +30,8 @@ void HallView::mousePressEvent(QMouseEvent *event)
     int mouseX = event->x();
     int mouseY = event->y();
 
-    int rowIndex = mouseY/(squareSize+spacing/2);
-    int columnIndex = (mouseX-offset)/(squareSize+spacing/2);
+    int rowIndex = mouseY/(squareSize+spacing);
+    int columnIndex = (mouseX-(offset-spacing))/(squareSize+spacing);
 
     qDebug() << "columnIndex: " << columnIndex << "  rowIndex: " << rowIndex << "   mouseX: " << mouseX << "   mouseY: " << mouseY << "  squareSize: " << squareSize << "  offset: " << offset << endl;
     if(rowIndex <= 25 && columnIndex <= 25 && rowIndex >= 0 && columnIndex >= 0 ){
@@ -65,9 +65,9 @@ void HallView::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(event->rect(), QBrush(Qt::white)); //Background color
 
-    QRect redrawRect = event->rect();
-    int widgetHeight = redrawRect.bottom();
-    int widgetWidth = redrawRect.right();
+    QRect widget = event->rect();
+    int widgetHeight = widget.bottom();
+    int widgetWidth = widget.right();
 
     //Calculate the needed size for the seats so that they use as much of the width and height as possible
     if(widgetWidth/column_count > widgetHeight/row_count){
