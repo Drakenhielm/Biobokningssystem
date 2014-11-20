@@ -3,9 +3,9 @@
 ShowModel::ShowModel(QObject *parent)
     : BaseModel("show", parent)
 {
-    setJoinMode(QSqlRelationalTableModel::LeftJoin);
+    //setJoinMode(QSqlRelationalTableModel::LeftJoin);
     //setRelation(MovieID, QSqlRelation("movie", "MovieID", "Title"));
-    setRelation(HallID, QSqlRelation("hall", "HallID", "Name"));
+    //setRelation(HallID, QSqlRelation("hall", "HallID", "Name"));
 }
 
 bool ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,
