@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "moviemodel.h"
+#include "showmodel.h"
 #include <QItemSelection>
 
 #include <QDebug>
@@ -33,9 +34,14 @@ private slots:
 
     void on_listView_movies_activated(const QModelIndex &index);
 
+    void on_pushButton_show_add_clicked();
+
+    void on_pushButton_show_delete_clicked();
+
 private:
     Ui::MainWindow *ui;
     MovieModel *movieModel;
+    ShowModel *showModel;
 };
 
 #endif // MAINWINDOW_H

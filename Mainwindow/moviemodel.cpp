@@ -18,12 +18,12 @@ bool MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, 
     return insertRow(values, submit);*/
     QSqlRecord record = this->record();
     record.setValue(Title, title);
-    record.setValue(PlayTime, playTime);
+    record.setValue(PlayTime, "playTime");
     record.setValue(AgeLimit, ageLimit);
     record.setValue(Description, description);
     record.setValue(Genre, genre);
     record.setValue(Year, year);
-    insertRecord(-1, record);
+    insertRecord(0, record);
 }
 
 

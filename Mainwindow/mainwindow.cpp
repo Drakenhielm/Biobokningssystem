@@ -7,10 +7,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     movieModel = new MovieModel();
     movieModel->select();
     ui->listView_movies->setModel(movieModel);
     ui->listView_movies->setModelColumn(MovieModel::Title);
+
+    showModel = new ShowModel();
+    showModel->select();
+    ui->tableView_show->setModel(showModel);
+    ui->tableView_show->hideColumn(ShowModel::ShowID);
+    ui->tableView_show->hideColumn(ShowModel::MovieID);
 
 }
 
@@ -68,6 +75,8 @@ void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
         + movieModel->record(ui->listView_movies->selectionModel()->selectedIndexes().first().row()).value(MovieModel::Description).toString() +
         "</p></body></html>"
     );
+
+    //showModel->setFilter("MovieID = '"+);
 }
 
 
@@ -98,4 +107,16 @@ void MainWindow::on_listView_movies_activated(const QModelIndex &index)
         "</p></body></html>"
     );
 
+}
+
+void MainWindow::on_pushButton_show_add_clicked()
+{
+    showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 1, 1);
+    showModel->select();
+}
+
+void MainWindow::on_pushButton_show_delete_clicked()
+{
+    //showModel->removeRow(ui->listView_movies->selectionModel()->selectedIndexes().first().row());
+    //showModel->submitAll();
 }

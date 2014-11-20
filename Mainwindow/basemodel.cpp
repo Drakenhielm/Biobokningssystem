@@ -17,7 +17,19 @@ void BaseModel::initBaseModel(const QString & tableName, const QString & query)
     setTable(tableName);
     if(!query.isEmpty())
         QSqlQueryModel::setQuery(query);
-    setEditStrategy(OnManualSubmit);
+    //setEditStrategy(OnManualSubmit);
+}
+
+QVariant BaseModel::data(const QModelIndex &item, int role) const
+{
+    /*QVariant value = QSqlRelationalTableModel::data(item, role);
+    if (value.isValid() && role == Qt::DisplayRole) {
+        if(value.type() == QVariant::String)
+        {
+            return "Hello";//value.toDateTime().toString("d-MMM-yy");
+        }
+    }*/
+    return QSqlRelationalTableModel::data(item, role);
 }
 
 bool BaseModel::submitAll(bool insideTransaction)
@@ -40,63 +52,10 @@ bool BaseModel::submitAll(bool insideTransaction)
     return QSqlTableModel::submitAll();
 }
 
-bool BaseModel::insertRow(const QMap<int, QVariant> & values, bool submit)
+bool BaseModel::deleteWhere(const QString &column, const QVariant &value)
 {
-    //qDebug() << "Insert into table:" << tableName();
-    /*if(submit && editStrategy() == OnManualSubmit)
-    {
-        startTransaction();
-    }
-
-    int rowCount = this->rowCount();
-    qDebug() << rowCount;
-    if(!QSqlTableModel::insertRows(rowCount, 1))
-    {
-        qDebug() << "insertRows" << lastError().text();
-        return false;
-    }
-
-    bool ok = true;
-    for(QMap<int, QVariant>::const_iterator it = values.cbegin(); it != values.cend(); it++)
-    {
-        ok = setData(index(rowCount, it.key()), it.value());
-        qDebug() << it.key() << ", " << it.value();
-    }
-
-    if(submit && editStrategy() == OnManualSubmit)
-    {
-        return endTransaction();
-    }
-    else
-    {
-        return ok;
-    }*/
-    QSqlRecord record = this->record();
-    for(QMap<int, QVariant>::const_iterator it = values.cbegin(); it != values.cend(); it++)
-    {
-        record.setValue(it.key(), it.value());
-        //qDebug() << it.key() << ", " << it.value();
-    }
-    insertRecord(-1, record);
+    return dh.remove(tableName(), column, value);
 }
-
-bool BaseModel::insertRows(const QList<QMap<int, QVariant> > &values, bool submit)
-{
-    bool ok = true;
-    for(QList<QMap<int, QVariant> >::const_iterator it = values.cbegin(); it != values.cend(); it++)
-    {
-        ok = insertRow(*it, false);
-    }
-    return ok;
-}
-
-/*bool BaseModel::removeWhere(const QString & where)
-{
-    BaseModel tmpModel(this->tableName(), this->selectStatement());
-    tmpModel.setFilter(where);
-
-    return false;//QSqlTableModel::removeRow(row);
-}*/
 
 void BaseModel::setTable(const QString &tableName)
 {
