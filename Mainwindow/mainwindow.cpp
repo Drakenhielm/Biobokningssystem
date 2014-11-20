@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_show->setModel(showModel);
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
+    ui->tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 }
 
@@ -117,6 +118,6 @@ void MainWindow::on_pushButton_show_add_clicked()
 
 void MainWindow::on_pushButton_show_delete_clicked()
 {
-    //showModel->removeRow(ui->listView_movies->selectionModel()->selectedIndexes().first().row());
-    //showModel->submitAll();
+    showModel->removeRow(ui->tableView_show->selectionModel()->selectedIndexes().first().row());
+    showModel->select();
 }
