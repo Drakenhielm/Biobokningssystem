@@ -48,7 +48,7 @@ void MainWindow::on_pushButton_movies_add_clicked()
 void MainWindow::on_pushButton_movies_delete_clicked()
 {
     movieModel->removeRow(ui->listView_movies->selectionModel()->selectedIndexes().first().row());
-    movieModel->submitAll();
+    movieModel->select();
 }
 
 
