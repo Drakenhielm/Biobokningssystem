@@ -10,6 +10,7 @@
 #include <QElapsedTimer>
 
 #include <moviemodel.h>
+#include <moviemodel2.h>
 
 namespace Ui {
 class MainWindow;
@@ -28,7 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    MovieModel *movieModel;
+    MovieModel2 *movieModel2;
     QSqlQueryModel *model;
     void setUpTable();
     void insertValues(int nrOfRows);

@@ -16,19 +16,19 @@ MainWindow::MainWindow(QWidget *parent) :
         ok = query.prepare("insert into movie(Title) values('Valkyra')");//query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
         //query.bindValue(":val", 6);
         qDebug() << query.exec();
-        //qDebug() << movieModel->removeRows(257, 300);
-        qDebug() << movieModel->removeRows(0, 3);
-    movieModel->sort(1, Qt::AscendingOrder);
-    movieModel->setJoinMode(QSqlRelationalTableModel::LeftJoin);
-    movieModel->setRelation(3, QSqlRelation("show", "ShowID", "ThreeD"));
-    //movieModel->setFilter("Title='Abc'");
+        //qDebug() << movieModel2->removeRows(257, 300);
+        qDebug() << movieModel2->removeRows(0, 3);
+    movieModel2->sort(1, Qt::AscendingOrder);
+    movieModel2->setJoinMode(QSqlRelationalTableModel::LeftJoin);
+    movieModel2->setRelation(3, QSqlRelation("show", "ShowID", "ThreeD"));
+    //movieModel2->setFilter("Title='Abc'");
     for(int i = 0; i < 1000; i++){
-        movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
+        movieModel2->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
     }
-    movieModel->submitAll();
-    qDebug() << movieModel->data(movieModel->index(0, 3));
+    movieModel2->submitAll();
+    qDebug() << movieModel2->data(movieModel2->index(0, 3));
     //model->insertRows(0, 3);
-    /*if(movieModel->QSqlTableModel::submitAll())
+    /*if(movieModel2->QSqlTableModel::submitAll())
     if(ok && query.exec())
     {
         QSqlDatabase::database().commit();
@@ -39,11 +39,15 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "The database reported an error: "
                  << QSqlDatabase::database().lastError().text();
     }*/
-    movieModel->deleteWhere("Genre", "Familj");
-    qDebug() << movieModel->insertMovie("Saw", 120, 11, "bla bla", "Hej", 2008);
+    movieModel2->deleteWhere("Genre", "Familj");
+    MovieModel *movieModel = new MovieModel;
+    movieModel->insertMovie("Saw", 120, 11, "bla bla", "Hej", 2008);
     movieModel->select();
+    ui->tableView_2->setModel(movieModel);
+    qDebug() << movieModel2->insertMovie("Saw", 120, 11, "bla bla", "Hej", 2008);
+    //movieModel2->query().exec();
     qDebug() << timer.elapsed();
-    //movieModel->select();
+    //MovieModel2->query().exec();
 }
 
 MainWindow::~MainWindow()
@@ -56,47 +60,47 @@ void MainWindow::setUpTable()
     model = new QSqlQueryModel();
     model->setQuery("select * from movie order by MovieID asc");
     ui->tableView_2->setModel(model);
-    movieModel = new MovieModel();
-    movieModel->select();
-    ui->tableView->setModel(movieModel);
-    ui->tableView_2->setModel(movieModel);
-    //qDebug() << movieModel->rowCount();
+    movieModel2 = new MovieModel2();
+    movieModel2->query().exec();
+    ui->tableView->setModel(movieModel2);
+    ui->tableView_2->setModel(movieModel2);
+    //qDebug() << movieModel2->rowCount();
 }
 
 void MainWindow::insertValues(int nrOfRows)
 {
-    movieModel->database().transaction();
-    int rowCount = movieModel->rowCount();
-    if(!movieModel->QSqlTableModel::insertRows(rowCount, nrOfRows)) {
-        qDebug() << "insertRows" << movieModel->lastError().text();
+    /*movieModel2->database().transaction();
+    int rowCount = movieModel2->rowCount();
+    if(!movieModel2->QSqlTableModel::insertRows(rowCount, nrOfRows)) {
+        qDebug() << "insertRows" << movieModel2->lastError().text();
         return;
     }
 
     for(int i = 0; i < nrOfRows; i++)
     {
-        movieModel->setData(movieModel->index(rowCount+i,1), "Star Wars: Episode VII - The Force Awakens");
-        movieModel->setData(movieModel->index(rowCount+i,2), 127);
-        movieModel->setData(movieModel->index(rowCount+i,3), 11);
-        movieModel->setData(movieModel->index(rowCount+i,4), "Bla bla");
-        movieModel->setData(movieModel->index(rowCount+i,5), "Sci-Fi");
-        movieModel->setData(movieModel->index(rowCount+i,6), 2015);
+        movieModel2->setData(movieModel2->index(rowCount+i,1), "Star Wars: Episode VII - The Force Awakens");
+        movieModel2->setData(movieModel2->index(rowCount+i,2), 127);
+        movieModel2->setData(movieModel2->index(rowCount+i,3), 11);
+        movieModel2->setData(movieModel2->index(rowCount+i,4), "Bla bla");
+        movieModel2->setData(movieModel2->index(rowCount+i,5), "Sci-Fi");
+        movieModel2->setData(movieModel2->index(rowCount+i,6), 2015);
     }
 
-    if(movieModel->submitAll()) {
-        movieModel->database().commit();
+    if(movieModel2->submitAll()) {
+        movieModel2->database().commit();
     } else {
-        movieModel->database().rollback();
+        movieModel2->database().rollback();
         qDebug() << "Database Write Error" <<
             "The database reported an error: " <<
-            movieModel->lastError().text();
-    }
+            movieModel2->lastError().text();
+    }*/
 }
 
 void MainWindow::deleteValues(int startRow, int nrOfRows)
 {
     /*model->database().transaction();
-    if(!movieModel->removeRows(startRow, nrOfRows)) {
-        qDebug() << "removeRows" << movieModel->lastError().text();
+    if(!movieModel2->removeRows(startRow, nrOfRows)) {
+        qDebug() << "removeRows" << movieModel2->lastError().text();
         return;
     }
 
@@ -114,16 +118,16 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
     /*QSqlQuery query;
     query.exec("insert into movie(Title) values('Valkyra')");
-    int rows = movieModel->rowCount();
+    int rows = movieModel2->rowCount();
     qDebug() << rows;
-    movieModel->selectRow(rows);*/
+    movieModel2->selectRow(rows);*/
     /*for(int i = 0; i < 1500; i++){
-    movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
-    movieModel->submitAll(true);
-    QVariant id = movieModel->query().lastInsertId();
-    movieModel->setData(movieModel->index(0,0), id);
-    qDebug() << movieModel->select();//selectRow(0);
+    movieModel2->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
+    movieModel2->submitAll(true);
+    QVariant id = movieModel2->query().lastInsertId();
+    movieModel2->setData(movieModel2->index(0,0), id);
+    qDebug() << movieModel2->query().exec();//selectRow(0);
     ui->tableView->selectRow(0);
     }*/
-    //qDebug() << movieModel->record(0).value(1);//movieModel->match(movieModel->index(0,0), Qt::DisplayRole, "377", -1, Qt::MatchExactly).first().row();
+    //qDebug() << movieModel2->record(0).value(1);//movieModel2->match(movieModel2->index(0,0), Qt::DisplayRole, "377", -1, Qt::MatchExactly).first().row();
 }
