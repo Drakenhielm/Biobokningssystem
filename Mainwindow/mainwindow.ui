@@ -51,7 +51,20 @@
             </widget>
            </item>
            <item>
-            <widget class="QListView" name="listView_movies"/>
+            <widget class="QListView" name="listView_movies">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>70</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -252,7 +265,7 @@ p, li { white-space: pre-wrap; }
         <widget class="QTableWidget" name="tableWidget_3"/>
        </item>
        <item>
-        <widget class="QWidget" name="widget_3" native="true">
+        <widget class="QWidget" name="widget_hallview_info" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -261,31 +274,54 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="minimumSize">
           <size>
-           <width>105</width>
+           <width>153</width>
            <height>0</height>
           </size>
          </property>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QTextBrowser" name="textBrowser">
           <property name="geometry">
            <rect>
-            <x>-10</x>
-            <y>150</y>
-            <width>115</width>
+            <x>20</x>
+            <y>80</y>
+            <width>121</width>
+            <height>31</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_hallview_info_delete">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>240</y>
+            <width>82</width>
             <height>32</height>
            </rect>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>Delete</string>
           </property>
          </widget>
          <widget class="QComboBox" name="comboBox">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>120</y>
+            <x>40</x>
+            <y>180</y>
             <width>104</width>
             <height>26</height>
            </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_hallview_info_book">
+          <property name="geometry">
+           <rect>
+            <x>78</x>
+            <y>240</y>
+            <width>75</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Book</string>
           </property>
          </widget>
         </widget>
