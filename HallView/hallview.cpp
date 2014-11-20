@@ -9,7 +9,8 @@ HallView::HallView(QWidget *parent)
     column_count = 5;
     spacing = 3;
     offset = 0;
-    //setMouseTracking(true);
+
+    setMouseTracking(true);
 }
 
 void HallView::setColumns(int columns)
@@ -33,14 +34,29 @@ void HallView::mousePressEvent(QMouseEvent *event)
     int columnIndex = (mouseX-offset)/(squareSize+spacing/2);
 
     qDebug() << "columnIndex: " << columnIndex << "  rowIndex: " << rowIndex << "   mouseX: " << mouseX << "   mouseY: " << mouseY << "  squareSize: " << squareSize << "  offset: " << offset << endl;
-    if(rowIndex <= 25 && columnIndex <= 25 && rowIndex >= 0 && columnIndex >= 0 )
-    {
+    if(rowIndex <= 25 && columnIndex <= 25 && rowIndex >= 0 && columnIndex >= 0 ){
         if(seats[columnIndex][rowIndex] == 0)
             seats[columnIndex][rowIndex] = 1;
         else
             seats[columnIndex][rowIndex] = 0;
     }
     update(); //Update graphics
+}
+
+void HallView::mouseMoveEvent(QMouseEvent *event)
+{
+    int mouseX = event->x();
+    int mouseY = event->y();
+
+    int rowIndex = mouseY/(squareSize+spacing/2);
+    int columnIndex = (mouseX-offset)/(squareSize+spacing/2);
+
+    QToolTip::hideText();
+    if(rowIndex <= 25 && columnIndex <= 25 && rowIndex >= 0 && columnIndex >= 0 ){
+        int seatNr = rowIndex*row_count+columnIndex+1;
+        QString toolTipText = "Rad: " + QString::number(rowIndex+1) + " Kolumn: " + QString::number(columnIndex+1) + " Sittplats: " + QString::number(seatNr);
+        QToolTip::showText(event->globalPos(), toolTipText);
+    }
 }
 
 void HallView::paintEvent(QPaintEvent *event)
