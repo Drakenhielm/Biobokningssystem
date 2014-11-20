@@ -51,11 +51,12 @@ void HallView::mouseMoveEvent(QMouseEvent *event)
     int rowIndex = mouseY/(squareSize+spacing/2);
     int columnIndex = (mouseX-offset)/(squareSize+spacing/2);
 
-    QToolTip::hideText();
     if(rowIndex <= 25 && columnIndex <= 25 && rowIndex >= 0 && columnIndex >= 0 ){
         int seatNr = rowIndex*row_count+columnIndex+1;
         QString toolTipText = "Rad: " + QString::number(rowIndex+1) + " Kolumn: " + QString::number(columnIndex+1) + " Sittplats: " + QString::number(seatNr);
         QToolTip::showText(event->globalPos(), toolTipText);
+    }else{
+        QToolTip::hideText();
     }
 }
 
