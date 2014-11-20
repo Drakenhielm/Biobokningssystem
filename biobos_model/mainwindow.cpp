@@ -22,10 +22,14 @@ MainWindow::MainWindow(QWidget *parent) :
     movieModel->setJoinMode(QSqlRelationalTableModel::LeftJoin);
     movieModel->setRelation(3, QSqlRelation("show", "ShowID", "ThreeD"));
     //movieModel->setFilter("Title='Abc'");
-    for(int i = 0; i < 1000; i++){
+    for(int i = 0; i < 5; i++){
         movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
     }
-    movieModel->submitAll();
+    movieModel->deleteWhere("Title", "Grreeen");
+    for(int i = 0; i < 20; i++){
+        showModel->insertShow(QDateTime::currentDateTime(), 145, true, true, "English", 3, 1);
+    }
+    //movieModel->submitAll();
     qDebug() << movieModel->data(movieModel->index(0, 3));
     //model->insertRows(0, 3);
     /*if(movieModel->QSqlTableModel::submitAll())
@@ -50,14 +54,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::setUpTable()
 {
-    model = new QSqlQueryModel();
-    model->setQuery("select * from movie order by MovieID asc");
-    ui->tableView_2->setModel(model);
-    movieModel = new MovieModel();
+    movieModel = new MovieModel(this);
     movieModel->select();
     ui->tableView->setModel(movieModel);
-    ui->tableView_2->setModel(movieModel);
-    qDebug() << movieModel->rowCount();
+
+    showModel = new ShowModel(this);
+    showModel->select();
+    ui->tableView_2->setModel(showModel);
 }
 
 void MainWindow::insertValues(int nrOfRows)

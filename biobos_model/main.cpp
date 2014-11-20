@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    DatabaseHandler dh("movietest.sqlite");
+    DatabaseHandler dh;
     dh.openDatabase();
     if(!dh.databaseComplete())
         dh.createDatabase();

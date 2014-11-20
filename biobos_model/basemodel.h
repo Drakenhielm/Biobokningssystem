@@ -7,6 +7,9 @@
 #include <QDebug>
 #include <QSqlRecord>
 #include <QSqlQuery>
+#include <QDateTime>
+
+#include <databasehandler.h>
 
 
 class BaseModel : public QSqlRelationalTableModel
@@ -17,14 +20,17 @@ public:
     BaseModel(const QString & tableName, const QString & query = QString(), QObject *parent = 0);
 
     //reimplemented functions
+    virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
     bool submitAll(bool insideTransaction = true);
-    bool insertRow(const QMap<int, QVariant> & values, bool submit = true);
-    bool insertRows(const QList<QMap<int, QVariant> > & values, bool submit = true);
     bool deleteWhere(const QString &column, const QVariant &value);
 
 signals:
 
 public slots:
+
+protected:
+    //variables
+    DatabaseHandler dh;
 
 private:
     void initBaseModel(const QString & tableName, const QString & query = QString());
