@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>popup</class>
+ <widget class="QDialog" name="popup">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>449</width>
+    <height>647</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="TitleLabel">
+   <property name="geometry">
+    <rect>
+     <x>83</x>
+     <y>103</y>
+     <width>26</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Titel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="PlaytimeLabel">
+   <property name="geometry">
+    <rect>
+     <x>83</x>
+     <y>134</y>
+     <width>42</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Speltid</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="GenreLabel">
+   <property name="geometry">
+    <rect>
+     <x>84</x>
+     <y>199</y>
+     <width>37</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Genre</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="PictureLabel">
+   <property name="geometry">
+    <rect>
+     <x>81</x>
+     <y>260</y>
+     <width>23</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Bild</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="YearLabel">
+   <property name="geometry">
+    <rect>
+     <x>81</x>
+     <y>291</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>År</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DescLabel">
+   <property name="geometry">
+    <rect>
+     <x>79</x>
+     <y>323</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Beskrivning</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="GenreCbb">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>200</y>
+     <width>74</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <item>
+    <property name="text">
+     <string>Drama</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Komedi</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Thriller</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Action</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QSpinBox" name="YearSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>290</y>
+     <width>62</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="value">
+    <number>2014</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="AgeSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>160</y>
+     <width>62</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="value">
+    <number>12</number>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="DescritionEdit">
+   <property name="geometry">
+    <rect>
+     <x>79</x>
+     <y>344</y>
+     <width>271</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AddButton">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>570</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Lägg Till</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="CancelButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>570</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Avbryt</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="TitleBox">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>211</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="PictureEdit">
+   <property name="geometry">
+    <rect>
+     <x>131</x>
+     <y>259</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ExploreButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>259</y>
+     <width>41</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="CurrGenreLabel">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>220</y>
+     <width>211</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RemoveGenreButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>230</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="PlaytimeSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>130</y>
+     <width>62</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>9999</number>
+   </property>
+   <property name="value">
+    <number>180</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="AgeLabel">
+   <property name="geometry">
+    <rect>
+     <x>83</x>
+     <y>166</y>
+     <width>72</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Åldersgräns</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AddGenreButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>200</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+</string>
+   </property>
+  </widget>
+  <zorder>TitleLabel</zorder>
+  <zorder>PlaytimeLabel</zorder>
+  <zorder>AgeLabel</zorder>
+  <zorder>GenreLabel</zorder>
+  <zorder>PictureLabel</zorder>
+  <zorder>YearLabel</zorder>
+  <zorder>DescLabel</zorder>
+  <zorder>GenreCbb</zorder>
+  <zorder>YearSpinBox</zorder>
+  <zorder>AgeSpinBox</zorder>
+  <zorder>DescritionEdit</zorder>
+  <zorder>AddButton</zorder>
+  <zorder>CancelButton</zorder>
+  <zorder>PlaytimeSpinBox</zorder>
+  <zorder>TitleBox</zorder>
+  <zorder>PictureEdit</zorder>
+  <zorder>ExploreButton</zorder>
+  <zorder>AddGenreButton</zorder>
+  <zorder>CurrGenreLabel</zorder>
+  <zorder>PlaytimeSpinBox</zorder>
+  <zorder>AgeLabel</zorder>
+  <zorder>RemoveGenreButton</zorder>
+  <zorder>AddGenreButton</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
