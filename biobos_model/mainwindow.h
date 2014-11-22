@@ -11,6 +11,9 @@
 
 #include <moviemodel.h>
 #include <showmodel.h>
+#include <hallmodel.h>
+#include <seatmodel.h>
+#include <bookingmodel.h>
 
 namespace Ui {
 class MainWindow;
@@ -25,17 +28,21 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_tableView_clicked(const QModelIndex &index);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     MovieModel *movieModel;
     ShowModel *showModel;
-    QSqlQueryModel *model;
+    HallModel *hallModel;
+    SeatModel *seatModel;
+    BookingModel *bookingModel;
+
+    QSqlRelationalTableModel *model;
     void setUpTable();
     void insertValues(int nrOfRows);
     void deleteValues(int startRow, int nrOfRows);
-
 };
 
 #endif // MAINWINDOW_H

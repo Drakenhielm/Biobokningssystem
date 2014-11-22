@@ -18,6 +18,8 @@ class DatabaseHandler
 public:
     DatabaseHandler();
 
+    typedef QList<QPair<QString, QVariant> > DatabaseRecord;
+
     //functions
     bool openDatabase();
     bool databaseComplete();
@@ -29,7 +31,7 @@ public:
     bool endTransaction(bool ok);
 
     bool remove(const QString &tableName, const QString &column, const QVariant &value);
-    int  insert(const QString &tableName, const QSqlRecord &record);
+    int  insert(const QString &tableName, const QList<QPair<QString, QVariant> > &record);
 
 private:
     //variables

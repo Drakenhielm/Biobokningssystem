@@ -1,24 +1,26 @@
 #include "showmodel.h"
 
 ShowModel::ShowModel(QObject *parent)
-    : BaseModel("show", parent)
+    : BaseModel("show",
+                /*QString("select show.* COUNT(seat.HallID) AS Sittplatser"
+                             "from show"
+                             "LEFT JOIN seat ON seat.HallID = show.HallID"
+                             "GROUP BY show.ShowID"),*/
+                parent)
 {
-    //setJoinMode(QSqlRelationalTableModel::LeftJoin);
-    //setRelation(MovieID, QSqlRelation("movie", "MovieID", "Title"));
-    //setRelation(HallID, QSqlRelation("hall", "HallID", "Name"));
 }
 
-bool ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,
+int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,
                 int movieID, int hallID)
 {
-    QSqlRecord record = this->record();
-    record.setValue(DateTime, dateTime.toString("d MMM yy"));
-    record.setValue(Price, price);
-    record.setValue(ThreeD, threeD);
-    record.setValue(Subtitles, subtitles);
-    record.setValue(Language, language);
-    record.setValue(MovieID, movieID);
-    record.setValue(HallID, hallID);
-    qDebug() << dh.insert("show", record);
+    DatabaseHandler::DatabaseRecord values;
+    values.append(qMakePair(QString("DateTime"), dateTime));
+    values.append(qMakePair(QString("Price"), price));
+    values.append(qMakePair(QString("ThreeD"), threeD));
+    values.append(qMakePair(QString("Subtitles"), subtitles));
+    values.append(qMakePair(QString("Language"), language));
+    values.append(qMakePair(QString("MovieID"), movieID));
+    values.append(qMakePair(QString("HallID"), hallID));
+    qDebug() << dh.insert("show", values);
     return true;
 }

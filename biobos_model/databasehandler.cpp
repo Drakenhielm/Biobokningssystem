@@ -73,11 +73,6 @@ void DatabaseHandler::createDatabase()
                "BookingID INTEGER PRIMARY KEY, "
                "ShowID INTEGER, "
                "SeatID INTEGER, "
-               "VisitorID INTEGER)");
-
-    //create visitor table
-    query.exec("CREATE TABLE IF NOT EXISTS visitor("
-               "VisitorID INTEGER PRIMARY KEY, "
                "Phone TEXT)");
 
 }
@@ -96,8 +91,7 @@ bool DatabaseHandler::endTransaction(bool ok)
     }
     else
     {
-        db.rollback();
-        return false;
+        return db.rollback();
     }
 }
 
@@ -115,15 +109,15 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &column, co
     return true;
 }
 
-int DatabaseHandler::insert(const QString &tableName, const QSqlRecord &record)
+int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString, QVariant> > &record)
 {
     QSqlQuery query;
     QString sqlStr = QString("INSERT INTO %1(").arg(tableName);
     QString valStr;
     QString fieldName;
-    for(int i = 0; i < record.count(); i++)
+    for(int i = 0; i < record.size(); i++)
     {
-        fieldName = record.fieldName(i);
+        fieldName = record.at(i).first;
         sqlStr += fieldName + QString(", ");
         valStr += "?, ";
     }
@@ -131,9 +125,9 @@ int DatabaseHandler::insert(const QString &tableName, const QSqlRecord &record)
     valStr.remove(valStr.size()-2, 2);
     sqlStr += QString(") VALUES(") + valStr + ')';
     query.prepare(sqlStr);
-    for(int i = 0; i < record.count(); i++)
+    for(int i = 0; i < record.size(); i++)
     {
-        query.bindValue(i, record.value(i));
+        query.bindValue(i, record.at(i).second);
     }
     qDebug() << sqlStr;
     if(!query.exec())

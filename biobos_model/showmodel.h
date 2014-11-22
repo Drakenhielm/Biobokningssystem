@@ -5,6 +5,7 @@
 
 #include <QDebug>
 #include <QSqlError>
+#include <QPair>
 
 class ShowModel : public BaseModel
 {
@@ -13,7 +14,7 @@ public:
 
     ShowModel(QObject *parent = 0);
 
-    bool insertShow(const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
+    int insertShow(const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
                     int movieID, int hallID);
 };
 

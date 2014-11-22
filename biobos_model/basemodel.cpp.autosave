@@ -15,7 +15,6 @@ BaseModel::BaseModel(const QString &tableName, const QString &query, QObject *pa
 void BaseModel::initBaseModel(const QString & tableName, const QString & queryStr)
 {
     //setTable(tableName);
-    //QSqlQuery query;
     if(queryStr.isEmpty())
     {
         setQuery("select * from "+tableName);
@@ -24,7 +23,6 @@ void BaseModel::initBaseModel(const QString & tableName, const QString & querySt
     {
         setQuery(queryStr);
     }
-    //setQuery(query);
     //setEditStrategy(OnManualSubmit);
 }
 

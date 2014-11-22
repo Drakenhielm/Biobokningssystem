@@ -12,7 +12,7 @@
 #include <databasehandler.h>
 
 
-class BaseModel : public QSqlRelationalTableModel
+class BaseModel : public QSqlQueryModel
 {
     Q_OBJECT
 public:
@@ -21,7 +21,8 @@ public:
 
     //reimplemented functions
     virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
-    bool submitAll(bool insideTransaction = true);
+    //bool submitAll(bool insideTransaction = true);
+    virtual void refresh();
     bool deleteWhere(const QString &column, const QVariant &value);
 
 signals:
@@ -31,12 +32,14 @@ public slots:
 protected:
     //variables
     DatabaseHandler dh;
+    QString tableName;
+    QString filter;
 
 private:
     void initBaseModel(const QString & tableName, const QString & query = QString());
 
     //hide derived functions
-    void setTable(const QString &tableName);
+    //void setTable(const QString &tableName);
 
 };
 

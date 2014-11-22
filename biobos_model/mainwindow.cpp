@@ -9,42 +9,18 @@ MainWindow::MainWindow(QWidget *parent) :
     setUpTable();
     QElapsedTimer timer;
     timer.start();
-    //QSqlDatabase::database().transaction();
-    QSqlQuery query;
-    //insertValues(2000);
-    bool ok = true;
-        ok = query.prepare("insert into movie(Title) values('Valkyra')");//query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg("movie").arg("MovieID"));
-        //query.bindValue(":val", 6);
-        qDebug() << query.exec();
-        //qDebug() << movieModel->removeRows(257, 300);
-        qDebug() << movieModel->removeRows(0, 3);
-    movieModel->sort(1, Qt::AscendingOrder);
-    movieModel->setJoinMode(QSqlRelationalTableModel::LeftJoin);
-    movieModel->setRelation(3, QSqlRelation("show", "ShowID", "ThreeD"));
-    //movieModel->setFilter("Title='Abc'");
-    for(int i = 0; i < 5; i++){
-        movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
-    }
-    movieModel->deleteWhere("Title", "Grreeen");
-    for(int i = 0; i < 20; i++){
-        showModel->insertShow(QDateTime::currentDateTime(), 145, true, true, "English", 3, 1);
-    }
-    //movieModel->submitAll();
-    qDebug() << movieModel->data(movieModel->index(0, 3));
-    //model->insertRows(0, 3);
-    /*if(movieModel->QSqlTableModel::submitAll())
-    if(ok && query.exec())
-    {
-        QSqlDatabase::database().commit();
-    }
-    else
-    {
-        QSqlDatabase::database().rollback();
-        qDebug() << "The database reported an error: "
-                 << QSqlDatabase::database().lastError().text();
-    }*/
+
+    /*movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006);
+    movieModel->refresh();
+    showModel->insertShow(QDateTime::currentDateTime(), 80, false, true, "Portuguese", 1, 8);
+    showModel->refresh();
+    //hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 10);
+    //hallModel->refresh();
+    //seatModel->refresh();
+    bookingModel->insertBooking(1, 17, "070346757548");
+    bookingModel->refresh();*/
+
     qDebug() << timer.elapsed();
-    //movieModel->select();
 }
 
 MainWindow::~MainWindow()
@@ -55,15 +31,43 @@ MainWindow::~MainWindow()
 void MainWindow::setUpTable()
 {
     movieModel = new MovieModel(this);
-    movieModel->select();
-    ui->tableView->setModel(movieModel);
+    movieModel->refresh();
+    ui->tableView_3->setModel(movieModel);
 
     showModel = new ShowModel(this);
-    showModel->select();
-    ui->tableView_2->setModel(showModel);
+    showModel->refresh();
+    ui->tableView_4->setModel(showModel);
+
+    hallModel = new HallModel(this);
+    hallModel->refresh();
+    ui->tableView->setModel(hallModel);
+
+    seatModel = new SeatModel(this);
+    seatModel->setHall(8);
+    seatModel->setShow(1);
+    seatModel->refresh();
+    ui->tableView_2->setModel(seatModel);
+
+    bookingModel = new BookingModel(this);
+    //bookingModel->refresh();
+    ui->tableView_5->setModel(bookingModel);
+
+    model = new QSqlRelationalTableModel(this);
+    /*QString queryStr = QString("SELECT seat.*, b_all.BookingID AS Booked, b_current.BookingID AS CurrentBooking")
+                       +" from seat"
+                       +" LEFT JOIN booking as b_all ON b_all.SeatID = seat.SeatID and b_all.ShowID = '1'"
+                       +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID and b_current.ShowID = '1'"
+                       +" WHERE seat.HallID = '1'"
+                       +" GROUP BY seat.SeatID ORDER BY seat.Row,seat.Column DESC";
+    qDebug() << queryStr;
+    model->QSqlQueryModel::setQuery(queryStr);*/
+    model->setTable("seat");
+    model->select();
+    //ui->tableView->setSortingEnabled(true);
+    //ui->tableView->setModel(model);
 }
 
-void MainWindow::insertValues(int nrOfRows)
+/*void MainWindow::insertValues(int nrOfRows)
 {
     movieModel->database().transaction();
     int rowCount = movieModel->rowCount();
@@ -90,7 +94,7 @@ void MainWindow::insertValues(int nrOfRows)
             "The database reported an error: " <<
             movieModel->lastError().text();
     }
-}
+}*/
 
 void MainWindow::deleteValues(int startRow, int nrOfRows)
 {
@@ -110,20 +114,8 @@ void MainWindow::deleteValues(int startRow, int nrOfRows)
     }*/
 }
 
-void MainWindow::on_tableView_clicked(const QModelIndex &index)
+void MainWindow::on_pushButton_clicked()
 {
-    /*QSqlQuery query;
-    query.exec("insert into movie(Title) values('Valkyra')");
-    int rows = movieModel->rowCount();
-    qDebug() << rows;
-    movieModel->selectRow(rows);*/
-    /*for(int i = 0; i < 1500; i++){
-    movieModel->insertMovie("Grreeen", 120, 11, "bla bla", "Familj", 2008);
-    movieModel->submitAll(true);
-    QVariant id = movieModel->query().lastInsertId();
-    movieModel->setData(movieModel->index(0,0), id);
-    qDebug() << movieModel->select();//selectRow(0);
-    ui->tableView->selectRow(0);
-    }*/
-    //qDebug() << movieModel->record(0).value(1);//movieModel->match(movieModel->index(0,0), Qt::DisplayRole, "377", -1, Qt::MatchExactly).first().row();
+    movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006);
+    movieModel->refresh();
 }
