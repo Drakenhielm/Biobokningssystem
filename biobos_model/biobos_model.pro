@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     showmodel.cpp \
     hallmodel.cpp \
     seatmodel.cpp \
-    bookingmodel.cpp
+    bookingmodel.cpp \
+    custommodel.cpp
 
 HEADERS  += mainwindow.h \
     databasehandler.h \
@@ -29,6 +30,7 @@ HEADERS  += mainwindow.h \
     showmodel.h \
     hallmodel.h \
     seatmodel.h \
-    bookingmodel.h
+    bookingmodel.h \
+    custommodel.h
 
 FORMS    += mainwindow.ui

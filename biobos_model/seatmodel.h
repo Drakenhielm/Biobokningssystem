@@ -11,7 +11,7 @@ public:
 
     //virtual int rowCount(const QModelIndex & parent = QModelIndex()) const;
     //virtual int columnCount(const QModelIndex & parent = QModelIndex()) const;
-    //virtual QVariant QAbstractItemModel::data(const QModelIndex & index, int role = Qt::DisplayRole);
+    //virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole);
     virtual void refresh();
 
     void setHall(int id);

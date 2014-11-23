@@ -2,12 +2,30 @@
 
 ShowModel::ShowModel(QObject *parent)
     : BaseModel("show",
-                /*QString("select show.* COUNT(seat.HallID) AS Sittplatser"
-                             "from show"
-                             "LEFT JOIN seat ON seat.HallID = show.HallID"
-                             "GROUP BY show.ShowID"),*/
+                QString("select show.*, hall.Name as Hall, count(seat.SeatID) - count(booking.SeatID) as RemainingSeats "
+                        "from show "
+                        "left join hall on (hall.HallID = show.HallID) "
+                        "left join seat on (seat.HallID = show.HallID) "
+                        "left join booking on (booking.ShowID = show.ShowID and booking.SeatID = seat.SeatID) "
+                        "group by show.ShowID "),
                 parent)
 {
+}
+
+QVariant ShowModel::data(const QModelIndex &item, int role) const
+{
+    QVariant value = BaseModel::data(item, role);
+    if (value.isValid() && role == Qt::DisplayRole)
+    {
+        if(item.column() == ThreeD || item.column() == Subtitles)
+        {
+            if(value.toBool())
+                return QString("Yes");
+            else
+                return QString("No");
+        }
+    }
+    return BaseModel::data(item, role);
 }
 
 int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,

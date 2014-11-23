@@ -1,7 +1,7 @@
 #include "moviemodel.h"
 
 MovieModel::MovieModel(QObject *parent)
-    : BaseModel("movie", parent)
+    : BaseModel("movie", "select * from movie", parent)
 {
 }
 

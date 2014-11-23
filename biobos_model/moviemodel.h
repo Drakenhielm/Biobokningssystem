@@ -15,6 +15,15 @@ public:
 
     int insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                      const QString & genre, int year);
+
+    int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
+    QString getTitle(int row) const { return data(index(row, Title)).toString(); }
+    int getPlayTime(int row) const { return data(index(row, PlayTime)).toInt(); }
+    int getAgeLimit(int row) const { return data(index(row, AgeLimit)).toInt(); }
+    QString getDescription(int row) const { return data(index(row, Description)).toString(); }
+    QString getGenre(int row) const { return data(index(row, Genre)).toString(); }
+    int getYear(int row) const { return data(index(row, Year)).toInt(); }
+    int getMoviePoster(int row) const { return data(index(row, MoviePoster)).toInt(); }
 };
 
 #endif // MOVIEMODEL_H

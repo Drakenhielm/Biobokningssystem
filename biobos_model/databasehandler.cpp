@@ -129,7 +129,7 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
     {
         query.bindValue(i, record.at(i).second);
     }
-    qDebug() << sqlStr;
+    //qDebug() << sqlStr;
     if(!query.exec())
     {
         qDebug() << "The database reported an error: "

@@ -15,6 +15,8 @@
 #include <seatmodel.h>
 #include <bookingmodel.h>
 
+#include <custommodel.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -38,6 +40,8 @@ private:
     HallModel *hallModel;
     SeatModel *seatModel;
     BookingModel *bookingModel;
+
+    CustomModel *customModel;
 
     QSqlRelationalTableModel *model;
     void setUpTable();

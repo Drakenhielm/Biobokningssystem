@@ -3,77 +3,110 @@
 BaseModel::BaseModel(const QString &tableName, QObject *parent)
     : QSqlQueryModel(parent)
 {
-    initBaseModel(tableName, QString());
+    this->tableName = tableName;
 }
 
-BaseModel::BaseModel(const QString &tableName, const QString &query, QObject *parent)
+BaseModel::BaseModel(const QString &tableName, const QString &displayQuery, QObject *parent)
     : QSqlQueryModel(parent)
 {
-    initBaseModel(tableName, query);
+    this->tableName = tableName;
+    this->sqlStatement = displayQuery;
+    setQuery(displayQuery);
 }
 
-void BaseModel::initBaseModel(const QString & tableName, const QString & queryStr)
-{
-    //setTable(tableName);
-    //QSqlQuery query;
-    if(queryStr.isEmpty())
-    {
-        setQuery("select * from "+tableName);
-    }
-    else
-    {
-        setQuery(queryStr);
-    }
-    //setQuery(query);
-    //setEditStrategy(OnManualSubmit);
-}
-
+/*Everywhere a columnheader contains "DateTime" the value will be converted to QDateTime. */
 QVariant BaseModel::data(const QModelIndex &item, int role) const
 {
     QVariant value = QSqlQueryModel::data(item, role);
     if (value.isValid() && role == Qt::DisplayRole) {
-        if(record().fieldName(item.column()) == "DateTime")
+        if(record().fieldName(item.column()).contains("DateTime", Qt::CaseInsensitive))
         {
+            if(value.toDate() == QDate::currentDate())
+                return value.toDateTime().toString("'Today' H:mm");
+            if(value.toDate() == QDate::currentDate().addDays(1))
+                return value.toDateTime().toString("'Tomorrow' H:mm");
             return value.toDateTime().toString("d/M/yy H:mm");
         }
     }
     return QSqlQueryModel::data(item, role);
 }
 
-/*bool BaseModel::submitAll(bool insideTransaction)
+/*Delete every row in the database where the value in column is equal to value. */
+bool BaseModel::deleteWhere(const QString &column, const QVariant &value)
 {
-    if(insideTransaction)
+    return dh.remove(tableName, column, value);
+}
+
+/*Refresh model.
+ * Populates the model with data from the database
+ * using the specified sqlStatement and filter.*/
+void BaseModel::refresh()
+{
+    QSqlQuery query;
+    if(!filter.isEmpty())
+        filterQuery(query, sqlStatement, filter);
+    else
+        query = QSqlQuery(sqlStatement);
+    setQuery(query);
+}
+
+/*filter is the same as the where clause in a sql statement*/
+void BaseModel::setFilter(QString filter)
+{
+    this->filter = filter;
+}
+
+/*Put placeholders (?) evrywhere inside two single quotation marks and
+ * return a list with the values.
+ * Example: "id = '437'" transforms to "id = '?'"
+ *          and the returned list contains 437.*/
+QList<QString> BaseModel::fixPlaceholders(QString &str)
+{
+    QList<QString> list;
+    int start = 0;
+    int end = 0;
+    bool cont = true;
+    while(cont)
     {
-        database().transaction();
-        if(QSqlTableModel::submitAll())
+        start = str.indexOf('\'', start);
+        end = str.indexOf('\'', start+1);
+        if(start != -1 && end != -1)
         {
-            return database().commit();
+            list.append(str.mid(start+1, end-start-1));
+            str.replace(start, end-start+1, QString('?'));
+            cont = true;
+            qDebug() << start << end << str;
+        }
+        else if(start != -1 || end != -1)
+        {
+            cont = false;
         }
         else
         {
-            database().rollback();
-            qDebug() << "The database reported an error: "
-                     << lastError().text();
-            return false;
+            cont = false;
         }
     }
-    return QSqlTableModel::submitAll();
-}*/
-
-bool BaseModel::deleteWhere(const QString &column, const QVariant &value)
-{
-
-    return dh.remove("movie"/*tableName()*/, column, value);
+    return list;
 }
 
-/*void BaseModel::setTable(const QString &tableName)
+/*Set a query to the referenced QSqlQuery using the sqlStatement and the filter*/
+void BaseModel::filterQuery(QSqlQuery &query, const QString &sqlStatement, const QString &filter)
 {
-    QSqlRelationalTableModel::setTable(tableName);
-}*/
+    QString tmpSqlStmt = sqlStatement;
+    QString tmpFilter = filter;
+    QList<QString> list = fixPlaceholders(tmpFilter);
+    if(list.isEmpty())
+        return;
 
-/*Refresh model*/
-void BaseModel::refresh()
-{
-    setQuery(query());
-    query().exec();
+    tmpSqlStmt.prepend("SELECT * FROM (");
+    tmpSqlStmt.append(") WHERE ");
+    tmpSqlStmt.append(tmpFilter);
+
+    query.prepare(tmpSqlStmt);
+    for(int i = 0; i < list.size(); i++)
+    {
+        query.bindValue(i, list.at(i));
+        qDebug() << list.at(i);
+    }
+    query.exec();
 }

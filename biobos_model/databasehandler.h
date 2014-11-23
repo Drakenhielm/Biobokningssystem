@@ -6,12 +6,9 @@
 #include <QSqlRecord>
 #include <QSqlDriver>
 #include <QSqlError>
-#include <QFileInfo>
 
 //temp for debugging
 #include <QDebug>
-#include <iostream>
-#include <iomanip>
 
 class DatabaseHandler
 {
