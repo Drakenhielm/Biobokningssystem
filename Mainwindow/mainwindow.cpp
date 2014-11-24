@@ -48,7 +48,7 @@ void MainWindow::on_pushButton_movies_add_clicked()
 {
     movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009);
     movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009);
-    movieModel->submitAll();
+    movieModel->select();
     qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
 }
 
