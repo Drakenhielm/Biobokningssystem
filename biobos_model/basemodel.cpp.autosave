@@ -68,25 +68,10 @@ void BaseModel::setFilter(const QString &filter)
         i++;
     }
     //this->query().boundValues()
-    //query.exec();
+    query.exec();
     setQuery(query);
     lastFilterQuery = this->query().lastQuery();
-    qDebug() << lastFilterQuery;
-    qDebug() << this->query().executedQuery();
-    /*if(!currentFilter.isEmpty())
-        clearFilter();
-    //QList<QString> list = fixPlaceholders(filter);
-    currentFilter = filter;
-    QString queryStr = query().executedQuery();
-    if(filterFlag)
-    {
-        //queryStr.lastIndexOf("WHERE")
-        //queryStr.remove(0, QString("SELECT * FROM( ").length());
-        //queryStr.remove(queryStr.length()-)Qt::MatchFlag
-    }
-    //QMap<QString, QMap> map;
-    //map.insert();
-    query().prepare(queryStr);*/
+    
 }
 
 void BaseModel::clearFilter()
@@ -94,7 +79,8 @@ void BaseModel::clearFilter()
     QSqlQuery query = this->query();
     QString sql = query.lastQuery();
     removeFilter(sql);
-
+    query.exec();
+    setQuery(query);
     lastFilterQuery = this->query().lastQuery();
 }
 

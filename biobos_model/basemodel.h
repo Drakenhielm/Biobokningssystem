@@ -23,7 +23,8 @@ public:
 
     //public functions
     bool deleteWhere(const QString &column, const QVariant &value);
-    void setFilter(QString filter);
+    void setFilter(const QString &filter);
+    void clearFilter();
 
 protected:
     //variables
@@ -33,11 +34,15 @@ private:
     //variables
     QString tableName; //deleteWhere() use this to delete from a table
     QString sqlStatement; //current sql statement
-    QString filter; //same as the "where clause" in a statement
+    QString currentFilter; //same as the "where clause" in a statement
+    QString lastFilterQuery;
+    bool filterFlag;
 
     //functions
     QList<QString> fixPlaceholders(QString &str);
-    void filterQuery(QSqlQuery &query, const QString &sqlStatement, const QString &filter);
+    void filterQuery(QSqlQuery &query, const QString &sqlStr, const QString &filter);
+    void getLastExecutedQuery(QSqlQuery &query);
+    void removeFilter(QString &sqlStr);
 };
 
 #endif // BASEMODEL_H

@@ -136,5 +136,9 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
                  << db.lastError().text();
         return -1;
     }
+
+    //qDebug() << query.executedQuery();
+    //qDebug() << query.lastQuery();
+
     return query.lastInsertId().toInt();
 }

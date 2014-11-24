@@ -10,11 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
 
-    //for(int i = 0; i < 2000; i++)
-        //movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006);
-    //movieModel->refresh();
-    showModel->insertShow(QDateTime::currentDateTime(), 80, false, true, "Portuguese", 1, 8);
-    showModel->refresh();
+    //for(int i = 0; i < 3000; i++)
+        //movieModel->deleteWhere("MovieID", i);
+        movieModel->insertMovie("Polis", 127, 15, "Hmmm hm hm", "Drama", 2006);
+    movieModel->refresh();
+    //showModel->insertShow(QDateTime::currentDateTime(), 80, false, true, "Portuguese", 1, 8);
+    //showModel->refresh();
     //hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 10);
     //hallModel->refresh();
     //seatModel->refresh();
@@ -34,16 +35,23 @@ void MainWindow::setUpTable()
     movieModel = new MovieModel(this);
     movieModel->refresh();
     ui->tableView->setModel(movieModel);
-    movieModel->setFilter(QString("MovieID > '23'"));
-    movieModel->refresh();
+    movieModel->setFilter(QString("MovieID > 3"));
+    //movieModel->refresh();
+    //movieModel->setQuery(movieModel->query());
+    //qDebug() << movieModel->query().executedQuery()
+            //<< movieModel->lastError();
+    /*movieModel->clearFilter();
+    movieModel->setQuery(movieModel->query());
+    qDebug() << movieModel->query().executedQuery()
+             << movieModel->lastError();*/
 
-    showModel = new ShowModel(this);
+    /*showModel = new ShowModel(this);
     showModel->refresh();
     ui->tableView_4->setModel(showModel);
 
     hallModel = new HallModel(this);
     hallModel->refresh();
-    //ui->tableView->setModel(hallModel);
+    ui->tableView_3->setModel(hallModel);
 
     seatModel = new SeatModel(this);
     seatModel->setHall(8);
@@ -55,20 +63,62 @@ void MainWindow::setUpTable()
     //bookingModel->refresh();
     ui->tableView_5->setModel(bookingModel);
 
-    //model = new QSqlRelationalTableModel(this);
-    /*QString queryStr = QString("SELECT seat.*, b_all.BookingID AS Booked, b_current.BookingID AS CurrentBooking")
-                       +" from seat"
-                       +" LEFT JOIN booking as b_all ON b_all.SeatID = seat.SeatID and b_all.ShowID = '1'"
-                       +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID and b_current.ShowID = '1'"
-                       +" WHERE seat.HallID = '1'"
-                       +" GROUP BY seat.SeatID ORDER BY seat.Row,seat.Column DESC";
-    qDebug() << queryStr;
-    model->QSqlQueryModel::setQuery(queryStr);*/
-    /*model->setTable("seat");
-    model->setFilter("SeatID > '10'");
+    model = new QSqlRelationalTableModel();
+    model->setTable("movie");
+    //model->setFilter("MovieID = '' or 1=1 or 1='1'");
     model->select();
+    //qDebug() << model->query().executedQuery();
+
+    */qModel = new QSqlQueryModel(this);
+    qModel->setQuery("select * from (select * from movie) where MovieID = 1");
+    ui->tableView_2->setModel(qModel);
+    /*QSqlQuery query;
+    query.prepare("select * from movie where MovieID < :val and Title = :val2 and AgeLimit = :val or MovieID = :val");
+
+    query.bindValue(":val", 15);
+    query.bindValue(":val2", "City'");
+
+    query.exec();//"select * from movie where MovieID = ''\";delete from movie where MovieID = '1'");
+    qModel->setQuery(query);
+    qModel->query().exec();
+    qDebug() << qModel->query().executedQuery();
+    qDebug() << qModel->query().lastQuery();
+    query.prepare(qModel->query().lastQuery());
+    /*QMapIterator<QString, QVariant> i(qModel->query().boundValues());
+    while(i.hasNext()) {
+        i.next();
+        qDebug() << i.key() << ": "
+                 << i.value().toString();
+        query.bindValue(i.key(), i.value());
+    }
+    query.exec();
+    qModel->setQuery(query);
+    qModel->query().exec();*/
+    /*QList<QVariant> list = qModel->query().boundValues().values();
+    qDebug() << qModel->query().boundValues().size();
+    int i = 0;
+    while(qModel->query().boundValue(i).isValid())
+    {
+        qDebug() << i << ": "
+                 << qModel->query().boundValue(i);
+        i++;
+    }
+    for(int i = 0; i < list.size(); i++)
+        //qDebug() << i << ": " << list.at(i).toString();
+    qDebug() << 2 << ": " << qModel->query().boundValue(3);
     //ui->tableView->setSortingEnabled(true);
-    ui->tableView->setModel(model);*/
+    ui->tableView->setModel(qModel);
+
+    QString str = "abcdefgh";
+    str.remove(1, -1);
+    qDebug() << str;
+
+    str = "abcdefgh";
+    str.remove(1, 100);
+    qDebug() << str;
+
+    str = "abcdefgh";
+    qDebug() << str.mid(1, 7);
 
     /*customModel = new CustomModel(this);
     customModel->setQuery("select * from movie");
@@ -126,4 +176,10 @@ void MainWindow::on_pushButton_clicked()
 {
     movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006);
     movieModel->refresh();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QString filter = ui->lineEdit->text();
+    model->setFilter("Title like '"+filter+"%'");
 }

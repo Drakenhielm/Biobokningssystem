@@ -33,6 +33,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     MovieModel *movieModel;
@@ -44,6 +46,7 @@ private:
     CustomModel *customModel;
 
     QSqlRelationalTableModel *model;
+    QSqlQueryModel *qModel;
     void setUpTable();
     void insertValues(int nrOfRows);
     void deleteValues(int startRow, int nrOfRows);
