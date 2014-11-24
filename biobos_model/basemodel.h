@@ -21,7 +21,7 @@ public:
     //virtual void sort(int column, Qt::SortOrder order);
 
     //public functions
-    void refresh();
+    virtual void refresh();
     bool removeWhere(const QString &column, const QVariant &value);
     void setFilter(const QString &filter);
     void clearFilter();
@@ -32,7 +32,8 @@ protected:
 
 private:
     //variables
-    QString tableName; //deleteWhere() use this to delete from a table
+    QString tableName;
+    QString primaryKey; //name of the primarykey colimn in the table
     QString lastFilterQuery; //last sql statement selected by setFilter() or clearFilter()
 
     //functions

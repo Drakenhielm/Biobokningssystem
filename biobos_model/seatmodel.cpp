@@ -3,6 +3,7 @@
 SeatModel::SeatModel(QObject *parent)
     : BaseModel("seat", parent)
 {
+    //default - no hall or show set
     hallID = 0;
     showID = 0;
 }
@@ -30,7 +31,9 @@ void SeatModel::refresh()
     fixQuery();
     BaseModel::refresh();
     while(canFetchMore())
+    {
         fetchMore();
+    }
 }
 
 void SeatModel::setHall(int id)
@@ -51,10 +54,10 @@ void SeatModel::setBooking(const QString &phone)
 void SeatModel::fixQuery()
 {
     QString queryStr = QString("SELECT seat.*, b_all.BookingID AS Booked, b_current.BookingID AS CurrentBooking")
-                       +" from seat"
-                       +" LEFT JOIN booking as b_all ON b_all.SeatID = seat.SeatID and b_all.ShowID = " +(showID+'0')
-                       +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID and b_current.ShowID = " +(showID+'0')
-                       //+" WHERE HallID = "+(hallID+'0')
+                       +" FROM seat"
+                       +" LEFT JOIN booking as b_all ON b_all.SeatID = seat.SeatID AND b_all.ShowID = " +(showID+'0')
+                       +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID AND b_current.ShowID = " +(showID+'0')
+                       +" WHERE HallID = "+(hallID+'0')
                        +" GROUP BY seat.SeatID";
     //setFilter("HallID = '1'");
     //qDebug() << queryStr;

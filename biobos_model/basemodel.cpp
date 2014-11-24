@@ -6,7 +6,7 @@ BaseModel::BaseModel(const QString &tableName, QObject *parent)
     this->tableName = tableName;
 }
 
-/*Everywhere a columnheader contains "DateTime" the value will be converted to QDateTime. */
+/*Everywhere a column header contains "DateTime" the value will be converted to QDateTime. */
 QVariant BaseModel::data(const QModelIndex &item, int role) const
 {
     QVariant value = QSqlQueryModel::data(item, role);
@@ -22,7 +22,6 @@ QVariant BaseModel::data(const QModelIndex &item, int role) const
     }
     return QSqlQueryModel::data(item, role);
 }
-
 
 bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
 {
@@ -88,7 +87,7 @@ void BaseModel::clearFilter()
     lastFilterQuery.clear();
 }
 
-/*Prepare "query" with the statement from "sql" and boundValues from "query"*/
+/*Prepare "query" with the statement from "sql" and bind parameters from "parameterList" */
 void BaseModel::prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList)
 {
     query.prepare(sql);
@@ -100,6 +99,7 @@ void BaseModel::prepareQuery(QSqlQuery &query, const QString &sql, const QList<Q
     }
 }
 
+/*Manipulate the string by removing the part that was added by setFilter() */
 void BaseModel::removeFilter(QString &query)
 {
     //qDebug() << lastFilterQuery << " : " << query;
@@ -111,7 +111,7 @@ void BaseModel::removeFilter(QString &query)
     query = query.mid(i, n);
 }
 
-
+/*Returns the bound values from the query in a list*/
 QList<QVariant> BaseModel::getBoundValues(const QSqlQuery &query) const
 {
     QList<QVariant> list;

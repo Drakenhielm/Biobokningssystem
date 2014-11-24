@@ -3,7 +3,7 @@
 MovieModel::MovieModel(QObject *parent)
     : BaseModel("movie", parent)
 {
-    setQuery("SELECT * FROM movie");
+    setQuery("SELECT * FROM movie ORDER BY Title");
 }
 
 int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,

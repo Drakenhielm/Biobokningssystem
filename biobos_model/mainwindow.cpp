@@ -63,7 +63,7 @@ void MainWindow::setUpTable()
     ui->tableView_3->setModel(hallModel);
 
     seatModel = new SeatModel(this);
-    seatModel->setHall(8);
+    seatModel->setHall(1);
     seatModel->setShow(1);
     seatModel->refresh();
     ui->tableView_2->setModel(seatModel);
