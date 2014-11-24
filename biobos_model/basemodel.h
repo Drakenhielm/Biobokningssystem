@@ -39,7 +39,7 @@ private:
     bool filterFlag;
 
     //functions
-    QList<QString> fixPlaceholders(QString &str);
+    void prepareQuery(const QString &sql, QSqlQuery &query);
     void filterQuery(QSqlQuery &query, const QString &sqlStr, const QString &filter);
     void getLastExecutedQuery(QSqlQuery &query);
     void removeFilter(QString &sqlStr);

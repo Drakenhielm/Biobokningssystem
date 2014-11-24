@@ -43,7 +43,7 @@ bool BaseModel::deleteWhere(const QString &column, const QVariant &value)
 void BaseModel::refresh()
 {
     query().exec();
-    //setQuery(query());
+    setQuery(query());
 }
 
 /*filter is the same as the where clause in a sql statement*/
@@ -56,9 +56,33 @@ void BaseModel::setFilter(const QString &filter)
     sql.append(") WHERE ");
     sql.append(filter);
     qDebug() << sql;
-    query.prepare(sql);
     //QList<QVariant> list = query().boundValues().values();
     //int numOfBoundValues = query().boundValues().size();
+    prepareQuery(sql, query);
+    query.exec();
+    setQuery(query);
+    lastFilterQuery = this->query().lastQuery();
+
+}
+
+void BaseModel::clearFilter()
+{
+    QSqlQuery query = this->query();
+    QString sql = query.lastQuery();
+    removeFilter(sql);
+    prepareQuery(sql, query);
+    query.exec(sql);
+    setQuery(query);
+    lastFilterQuery = this->query().lastQuery();
+}
+
+/*Put placeholders (?) evrywhere inside two single quotation marks and
+ * return a list with the values.
+ * Example: "id = '437'" transforms to "id = '?'"
+ *          and the returned list contains 437.*/
+void BaseModel::prepareQuery(const QString &sql, QSqlQuery &query)
+{
+    query.prepare(sql);
     int i = 0;
     while(query.boundValue(i).isValid())
     {
@@ -67,44 +91,7 @@ void BaseModel::setFilter(const QString &filter)
                  << query.boundValue(i);
         i++;
     }
-    //this->query().boundValues()
-    //query.exec();
-    setQuery(query);
-    lastFilterQuery = this->query().lastQuery();
-    qDebug() << lastFilterQuery;
-    qDebug() << this->query().executedQuery();
-    /*if(!currentFilter.isEmpty())
-        clearFilter();
-    //QList<QString> list = fixPlaceholders(filter);
-    currentFilter = filter;
-    QString queryStr = query().executedQuery();
-    if(filterFlag)
-    {
-        //queryStr.lastIndexOf("WHERE")
-        //queryStr.remove(0, QString("SELECT * FROM( ").length());
-        //queryStr.remove(queryStr.length()-)Qt::MatchFlag
-    }
-    //QMap<QString, QMap> map;
-    //map.insert();
-    query().prepare(queryStr);*/
-}
-
-void BaseModel::clearFilter()
-{
-    QSqlQuery query = this->query();
-    QString sql = query.lastQuery();
-    removeFilter(sql);
-
-    lastFilterQuery = this->query().lastQuery();
-}
-
-/*Put placeholders (?) evrywhere inside two single quotation marks and
- * return a list with the values.
- * Example: "id = '437'" transforms to "id = '?'"
- *          and the returned list contains 437.*/
-QList<QString> BaseModel::fixPlaceholders(QString &str)
-{
-    QList<QString> list;
+    /*QList<QString> list;
     int start = 0;
     int end = 0;
     bool cont = true;
@@ -127,15 +114,15 @@ QList<QString> BaseModel::fixPlaceholders(QString &str)
             cont = false;
         }
     }
-    return list;
+    return list;*/
 }
 
 /*Set a query to the referenced QSqlQuery using the sqlStatement and the filter*/
 void BaseModel::filterQuery(QSqlQuery &query, const QString &sqlStr, const QString &filter)
 {
-    QString tmpSqlStmt = sqlStr;
+    /*QString tmpSqlStmt = sqlStr;
     QString tmpFilter = filter;
-    QList<QString> list = fixPlaceholders(tmpFilter);
+    //QList<QString> list = fixPlaceholders(tmpFilter);
     if(list.isEmpty())
         return;
 
@@ -148,7 +135,7 @@ void BaseModel::filterQuery(QSqlQuery &query, const QString &sqlStr, const QStri
     {
         query.bindValue(i, list.at(i));
     }
-    query.exec();
+    query.exec();*/
 }
 
 void BaseModel::getLastExecutedQuery(QSqlQuery &query)

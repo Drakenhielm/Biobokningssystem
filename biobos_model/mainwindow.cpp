@@ -45,7 +45,7 @@ void MainWindow::setUpTable()
     qDebug() << movieModel->query().executedQuery()
              << movieModel->lastError();*/
 
-    /*showModel = new ShowModel(this);
+    showModel = new ShowModel(this);
     showModel->refresh();
     ui->tableView_4->setModel(showModel);
 
@@ -60,16 +60,16 @@ void MainWindow::setUpTable()
     ui->tableView_2->setModel(seatModel);
 
     bookingModel = new BookingModel(this);
-    //bookingModel->refresh();
+    bookingModel->refresh();
     ui->tableView_5->setModel(bookingModel);
-
+    /*
     model = new QSqlRelationalTableModel();
     model->setTable("movie");
     //model->setFilter("MovieID = '' or 1=1 or 1='1'");
     model->select();
     //qDebug() << model->query().executedQuery();
 
-    */qModel = new QSqlQueryModel(this);
+    qModel = new QSqlQueryModel(this);
     qModel->setQuery("select * from (select * from movie) where MovieID = 1");
     ui->tableView_2->setModel(qModel);
     /*QSqlQuery query;
@@ -175,11 +175,14 @@ void MainWindow::deleteValues(int startRow, int nrOfRows)
 void MainWindow::on_pushButton_clicked()
 {
     movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006);
+    movieModel->clearFilter();
     movieModel->refresh();
+    qDebug() << movieModel->query().executedQuery();
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
     QString filter = ui->lineEdit->text();
-    model->setFilter("Title like '"+filter+"%'");
+    movieModel->setFilter("Title like '"+filter+"%'");
+    qDebug() << movieModel->query().lastError();
 }
