@@ -53,6 +53,7 @@ void HallView::leaveEvent(QEvent * event)
         }
     }
     update();
+    QWidget::leaveEvent(event);
 }
 
 void HallView::mouseMoveEvent(QMouseEvent *event)
