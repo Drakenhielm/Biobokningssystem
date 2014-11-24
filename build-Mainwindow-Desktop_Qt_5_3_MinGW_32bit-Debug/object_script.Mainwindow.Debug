@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\basemodel.o
+./debug\databasehandler.o
+./debug\moviemodel.o
+./debug\showmodel.o
+./debug\hallview.o
+./debug\moc_mainwindow.o
+./debug\moc_basemodel.o
+./debug\moc_hallview.o
+);

@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -79,7 +80,7 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_2;
-    QWidget *widget_3;
+    QFrame *frame_3;
     QWidget *widget_hallview_info;
     QTextBrowser *textBrowser;
     QPushButton *pushButton_hallview_info_delete;
@@ -279,11 +280,12 @@ public:
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        widget_3 = new QWidget(widget_2);
-        widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setMinimumSize(QSize(323, 200));
+        frame_3 = new QFrame(widget_2);
+        frame_3->setObjectName(QStringLiteral("frame_3"));
+        frame_3->setEnabled(true);
+        frame_3->setMinimumSize(QSize(323, 200));
 
-        horizontalLayout_2->addWidget(widget_3);
+        horizontalLayout_2->addWidget(frame_3);
 
         widget_hallview_info = new QWidget(widget_2);
         widget_hallview_info->setObjectName(QStringLiteral("widget_hallview_info"));
@@ -346,7 +348,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 848, 22));
+        menuBar->setGeometry(QRect(0, 0, 848, 21));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         MainWindow->setMenuBar(menuBar);
@@ -405,8 +407,8 @@ public:
         textBrowser_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt;\"><br /></p></body></html>", 0));
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         pushButton_hallview_info_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         pushButton_hallview_info_book->setText(QApplication::translate("MainWindow", "Book", 0));

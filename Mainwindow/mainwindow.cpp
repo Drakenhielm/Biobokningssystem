@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QAbstractItemView>
+#include "hallview.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_show->hideColumn(ShowModel::MovieID);
     ui->tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+    hallView = new HallView();
+    QHBoxLayout *lineLayout = new QHBoxLayout;
+    lineLayout->addWidget(hallView);
+    ui->frame_3->setLayout(lineLayout);
+    ui->frame_3->setFrameStyle(1);
+    ui->frame_3->setFrameShadow(QFrame::Raised);
 }
 
 MainWindow::~MainWindow()

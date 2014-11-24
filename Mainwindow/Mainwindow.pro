@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     basemodel.cpp \
     databasehandler.cpp \
     moviemodel.cpp \
-    showmodel.cpp
+    showmodel.cpp \
+    hallview.cpp
 
 HEADERS  += mainwindow.h \
     basemodel.h \
     databasehandler.h \
     moviemodel.h \
-    showmodel.h
+    showmodel.h \
+    hallview.h
 
 FORMS    += mainwindow.ui
 

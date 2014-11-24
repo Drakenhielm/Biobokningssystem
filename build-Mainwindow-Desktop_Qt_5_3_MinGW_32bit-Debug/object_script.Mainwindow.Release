@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\basemodel.o
+./release\databasehandler.o
+./release\moviemodel.o
+./release\showmodel.o
+./release\hallview.o
+./release\moc_mainwindow.o
+./release\moc_basemodel.o
+./release\moc_hallview.o
+);
