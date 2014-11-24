@@ -16,11 +16,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     basemodel.cpp \
     databasehandler.cpp \
-    moviemodel.cpp
+    moviemodel.cpp \
+    showmodel.cpp
 
 HEADERS  += mainwindow.h \
     basemodel.h \
     databasehandler.h \
-    moviemodel.h
+    moviemodel.h \
+    showmodel.h
 
 FORMS    += mainwindow.ui
+
+OTHER_FILES += \
+    Mainwindow.pro.user \
+    Mainwindow.pro.user.81ecaa1 \
+    Mainwindow.pro.user.e8fc351
