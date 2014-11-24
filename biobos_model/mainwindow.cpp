@@ -10,10 +10,19 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
 
-    //for(int i = 0; i < 3000; i++)
-        //movieModel->deleteWhere("MovieID", i);
-        movieModel->insertMovie("Polis", 127, 15, "Hmmm hm hm", "Drama", 2006);
-    movieModel->refresh();
+    /*for(int i = 0; i < 100; i++)
+    {
+        showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
+        hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 5);
+    }
+    bookingModel->insertBooking(1, 10, "07023456");
+    bookingModel->insertBooking(1, 11, "07023456");
+    bookingModel->insertBooking(1, 12, "07023456");
+    bookingModel->insertBooking(1, 17, "07067044");
+    bookingModel->insertBooking(1, 18, "07078979");
+    showModel->refresh();
+    bookingModel->refresh();
+    hallModel->refresh();*/
     //showModel->insertShow(QDateTime::currentDateTime(), 80, false, true, "Portuguese", 1, 8);
     //showModel->refresh();
     //hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 10);
@@ -123,53 +132,6 @@ void MainWindow::setUpTable()
     /*customModel = new CustomModel(this);
     customModel->setQuery("select * from movie");
     ui->tableView->setModel(customModel);*/
-}
-
-/*void MainWindow::insertValues(int nrOfRows)
-{
-    movieModel->database().transaction();
-    int rowCount = movieModel->rowCount();
-    if(!movieModel->QSqlTableModel::insertRows(rowCount, nrOfRows)) {
-        qDebug() << "insertRows" << movieModel->lastError().text();
-        return;
-    }
-
-    for(int i = 0; i < nrOfRows; i++)
-    {
-        movieModel->setData(movieModel->index(rowCount+i,1), "Star Wars: Episode VII - The Force Awakens");
-        movieModel->setData(movieModel->index(rowCount+i,2), 127);
-        movieModel->setData(movieModel->index(rowCount+i,3), 11);
-        movieModel->setData(movieModel->index(rowCount+i,4), "Bla bla");
-        movieModel->setData(movieModel->index(rowCount+i,5), "Sci-Fi");
-        movieModel->setData(movieModel->index(rowCount+i,6), 2015);
-    }
-
-    if(movieModel->submitAll()) {
-        movieModel->database().commit();
-    } else {
-        movieModel->database().rollback();
-        qDebug() << "Database Write Error" <<
-            "The database reported an error: " <<
-            movieModel->lastError().text();
-    }
-}*/
-
-void MainWindow::deleteValues(int startRow, int nrOfRows)
-{
-    /*model->database().transaction();
-    if(!movieModel->removeRows(startRow, nrOfRows)) {
-        qDebug() << "removeRows" << movieModel->lastError().text();
-        return;
-    }
-
-    if(model->submitAll()) {
-        model->database().commit();
-    } else {
-        model->database().rollback();
-        qDebug() << "Database Delete Error" <<
-            "The database reported an error: " <<
-            model->lastError().text();
-    }*/
 }
 
 void MainWindow::on_pushButton_clicked()

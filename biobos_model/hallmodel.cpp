@@ -3,9 +3,9 @@
 HallModel::HallModel(QObject *parent)
     : BaseModel("hall", parent)
 {
-    setQuery(QString("SELECT *, COUNT(SeatID) FROM hall "
+    setQuery(QString("SELECT hall.*, COUNT(SeatID) AS Seats FROM hall "
                      "LEFT JOIN seat ON seat.HallID = hall.HallID "
-                     "GROUP BY HallID"));
+                     "GROUP BY hall.HallID"));
 }
 
 int HallModel::insertHall(const QString &name, const QString &screenSize, const QString &soundSystem,

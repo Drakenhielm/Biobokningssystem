@@ -1,15 +1,15 @@
 #include "showmodel.h"
 
 ShowModel::ShowModel(QObject *parent)
-    : BaseModel("show",
-                QString("select show.*, hall.Name as Hall, count(seat.SeatID) - count(booking.SeatID) as RemainingSeats "
-                        "from show "
-                        "left join hall on (hall.HallID = show.HallID) "
-                        "left join seat on (seat.HallID = show.HallID) "
-                        "left join booking on (booking.ShowID = show.ShowID and booking.SeatID = seat.SeatID) "
-                        "group by show.ShowID "),
-                parent)
+    : BaseModel("show", parent)
 {
+    setQuery("SELECT show.*, hall.Name AS Hall, "
+             "(COUNT(seat.SeatID) - COUNT(booking.SeatID)) | '/' | COUNT(seat.SeatID) AS AvaibleSeats "
+             "FROM show "
+             "LEFT JOIN hall ON hall.HallID = show.HallID "
+             "LEFT JOIN seat ON seat.HallID = show.HallID "
+             "LEFT JOIN booking ON (booking.ShowID = show.ShowID AND booking.SeatID = seat.SeatID) "
+             "GROUP BY show.ShowID ");
 }
 
 QVariant ShowModel::data(const QModelIndex &item, int role) const

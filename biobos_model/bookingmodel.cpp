@@ -1,15 +1,14 @@
 #include "bookingmodel.h"
 
 BookingModel::BookingModel(QObject *parent)
-    : BaseModel("booking",
-                QString("select booking.ShowID, show.MovieID, booking.Phone, movie.Title, show.DateTime, "
-                        "count(booking.BookingID) as Tickets "
-                        "from booking "
-                        "left join movie on movie.MovieID = booking.ShowID "
-                        "left join show on show.ShowID = booking.ShowID "
-                        "group by booking.ShowID, booking.Phone"),
-                        parent)
+    : BaseModel("booking", parent)
 {
+    setQuery("SELECT booking.ShowID, show.MovieID, booking.Phone, movie.Title, show.DateTime, "
+             "COUNT(booking.BookingID) AS Tickets "
+             "FROM booking "
+             "LEFT JOIN movie ON movie.MovieID = booking.ShowID "
+             "LEFT JOIN show ON show.ShowID = booking.ShowID "
+             "GROUP BY booking.ShowID, booking.Phone");
 }
 
 int BookingModel::insertBooking(int showID, int seatID, const QString &phone)

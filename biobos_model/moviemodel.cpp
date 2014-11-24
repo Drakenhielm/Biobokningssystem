@@ -1,8 +1,9 @@
 #include "moviemodel.h"
 
 MovieModel::MovieModel(QObject *parent)
-    : BaseModel("movie", "select * from movie", parent)
+    : BaseModel("movie", parent)
 {
+    setQuery("SELECT * FROM movie");
 }
 
 int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
@@ -16,15 +17,6 @@ int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, c
     values.append(qMakePair(QString("Genre"), genre));
     values.append(qMakePair(QString("Year"), year));
     return dh.insert("movie", values);
-    /*QSqlRecord record = this->record();
-    record.setValue(Title, title);
-    record.setValue(PlayTime, "playTime");
-    record.setValue(AgeLimit, ageLimit);
-    record.setValue(Description, description);
-    record.setValue(Genre, genre);
-    record.setValue(Year, year);
-    //insertRecord(0, record);
-    return -1;*/
 }
 
 
