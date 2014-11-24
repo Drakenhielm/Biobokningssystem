@@ -26,6 +26,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
@@ -57,14 +58,12 @@ public:
     QLabel *label;
     QListView *listView_movies;
     QHBoxLayout *horizontalLayout_4;
-    QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton_movies_add;
     QPushButton *pushButton_movies_delete;
-    QSpacerItem *horizontalSpacer_3;
     QWidget *widget_shows;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_2;
-    QTableWidget *tableWidget_show;
+    QTableView *tableView_show;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_5;
     QPushButton *pushButton_show_add;
@@ -80,10 +79,12 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_2;
-    QTableWidget *tableWidget_3;
     QWidget *widget_3;
-    QPushButton *pushButton;
+    QWidget *widget_hallview_info;
+    QTextBrowser *textBrowser;
+    QPushButton *pushButton_hallview_info_delete;
     QComboBox *comboBox;
+    QPushButton *pushButton_hallview_info_book;
     QWidget *widget_6;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_9;
@@ -139,6 +140,7 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         widget_movies = new QWidget(splitter);
         widget_movies->setObjectName(QStringLiteral("widget_movies"));
+        widget_movies->setMinimumSize(QSize(10, 0));
         verticalLayout_6 = new QVBoxLayout(widget_movies);
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setContentsMargins(11, 11, 11, 11);
@@ -151,16 +153,18 @@ public:
 
         listView_movies = new QListView(widget_movies);
         listView_movies->setObjectName(QStringLiteral("listView_movies"));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(listView_movies->sizePolicy().hasHeightForWidth());
+        listView_movies->setSizePolicy(sizePolicy);
+        listView_movies->setMinimumSize(QSize(10, 0));
 
         verticalLayout_6->addWidget(listView_movies);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_4);
-
         pushButton_movies_add = new QPushButton(widget_movies);
         pushButton_movies_add->setObjectName(QStringLiteral("pushButton_movies_add"));
 
@@ -171,16 +175,13 @@ public:
 
         horizontalLayout_4->addWidget(pushButton_movies_delete);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_3);
-
 
         verticalLayout_6->addLayout(horizontalLayout_4);
 
         splitter->addWidget(widget_movies);
         widget_shows = new QWidget(splitter);
         widget_shows->setObjectName(QStringLiteral("widget_shows"));
+        widget_shows->setMinimumSize(QSize(460, 0));
         verticalLayout_5 = new QVBoxLayout(widget_shows);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -191,10 +192,17 @@ public:
 
         verticalLayout_5->addWidget(label_2);
 
-        tableWidget_show = new QTableWidget(widget_shows);
-        tableWidget_show->setObjectName(QStringLiteral("tableWidget_show"));
+        tableView_show = new QTableView(widget_shows);
+        tableView_show->setObjectName(QStringLiteral("tableView_show"));
+        tableView_show->horizontalHeader()->setCascadingSectionResizes(false);
+        tableView_show->horizontalHeader()->setDefaultSectionSize(75);
+        tableView_show->horizontalHeader()->setMinimumSectionSize(1);
+        tableView_show->verticalHeader()->setVisible(false);
+        tableView_show->verticalHeader()->setCascadingSectionResizes(false);
+        tableView_show->verticalHeader()->setDefaultSectionSize(20);
+        tableView_show->verticalHeader()->setMinimumSectionSize(20);
 
-        verticalLayout_5->addWidget(tableWidget_show);
+        verticalLayout_5->addWidget(tableView_show);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
@@ -223,6 +231,7 @@ public:
         splitter->addWidget(widget_shows);
         widget_info = new QWidget(splitter);
         widget_info->setObjectName(QStringLiteral("widget_info"));
+        widget_info->setMinimumSize(QSize(205, 0));
         verticalLayout = new QVBoxLayout(widget_info);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -270,27 +279,34 @@ public:
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        tableWidget_3 = new QTableWidget(widget_2);
-        tableWidget_3->setObjectName(QStringLiteral("tableWidget_3"));
-
-        horizontalLayout_2->addWidget(tableWidget_3);
-
         widget_3 = new QWidget(widget_2);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(widget_3->sizePolicy().hasHeightForWidth());
-        widget_3->setSizePolicy(sizePolicy);
-        widget_3->setMinimumSize(QSize(105, 0));
-        pushButton = new QPushButton(widget_3);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(-10, 150, 115, 32));
-        comboBox = new QComboBox(widget_3);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(0, 120, 104, 26));
+        widget_3->setMinimumSize(QSize(323, 200));
 
         horizontalLayout_2->addWidget(widget_3);
+
+        widget_hallview_info = new QWidget(widget_2);
+        widget_hallview_info->setObjectName(QStringLiteral("widget_hallview_info"));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(widget_hallview_info->sizePolicy().hasHeightForWidth());
+        widget_hallview_info->setSizePolicy(sizePolicy1);
+        widget_hallview_info->setMinimumSize(QSize(153, 0));
+        textBrowser = new QTextBrowser(widget_hallview_info);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textBrowser->setGeometry(QRect(20, 80, 121, 31));
+        pushButton_hallview_info_delete = new QPushButton(widget_hallview_info);
+        pushButton_hallview_info_delete->setObjectName(QStringLiteral("pushButton_hallview_info_delete"));
+        pushButton_hallview_info_delete->setGeometry(QRect(0, 240, 82, 32));
+        comboBox = new QComboBox(widget_hallview_info);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(40, 180, 104, 26));
+        pushButton_hallview_info_book = new QPushButton(widget_hallview_info);
+        pushButton_hallview_info_book->setObjectName(QStringLiteral("pushButton_hallview_info_book"));
+        pushButton_hallview_info_book->setGeometry(QRect(78, 240, 75, 32));
+
+        horizontalLayout_2->addWidget(widget_hallview_info);
 
         widget_6 = new QWidget(widget_2);
         widget_6->setObjectName(QStringLiteral("widget_6"));
@@ -392,7 +408,8 @@ public:
 "</style></head><body style=\" font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", 0));
+        pushButton_hallview_info_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
+        pushButton_hallview_info_book->setText(QApplication::translate("MainWindow", "Book", 0));
         pushButton_search->setText(QApplication::translate("MainWindow", "Search", 0));
         menuAdd_movie->setTitle(QApplication::translate("MainWindow", "Manage", 0));
     } // retranslateUi
