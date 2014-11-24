@@ -29,6 +29,7 @@ signals:
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
+    void leaveEvent(QEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
     void reSizeSeats();
@@ -38,7 +39,7 @@ private:
     int squareSize;
     int spacing;
     int offset;
-    int seats[25][25];
+    QPair<int, bool> seats[25][25];
 };
 
 #endif
