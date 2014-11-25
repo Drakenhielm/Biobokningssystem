@@ -5,6 +5,7 @@
 #include "moviemodel.h"
 #include "showmodel.h"
 #include <QItemSelection>
+#include "hallview.h"
 
 #include <QDebug>
 
@@ -42,6 +43,7 @@ private:
     Ui::MainWindow *ui;
     MovieModel *movieModel;
     ShowModel *showModel;
+    HallView *hallView;
 };
 
 #endif // MAINWINDOW_H

@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui sql
-
+QMAKE_CXXFLAGS += -std=c++11
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Mainwindow
@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     basemodel.cpp \
     databasehandler.cpp \
     moviemodel.cpp \
-    showmodel.cpp
+    showmodel.cpp \
+    hallview.cpp
 
 HEADERS  += mainwindow.h \
     basemodel.h \
     databasehandler.h \
     moviemodel.h \
-    showmodel.h
+    showmodel.h \
+    hallview.h
 
 FORMS    += mainwindow.ui
 

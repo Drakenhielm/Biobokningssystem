@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QAbstractItemView>
+#include "hallview.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_show->hideColumn(ShowModel::MovieID);
     ui->tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+    hallView = new HallView();
+    QHBoxLayout *lineLayout = new QHBoxLayout;
+    lineLayout->addWidget(hallView);
+    ui->frame_3->setLayout(lineLayout);
+    ui->frame_3->setFrameStyle(1);
+    ui->frame_3->setFrameShadow(QFrame::Raised);
 }
 
 MainWindow::~MainWindow()
@@ -41,7 +48,7 @@ void MainWindow::on_pushButton_movies_add_clicked()
 {
     movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009);
     movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009);
-    movieModel->submitAll();
+    movieModel->select();
     qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
 }
 
