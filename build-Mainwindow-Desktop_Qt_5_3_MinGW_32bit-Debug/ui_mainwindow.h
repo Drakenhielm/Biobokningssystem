@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.2
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -28,7 +28,6 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -59,8 +58,10 @@ public:
     QLabel *label;
     QListView *listView_movies;
     QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton_movies_add;
     QPushButton *pushButton_movies_delete;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *widget_shows;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_2;
@@ -91,7 +92,7 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QLineEdit *lineEdit_search;
     QPushButton *pushButton_search;
-    QTableWidget *tableWidget_search;
+    QTableView *tableView_search;
     QMenuBar *menuBar;
     QMenu *menuAdd_movie;
     QToolBar *mainToolBar;
@@ -166,6 +167,10 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_4);
+
         pushButton_movies_add = new QPushButton(widget_movies);
         pushButton_movies_add->setObjectName(QStringLiteral("pushButton_movies_add"));
 
@@ -175,6 +180,10 @@ public:
         pushButton_movies_delete->setObjectName(QStringLiteral("pushButton_movies_delete"));
 
         horizontalLayout_4->addWidget(pushButton_movies_delete);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_3);
 
 
         verticalLayout_6->addLayout(horizontalLayout_4);
@@ -334,10 +343,10 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_9);
 
-        tableWidget_search = new QTableWidget(widget_6);
-        tableWidget_search->setObjectName(QStringLiteral("tableWidget_search"));
+        tableView_search = new QTableView(widget_6);
+        tableView_search->setObjectName(QStringLiteral("tableView_search"));
 
-        verticalLayout_3->addWidget(tableWidget_search);
+        verticalLayout_3->addWidget(tableView_search);
 
 
         horizontalLayout_2->addWidget(widget_6);
