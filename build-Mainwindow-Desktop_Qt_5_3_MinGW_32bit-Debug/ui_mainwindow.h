@@ -29,6 +29,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -83,7 +84,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QFrame *frame_3;
     QWidget *widget_hallview_info;
-    QTextBrowser *textBrowser;
+    QTextEdit *textEdit;
     QPushButton *pushButton_hallview_info_delete;
     QComboBox *comboBox;
     QPushButton *pushButton_hallview_info_book;
@@ -102,7 +103,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(848, 685);
+        MainWindow->resize(892, 658);
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         actionAdd_movie = new QAction(MainWindow);
         actionAdd_movie->setObjectName(QStringLiteral("actionAdd_movie"));
@@ -132,6 +133,11 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         widget = new QWidget(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy);
         widget->setCursor(QCursor(Qt::ArrowCursor));
         horizontalLayout = new QHBoxLayout(widget);
         horizontalLayout->setSpacing(6);
@@ -142,7 +148,7 @@ public:
         splitter->setOrientation(Qt::Horizontal);
         widget_movies = new QWidget(splitter);
         widget_movies->setObjectName(QStringLiteral("widget_movies"));
-        widget_movies->setMinimumSize(QSize(10, 0));
+        widget_movies->setMinimumSize(QSize(0, 0));
         verticalLayout_6 = new QVBoxLayout(widget_movies);
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setContentsMargins(11, 11, 11, 11);
@@ -155,11 +161,11 @@ public:
 
         listView_movies = new QListView(widget_movies);
         listView_movies->setObjectName(QStringLiteral("listView_movies"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(listView_movies->sizePolicy().hasHeightForWidth());
-        listView_movies->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(listView_movies->sizePolicy().hasHeightForWidth());
+        listView_movies->setSizePolicy(sizePolicy1);
         listView_movies->setMinimumSize(QSize(10, 0));
 
         verticalLayout_6->addWidget(listView_movies);
@@ -191,7 +197,12 @@ public:
         splitter->addWidget(widget_movies);
         widget_shows = new QWidget(splitter);
         widget_shows->setObjectName(QStringLiteral("widget_shows"));
-        widget_shows->setMinimumSize(QSize(460, 0));
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(2);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(widget_shows->sizePolicy().hasHeightForWidth());
+        widget_shows->setSizePolicy(sizePolicy2);
+        widget_shows->setMinimumSize(QSize(0, 0));
         verticalLayout_5 = new QVBoxLayout(widget_shows);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -204,6 +215,8 @@ public:
 
         tableView_show = new QTableView(widget_shows);
         tableView_show->setObjectName(QStringLiteral("tableView_show"));
+        sizePolicy1.setHeightForWidth(tableView_show->sizePolicy().hasHeightForWidth());
+        tableView_show->setSizePolicy(sizePolicy1);
         tableView_show->horizontalHeader()->setCascadingSectionResizes(false);
         tableView_show->horizontalHeader()->setDefaultSectionSize(75);
         tableView_show->horizontalHeader()->setMinimumSectionSize(1);
@@ -241,7 +254,12 @@ public:
         splitter->addWidget(widget_shows);
         widget_info = new QWidget(splitter);
         widget_info->setObjectName(QStringLiteral("widget_info"));
-        widget_info->setMinimumSize(QSize(205, 0));
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(1);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(widget_info->sizePolicy().hasHeightForWidth());
+        widget_info->setSizePolicy(sizePolicy3);
+        widget_info->setMinimumSize(QSize(0, 0));
         verticalLayout = new QVBoxLayout(widget_info);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -254,6 +272,8 @@ public:
 
         textBrowser_info = new QTextBrowser(widget_info);
         textBrowser_info->setObjectName(QStringLiteral("textBrowser_info"));
+        sizePolicy1.setHeightForWidth(textBrowser_info->sizePolicy().hasHeightForWidth());
+        textBrowser_info->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(textBrowser_info);
 
@@ -285,6 +305,8 @@ public:
 
         widget_2 = new QWidget(centralWidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
+        sizePolicy.setHeightForWidth(widget_2->sizePolicy().hasHeightForWidth());
+        widget_2->setSizePolicy(sizePolicy);
         horizontalLayout_2 = new QHBoxLayout(widget_2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -292,21 +314,20 @@ public:
         frame_3 = new QFrame(widget_2);
         frame_3->setObjectName(QStringLiteral("frame_3"));
         frame_3->setEnabled(true);
-        frame_3->setMinimumSize(QSize(323, 200));
+        sizePolicy.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
+        frame_3->setSizePolicy(sizePolicy);
+        frame_3->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_2->addWidget(frame_3);
 
         widget_hallview_info = new QWidget(widget_2);
         widget_hallview_info->setObjectName(QStringLiteral("widget_hallview_info"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(widget_hallview_info->sizePolicy().hasHeightForWidth());
-        widget_hallview_info->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(widget_hallview_info->sizePolicy().hasHeightForWidth());
+        widget_hallview_info->setSizePolicy(sizePolicy);
         widget_hallview_info->setMinimumSize(QSize(153, 0));
-        textBrowser = new QTextBrowser(widget_hallview_info);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        textBrowser->setGeometry(QRect(20, 80, 121, 31));
+        textEdit = new QTextEdit(widget_hallview_info);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setGeometry(QRect(20, 80, 121, 31));
         pushButton_hallview_info_delete = new QPushButton(widget_hallview_info);
         pushButton_hallview_info_delete->setObjectName(QStringLiteral("pushButton_hallview_info_delete"));
         pushButton_hallview_info_delete->setGeometry(QRect(0, 240, 82, 32));
@@ -321,6 +342,8 @@ public:
 
         widget_6 = new QWidget(widget_2);
         widget_6->setObjectName(QStringLiteral("widget_6"));
+        sizePolicy.setHeightForWidth(widget_6->sizePolicy().hasHeightForWidth());
+        widget_6->setSizePolicy(sizePolicy);
         verticalLayout_3 = new QVBoxLayout(widget_6);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -345,6 +368,8 @@ public:
 
         tableView_search = new QTableView(widget_6);
         tableView_search->setObjectName(QStringLiteral("tableView_search"));
+        sizePolicy.setHeightForWidth(tableView_search->sizePolicy().hasHeightForWidth());
+        tableView_search->setSizePolicy(sizePolicy);
 
         verticalLayout_3->addWidget(tableView_search);
 
@@ -357,7 +382,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 848, 21));
+        menuBar->setGeometry(QRect(0, 0, 892, 21));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         MainWindow->setMenuBar(menuBar);
