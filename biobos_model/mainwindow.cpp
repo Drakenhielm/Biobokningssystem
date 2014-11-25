@@ -42,9 +42,12 @@ MainWindow::~MainWindow()
 void MainWindow::setUpTable()
 {
     movieModel = new MovieModel(this);
-    movieModel->refresh();
+    //movieModel->refresh();
     ui->tableView->setModel(movieModel);
-    movieModel->setFilter(QString("MovieID > 3"));
+    QList<QVariant> list;
+    list.append("5");
+    list.append("City'Polis");
+    movieModel->setFilter(QString("MovieID > ? AND Title = :val"), list);
     //movieModel->refresh();
     //movieModel->setQuery(movieModel->query());
     //qDebug() << movieModel->query().executedQuery()
@@ -55,7 +58,7 @@ void MainWindow::setUpTable()
              << movieModel->lastError();*/
 
     showModel = new ShowModel(this);
-    showModel->refresh();
+    //showModel->refresh();
     ui->tableView_4->setModel(showModel);
 
     hallModel = new HallModel(this);
@@ -77,15 +80,15 @@ void MainWindow::setUpTable()
     //model->setFilter("MovieID = '' or 1=1 or 1='1'");
     model->select();
     //qDebug() << model->query().executedQuery();
-
+    */
     qModel = new QSqlQueryModel(this);
     qModel->setQuery("select * from (select * from movie) where MovieID = 1");
     ui->tableView_2->setModel(qModel);
-    /*QSqlQuery query;
-    query.prepare("select * from movie where MovieID < :val and Title = :val2 and AgeLimit = :val or MovieID = :val");
+    QSqlQuery query;
+    query.prepare("select * from movie where MovieID < :val and Title = :2val and AgeLimit = :val or MovieID = :val");
 
     query.bindValue(":val", 15);
-    query.bindValue(":val2", "City'");
+    query.bindValue(":2val", "City'");
 
     query.exec();//"select * from movie where MovieID = ''\";delete from movie where MovieID = '1'");
     qModel->setQuery(query);
@@ -145,6 +148,6 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     QString filter = ui->lineEdit->text();
-    movieModel->setFilter("Title like '"+filter+"%'");
+    movieModel->setFilter("Title LIKE ? || '%'", filter);
     qDebug() << movieModel->query().lastError();
 }

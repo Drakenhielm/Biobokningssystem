@@ -60,20 +60,33 @@ void BaseModel::refresh()
 }
 
 /*filter is the same as the where clause in a sql statement*/
-void BaseModel::setFilter(const QString &filter)
+void BaseModel::setFilter(const QString &filter, QVariant placeholder)
+{
+    QList<QVariant> list;
+    list.append(placeholder);
+    setFilter(filter, list);
+
+}
+
+void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placeholderList)
 {
     QSqlQuery query = this->query();
     QString sql = query.lastQuery();
+    int numBefore = numOfPlaceholders(sql);
     removeFilter(sql);
+    int numAfter = numOfPlaceholders(sql);
     sql.prepend("SELECT * FROM (");
     sql.append(") WHERE ");
     sql.append(filter);
     qDebug() << sql;
-    prepareQuery(query, sql, getBoundValues(query));
+    QList<QVariant> list = getBoundValues(query);
+    list.erase(list.end()-(numBefore-numAfter), list.end());
+    if(!placeholderList.isEmpty())
+        list.append(placeholderList);
+    prepareQuery(query, sql, list);
     query.exec();
     setQuery(query);
     lastFilterQuery = sql;
-
 }
 
 void BaseModel::clearFilter()
@@ -122,4 +135,21 @@ QList<QVariant> BaseModel::getBoundValues(const QSqlQuery &query) const
         i++;
     }
     return list;
+}
+
+/*Return the number of placeholders in a sql string*/
+int BaseModel::numOfPlaceholders(const QString &sqlStr) const
+{
+    int i = 0;
+    int count = 0;
+    bool b = true;
+    while(b)
+    {
+        i = sqlStr.indexOf(QRegExp("[:?]"), ++i); //search for next position of : or ?
+        if(i == -1) // no match
+            b = false;
+        else //match
+            count++;
+    }
+    return count;
 }

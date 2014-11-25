@@ -23,7 +23,8 @@ public:
     //public functions
     virtual void refresh();
     bool removeWhere(const QString &column, const QVariant &value);
-    void setFilter(const QString &filter);
+    void setFilter(const QString &filter, QVariant placeholder);
+    void setFilter(const QString &filter, const QList<QVariant> &placeholderList  = QList<QVariant>());
     void clearFilter();
 
 protected:
@@ -40,6 +41,7 @@ private:
     void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList);
     void removeFilter(QString &sqlStr);
     QList<QVariant> getBoundValues(const QSqlQuery &query) const;
+    int numOfPlaceholders(const QString &sqlStr) const;
 };
 
 #endif // BASEMODEL_H
