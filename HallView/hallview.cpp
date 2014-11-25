@@ -34,9 +34,10 @@ void HallView::mousePressEvent(QMouseEvent *event)
     int columnIndex = (mouseX-offset)/(squareSize+spacing);
 
     int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
+    int hallViewHieght = row_count*squareSize+spacing*(column_count-1);
 
     //qDebug() << "columnIndex: " << columnIndex << "  rowIndex: " << rowIndex << "   mouseX: " << mouseX << "   mouseY: " << mouseY << "  squareSize: " << squareSize << "  offset: " << offset << endl;
-    if(mouseX <= hallViewWidth+offset && mouseX >= offset){
+    if(mouseX <= hallViewWidth+offset && mouseX >= offset && mouseY <= hallViewHieght){
         if(seats[columnIndex][rowIndex].first == 0)
             seats[columnIndex][rowIndex].first = 1;
         else
@@ -71,8 +72,9 @@ void HallView::mouseMoveEvent(QMouseEvent *event)
     int columnIndex = (mouseX-offset)/(squareSize+spacing);
 
     int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
+    int hallViewHieght = row_count*squareSize+spacing*(column_count-1);
 
-    if(mouseX <= hallViewWidth+offset && mouseX >= offset){
+    if(mouseX <= hallViewWidth+offset && mouseX >= offset && mouseY <= hallViewHieght){
         int seatNr = rowIndex*row_count+columnIndex+1;
         QString toolTipText = "Rad: " + QString::number(rowIndex+1) + " Kolumn: " + QString::number(columnIndex+1) + " Sittplats: " + QString::number(seatNr);
         QToolTip::showText(event->globalPos(), toolTipText);
