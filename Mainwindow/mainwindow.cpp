@@ -10,16 +10,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     movieModel = new MovieModel();
-    movieModel->select();
+    movieModel->refresh();
     ui->listView_movies->setModel(movieModel);
     ui->listView_movies->setModelColumn(MovieModel::Title);
 
     showModel = new ShowModel();
-    showModel->select();
+    showModel->refresh();
     ui->tableView_show->setModel(showModel);
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
     ui->tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    bookingModel = new BookingModel();
+    bookingModel->setFilter("Phone = '070'");
+    bookingModel->refresh();
+    ui->tableView_search->setModel(bookingModel);
 
     hallView = new HallView();
     QHBoxLayout *lineLayout = new QHBoxLayout;
@@ -48,14 +53,14 @@ void MainWindow::on_pushButton_movies_add_clicked()
 {
     movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009);
     movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009);
-    movieModel->select();
+    movieModel->refresh();
     qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
 }
 
 void MainWindow::on_pushButton_movies_delete_clicked()
 {
     movieModel->removeRow(ui->listView_movies->selectionModel()->selectedIndexes().first().row());
-    movieModel->select();
+    movieModel->refresh();
 }
 
 
@@ -93,6 +98,8 @@ void MainWindow::on_listView_movies_activated(const QModelIndex &index)
 {
     qDebug() << "activated used";
 
+    int row = ui->listView_movies->selectionModel()->selectedIndexes().first().row();
+
     ui->textBrowser_info->setHtml
     (
 
@@ -101,7 +108,8 @@ void MainWindow::on_listView_movies_activated(const QModelIndex &index)
         "</style></head><body style=' font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;'>"
         "<p style='-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><br /></p>"
         "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'> <b>"
-        + movieModel->record(ui->listView_movies->selectionModel()->selectedIndexes().first().row()).value(MovieModel::Title).toString() +
+        //+ movieModel->record(ui->listView_movies->selectionModel()->selectedIndexes().first().row()).value(MovieModel::Title).toString() +
+                + movieModel->getTitle(row) +
         "</b> </p>"
         "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
         + movieModel->record(ui->listView_movies->selectionModel()->selectedIndexes().first().row()).value(MovieModel::PlayTime).toString() +
@@ -120,11 +128,11 @@ void MainWindow::on_listView_movies_activated(const QModelIndex &index)
 void MainWindow::on_pushButton_show_add_clicked()
 {
     showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 1, 1);
-    showModel->select();
+    showModel->refresh();
 }
 
 void MainWindow::on_pushButton_show_delete_clicked()
 {
     showModel->removeRow(ui->tableView_show->selectionModel()->selectedIndexes().first().row());
-    showModel->select();
+    showModel->refresh();
 }

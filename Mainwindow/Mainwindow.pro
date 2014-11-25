@@ -14,18 +14,24 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    basemodel.cpp \
-    databasehandler.cpp \
-    moviemodel.cpp \
-    showmodel.cpp \
-    hallview.cpp
+    hallview.cpp \
+    Model/basemodel.cpp \
+    Model/bookingmodel.cpp \
+    Model/hallmodel.cpp \
+    Model/moviemodel.cpp \
+    Model/seatmodel.cpp \
+    Model/showmodel.cpp \
+    DatabaseHandler/databasehandler.cpp
 
 HEADERS  += mainwindow.h \
-    basemodel.h \
-    databasehandler.h \
-    moviemodel.h \
-    showmodel.h \
-    hallview.h
+    hallview.h \
+    Model/basemodel.h \
+    Model/bookingmodel.h \
+    Model/hallmodel.h \
+    Model/moviemodel.h \
+    Model/seatmodel.h \
+    Model/showmodel.h \
+    DatabaseHandler/databasehandler.h
 
 FORMS    += mainwindow.ui
 

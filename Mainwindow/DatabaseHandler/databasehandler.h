@@ -6,17 +6,16 @@
 #include <QSqlRecord>
 #include <QSqlDriver>
 #include <QSqlError>
-#include <QFileInfo>
 
 //temp for debugging
 #include <QDebug>
-#include <iostream>
-#include <iomanip>
 
 class DatabaseHandler
 {
 public:
     DatabaseHandler();
+
+    typedef QList<QPair<QString, QVariant> > DatabaseRecord;
 
     //functions
     bool openDatabase();
@@ -29,7 +28,7 @@ public:
     bool endTransaction(bool ok);
 
     bool remove(const QString &tableName, const QString &column, const QVariant &value);
-    int  insert(const QString &tableName, const QSqlRecord &record);
+    int  insert(const QString &tableName, const QList<QPair<QString, QVariant> > &record);
 
 private:
     //variables

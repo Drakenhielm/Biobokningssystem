@@ -2,8 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "moviemodel.h"
-#include "showmodel.h"
+#include "Model/moviemodel.h"
+#include "Model/showmodel.h"
+#include "Model/hallmodel.h"
+#include "Model/seatmodel.h"
+#include "Model/bookingmodel.h"
 #include <QItemSelection>
 #include "hallview.h"
 
@@ -41,9 +44,13 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    HallView *hallView;
+
     MovieModel *movieModel;
     ShowModel *showModel;
-    HallView *hallView;
+    HallModel *hallModel;
+    SeatModel *seatModel;
+    BookingModel * bookingModel;
 };
 
 #endif // MAINWINDOW_H

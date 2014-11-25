@@ -1,18 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'basemodel.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../Mainwindow/basemodel.h"
+#include "../../Mainwindow/Model/basemodel.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'basemodel.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.2. It"
+#error "This file was generated using the moc from 5.3.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -60,7 +60,7 @@ void BaseModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 }
 
 const QMetaObject BaseModel::staticMetaObject = {
-    { &QSqlRelationalTableModel::staticMetaObject, qt_meta_stringdata_BaseModel.data,
+    { &QSqlQueryModel::staticMetaObject, qt_meta_stringdata_BaseModel.data,
       qt_meta_data_BaseModel,  qt_static_metacall, 0, 0}
 };
 
@@ -75,12 +75,12 @@ void *BaseModel::qt_metacast(const char *_clname)
     if (!_clname) return 0;
     if (!strcmp(_clname, qt_meta_stringdata_BaseModel.stringdata))
         return static_cast<void*>(const_cast< BaseModel*>(this));
-    return QSqlRelationalTableModel::qt_metacast(_clname);
+    return QSqlQueryModel::qt_metacast(_clname);
 }
 
 int BaseModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QSqlRelationalTableModel::qt_metacall(_c, _id, _a);
+    _id = QSqlQueryModel::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     return _id;

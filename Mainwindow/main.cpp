@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <databasehandler.h>
+#include "DatabaseHandler/databasehandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
         dh.createDatabase();
 
     MainWindow w;
-    w.show();
+    w.showMaximized();
 
 
     return a.exec();
