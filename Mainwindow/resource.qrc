@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Bad_boys_two.jpg</file>
+        <file>images/avatar.jpg</file>
+    </qresource>
+</RCC>

@@ -38,4 +38,9 @@ FORMS    += mainwindow.ui
 OTHER_FILES += \
     Mainwindow.pro.user \
     Mainwindow.pro.user.81ecaa1 \
-    Mainwindow.pro.user.e8fc351
+    Mainwindow.pro.user.e8fc351 \
+    images/avatar.jpg \
+    images/Bad_boys_two.jpg
+
+RESOURCES += \
+    resource.qrc
