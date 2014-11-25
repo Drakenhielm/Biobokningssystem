@@ -45,9 +45,8 @@ void MainWindow::setUpTable()
     //movieModel->refresh();
     ui->tableView->setModel(movieModel);
     QList<QVariant> list;
-    list.append("5");
-    list.append("City'Polis");
-    movieModel->setFilter(QString("MovieID > ? AND Title = :val"), list);
+    list.append(20);
+    movieModel->setFilter(QString("MovieID > ?"), list);
     //movieModel->refresh();
     //movieModel->setQuery(movieModel->query());
     //qDebug() << movieModel->query().executedQuery()
