@@ -33,3 +33,6 @@ OTHER_FILES += \
     Mainwindow.pro.user \
     Mainwindow.pro.user.81ecaa1 \
     Mainwindow.pro.user.e8fc351
+
+RESOURCES += \
+    resource.qrc
