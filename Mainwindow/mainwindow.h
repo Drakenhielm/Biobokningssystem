@@ -46,7 +46,7 @@ private slots:
 
     void setHTML();
 
-    int getSelected();
+    int getSelected(QItemSelectionModel *selectionModel);
 
 private:
     Ui::MainWindow *ui;

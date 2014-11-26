@@ -61,15 +61,18 @@ void MainWindow::on_pushButton_movies_add_clicked()
 
 void MainWindow::on_pushButton_movies_delete_clicked()
 {
-    movieModel->removeRow(ui->listView_movies->selectionModel()->selectedIndexes().first().row());
-    movieModel->refresh();
+    if(getSelected(ui->listView_movies->selectionModel())!=(-1))
+    {
+        movieModel->removeRow(getSelected(ui->listView_movies->selectionModel()));
+        movieModel->refresh();
+    }
 }
 
 
 void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
 {
     setHTML();
-    showModel->setFilter("MovieID = ?", movieModel->getMovieID(getSelected()));
+    showModel->setFilter("MovieID = ?", movieModel->getMovieID(getSelected(ui->listView_movies->selectionModel())));
     //if(ui->comboBox_search->currentText("Selected show"))
         //bookingModel->setFilter("ShowID = ?", showModel);
 }
@@ -85,8 +88,15 @@ void MainWindow::on_listView_movies_activated(const QModelIndex &index)
 void MainWindow::setHTML()
 {
 
-    int selIndex = getSelected();
+    int selIndex = getSelected(ui->listView_movies->selectionModel());
 
+    if(selIndex==(-1))
+    {
+        ui->textBrowser_info->setHtml("");
+    }
+
+    else
+    {
     ui->textBrowser_info->setHtml
     (
 
@@ -108,6 +118,7 @@ void MainWindow::setHTML()
         + movieModel->record(selIndex).value(MovieModel::Description).toString() +
         "</p></body></html>"
     );
+    }
 
 }
 
@@ -120,8 +131,13 @@ void MainWindow::on_pushButton_show_add_clicked()
 
 void MainWindow::on_pushButton_show_delete_clicked()
 {
-    showModel->removeRow(ui->tableView_show->selectionModel()->selectedIndexes().first().row());
+    int select = getSelected(ui->tableView_show->selectionModel());
+
+    if(select!=(-1))
+    {
+    showModel->removeRow(select);
     showModel->refresh();
+    }
 }
 
 void MainWindow::on_pushButton_search_clicked()
@@ -130,10 +146,10 @@ void MainWindow::on_pushButton_search_clicked()
     bookingModel->setFilter("Phone = ?", phone);
 }
 
-int MainWindow::getSelected()
+int MainWindow::getSelected(QItemSelectionModel *selectionModel)
 {
-    if(ui->listView_movies->selectionModel()->selectedIndexes().empty())
+    if(selectionModel->selectedIndexes().empty())
         return (-1);
     else
-        return ui->listView_movies->selectionModel()->selectedIndexes().first().row();
+        return selectionModel->selectedIndexes().first().row();
 }
