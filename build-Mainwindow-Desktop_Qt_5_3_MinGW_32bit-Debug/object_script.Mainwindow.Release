@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\hallview.o
+./release\basemodel.o
+./release\bookingmodel.o
+./release\hallmodel.o
+./release\moviemodel.o
+./release\seatmodel.o
+./release\showmodel.o
+./release\databasehandler.o
+./release\qrc_resource.o
+./release\moc_mainwindow.o
+./release\moc_hallview.o
+./release\moc_basemodel.o
+);
