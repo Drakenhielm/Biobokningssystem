@@ -22,9 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     bookingModel = new BookingModel();
-    bookingModel->setFilter("Phone = '070'");
+    //bookingModel->setFilter("Phone = '070'");
     bookingModel->refresh();
     ui->tableView_search->setModel(bookingModel);
+    ui->tableView_search->hideColumn(BookingModel::ShowID);
+    ui->tableView_search->hideColumn(BookingModel::MovieID);
 
     hallView = new HallView();
     QHBoxLayout *lineLayout = new QHBoxLayout;
@@ -51,8 +53,8 @@ void MainWindow::on_pushButton_info_edit_clicked()
 
 void MainWindow::on_pushButton_movies_add_clicked()
 {
-    movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009);
-    movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009);
+    movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009, "");
+    movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009, "");
     movieModel->refresh();
     qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
 }
@@ -91,7 +93,7 @@ void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
         "</p></body></html>"
     );
 
-    //showModel->setFilter("MovieID = '"+);
+    //showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
 }
 
 
@@ -136,4 +138,10 @@ void MainWindow::on_pushButton_show_delete_clicked()
 {
     showModel->removeRow(ui->tableView_show->selectionModel()->selectedIndexes().first().row());
     showModel->refresh();
+}
+
+void MainWindow::on_pushButton_search_clicked()
+{
+    QString phone = ui->lineEdit_search->text();
+    bookingModel->setFilter("Phone = ?", phone);
 }

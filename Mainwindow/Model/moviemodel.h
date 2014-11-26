@@ -9,12 +9,22 @@
 class MovieModel : public BaseModel
 {
 public:
-    enum Column {MovieID = 0, Title = 1, PlayTime = 2, AgeLimit = 3, Description = 4, Genre = 5, Year = 6, MoviePoster = 7};
+    enum Column
+    {
+        MovieID = 0,
+        Title = 1,
+        PlayTime = 2,
+        AgeLimit = 3,
+        Description = 4,
+        Genre = 5,
+        Year = 6,
+        MoviePoster = 7
+    };
 
     MovieModel(QObject *parent = 0);
 
     int insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
-                     const QString & genre, int year);
+                     const QString & genre, int year, const QString &imagePath);
 
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
     QString getTitle(int row) const { return data(index(row, Title)).toString(); }

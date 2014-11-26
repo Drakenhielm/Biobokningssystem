@@ -42,6 +42,8 @@ private slots:
 
     void on_pushButton_show_delete_clicked();
 
+    void on_pushButton_search_clicked();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;

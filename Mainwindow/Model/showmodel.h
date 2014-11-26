@@ -10,7 +10,19 @@
 class ShowModel : public BaseModel
 {
 public:
-    enum Column {ShowID = 0, DateTime = 1, Price = 2, ThreeD = 3, Subtitles = 4, Language = 5, MovieID = 6, HallID = 7};
+    enum Column
+    {
+        ShowID = 0,
+        DateTime = 1,
+        Price = 2,
+        ThreeD = 3,
+        Subtitles = 4,
+        Language = 5,
+        MovieID = 6,
+        HallID = 7,
+        Hall = 8,
+        AvaibleSeats = 9
+    };
 
     ShowModel(QObject *parent = 0);
 
@@ -27,6 +39,10 @@ public:
     bool getSubtitles(int row) const { return data(index(row, Subtitles)).toBool(); }
     QString getLanguage(int row) const { return data(index(row, Language)).toString(); }
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
+    int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
+    QString getHall(int row) const { return data(index(row, Hall)).toString(); }
+    int getAvaibleSeats(int row) const { return data(index(row, AvaibleSeats)).toInt(); }
+
 };
 
 #endif // SHOWMODEL_H

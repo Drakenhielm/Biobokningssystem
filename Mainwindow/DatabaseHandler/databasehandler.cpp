@@ -98,8 +98,10 @@ bool DatabaseHandler::endTransaction(bool ok)
 bool DatabaseHandler::remove(const QString &tableName, const QString &column, const QVariant &value)
 {
     QSqlQuery query;
-    query.prepare(QString("DELETE FROM %1 WHERE %2 = :val").arg(tableName, column));
-    query.bindValue(":val", value);
+    QString sql = QString("DELETE FROM %1 WHERE %2 = ?").arg(tableName).arg(column);
+    query.prepare(sql);
+    qDebug() << sql;
+    query.bindValue(0, value);
     if(!query.exec())
     {
         qDebug() << "The database reported an error: "

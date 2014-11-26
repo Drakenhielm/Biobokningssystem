@@ -1,7 +1,7 @@
 #include "seatmodel.h"
 
 SeatModel::SeatModel(QObject *parent)
-    : BaseModel("seat", parent)
+    : BaseModel("seat", "SeatID", parent)
 {
     //default - no hall or show set
     hallID = 0;

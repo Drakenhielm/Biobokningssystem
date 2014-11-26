@@ -13,7 +13,7 @@ class BaseModel : public QSqlQueryModel
 {
     Q_OBJECT
 public:
-    BaseModel(const QString &tableName, QObject *parent = 0);
+    BaseModel(const QString &tableName, const QString &primaryKey, QObject *parent = 0);
 
     //reimplemented public functions
     virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
@@ -23,7 +23,8 @@ public:
     //public functions
     virtual void refresh();
     bool removeWhere(const QString &column, const QVariant &value);
-    void setFilter(const QString &filter);
+    void setFilter(const QString &filter, QVariant placeholder);
+    void setFilter(const QString &filter, const QList<QVariant> &placeholderList  = QList<QVariant>());
     void clearFilter();
 
 protected:
@@ -40,6 +41,7 @@ private:
     void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList);
     void removeFilter(QString &sqlStr);
     QList<QVariant> getBoundValues(const QSqlQuery &query) const;
+    int numOfPlaceholders(const QString &sqlStr) const;
 };
 
 #endif // BASEMODEL_H
