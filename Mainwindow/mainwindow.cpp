@@ -93,7 +93,7 @@ void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
         "</p></body></html>"
     );
 
-    //showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
+    showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
 }
 
 
