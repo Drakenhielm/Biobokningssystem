@@ -150,3 +150,28 @@ void MainWindow::on_pushButton_2_clicked()
     movieModel->setFilter("Title LIKE ? || '%'", filter);
     qDebug() << movieModel->query().lastError();
 }
+
+void MainWindow::on_tableView_activated(const QModelIndex &index)
+{
+    qDebug() << "activated" << index.row();
+}
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    qDebug() << "click" << index.row();
+}
+
+void MainWindow::on_tableView_entered(const QModelIndex &index)
+{
+    qDebug() << "entered" << index.row();
+}
+
+void MainWindow::on_tableView_pressed(const QModelIndex &index)
+{
+    qDebug() << "pressed" << index.row();
+}
+
+void MainWindow::on_tableView_viewportEntered()
+{
+    qDebug() << "viewport entered";
+}

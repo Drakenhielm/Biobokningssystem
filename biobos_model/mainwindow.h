@@ -33,6 +33,16 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_tableView_activated(const QModelIndex &index);
+
+    void on_tableView_clicked(const QModelIndex &index);
+
+    void on_tableView_entered(const QModelIndex &index);
+
+    void on_tableView_pressed(const QModelIndex &index);
+
+    void on_tableView_viewportEntered();
+
 private:
     Ui::MainWindow *ui;
     MovieModel *movieModel;
