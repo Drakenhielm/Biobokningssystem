@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     lineLayout->addWidget(hallView);
     ui->frame_3->setLayout(lineLayout);
     ui->frame_3->setFrameStyle(1);
-    ui->frame_3->setFrameShadow(QFrame::Raised);
+    ui->frame_3->setFrameShadow(QFrame::Plain);
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +94,8 @@ void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
     );
 
     showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
+    //if(ui->comboBox_search->currentText("Selected show"))
+        //bookingModel->setFilter("ShowID = ?", showModel);
 }
 
 
