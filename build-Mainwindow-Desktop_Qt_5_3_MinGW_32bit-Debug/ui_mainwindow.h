@@ -230,8 +230,10 @@ public:
         sizePolicy1.setHeightForWidth(tableView_show->sizePolicy().hasHeightForWidth());
         tableView_show->setSizePolicy(sizePolicy1);
         tableView_show->setSelectionMode(QAbstractItemView::SingleSelection);
+        tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView_show->horizontalHeader()->setCascadingSectionResizes(false);
         tableView_show->horizontalHeader()->setDefaultSectionSize(75);
+        tableView_show->horizontalHeader()->setHighlightSections(false);
         tableView_show->horizontalHeader()->setMinimumSectionSize(1);
         tableView_show->verticalHeader()->setVisible(false);
         tableView_show->verticalHeader()->setCascadingSectionResizes(false);

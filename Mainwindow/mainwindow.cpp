@@ -16,10 +16,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     showModel = new ShowModel();
     showModel->refresh();
+    showModel->setHeaderData(ShowModel::ThreeD, Qt::Horizontal, "3D");
+    showModel->setHeaderData(ShowModel::AvailableSeats, Qt::Horizontal, "Available seats");
     ui->tableView_show->setModel(showModel);
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
-    ui->tableView_show->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     bookingModel = new BookingModel();
     //bookingModel->setFilter("Phone = '070'");
@@ -143,7 +144,10 @@ void MainWindow::on_pushButton_show_delete_clicked()
 void MainWindow::on_pushButton_search_clicked()
 {
     QString phone = ui->lineEdit_search->text();
-    bookingModel->setFilter("Phone = ?", phone);
+    if(phone.isEmpty())
+        bookingModel->clearFilter();
+    else
+        bookingModel->setFilter("Phone = ?", phone);
 }
 
 int MainWindow::getSelected(QItemSelectionModel *selectionModel)
@@ -152,4 +156,10 @@ int MainWindow::getSelected(QItemSelectionModel *selectionModel)
         return (-1);
     else
         return selectionModel->selectedIndexes().first().row();
+}
+
+void MainWindow::on_pushButton_hallview_info_book_clicked()
+{
+    bookingModel->insertBooking(1, 1, "070654321");
+    bookingModel->refresh();
 }

@@ -28,7 +28,6 @@ bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     if(row > rowCount())
         return false;
-
     dh.transaction();
     bool ok = true;
     for(int i = 0; i < count; i++)
@@ -36,9 +35,9 @@ bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
         QSqlRecord rec(record(row));
         if(!rec.isEmpty())
         {
-            QVariant id = rec.value(0);
-            if(id.isValid())
-                ok = dh.remove(tableName, primaryKey, id);
+            QVariant value = rec.value(primaryKey);
+            if(value.isValid())
+                ok = dh.remove(tableName, primaryKey, value);
         }
     }
     return ok && dh.endTransaction(ok);
@@ -79,7 +78,6 @@ void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placehol
     sql.prepend("SELECT * FROM (");
     sql.append(") WHERE ");
     sql.append(filter);
-    qDebug() << sql;
     QList<QVariant> list = getBoundValues(query);
     list.erase(list.end()-(numBefore-numAfter), list.end());
     if(!placeholderList.isEmpty())
@@ -108,8 +106,6 @@ void BaseModel::prepareQuery(QSqlQuery &query, const QString &sql, const QList<Q
     for(int i = 0; i < parameterList.size(); i++)
     {
         query.addBindValue(parameterList.at(i));
-        qDebug() << i << ": "
-                 << parameterList.at(i);
     }
 }
 

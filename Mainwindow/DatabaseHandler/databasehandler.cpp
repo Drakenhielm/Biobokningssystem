@@ -100,7 +100,6 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &column, co
     QSqlQuery query;
     QString sql = QString("DELETE FROM %1 WHERE %2 = ?").arg(tableName).arg(column);
     query.prepare(sql);
-    qDebug() << sql;
     query.bindValue(0, value);
     if(!query.exec())
     {
@@ -131,16 +130,12 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
     {
         query.bindValue(i, record.at(i).second);
     }
-    //qDebug() << sqlStr;
     if(!query.exec())
     {
         qDebug() << "The database reported an error: "
                  << db.lastError().text();
         return -1;
     }
-
-    //qDebug() << query.executedQuery();
-    //qDebug() << query.lastQuery();
 
     return query.lastInsertId().toInt();
 }

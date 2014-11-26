@@ -168,11 +168,17 @@
              <property name="selectionMode">
               <enum>QAbstractItemView::SingleSelection</enum>
              </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
              <attribute name="horizontalHeaderCascadingSectionResizes">
               <bool>false</bool>
              </attribute>
              <attribute name="horizontalHeaderDefaultSectionSize">
               <number>75</number>
+             </attribute>
+             <attribute name="horizontalHeaderHighlightSections">
+              <bool>false</bool>
              </attribute>
              <attribute name="horizontalHeaderMinimumSectionSize">
               <number>1</number>

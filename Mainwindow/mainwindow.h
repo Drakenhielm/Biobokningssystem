@@ -48,6 +48,8 @@ private slots:
 
     int getSelected(QItemSelectionModel *selectionModel);
 
+    void on_pushButton_hallview_info_book_clicked();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;
