@@ -44,6 +44,8 @@ private slots:
 
     void on_pushButton_search_clicked();
 
+    void setHTML();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;
