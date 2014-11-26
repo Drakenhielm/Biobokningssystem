@@ -14,23 +14,23 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    databasehandler.cpp \
-    basemodel.cpp \
-    moviemodel.cpp \
-    showmodel.cpp \
-    hallmodel.cpp \
-    seatmodel.cpp \
-    bookingmodel.cpp \
-    custommodel.cpp
+    custommodel.cpp \
+    Model/basemodel.cpp \
+    Model/bookingmodel.cpp \
+    Model/hallmodel.cpp \
+    Model/moviemodel.cpp \
+    Model/seatmodel.cpp \
+    Model/showmodel.cpp \
+    DatabaseHandler/databasehandler.cpp
 
 HEADERS  += mainwindow.h \
-    databasehandler.h \
-    basemodel.h \
-    moviemodel.h \
-    showmodel.h \
-    hallmodel.h \
-    seatmodel.h \
-    bookingmodel.h \
-    custommodel.h
+    custommodel.h \
+    Model/basemodel.h \
+    Model/bookingmodel.h \
+    Model/hallmodel.h \
+    Model/moviemodel.h \
+    Model/seatmodel.h \
+    Model/showmodel.h \
+    DatabaseHandler/databasehandler.h
 
 FORMS    += mainwindow.ui

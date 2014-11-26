@@ -7,7 +7,7 @@ MovieModel::MovieModel(QObject *parent)
 }
 
 int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
-                 const QString & genre, int year)
+                 const QString & genre, int year, const QString &imagePath)
 {
     QList<QPair<QString, QVariant> > values;
     values.append(qMakePair(QString("Title"), title));
@@ -16,6 +16,7 @@ int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, c
     values.append(qMakePair(QString("Description"), description));
     values.append(qMakePair(QString("Genre"), genre));
     values.append(qMakePair(QString("Year"), year));
+    values.append(qMakePair(QString("MoviePoster"), imagePath));
     return dh.insert("movie", values);
 }
 

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <databasehandler.h>
+#include "DatabaseHandler/databasehandler.h"
 
 int main(int argc, char *argv[])
 {

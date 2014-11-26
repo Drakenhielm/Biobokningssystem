@@ -138,7 +138,7 @@ void MainWindow::setUpTable()
 
 void MainWindow::on_pushButton_clicked()
 {
-    movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006);
+    movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006, "");
     movieModel->clearFilter();
     movieModel->refresh();
     qDebug() << movieModel->query().executedQuery();

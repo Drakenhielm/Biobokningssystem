@@ -9,13 +9,11 @@
 #include <QtSql>
 #include <QElapsedTimer>
 
-#include <moviemodel.h>
-#include <showmodel.h>
-#include <hallmodel.h>
-#include <seatmodel.h>
-#include <bookingmodel.h>
-
-#include <custommodel.h>
+#include "Model/moviemodel.h"
+#include "Model/showmodel.h"
+#include "Model/hallmodel.h"
+#include "Model/seatmodel.h"
+#include "Model/bookingmodel.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,8 +40,6 @@ private:
     HallModel *hallModel;
     SeatModel *seatModel;
     BookingModel *bookingModel;
-
-    CustomModel *customModel;
 
     QSqlRelationalTableModel *model;
     QSqlQueryModel *qModel;

@@ -2,7 +2,7 @@
 #define SEATMODEL_H
 
 #include <QDebug>
-#include <basemodel.h>
+#include "basemodel.h"
 
 class SeatModel : public BaseModel
 {

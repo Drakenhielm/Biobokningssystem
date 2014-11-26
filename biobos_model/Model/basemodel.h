@@ -6,7 +6,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDateTime>
-#include <databasehandler.h>
+#include "../DatabaseHandler/databasehandler.h"
 #include <QDebug>
 
 class BaseModel : public QSqlQueryModel
