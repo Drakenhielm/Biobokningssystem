@@ -68,32 +68,8 @@ void MainWindow::on_pushButton_movies_delete_clicked()
 
 void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
 {
-
-    int selIndex = ui->listView_movies->selectionModel()->selectedIndexes().first().row();
-
-    ui->textBrowser_info->setHtml
-    (
-
-        "<html><head><meta name='qrichtext' content='1' /><style type='text/css'>"
-        "p, li { white-space: pre-wrap; }"
-        "</style></head><body style=' font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;'>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'> <b>"
-        + movieModel->record(selIndex).value(MovieModel::Title).toString() +
-        "</b> </p>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
-        + movieModel->record(selIndex).value(MovieModel::PlayTime).toString() +
-        " min. "
-        + movieModel->record(selIndex).value(MovieModel::Genre).toString() +
-        "."
-        "</p>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':/images/Bad_boys_two.jpg' height='100' /></p>"
-
-        "<p style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
-        + movieModel->record(selIndex).value(MovieModel::Description).toString() +
-        "</p></body></html>"
-    );
-
-    showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
+    setHTML();
+    showModel->setFilter("MovieID = ?", movieModel->getMovieID(getSelected()));
     //if(ui->comboBox_search->currentText("Selected show"))
         //bookingModel->setFilter("ShowID = ?", showModel);
 }
@@ -103,8 +79,13 @@ void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
 void MainWindow::on_listView_movies_activated(const QModelIndex &index)
 {
     qDebug() << "activated used";
+    setHTML();
+}
 
-    int selIndex = ui->listView_movies->selectionModel()->selectedIndexes().first().row();
+void MainWindow::setHTML()
+{
+
+    int selIndex = getSelected();
 
     ui->textBrowser_info->setHtml
     (
@@ -129,6 +110,7 @@ void MainWindow::on_listView_movies_activated(const QModelIndex &index)
     );
 
 }
+
 
 void MainWindow::on_pushButton_show_add_clicked()
 {
@@ -146,4 +128,12 @@ void MainWindow::on_pushButton_search_clicked()
 {
     QString phone = ui->lineEdit_search->text();
     bookingModel->setFilter("Phone = ?", phone);
+}
+
+int MainWindow::getSelected()
+{
+    if(ui->listView_movies->selectionModel()->selectedIndexes().empty())
+        return (-1);
+    else
+        return ui->listView_movies->selectionModel()->selectedIndexes().first().row();
 }

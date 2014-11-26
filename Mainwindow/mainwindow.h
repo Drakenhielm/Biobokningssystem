@@ -44,7 +44,9 @@ private slots:
 
     void on_pushButton_search_clicked();
 
-    //void setHTML();
+    void setHTML();
+
+    int getSelected();
 
 private:
     Ui::MainWindow *ui;
