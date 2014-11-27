@@ -104,9 +104,9 @@ void MainWindow::setHTML()
         "<html><head><meta name='qrichtext' content='1' /><style type='text/css'>"
         "p, li { white-space: pre-wrap; }"
         "</style></head><body style=' font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;'>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'> <b>"
+        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'> <b><span style=' font-size:18pt; text-decoration: underline;'>"
         + movieModel->record(selIndex).value(MovieModel::Title).toString() +
-        "</b> </p>"
+        "</span></b> </p>"
         "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
         + movieModel->record(selIndex).value(MovieModel::PlayTime).toString() +
         " min. "
@@ -121,7 +121,6 @@ void MainWindow::setHTML()
         + movieModel->record(selIndex).value(MovieModel::Description).toString() +
         "</p></body></html>"
     );
-    qDebug() << movieModel->record(selIndex).value(MovieModel::MoviePoster).toString();
 
     }
 
