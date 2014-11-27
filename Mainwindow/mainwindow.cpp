@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QAbstractItemView>
 #include "hallview.h"
+#include "add_movie/popup.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -58,6 +59,11 @@ void MainWindow::on_pushButton_movies_add_clicked()
     movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009, "/images/Bad_boys_two.jpg");
     movieModel->refresh();
     qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
+
+    popup popuper;
+    popuper.setModal(true);
+    popuper.exec();
+
 }
 
 void MainWindow::on_pushButton_movies_delete_clicked()

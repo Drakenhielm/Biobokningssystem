@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     Model/moviemodel.cpp \
     Model/seatmodel.cpp \
     Model/showmodel.cpp \
-    DatabaseHandler/databasehandler.cpp
+    DatabaseHandler/databasehandler.cpp \
+    add_movie/popup.cpp
 
 HEADERS  += mainwindow.h \
     hallview.h \
@@ -31,9 +32,11 @@ HEADERS  += mainwindow.h \
     Model/moviemodel.h \
     Model/seatmodel.h \
     Model/showmodel.h \
-    DatabaseHandler/databasehandler.h
+    DatabaseHandler/databasehandler.h \
+    add_movie/popup.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    add_movie/popup.ui
 
 OTHER_FILES += \
     Mainwindow.pro.user \
