@@ -54,8 +54,8 @@ void MainWindow::on_pushButton_info_edit_clicked()
 
 void MainWindow::on_pushButton_movies_add_clicked()
 {
-    movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009, "");
-    movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009, "");
+    movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009, "/images/avatar.jpg");
+    movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009, "/images/Bad_boys_two.jpg");
     movieModel->refresh();
     qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
 }
@@ -113,12 +113,16 @@ void MainWindow::setHTML()
         + movieModel->record(selIndex).value(MovieModel::Genre).toString() +
         "."
         "</p>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':/images/Bad_boys_two.jpg' height='100' /></p>"
+        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':"
+        + movieModel->record(selIndex).value(MovieModel::MoviePoster).toString() +
+        "' height='100' /></p>"
 
         "<p style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
         + movieModel->record(selIndex).value(MovieModel::Description).toString() +
         "</p></body></html>"
     );
+    qDebug() << movieModel->record(selIndex).value(MovieModel::MoviePoster).toString();
+
     }
 
 }

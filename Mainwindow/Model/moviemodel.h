@@ -18,7 +18,7 @@ public:
         Description = 4,
         Genre = 5,
         Year = 6,
-        MoviePoster = 7
+        MoviePoster = 7,
     };
 
     MovieModel(QObject *parent = 0);
