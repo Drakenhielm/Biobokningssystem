@@ -21,8 +21,7 @@ SOURCES += main.cpp\
     Model/moviemodel.cpp \
     Model/seatmodel.cpp \
     Model/showmodel.cpp \
-    DatabaseHandler/databasehandler.cpp \
-    matrixseatmodel.cpp
+    DatabaseHandler/databasehandler.cpp
 
 HEADERS  += mainwindow.h \
     custommodel.h \
@@ -32,7 +31,6 @@ HEADERS  += mainwindow.h \
     Model/moviemodel.h \
     Model/seatmodel.h \
     Model/showmodel.h \
-    DatabaseHandler/databasehandler.h \
-    matrixseatmodel.h
+    DatabaseHandler/databasehandler.h
 
 FORMS    += mainwindow.ui
