@@ -1,7 +1,7 @@
 #include "bookingmodel.h"
 
 BookingModel::BookingModel(QObject *parent)
-    : BaseModel("booking", parent)
+    : BaseModel("booking", "BookingID", parent)
 {
     setQuery("SELECT booking.ShowID, show.MovieID, booking.Phone, movie.Title, show.DateTime, "
              "COUNT(booking.BookingID) AS Tickets "

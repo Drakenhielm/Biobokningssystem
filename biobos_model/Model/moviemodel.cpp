@@ -1,7 +1,7 @@
 #include "moviemodel.h"
 
 MovieModel::MovieModel(QObject *parent)
-    : BaseModel("movie", parent)
+    : BaseModel("movie", "MovieID", parent)
 {
     setQuery("SELECT * FROM movie ORDER BY Title");
 }

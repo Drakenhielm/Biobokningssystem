@@ -21,7 +21,7 @@ public:
         MovieID = 6,
         HallID = 7,
         Hall = 8,
-        AvaibleSeats = 9
+        AvailableSeats = 9
     };
 
     ShowModel(QObject *parent = 0);
@@ -41,7 +41,7 @@ public:
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
     QString getHall(int row) const { return data(index(row, Hall)).toString(); }
-    int getAvaibleSeats(int row) const { return data(index(row, AvaibleSeats)).toInt(); }
+    int getAvailableSeats(int row) const { return data(index(row, AvailableSeats)).toInt(); }
 
 };
 

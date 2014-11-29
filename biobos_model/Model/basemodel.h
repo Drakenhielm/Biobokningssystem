@@ -13,7 +13,7 @@ class BaseModel : public QSqlQueryModel
 {
     Q_OBJECT
 public:
-    BaseModel(const QString &tableName, QObject *parent = 0);
+    BaseModel(const QString &tableName, const QString &primaryKey, QObject *parent = 0);
 
     //reimplemented public functions
     virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;

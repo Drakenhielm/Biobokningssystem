@@ -1,7 +1,7 @@
 #include "showmodel.h"
 
 ShowModel::ShowModel(QObject *parent)
-    : BaseModel("show", parent)
+    : BaseModel("show", "ShowID", parent)
 {
     setQuery("SELECT show.*, hall.Name AS Hall, "
              "COUNT(seat.SeatID) - COUNT(booking.SeatID) AS AvaibleSeats "
