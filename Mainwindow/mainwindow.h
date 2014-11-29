@@ -26,6 +26,9 @@ public:
     ~MainWindow();
 
 private slots:
+    void movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+    void showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+
     void on_actionQuit_triggered();
 
     void on_pushButton_info_edit_clicked();
@@ -50,6 +53,8 @@ private slots:
 
     void on_pushButton_hallview_info_book_clicked();
 
+    void on_comboBox_search_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;
@@ -59,6 +64,9 @@ private:
     HallModel *hallModel;
     SeatModel *seatModel;
     BookingModel * bookingModel;
+
+    void filterBookings();
+
 };
 
 #endif // MAINWINDOW_H

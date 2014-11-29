@@ -18,7 +18,7 @@ public:
         Description = 4,
         Genre = 5,
         Year = 6,
-        MoviePoster = 7,
+        MoviePoster = 7
     };
 
     MovieModel(QObject *parent = 0);
@@ -33,7 +33,7 @@ public:
     QString getDescription(int row) const { return data(index(row, Description)).toString(); }
     QString getGenre(int row) const { return data(index(row, Genre)).toString(); }
     int getYear(int row) const { return data(index(row, Year)).toInt(); }
-    int getMoviePoster(int row) const { return data(index(row, MoviePoster)).toInt(); }
+    QString getMoviePoster(int row) const { return data(index(row, MoviePoster)).toString(); }
 };
 
 #endif // MOVIEMODEL_H

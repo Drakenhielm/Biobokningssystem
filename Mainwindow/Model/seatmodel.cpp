@@ -3,28 +3,10 @@
 SeatModel::SeatModel(QObject *parent)
     : BaseModel("seat", "SeatID", parent)
 {
-    //default - no hall or show set
+    //default
     hallID = 0;
     showID = 0;
 }
-
-/*int SeatModel::rowCount(const QModelIndex & parent = QModelIndex()) const
-{
-    return BaseModel::data(BaseModel::index(BaseModel::rowCount(), 1)).toInt();
-}
-
-int SeatModel::columnCount(const QModelIndex & parent = QModelIndex()) const
-{
-    return BaseModel::data(BaseModel::index(BaseModel::rowCount(), 2)).toInt();
-}
-
-QVariant SeatModel::data(const QModelIndex & index, int role = Qt::DisplayRole)
-{
-    if(role == Qt::DisplayRole)
-    {
-
-    }
-}*/
 
 void SeatModel::refresh()
 {
@@ -46,10 +28,10 @@ void SeatModel::setShow(int id)
     showID = id;
 }
 
-void SeatModel::setBooking(const QString &phone)
+/*void SeatModel::setBooking(const QString &phone)
 {
     bookingPhoneNr = phone;
-}
+}*/
 
 void SeatModel::fixQuery()
 {
@@ -59,8 +41,6 @@ void SeatModel::fixQuery()
                        +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID AND b_current.ShowID = " +(showID+'0')
                        +" WHERE HallID = "+(hallID+'0')
                        +" GROUP BY seat.SeatID";
-    //setFilter("HallID = '1'");
-    //qDebug() << queryStr;
     setQuery(queryStr);
 }
 

@@ -11,32 +11,29 @@ public:
 
     enum Column
     {
-        ShowID = 0,
-        MovieID = 1,
-        Phone = 2,
-        Title = 3,
-        Tickets = 4
+        SeatID,
+        Row,
+        Column,
+        SeatNr,
+        HallID
     };
 
-    //virtual int rowCount(const QModelIndex & parent = QModelIndex()) const;
-    //virtual int columnCount(const QModelIndex & parent = QModelIndex()) const;
-    //virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole);
     virtual void refresh();
 
-    int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }
-    int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
-    QString getPhone(int row) const { return data(index(row, Phone)).toString(); }
-    QString getTitle(int row) const { return data(index(row, Title)).toString(); }
-    int getTickets(int row) const { return data(index(row, Tickets)).toInt(); }
+    int getSeatID(int row) const { return data(index(row, SeatID)).toInt(); }
+    int getRow(int row) const { return data(index(row, Row)).toInt(); }
+    int getColumn(int row) const { return data(index(row, Column)).toInt(); }
+    int getSeatNr(int row) const { return data(index(row, SeatNr)).toInt(); }
+    int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
 
     void setHall(int id);
     void setShow(int id);
-    void setBooking(const QString &phone);
+    //void setBooking(const QString &phone);
 
 private:
     int hallID;
     int showID;
-    QString bookingPhoneNr;
+    //QString bookingPhoneNr;
 
     void fixQuery();
 
