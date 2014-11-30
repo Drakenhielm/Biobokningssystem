@@ -13,11 +13,6 @@ SeatModel::SeatModel(QObject *parent)
 void SeatModel::refresh()
 {
     QPair<int, int> hallSize = getHallSize(hallID);
-    if(hallSize.first == 0 || hallSize.second == 0)
-    {
-        //empty hall
-        return;
-    }
     rowMax = hallSize.first;
     colMax = hallSize.second;
     setQuery(sqlStatement(hallID, showID));
