@@ -177,6 +177,7 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     bookingModel->refresh();
 }
 
+//NEW FUNCTIONS BELOW
 void MainWindow::filterBookings()
 {
     QString showFilter;
@@ -214,8 +215,11 @@ void MainWindow::on_comboBox_search_currentIndexChanged(int index)
 void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     setHTML();
+
     if(selected.empty())
-        return;
+    {
+        showModel->clearFilter();
+    }
     else
     {
         int row = selected.first().indexes().first().row();

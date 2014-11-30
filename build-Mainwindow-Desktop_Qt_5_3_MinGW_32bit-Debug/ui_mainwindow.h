@@ -56,7 +56,7 @@ public:
     QSplitter *splitter;
     QWidget *widget_movies;
     QVBoxLayout *verticalLayout_6;
-    QLabel *label;
+    QLabel *label_movies;
     QListView *listView_movies;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_4;
@@ -65,7 +65,7 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QWidget *widget_shows;
     QVBoxLayout *verticalLayout_5;
-    QLabel *label_2;
+    QLabel *label_shows;
     QTableView *tableView_show;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_5;
@@ -74,12 +74,13 @@ public:
     QSpacerItem *horizontalSpacer_6;
     QWidget *widget_info;
     QVBoxLayout *verticalLayout;
-    QLabel *label_3;
+    QLabel *label_movieinfo;
     QTextBrowser *textBrowser_info;
     QHBoxLayout *horizontalLayout_7;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_info_edit;
     QSpacerItem *horizontalSpacer_2;
+    QFrame *line;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_2;
     QSplitter *splitter_2;
@@ -92,9 +93,9 @@ public:
     QSpacerItem *verticalSpacer;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_4;
-    QLabel *label_4;
+    QLabel *label_num_of_seats;
     QComboBox *comboBox;
-    QLabel *label_5;
+    QLabel *label_phone;
     QLineEdit *lineEdit;
     QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout_5;
@@ -102,6 +103,7 @@ public:
     QPushButton *pushButton_hallview_info_book;
     QWidget *widget_6;
     QVBoxLayout *verticalLayout_3;
+    QLabel *label_bookings;
     QHBoxLayout *horizontalLayout_9;
     QLineEdit *lineEdit_search;
     QPushButton *pushButton_search;
@@ -170,10 +172,10 @@ public:
         verticalLayout_6->setContentsMargins(11, 11, 11, 11);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget_movies);
-        label->setObjectName(QStringLiteral("label"));
+        label_movies = new QLabel(widget_movies);
+        label_movies->setObjectName(QStringLiteral("label_movies"));
 
-        verticalLayout_6->addWidget(label);
+        verticalLayout_6->addWidget(label_movies);
 
         listView_movies = new QListView(widget_movies);
         listView_movies->setObjectName(QStringLiteral("listView_movies"));
@@ -224,10 +226,10 @@ public:
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(widget_shows);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_shows = new QLabel(widget_shows);
+        label_shows->setObjectName(QStringLiteral("label_shows"));
 
-        verticalLayout_5->addWidget(label_2);
+        verticalLayout_5->addWidget(label_shows);
 
         tableView_show = new QTableView(widget_shows);
         tableView_show->setObjectName(QStringLiteral("tableView_show"));
@@ -284,10 +286,10 @@ public:
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(widget_info);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_movieinfo = new QLabel(widget_info);
+        label_movieinfo->setObjectName(QStringLiteral("label_movieinfo"));
 
-        verticalLayout->addWidget(label_3);
+        verticalLayout->addWidget(label_movieinfo);
 
         textBrowser_info = new QTextBrowser(widget_info);
         textBrowser_info->setObjectName(QStringLiteral("textBrowser_info"));
@@ -321,6 +323,13 @@ public:
 
 
         verticalLayout_2->addWidget(widget);
+
+        line = new QFrame(centralWidget);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_2->addWidget(line);
 
         widget_2 = new QWidget(centralWidget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
@@ -395,10 +404,10 @@ public:
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_4 = new QLabel(groupBox);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_num_of_seats = new QLabel(groupBox);
+        label_num_of_seats->setObjectName(QStringLiteral("label_num_of_seats"));
 
-        verticalLayout_4->addWidget(label_4);
+        verticalLayout_4->addWidget(label_num_of_seats);
 
         comboBox = new QComboBox(groupBox);
         comboBox->setObjectName(QStringLiteral("comboBox"));
@@ -413,10 +422,10 @@ public:
 
         verticalLayout_4->addWidget(comboBox);
 
-        label_5 = new QLabel(groupBox);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_phone = new QLabel(groupBox);
+        label_phone->setObjectName(QStringLiteral("label_phone"));
 
-        verticalLayout_4->addWidget(label_5);
+        verticalLayout_4->addWidget(label_phone);
 
         lineEdit = new QLineEdit(groupBox);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
@@ -472,6 +481,11 @@ public:
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        label_bookings = new QLabel(widget_6);
+        label_bookings->setObjectName(QStringLiteral("label_bookings"));
+
+        verticalLayout_3->addWidget(label_bookings);
+
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
@@ -519,7 +533,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 892, 23));
+        menuBar->setGeometry(QRect(0, 0, 892, 21));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         MainWindow->setMenuBar(menuBar);
@@ -568,13 +582,13 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionQuit->setToolTip(QApplication::translate("MainWindow", "Qui", 0));
 #endif // QT_NO_TOOLTIP
-        label->setText(QApplication::translate("MainWindow", "Movies:", 0));
+        label_movies->setText(QApplication::translate("MainWindow", "Movies:", 0));
         pushButton_movies_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_movies_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Show:", 0));
+        label_shows->setText(QApplication::translate("MainWindow", "Shows:", 0));
         pushButton_show_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_show_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Information:", 0));
+        label_movieinfo->setText(QApplication::translate("MainWindow", "Information:", 0));
         textBrowser_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -583,7 +597,7 @@ public:
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         label_6->setText(QApplication::translate("MainWindow", "Hall info", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "Book", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Number of seats", 0));
+        label_num_of_seats->setText(QApplication::translate("MainWindow", "Number of seats", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "1", 0)
@@ -595,9 +609,10 @@ public:
          << QApplication::translate("MainWindow", "7", 0)
          << QApplication::translate("MainWindow", "8", 0)
         );
-        label_5->setText(QApplication::translate("MainWindow", "Phone", 0));
+        label_phone->setText(QApplication::translate("MainWindow", "Phone", 0));
         pushButton_hallview_info_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         pushButton_hallview_info_book->setText(QApplication::translate("MainWindow", "Book", 0));
+        label_bookings->setText(QApplication::translate("MainWindow", "Bookings:", 0));
         lineEdit_search->setInputMask(QString());
         lineEdit_search->setText(QString());
         lineEdit_search->setPlaceholderText(QApplication::translate("MainWindow", "Phone", 0));

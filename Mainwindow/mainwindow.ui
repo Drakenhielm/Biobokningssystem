@@ -61,7 +61,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="label_movies">
              <property name="text">
               <string>Movies:</string>
              </property>
@@ -156,9 +156,9 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="label_shows">
              <property name="text">
-              <string>Show:</string>
+              <string>Shows:</string>
              </property>
             </widget>
            </item>
@@ -275,7 +275,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="label_movieinfo">
              <property name="text">
               <string>Information:</string>
              </property>
@@ -340,6 +340,13 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
      </widget>
     </item>
     <item>
@@ -516,7 +523,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
-                  <widget class="QLabel" name="label_4">
+                  <widget class="QLabel" name="label_num_of_seats">
                    <property name="text">
                     <string>Number of seats</string>
                    </property>
@@ -590,7 +597,7 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_5">
+                  <widget class="QLabel" name="label_phone">
                    <property name="text">
                     <string>Phone</string>
                    </property>
@@ -693,6 +700,13 @@ p, li { white-space: pre-wrap; }
             <number>0</number>
            </property>
            <item>
+            <widget class="QLabel" name="label_bookings">
+             <property name="text">
+              <string>Bookings:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <property name="leftMargin">
               <number>0</number>
@@ -782,7 +796,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>892</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAdd_movie">
