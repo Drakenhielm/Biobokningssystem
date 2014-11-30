@@ -3,8 +3,7 @@
 HallModel::HallModel(QObject *parent)
     : BaseModel("hall", "HallID", parent)
 {
-    setQuery(QString("SELECT hall.*, COUNT(SeatID) AS Seats, "
-                     "MAX(seat.Row) AS Rows, MAX(seat.Column) AS Columns "
+    setQuery(QString("SELECT hall.*, COUNT(SeatID) AS Seats "
                      "FROM hall "
                      "LEFT JOIN seat ON seat.HallID = hall.HallID "
                      "GROUP BY hall.HallID"));
@@ -19,7 +18,7 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
     values.append(qMakePair(QString("ScreenSize"), screenSize));
     values.append(qMakePair(QString("SoundSystem"), soundSystem));
     int id = dh.insert("hall", values);
-    bool ok;
+    bool ok = true;
     values.clear();
     for(int r = 1; r <= rows; r++)
     {
@@ -29,7 +28,8 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
             values.append(qMakePair(QString("Column"), c));
             values.append(qMakePair(QString("SeatNr"), c+(r-1)*cols));
             values.append(qMakePair(QString("HallID"), id));
-            ok = dh.insert("seat", values) > 0;
+            if(ok)
+                ok = dh.insert("seat", values) > 0;
             values.clear();
         }
     }

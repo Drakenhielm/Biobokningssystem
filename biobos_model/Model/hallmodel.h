@@ -13,9 +13,7 @@ public:
         Name = 1,
         ScreenSize = 2,
         SoundSystem = 3,
-        Seats = 4,
-        Rows = 5,
-        Cols = 6
+        Seats = 4
     };
 
     int insertHall(const QString &name, const QString &screenSize, const QString &SoundSystem,
@@ -26,8 +24,6 @@ public:
     QString getScreenSize(int row) const { return data(index(row, ScreenSize)).toString(); }
     QString getSoundSystem(int row) const { return data(index(row, SoundSystem)).toString(); }
     int getSeats(int row) const { return data(index(row, Seats)).toInt(); }
-    int getRows(int row) const { return data(index(row, Rows)).toInt(); }
-    int getCols(int row) const { return data(index(row, Cols)).toInt(); }
 };
 
 #endif // HALLMODEL_H

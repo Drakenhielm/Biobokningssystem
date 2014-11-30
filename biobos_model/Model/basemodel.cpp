@@ -26,6 +26,7 @@ QVariant BaseModel::data(const QModelIndex &item, int role) const
 
 bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
 {
+    Q_UNUSED(parent);
     if(row > rowCount())
         return false;
     dh.transaction();
@@ -43,7 +44,7 @@ bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
     return ok && dh.endTransaction(ok);
 }
 
-/*Delete every row in the database where the value in column is equal to value.
+/*Delete every row in the database where the value in "column" is equal to "value".
  * Calls remove function from DatabaseHandler. */
 bool BaseModel::removeWhere(const QString &column, const QVariant &value)
 {
@@ -52,7 +53,7 @@ bool BaseModel::removeWhere(const QString &column, const QVariant &value)
 
 /*Refresh model.
  * Populates the model with data from the database
- * using the specified sqlStatement and filter.*/
+ * using the specified sql statement and filter.*/
 void BaseModel::refresh()
 {
     query().exec();
@@ -65,7 +66,6 @@ void BaseModel::setFilter(const QString &filter, QVariant placeholder)
     QList<QVariant> list;
     list.append(placeholder);
     setFilter(filter, list);
-
 }
 
 void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placeholderList)
@@ -86,6 +86,7 @@ void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placehol
     query.exec();
     setQuery(query);
     lastFilterQuery = sql;
+    qDebug() << sql;
 }
 
 void BaseModel::clearFilter()

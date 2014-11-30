@@ -69,6 +69,7 @@ void MainWindow::setUpTable()
     seatModel->setShow(1);
     seatModel->refresh();
     ui->tableView_2->setModel(seatModel);
+    //qDebug() << seatModel->getMaxRows();
 
     bookingModel = new BookingModel(this);
     bookingModel->refresh();
@@ -82,7 +83,7 @@ void MainWindow::setUpTable()
     */
     qModel = new QSqlQueryModel(this);
     qModel->setQuery("select * from (select * from movie) where MovieID = 1");
-    ui->tableView_2->setModel(qModel);
+    //ui->tableView_2->setModel(qModel);
     QSqlQuery query;
     query.prepare("select * from movie where MovieID < :val and Title = :2val and AgeLimit = :val or MovieID = :val");
 

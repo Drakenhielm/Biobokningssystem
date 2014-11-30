@@ -34,8 +34,8 @@ protected:
 private:
     //variables
     QString tableName;
-    QString primaryKey; //name of the primarykey colimn in the table
-    QString lastFilterQuery; //last sql statement selected by setFilter() or clearFilter()
+    QString primaryKey; //name of the primarykey column in the table
+    QString lastFilterQuery; //last sql statement executed by setFilter() or clearFilter()
 
     //functions
     void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList);
