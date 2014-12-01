@@ -10,19 +10,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QElapsedTimer timer;
     timer.start();
 
-    /*for(int i = 0; i < 100; i++)
+    /*for(int i = 0; i < 10; i++)
     {
         showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
         hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 5);
     }
-    bookingModel->insertBooking(1, 10, "07023456");
-    bookingModel->insertBooking(1, 11, "07023456");
-    bookingModel->insertBooking(1, 12, "07023456");
-    bookingModel->insertBooking(1, 17, "07067044");
-    bookingModel->insertBooking(1, 18, "07078979");
+    QList<int> bl;
+    bl.append(1);
+    bl.append(2);
+    bl.append(3);
+    bl.append(4);
+    bl.append(5);
+    bookingModel->insertBookings(2, bl, "070123");
     showModel->refresh();
     bookingModel->refresh();
-    hallModel->refresh();*/
+    hallModel->refresh();
     //showModel->insertShow(QDateTime::currentDateTime(), 80, false, true, "Portuguese", 1, 8);
     //showModel->refresh();
     //hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 10);

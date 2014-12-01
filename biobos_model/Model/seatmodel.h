@@ -31,14 +31,12 @@ public:
 
     void setHall(int id);
     void setShow(int id);
-    //void setBooking(const QString &phone);
 
 private:
     int hallID;
     int showID;
     int rowMax;
     int colMax;
-    //QString bookingPhoneNr;
 
     QString sqlStatement(int hallID, int showID);
     QPair<int, int> getHallSize(int hallID);

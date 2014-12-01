@@ -29,7 +29,7 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
             values.append(qMakePair(QString("SeatNr"), c+(r-1)*cols));
             values.append(qMakePair(QString("HallID"), id));
             if(ok)
-                ok = dh.insert("seat", values) > 0;
+                ok = dh.insert("seat", values) != -1;
             values.clear();
         }
     }

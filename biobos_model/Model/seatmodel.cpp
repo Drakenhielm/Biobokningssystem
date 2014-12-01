@@ -33,21 +33,16 @@ void SeatModel::setShow(int id)
     showID = id;
 }
 
-/*void SeatModel::setBooking(const QString &phone)
-{
-    bookingPhoneNr = phone;
-}*/
-
 QString SeatModel::sqlStatement(int hallID, int showID)
 {
-    return QString("SELECT seat.*, b_all.BookingID AS Booked, b_current.BookingID AS CurrentBooking")
-                       +" FROM seat"
-                       +" LEFT JOIN booking as b_all ON b_all.SeatID = seat.SeatID AND "
-                       + "b_all.ShowID = " + QString::number(showID)
-                       +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID AND "
-                       + "b_current.ShowID = " + QString::number(showID)
-                       + " WHERE HallID = "+ QString::number(hallID)
-                       +" GROUP BY seat.SeatID";
+    return QString("SELECT seat.*, b.BookingID FROM seat "
+                   "LEFT JOIN ( "
+                        "SELECT * FROM booking "
+                        "LEFT JOIN seatbooking ON seatbooking.BookingID = booking.BookingID "
+                   ") b ON b.SeatID = seat.SeatID AND b.ShowID = "+QString::number(showID)+
+                   " WHERE seat.HallID = "+QString::number(hallID)+
+                   " GROUP BY seat.SeatID"
+                   " ORDER BY seat.Row, seat.Column");
 }
 
 QPair<int, int> SeatModel::getHallSize(int hallID)

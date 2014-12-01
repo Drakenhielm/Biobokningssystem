@@ -23,7 +23,7 @@ bool DatabaseHandler::databaseComplete()
             && list.contains("seat")
             && list.contains("show")
             && list.contains("booking")
-            && list.contains("visitor");
+            && list.contains("seatbooking");
 }
 
 /*Create all missing tables in the database.*/
@@ -72,8 +72,13 @@ void DatabaseHandler::createDatabase()
     query.exec("CREATE TABLE IF NOT EXISTS booking("
                "BookingID INTEGER PRIMARY KEY, "
                "ShowID INTEGER, "
-               "SeatID INTEGER, "
                "Phone TEXT)");
+
+    //create seatbooking table
+    query.exec("CREATE TABLE IF NOT EXISTS seatbooking("
+               "SeatBookingID INTEGER PRIMARY KEY, "
+               "BookingID INTEGER, "
+               "SeatID INTEGER)");
 
 }
 
