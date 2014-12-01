@@ -9,8 +9,25 @@ HallView::HallView(QWidget *parent)
     column_count = 5;
     spacing = 3;
     offset = 0;
+    seatSelector = 1;
 
     setMouseTracking(true); //Needed for mouseMoveEvent.
+}
+
+std::vector<int> HallView::getSelectedSeats()
+{
+    std::vector<int> selectedSeats;
+    int rows = 0;
+    int cols = 0;
+    for(auto& r : seats){
+        rows++;
+        for(auto& seat : r){
+            cols++;
+            if(seat.first == 1)
+                selectedSeats.push_back(rows*row_count+cols+1);
+        }
+    }
+    return selectedSeats;
 }
 
 void HallView::setColumns(int columns)
@@ -25,6 +42,14 @@ void HallView::setRows(int rows)
     update(); //Update graphics
 }
 
+void HallView::setMultiplySelectes(int numberOfSeats)
+{
+    if(numberOfSeats > column_count)
+        seatSelector = column_count;
+    else
+        seatSelector = numberOfSeats;
+}
+
 void HallView::mousePressEvent(QMouseEvent *event)
 {
     int mouseX = event->x();
@@ -33,15 +58,19 @@ void HallView::mousePressEvent(QMouseEvent *event)
     int rowIndex = mouseY/(squareSize+spacing);
     int columnIndex = (mouseX-offset)/(squareSize+spacing);
 
-    int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
-    int hallViewHieght = row_count*squareSize+spacing*(column_count-1);
-
-    //qDebug() << "columnIndex: " << columnIndex << "  rowIndex: " << rowIndex << "   mouseX: " << mouseX << "   mouseY: " << mouseY << "  squareSize: " << squareSize << "  offset: " << offset << endl;
-    if(mouseX <= hallViewWidth+offset && mouseX >= offset && mouseY <= hallViewHieght){
-        if(seats[columnIndex][rowIndex].first == 0)
-            seats[columnIndex][rowIndex].first = 1;
+    if(HallSquare(mouseX, mouseY)){
+        int columnDistance;
+        if((columnIndex+(seatSelector-1))>(column_count-1))
+            columnDistance = column_count-seatSelector;
         else
-            seats[columnIndex][rowIndex].first = 0;
+            columnDistance = columnIndex;
+
+        for(int i = columnDistance; i < (columnDistance+seatSelector); ++i){
+            if(seats[i][rowIndex].first == 0)
+                seats[i][rowIndex].first = 1;
+            else
+                seats[i][rowIndex].first = 0;
+        }
     }
     update(); //Update graphics
 }
@@ -71,18 +100,32 @@ void HallView::mouseMoveEvent(QMouseEvent *event)
     int rowIndex = mouseY/(squareSize+spacing);
     int columnIndex = (mouseX-offset)/(squareSize+spacing);
 
-    int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
-    int hallViewHieght = row_count*squareSize+spacing*(column_count-1);
-
-    if(mouseX <= hallViewWidth+offset && mouseX >= offset && mouseY <= hallViewHieght){
+    if(HallSquare(mouseX, mouseY)){
         int seatNr = rowIndex*row_count+columnIndex+1;
-        QString toolTipText = "Rad: " + QString::number(rowIndex+1) + " Kolumn: " + QString::number(columnIndex+1) + " Sittplats: " + QString::number(seatNr);
+        QString toolTipText = "Row: " + QString::number(rowIndex+1) + " Column: " + QString::number(columnIndex+1) + " SeatNr: " + QString::number(seatNr);
         QToolTip::showText(event->globalPos(), toolTipText);
-        seats[columnIndex][rowIndex].second = true;
+
+        int columnDistance;
+        if((columnIndex+(seatSelector-1))>(column_count-1))
+            columnDistance = column_count-seatSelector;
+        else
+            columnDistance = columnIndex;
+
+        for(int i = columnDistance; i < (columnDistance+seatSelector); ++i){
+            seats[i][rowIndex].second = true;
+        }
     }else{
         QToolTip::hideText();
     }
     update();
+}
+
+bool HallView::HallSquare(int mouseX, int mouseY)
+{
+    int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
+    int hallViewHieght = row_count*squareSize+spacing*(column_count-1);
+
+    return mouseX <= hallViewWidth+offset && mouseX >= offset && mouseY <= hallViewHieght;
 }
 
 void HallView::paintEvent(QPaintEvent *event)
@@ -112,6 +155,11 @@ void HallView::paintEvent(QPaintEvent *event)
                     painter.setBrush(QBrush(QColor(150, 150, 255))); //Bluuuueeee
                 else
                     painter.setBrush(QBrush(QColor(100, 100, 200))); //Bluuuueeee
+            }else if(seats[column][row].first == 1){
+                if(seats[column][row].second == false)
+                    painter.setBrush(QBrush(QColor(150, 255, 150))); //Greeeennnn
+                else
+                    painter.setBrush(QBrush(QColor(100, 200, 100))); //Greeeennnn
             }else{
                 if(seats[column][row].second == false)
                     painter.setBrush(QBrush(QColor(255, 150, 150))); //Reeeeddddd
