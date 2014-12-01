@@ -10,7 +10,7 @@ HallView::HallView(QWidget *parent)
     spacing = 3;
     offset = 0;
     seatSelector = 1;
-
+    editMode = false;
     setMouseTracking(true); //Needed for mouseMoveEvent.
 }
 
@@ -42,12 +42,17 @@ void HallView::setRows(int rows)
     update(); //Update graphics
 }
 
-void HallView::setMultiplySelected(int numberOfSeats)
+void HallView::setNumberOfSelected(int numberOfSeats)
 {
     if(numberOfSeats+1 > column_count)
         seatSelector = column_count;
     else
         seatSelector = numberOfSeats+1;
+}
+
+void HallView::setMode(bool mode)
+{
+    editMode = mode;
 }
 
 void HallView::mousePressEvent(QMouseEvent *event)
@@ -65,9 +70,15 @@ void HallView::mousePressEvent(QMouseEvent *event)
         else
             columnDistance = columnIndex;
 
+        int seatMode;
+        if(editMode == true)
+            seatMode = 3;
+        else
+            seatMode = 1;
+
         for(int i = columnDistance; i < (columnDistance+seatSelector); ++i){
             if(seats[i][rowIndex].first == 0)
-                seats[i][rowIndex].first = 1;
+                seats[i][rowIndex].first = seatMode;
             else
                 seats[i][rowIndex].first = 0;
         }
@@ -160,13 +171,20 @@ void HallView::paintEvent(QPaintEvent *event)
                     painter.setBrush(QBrush(QColor(150, 255, 150))); //Greeeennnn
                 else
                     painter.setBrush(QBrush(QColor(100, 200, 100))); //Greeeennnn
-            }else{
+            }else if(seats[column][row].first == 2){
                 if(seats[column][row].second == false)
                     painter.setBrush(QBrush(QColor(255, 150, 150))); //Reeeeddddd
                 else
                     painter.setBrush(QBrush(QColor(200, 100, 100))); //Reeeeddddd
+            }else{
+                if(seats[column][row].second == false)
+                    painter.setBrush(QBrush(QColor(255, 255, 255))); //White
+                else
+                    painter.setBrush(QBrush(QColor(200, 200, 200))); //White
             }
-            painter.drawRect(column*(squareSize+spacing)+offset, row*(squareSize+spacing), squareSize, squareSize);
+
+            if(seats[column][row].first != 3 || editMode != false)
+                painter.drawRect(column*(squareSize+spacing)+offset, row*(squareSize+spacing), squareSize, squareSize);
         }
     }
 }

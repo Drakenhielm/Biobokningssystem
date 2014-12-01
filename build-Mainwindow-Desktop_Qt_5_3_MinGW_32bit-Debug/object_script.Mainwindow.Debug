@@ -10,9 +10,11 @@ INPUT(
 ./debug\showmodel.o
 ./debug\databasehandler.o
 ./debug\popup.o
+./debug\hall.o
 ./debug\qrc_resource.o
 ./debug\moc_mainwindow.o
 ./debug\moc_hallview.o
 ./debug\moc_basemodel.o
 ./debug\moc_popup.o
+./debug\moc_hall.o
 );

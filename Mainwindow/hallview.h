@@ -24,7 +24,8 @@ public slots:
     void setColumns(int columns);
     //void toggleSeats();
     //void setModel(SeatModel, int hallID);
-    void setMultiplySelected(int);
+    void setNumberOfSelected(int);
+    void setMode(bool);
 signals:
 
 
@@ -42,6 +43,7 @@ private:
     int squareSize;
     int spacing;
     int offset;
+    bool editMode;
     QPair<int, bool> seats[25][25];
 };
 

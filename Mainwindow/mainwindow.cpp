@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QAbstractItemView>
 #include "hallview.h"
+#include "add_hall/hall.h"
 #include "add_movie/popup.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -37,7 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->frame_3->setFrameStyle(1);
     ui->frame_3->setFrameShadow(QFrame::Plain);
 
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setMultiplySelected(int)));
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
+
+    connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(addHall()));
 
     //connect movie list from selectionChanged
     connect(ui->listView_movies->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -58,9 +61,16 @@ void MainWindow::on_actionQuit_triggered()
     close();
 }
 
+void MainWindow::addHall()
+{
+    hall hallPopup;
+    hallPopup.setModal(true);
+    hallPopup.exec();
+}
+
 void MainWindow::on_pushButton_info_edit_clicked()
 {
-    ;
+
 }
 
 void MainWindow::on_pushButton_movies_add_clicked()

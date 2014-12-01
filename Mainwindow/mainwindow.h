@@ -55,6 +55,8 @@ private slots:
 
     void on_comboBox_search_currentIndexChanged(int index);
 
+    void addHall();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;
