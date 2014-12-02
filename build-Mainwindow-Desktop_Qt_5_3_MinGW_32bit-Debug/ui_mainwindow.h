@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
@@ -89,18 +90,24 @@ public:
     QFrame *frame_3;
     QWidget *widget_hallview_info;
     QVBoxLayout *verticalLayout_7;
-    QLabel *label_6;
+    QLabel *label_hallinfo_title;
+    QLabel *label_hallinfo;
     QSpacerItem *verticalSpacer;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_num_of_seats;
-    QComboBox *comboBox;
+    QHBoxLayout *horizontalLayout_10;
+    QComboBox *comboBox_numberOfSeats;
+    QCheckBox *checkBox_separateSeats;
+    QLabel *label_hallinfo_selectedSeats;
+    QLabel *label_hallinfo_selectedSeats_display;
     QLabel *label_phone;
     QLineEdit *lineEdit;
-    QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout_5;
-    QPushButton *pushButton_hallview_info_delete;
+    QSpacerItem *horizontalSpacer_9;
+    QPushButton *pushButton_hallview_info_clear;
     QPushButton *pushButton_hallview_info_book;
+    QSpacerItem *horizontalSpacer_10;
     QWidget *widget_6;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_bookings;
@@ -109,6 +116,11 @@ public:
     QPushButton *pushButton_search;
     QComboBox *comboBox_search;
     QTableView *tableView_search;
+    QHBoxLayout *horizontalLayout_8;
+    QSpacerItem *horizontalSpacer_7;
+    QPushButton *pushButton_bookings_delete;
+    QPushButton *pushButton_bookings_edit;
+    QSpacerItem *horizontalSpacer_8;
     QMenuBar *menuBar;
     QMenu *menuAdd_movie;
     QToolBar *mainToolBar;
@@ -389,12 +401,22 @@ public:
         verticalLayout_7->setContentsMargins(11, 11, 11, 11);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(-1, 0, -1, 0);
-        label_6 = new QLabel(widget_hallview_info);
-        label_6->setObjectName(QStringLiteral("label_6"));
+        label_hallinfo_title = new QLabel(widget_hallview_info);
+        label_hallinfo_title->setObjectName(QStringLiteral("label_hallinfo_title"));
+        QFont font1;
+        font1.setPointSize(18);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_hallinfo_title->setFont(font1);
 
-        verticalLayout_7->addWidget(label_6);
+        verticalLayout_7->addWidget(label_hallinfo_title);
 
-        verticalSpacer = new QSpacerItem(20, 78, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        label_hallinfo = new QLabel(widget_hallview_info);
+        label_hallinfo->setObjectName(QStringLiteral("label_hallinfo"));
+
+        verticalLayout_7->addWidget(label_hallinfo);
+
+        verticalSpacer = new QSpacerItem(20, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_7->addItem(verticalSpacer);
 
@@ -409,18 +431,44 @@ public:
 
         verticalLayout_4->addWidget(label_num_of_seats);
 
-        comboBox = new QComboBox(groupBox);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
+        comboBox_numberOfSeats = new QComboBox(groupBox);
+        comboBox_numberOfSeats->setObjectName(QStringLiteral("comboBox_numberOfSeats"));
         QSizePolicy sizePolicy6(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy6.setHorizontalStretch(0);
         sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
-        comboBox->setSizePolicy(sizePolicy6);
-        comboBox->setMinimumSize(QSize(0, 0));
-        comboBox->setMaximumSize(QSize(155, 16777215));
-        comboBox->setFont(font);
+        sizePolicy6.setHeightForWidth(comboBox_numberOfSeats->sizePolicy().hasHeightForWidth());
+        comboBox_numberOfSeats->setSizePolicy(sizePolicy6);
+        comboBox_numberOfSeats->setMinimumSize(QSize(0, 0));
+        comboBox_numberOfSeats->setMaximumSize(QSize(50, 16777215));
+        comboBox_numberOfSeats->setFont(font);
 
-        verticalLayout_4->addWidget(comboBox);
+        horizontalLayout_10->addWidget(comboBox_numberOfSeats);
+
+        checkBox_separateSeats = new QCheckBox(groupBox);
+        checkBox_separateSeats->setObjectName(QStringLiteral("checkBox_separateSeats"));
+        QFont font2;
+        font2.setPointSize(11);
+        checkBox_separateSeats->setFont(font2);
+
+        horizontalLayout_10->addWidget(checkBox_separateSeats);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_10);
+
+        label_hallinfo_selectedSeats = new QLabel(groupBox);
+        label_hallinfo_selectedSeats->setObjectName(QStringLiteral("label_hallinfo_selectedSeats"));
+        label_hallinfo_selectedSeats->setLineWidth(0);
+
+        verticalLayout_4->addWidget(label_hallinfo_selectedSeats);
+
+        label_hallinfo_selectedSeats_display = new QLabel(groupBox);
+        label_hallinfo_selectedSeats_display->setObjectName(QStringLiteral("label_hallinfo_selectedSeats_display"));
+        label_hallinfo_selectedSeats_display->setLineWidth(0);
+
+        verticalLayout_4->addWidget(label_hallinfo_selectedSeats_display);
 
         label_phone = new QLabel(groupBox);
         label_phone->setObjectName(QStringLiteral("label_phone"));
@@ -434,33 +482,37 @@ public:
 
         verticalLayout_4->addWidget(lineEdit);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_4->addItem(verticalSpacer_2);
-
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        pushButton_hallview_info_delete = new QPushButton(groupBox);
-        pushButton_hallview_info_delete->setObjectName(QStringLiteral("pushButton_hallview_info_delete"));
-        QSizePolicy sizePolicy7(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_9);
+
+        pushButton_hallview_info_clear = new QPushButton(groupBox);
+        pushButton_hallview_info_clear->setObjectName(QStringLiteral("pushButton_hallview_info_clear"));
+        QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy7.setHorizontalStretch(0);
         sizePolicy7.setVerticalStretch(0);
-        sizePolicy7.setHeightForWidth(pushButton_hallview_info_delete->sizePolicy().hasHeightForWidth());
-        pushButton_hallview_info_delete->setSizePolicy(sizePolicy7);
-        QFont font1;
-        font1.setPointSize(8);
-        pushButton_hallview_info_delete->setFont(font1);
+        sizePolicy7.setHeightForWidth(pushButton_hallview_info_clear->sizePolicy().hasHeightForWidth());
+        pushButton_hallview_info_clear->setSizePolicy(sizePolicy7);
+        QFont font3;
+        font3.setPointSize(13);
+        pushButton_hallview_info_clear->setFont(font3);
 
-        horizontalLayout_5->addWidget(pushButton_hallview_info_delete);
+        horizontalLayout_5->addWidget(pushButton_hallview_info_clear);
 
         pushButton_hallview_info_book = new QPushButton(groupBox);
         pushButton_hallview_info_book->setObjectName(QStringLiteral("pushButton_hallview_info_book"));
         sizePolicy7.setHeightForWidth(pushButton_hallview_info_book->sizePolicy().hasHeightForWidth());
         pushButton_hallview_info_book->setSizePolicy(sizePolicy7);
-        pushButton_hallview_info_book->setFont(font1);
+        pushButton_hallview_info_book->setFont(font3);
 
         horizontalLayout_5->addWidget(pushButton_hallview_info_book, 0, Qt::AlignLeft);
+
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_10);
 
 
         verticalLayout_4->addLayout(horizontalLayout_5);
@@ -480,7 +532,6 @@ public:
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         label_bookings = new QLabel(widget_6);
         label_bookings->setObjectName(QStringLiteral("label_bookings"));
 
@@ -523,7 +574,33 @@ public:
 
         verticalLayout_3->addWidget(tableView_search);
 
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(6);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_7);
+
+        pushButton_bookings_delete = new QPushButton(widget_6);
+        pushButton_bookings_delete->setObjectName(QStringLiteral("pushButton_bookings_delete"));
+
+        horizontalLayout_8->addWidget(pushButton_bookings_delete);
+
+        pushButton_bookings_edit = new QPushButton(widget_6);
+        pushButton_bookings_edit->setObjectName(QStringLiteral("pushButton_bookings_edit"));
+
+        horizontalLayout_8->addWidget(pushButton_bookings_edit);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_8);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_8);
+
         splitter_2->addWidget(widget_6);
+        label_bookings->raise();
+        tableView_search->raise();
 
         horizontalLayout_2->addWidget(splitter_2);
 
@@ -533,7 +610,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 892, 21));
+        menuBar->setGeometry(QRect(0, 0, 892, 22));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         MainWindow->setMenuBar(menuBar);
@@ -592,14 +669,15 @@ public:
         textBrowser_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt;\"><br /></p></body></html>", 0));
+"</style></head><body style=\" font-family:'.Helvetica Neue DeskInterface'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:13pt;\"><br /></p></body></html>", 0));
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
-        label_6->setText(QApplication::translate("MainWindow", "Hall info", 0));
+        label_hallinfo_title->setText(QApplication::translate("MainWindow", "Hall info", 0));
+        label_hallinfo->setText(QApplication::translate("MainWindow", "xxx platser, Dolby Digital, 3D", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "Book", 0));
-        label_num_of_seats->setText(QApplication::translate("MainWindow", "Number of seats", 0));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
+        label_num_of_seats->setText(QApplication::translate("MainWindow", "Number of seats:", 0));
+        comboBox_numberOfSeats->clear();
+        comboBox_numberOfSeats->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "1", 0)
          << QApplication::translate("MainWindow", "2", 0)
          << QApplication::translate("MainWindow", "3", 0)
@@ -609,8 +687,11 @@ public:
          << QApplication::translate("MainWindow", "7", 0)
          << QApplication::translate("MainWindow", "8", 0)
         );
-        label_phone->setText(QApplication::translate("MainWindow", "Phone", 0));
-        pushButton_hallview_info_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
+        checkBox_separateSeats->setText(QApplication::translate("MainWindow", "Separate seats", 0));
+        label_hallinfo_selectedSeats->setText(QApplication::translate("MainWindow", "Selected seats:", 0));
+        label_hallinfo_selectedSeats_display->setText(QString());
+        label_phone->setText(QApplication::translate("MainWindow", "Phone:", 0));
+        pushButton_hallview_info_clear->setText(QApplication::translate("MainWindow", "Clear", 0));
         pushButton_hallview_info_book->setText(QApplication::translate("MainWindow", "Book", 0));
         label_bookings->setText(QApplication::translate("MainWindow", "Bookings:", 0));
         lineEdit_search->setInputMask(QString());
@@ -622,6 +703,8 @@ public:
          << QApplication::translate("MainWindow", "All shows", 0)
          << QApplication::translate("MainWindow", "Selected show", 0)
         );
+        pushButton_bookings_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
+        pushButton_bookings_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         menuAdd_movie->setTitle(QApplication::translate("MainWindow", "Manage", 0));
     } // retranslateUi
 

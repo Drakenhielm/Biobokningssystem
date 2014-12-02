@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_search->hideColumn(BookingModel::SeatIDs);
     ui->tableView_search->horizontalHeader()->setStretchLastSection(true);
 
+    ui->pushButton_hallview_info_book->setEnabled(false);
+
     hallView = new HallView(this);
     hallView->setRows(10);
     hallView->setColumns(8);
@@ -49,6 +51,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
 
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(addHall()));
+
+    connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(updateSelectedSeats(QList<int>)));
+
+    connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), hallView, SLOT(setSeperateSeats(bool)));
+    connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), this, SLOT(setComboBox(bool)));
+
+    connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(enableBookButton()));
 
     //connect movie list from selectionChanged
     connect(ui->listView_movies->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -67,6 +76,35 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionQuit_triggered()
 {
     close();
+}
+
+void MainWindow::enableBookButton()
+{
+    if(hallView->getSelectedSeats().size() > 0 && ui->lineEdit->text().size() > 0)
+        ui->pushButton_hallview_info_book->setEnabled(true);
+    else
+        ui->pushButton_hallview_info_book->setEnabled(false);
+}
+
+void MainWindow::setComboBox(bool seperate)
+{
+    if(seperate)
+        ui->comboBox_numberOfSeats->setCurrentIndex(0);
+    ui->comboBox_numberOfSeats->setDisabled(seperate);
+}
+
+void MainWindow::updateSelectedSeats(QList<int> seats)
+{
+    enableBookButton();
+
+    QString selectedSeats;
+    if(seats.size() > 0)
+        selectedSeats = QString::number(seats[0]);
+    else
+        selectedSeats = " ";
+    for(int i = 1; i < seats.size(); ++i)
+        selectedSeats = selectedSeats + ", " + QString::number(seats[i]);
+    ui->label_hallinfo_selectedSeats_display->setText(selectedSeats);
 }
 
 void MainWindow::addHall()
@@ -204,8 +242,11 @@ int MainWindow::getSelected(QItemSelectionModel *selectionModel)
 
 void MainWindow::on_pushButton_hallview_info_book_clicked()
 {
-    bookingModel->insertBooking(1, 1, "070654321");
+    QList<int> seatIDs = hallView->getSelectedSeats();
+    bookingModel->insertBookings(1, seatIDs, "070654321");
     bookingModel->refresh();
+
+    hallView->comfirmSelectedSeats();
 }
 
 //NEW FUNCTIONS BELOW

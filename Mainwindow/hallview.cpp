@@ -11,23 +11,46 @@ HallView::HallView(QWidget *parent)
     offset = 0;
     seatSelector = 1;
     editMode = false;
+    seperateSeats = false;
     setMouseTracking(true); //Needed for mouseMoveEvent.
 }
 
-std::vector<int> HallView::getSelectedSeats()
+QList<int> HallView::getSelectedSeats()
 {
-    std::vector<int> selectedSeats;
-    int rows = 0;
-    int cols = 0;
-    for(auto& r : seats){
-        rows++;
-        for(auto& seat : r){
-            cols++;
-            if(seat.first == 1)
-                selectedSeats.push_back(rows*row_count+cols+1);
+    QList<int> selectedSeats;
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column) {
+            if(seats[column][row].first == 1)
+                selectedSeats.push_back(row*row_count+column+1);
         }
     }
     return selectedSeats;
+}
+
+void HallView::setSeperateSeats(bool seperate)
+{
+    seperateSeats = seperate;
+
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column) {
+            if(seats[column][row].first == 1)
+                seats[column][row].first = 0;
+         }
+    }
+    emit selectedSeatsChanged(getSelectedSeats());
+    update();
+}
+
+void HallView::comfirmSelectedSeats()
+{
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column) {
+            if(seats[column][row].first == 1)
+                seats[column][row].first = 2;
+         }
+    }
+    emit selectedSeatsChanged(getSelectedSeats());
+    update();
 }
 
 void HallView::setColumns(int columns)
@@ -76,14 +99,33 @@ void HallView::mousePressEvent(QMouseEvent *event)
         else
             seatMode = 1;
 
+        bool freeSeats = true;
         for(int i = columnDistance; i < (columnDistance+seatSelector); ++i){
-            if(seats[i][rowIndex].first == 0)
-                seats[i][rowIndex].first = seatMode;
-            else
-                seats[i][rowIndex].first = 0;
+            if(seats[i][rowIndex].first == 2)
+                freeSeats = false;
+        }
+
+        if(freeSeats){
+            if(!seperateSeats){
+                for (int row = 0; row < row_count; ++row) {
+                    for (int column = 0; column < column_count; ++column) {
+                        if(seats[column][row].first == 1)
+                            seats[column][row].first = 0;
+                     }
+                }
+            }
+
+            for(int i = columnDistance; i < (columnDistance+seatSelector); ++i){
+                if(seats[i][rowIndex].first == 0)
+                    seats[i][rowIndex].first = seatMode;
+                else
+                    seats[i][rowIndex].first = 0;
+
+                emit selectedSeatsChanged(getSelectedSeats());
+                update(); //Update graphics
+            }
         }
     }
-    update(); //Update graphics
 }
 
 void HallView::leaveEvent(QEvent * event)
@@ -183,8 +225,14 @@ void HallView::paintEvent(QPaintEvent *event)
                     painter.setBrush(QBrush(QColor(200, 200, 200))); //White
             }
 
-            if(seats[column][row].first != 3 || editMode != false)
+            if(seats[column][row].first != 3 || editMode != false){
                 painter.drawRect(column*(squareSize+spacing)+offset, row*(squareSize+spacing), squareSize, squareSize);
+                if(seats[column][row].first == 2 && seats[column][row].second == true){
+                    painter.setBrush(QBrush(QColor(0, 0, 0))); //black
+                    painter.drawLine(column*(squareSize+spacing)+offset, row*(squareSize+spacing), column*(squareSize+spacing)+offset+squareSize, row*(squareSize+spacing)+squareSize);
+                    painter.drawLine(column*(squareSize+spacing)+offset, row*(squareSize+spacing)+squareSize, column*(squareSize+spacing)+offset+squareSize, row*(squareSize+spacing));
+                }
+            }
         }
     }
 }
