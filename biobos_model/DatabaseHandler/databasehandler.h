@@ -30,7 +30,7 @@ public:
     bool remove(const QString &tableName, const QString &column, const QVariant &value);
     int  insert(const QString &tableName, const QList<QPair<QString, QVariant> > &record);
     bool edit(const QString &tableName, const QList<QPair<QString, QVariant> > &record,
-              const QString &whereColumn, const QString &whereValue);
+              const QString &whereColumn, const QVariant &whereValue);
 
 private:
     //variables

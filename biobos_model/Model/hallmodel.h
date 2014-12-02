@@ -17,7 +17,9 @@ public:
     };
 
     int insertHall(const QString &name, const QString &screenSize, const QString &SoundSystem,
-               int cols, int rows);
+               QList<QList<bool> > seats);
+    bool editHall(const QString &name, const QString &screenSize, const QString &SoundSystem,
+                    QList<QList<bool> > seats = QList<QList<bool> >());
 
     virtual bool remove(const QVariant &pkValue);
 
