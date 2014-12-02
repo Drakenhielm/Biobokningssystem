@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
     ui->tableView_show->hideColumn(ShowModel::HallID);
+    ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
 
     ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
     ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_search->hideColumn(BookingModel::MovieID);
     ui->tableView_search->hideColumn(BookingModel::BookingID);
     ui->tableView_search->hideColumn(BookingModel::SeatIDs);
+    ui->tableView_search->horizontalHeader()->setStretchLastSection(true);
 
     hallView = new HallView(this);
     hallView->setRows(10);
