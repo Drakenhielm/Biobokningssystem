@@ -144,3 +144,29 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
 
     return query.lastInsertId().toInt();
 }
+
+bool DatabaseHandler::edit(const QString &tableName, const QList<QPair<QString, QVariant> > &record,
+          const QString &whereColumn, const QString &whereValue)
+{
+    QSqlQuery query;
+    QString sqlStr = QString("UPDATE %1 SET(").arg(tableName);
+    for(int i = 0; i < record.size(); i++)
+    {
+        QString fieldName = record.at(i).first;
+        sqlStr += fieldName + " = ?, ";
+    }
+    sqlStr.remove(sqlStr.size()-2, 2);
+    sqlStr += QString(") WHERE ") + whereColumn + " = " + whereValue;
+    query.prepare(sqlStr);
+    for(int i = 0; i < record.size(); i++)
+    {
+        query.bindValue(i, record.at(i).second);
+    }
+    if(!query.exec())
+    {
+        qDebug() << "The database reported an error: "
+                 << db.lastError().text();
+        return false;
+    }
+    return true;
+}
