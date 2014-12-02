@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->frame_3->setFrameStyle(1);
     ui->frame_3->setFrameShadow(QFrame::Plain);
 
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
+    connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
 
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(addHall()));
 
