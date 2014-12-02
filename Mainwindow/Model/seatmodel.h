@@ -15,7 +15,8 @@ public:
         Row,
         Column,
         SeatNr,
-        HallID
+        HallID,
+        BookingID
     };
 
     virtual void refresh();
@@ -25,20 +26,19 @@ public:
     int getColumn(int row) const { return data(index(row, Column)).toInt(); }
     int getSeatNr(int row) const { return data(index(row, SeatNr)).toInt(); }
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
+    int getBookingID(int row) const { return data(index(row, BookingID)).toInt(); }
 
     int getMaxRow() const { return rowMax; }
     int getMaxColumn() const { return colMax; }
 
     void setHall(int id);
     void setShow(int id);
-    //void setBooking(const QString &phone);
 
 private:
     int hallID;
     int showID;
     int rowMax;
     int colMax;
-    //QString bookingPhoneNr;
 
     QString sqlStatement(int hallID, int showID);
     QPair<int, int> getHallSize(int hallID);

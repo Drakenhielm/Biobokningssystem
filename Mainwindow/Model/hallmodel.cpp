@@ -29,7 +29,7 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
             values.append(qMakePair(QString("SeatNr"), c+(r-1)*cols));
             values.append(qMakePair(QString("HallID"), id));
             if(ok)
-                ok = dh.insert("seat", values) > 0;
+                ok = dh.insert("seat", values) != -1;
             values.clear();
         }
     }
@@ -38,4 +38,13 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
         return id;
     else
         return -1;
+}
+
+bool HallModel::remove(const QVariant &pkValue)
+{
+    bool ok = true;
+    dh.transaction();
+    ok &= dh.remove(tableName, primaryKey, pkValue);
+    ok &= dh.remove("seat", primaryKey, pkValue);
+    return ok && dh.endTransaction(ok);
 }

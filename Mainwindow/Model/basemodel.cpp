@@ -29,26 +29,30 @@ bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
     Q_UNUSED(parent);
     if(row > rowCount())
         return false;
-    dh.transaction();
+    if(count > 1)
+        dh.transaction();
     bool ok = true;
     for(int i = 0; i < count; i++)
     {
         QSqlRecord rec(record(row));
         if(!rec.isEmpty())
         {
-            QVariant value = rec.value(primaryKey);
-            if(value.isValid())
-                ok = dh.remove(tableName, primaryKey, value);
+            QVariant pkValue = rec.value(primaryKey);
+            if(pkValue.isValid())
+                ok &= remove(pkValue);
         }
     }
-    return ok && dh.endTransaction(ok);
+    if(count > 1)
+        return ok && dh.endTransaction(ok);
+    else
+        return ok;
 }
 
 /*Delete every row in the database where the value in "column" is equal to "value".
  * Calls remove function from DatabaseHandler. */
-bool BaseModel::removeWhere(const QString &column, const QVariant &value)
+bool BaseModel::remove(const QVariant &pkValue)//(const QString &column, const QVariant &value)
 {
-    return dh.remove(tableName, column, value);
+    return dh.remove(tableName, primaryKey, pkValue);
 }
 
 /*Refresh model.

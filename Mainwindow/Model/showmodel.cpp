@@ -3,13 +3,17 @@
 ShowModel::ShowModel(QObject *parent)
     : BaseModel("show", "ShowID", parent)
 {
-    setQuery("SELECT show.*, hall.Name AS Hall, "
-             "COUNT(seat.SeatID) - COUNT(booking.SeatID) AS AvailableSeats "
+    setQuery("SELECT show.*, hall.Name, "
+             "COUNT(seat.SeatID) - COUNT(b.SeatBookingID) AS AvailableSeats "
              "FROM show "
              "LEFT JOIN hall ON hall.HallID = show.HallID "
              "LEFT JOIN seat ON seat.HallID = show.HallID "
-             "LEFT JOIN booking ON (booking.ShowID = show.ShowID AND booking.SeatID = seat.SeatID) "
-             "GROUP BY show.ShowID ");
+             "LEFT JOIN ( "
+                "SELECT seatbooking.SeatBookingID, booking.ShowID, seatbooking.SeatID "
+                "FROM booking "
+                "LEFT JOIN seatbooking ON seatbooking.BookingID = booking.BookingID "
+             ") b ON b.ShowID = show.ShowID AND b.SeatID = seat.SeatID "
+             "GROUP BY show.ShowID");
 }
 
 QVariant ShowModel::data(const QModelIndex &item, int role) const
@@ -39,6 +43,6 @@ int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, 
     values.append(qMakePair(QString("Language"), language));
     values.append(qMakePair(QString("MovieID"), movieID));
     values.append(qMakePair(QString("HallID"), hallID));
-    qDebug() << dh.insert("show", values);
+    dh.insert("show", values);
     return true;
 }
