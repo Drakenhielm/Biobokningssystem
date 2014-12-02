@@ -145,13 +145,24 @@ void MainWindow::setHTML()
         + movieModel->getGenre(selIndex) +
         "."
         "</p>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':"
-        + movieModel->getMoviePoster(selIndex) +
-        "' height='100' /></p>"
 
+                "<table width='100%' cellpadding='0' cellspacing='10' border='0'>"
+                    "<tr>"
+                        "<td width='50%' valign='top'>"
         "<p style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
         + movieModel->getDescription(selIndex) +
-        "</p></body></html>"
+        "</p>"
+                        "</td>"
+                        "<td width='50%' valign='top'>"
+                            "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':"
+                             + movieModel->getMoviePoster(selIndex) +
+                             "' height='180' /></p>"
+                        "</td>"
+                    "</tr>"
+                "</table>"
+
+
+      "</body></html>"
     );
 
     }
