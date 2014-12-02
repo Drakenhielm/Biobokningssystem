@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
@@ -94,7 +95,11 @@ public:
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_num_of_seats;
+    QHBoxLayout *horizontalLayout_11;
     QComboBox *comboBox;
+    QCheckBox *checkBox_separate_seats;
+    QLabel *label_selected_seats_text;
+    QLabel *label_selected_seats;
     QLabel *label_phone;
     QLineEdit *lineEdit;
     QSpacerItem *verticalSpacer_2;
@@ -409,6 +414,9 @@ public:
 
         verticalLayout_4->addWidget(label_num_of_seats);
 
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
         comboBox = new QComboBox(groupBox);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         QSizePolicy sizePolicy6(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -420,7 +428,25 @@ public:
         comboBox->setMaximumSize(QSize(155, 16777215));
         comboBox->setFont(font);
 
-        verticalLayout_4->addWidget(comboBox);
+        horizontalLayout_11->addWidget(comboBox);
+
+        checkBox_separate_seats = new QCheckBox(groupBox);
+        checkBox_separate_seats->setObjectName(QStringLiteral("checkBox_separate_seats"));
+
+        horizontalLayout_11->addWidget(checkBox_separate_seats);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_11);
+
+        label_selected_seats_text = new QLabel(groupBox);
+        label_selected_seats_text->setObjectName(QStringLiteral("label_selected_seats_text"));
+
+        verticalLayout_4->addWidget(label_selected_seats_text);
+
+        label_selected_seats = new QLabel(groupBox);
+        label_selected_seats->setObjectName(QStringLiteral("label_selected_seats"));
+
+        verticalLayout_4->addWidget(label_selected_seats);
 
         label_phone = new QLabel(groupBox);
         label_phone->setObjectName(QStringLiteral("label_phone"));
@@ -609,6 +635,9 @@ public:
          << QApplication::translate("MainWindow", "7", 0)
          << QApplication::translate("MainWindow", "8", 0)
         );
+        checkBox_separate_seats->setText(QApplication::translate("MainWindow", "Separate seats", 0));
+        label_selected_seats_text->setText(QApplication::translate("MainWindow", "Selected seats:", 0));
+        label_selected_seats->setText(QString());
         label_phone->setText(QApplication::translate("MainWindow", "Phone", 0));
         pushButton_hallview_info_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         pushButton_hallview_info_book->setText(QApplication::translate("MainWindow", "Book", 0));

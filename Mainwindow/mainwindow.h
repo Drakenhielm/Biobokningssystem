@@ -57,6 +57,12 @@ private slots:
 
     void addHall();
 
+    void updateSelectedSeats(QList<int> seats);
+
+    void setComboBox(bool);
+
+    void enableBookButton();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;

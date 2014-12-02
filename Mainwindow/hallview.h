@@ -18,7 +18,7 @@ public:
     HallView(QWidget *parent = 0);
 
 public slots:
-    std::vector<int> getSelectedSeats();
+    QList<int> getSelectedSeats();
     //void setSelectedSeats(vector<int> seats);
     void setRows(int rows);
     void setColumns(int columns);
@@ -26,8 +26,10 @@ public slots:
     //void setModel(SeatModel, int hallID);
     void setNumberOfSelected(int);
     void setMode(bool);
+    void comfirmSelectedSeats();
+    void setSeperateSeats(bool seperate);
 signals:
-
+    void selectedSeatsChanged(QList<int>);
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
@@ -44,6 +46,7 @@ private:
     int spacing;
     int offset;
     bool editMode;
+    bool seperateSeats;
     QPair<int, bool> seats[25][25];
 };
 
