@@ -22,12 +22,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView_show->setModel(showModel);
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
+    ui->tableView_show->hideColumn(ShowModel::HallID);
+
+    ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
+    ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
 
     bookingModel = new BookingModel(this);
     //bookingModel->setFilter("Phone = '070'");
     ui->tableView_search->setModel(bookingModel);
     ui->tableView_search->hideColumn(BookingModel::ShowID);
     ui->tableView_search->hideColumn(BookingModel::MovieID);
+    ui->tableView_search->hideColumn(BookingModel::BookingID);
+    ui->tableView_search->hideColumn(BookingModel::SeatIDs);
 
     hallView = new HallView(this);
     hallView->setRows(10);
