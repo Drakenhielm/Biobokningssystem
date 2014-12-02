@@ -39,3 +39,12 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
     else
         return -1;
 }
+
+bool HallModel::remove(const QVariant &pkValue)
+{
+    bool ok = true;
+    dh.transaction();
+    ok &= dh.remove(tableName, primaryKey, pkValue);
+    ok &= dh.remove("seat", primaryKey, pkValue);
+    return ok && dh.endTransaction(ok);
+}

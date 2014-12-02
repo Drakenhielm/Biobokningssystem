@@ -19,6 +19,8 @@ public:
     int insertHall(const QString &name, const QString &screenSize, const QString &SoundSystem,
                int cols, int rows);
 
+    virtual bool remove(const QVariant &pkValue);
+
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
     QString getName(int row) const { return data(index(row, Name)).toString(); }
     QString getScreenSize(int row) const { return data(index(row, ScreenSize)).toString(); }

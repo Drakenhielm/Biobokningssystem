@@ -13,6 +13,17 @@ BookingModel::BookingModel(QObject *parent)
              "ORDER BY b.BookingID DESC");
 }
 
+QList<int> BookingModel::getSeatIDs(int row) const
+{
+    QList<int> list;
+    QStringList strList = data(index(row, SeatIDs)).toString().split(',');
+    for(int i = 0; i < strList.size(); i++)
+    {
+        list.append(strList.at(i).toInt());
+    }
+    return list;
+}
+
 int BookingModel::insertBooking(int showID, int seatID, const QString &phone)
 {
     QList<int> seatIDs;
@@ -39,11 +50,19 @@ int BookingModel::insertBookings(int showID, const QList<int> &seatIDs, const QS
     {
         values.append(qMakePair(QString("BookingID"), id));
         values.append(qMakePair(QString("SeatID"), seatIDs.at(i)));
-        if(ok)
-            ok = (dh.insert("seatbooking", values) != -1);
+        ok &= (dh.insert("seatbooking", values) != -1);
         values.clear();
     }
     dh.endTransaction(ok);
 
     return id; //BookingID
+}
+
+bool BookingModel::remove(const QVariant &pkValue)
+{
+    bool ok = true;
+    dh.transaction();
+    ok &= dh.remove(tableName, primaryKey, pkValue);
+    ok &= dh.remove("seatbooking", primaryKey, pkValue);
+    return ok && dh.endTransaction(ok);;
 }

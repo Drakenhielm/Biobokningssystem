@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setUpTable();
     QElapsedTimer timer;
     timer.start();
-
     /*for(int i = 0; i < 10; i++)
     {
         showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
@@ -34,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //bookingModel->refresh();*/
 
     qDebug() << timer.elapsed();
+    qDebug() << 0 << bookingModel->getSeatIDs(0);
+    qDebug() << 1 << bookingModel->getSeatIDs(1);
 }
 
 MainWindow::~MainWindow()
