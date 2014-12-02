@@ -5,6 +5,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QStringList>
+#include <QPair>
 
 #include <databasehandler.h>
 
@@ -14,34 +15,61 @@ bool movieTableOk();
 bool seatTableOk();
 bool showTableOk();
 bool bookingTableOk();
-bool visitorTableOk();
+bool seatbookingTableOk();
 void printTableList();
+
+int insertBooking(DatabaseHandler &dh, int showID, const QString &phone);
+bool editBooking(DatabaseHandler &dh, int bookingID, int showID, const QString & phone);
+bool removeBooking(DatabaseHandler &dh, int bookingID);
 
 //Test program
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QString fileName = "cinema.sqlite";
-
-    DatabaseHandler databaseHandler(fileName);
+    DatabaseHandler dh;
     std::cout << "1. Open database: ";
-    if(databaseHandler.openDatabase())
+    if(dh.openDatabase())
         std::cout << "OK" << std::endl << std::endl;
     else
         std::cout << QSqlError().text().toStdString() << std::endl << std::endl;
 
-    std::cout << "2. Complete database: " << std::boolalpha << databaseHandler.databaseComplete() << std::endl << std::endl;
+    std::cout << "2. Complete database: " << std::boolalpha << dh.databaseComplete() << std::endl << std::endl;
 
-    if(!databaseHandler.databaseComplete())
-        databaseHandler.createDatabase();
+    if(!dh.databaseComplete())
+        dh.createDatabase();
 
     std::cout << "3. Test all tables" << std::endl;
     printTableTest();
     std::cout << std::endl;
 
-    std::cout << "4. Print table list" << std::endl;
+    std::cout << "4. Print table list";
     printTableList();
+    std::cout << std::endl;
+
+    std::cout << "5. Insert: ";
+    int idInsert = insertBooking(dh, 1, "Insert 1");
+    int idEdit = insertBooking(dh, 1, "Insert 2"); //edited later
+    int idRemove = insertBooking(dh, 1, "Insert 3");
+    if(idInsert > 0 && idEdit > 0 && idRemove > 0)
+        std::cout << "OK" << std::endl;
+    else
+        std::cout << "NOK" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "6. Edit: ";
+    if(editBooking(dh, idEdit, 2, "Edit"))
+        std::cout << "OK" << std::endl;
+    else
+        std::cout << "NOK" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "7. Remove: ";
+    if(removeBooking(dh, idRemove))
+        std::cout << "OK" << std::endl;
+    else
+        std::cout << "NOK" << std::endl;
+    std::cout << std::endl;
 
     std::cout << QSqlError().text().toStdString() << std::endl;
     return a.exec();
@@ -60,8 +88,8 @@ void printTableTest()
         std::cout << "\t" << ++errors << ". show table NOT OK" << std::endl;
     if(!bookingTableOk())
         std::cout << "\t" << ++errors << ". booking table NOT OK" << std::endl;
-    if(!visitorTableOk())
-        std::cout << "\t" << ++errors << ". visitor table NOT OK" << std::endl;
+    if(!seatbookingTableOk())
+        std::cout << "\t" << ++errors << ". seatbooking table NOT OK" << std::endl;
 
     if(errors == 0)
         std::cout << "All tables are OK" << std::endl;
@@ -120,20 +148,43 @@ bool bookingTableOk()
     QSqlRecord record = QSqlDatabase::database().record("booking");
     return (record.indexOf("BookingID") == 0
             && record.indexOf("ShowID") > 0
-            && record.indexOf("SeatID") > 0
-            && record.indexOf("VisitorID") > 0);
+            && record.indexOf("Phone") > 0);
 }
 
-bool visitorTableOk()
+bool seatbookingTableOk()
 {
-    QSqlRecord record = QSqlDatabase::database().record("visitor");
-    return (record.indexOf("VisitorID") == 0
-            && record.indexOf("Phone") > 0);
+    QSqlRecord record = QSqlDatabase::database().record("seatbooking");
+    return (record.indexOf("SeatBookingID") == 0
+            && record.indexOf("SeatID") > 0
+            && record.indexOf("BookingID") > 0);
 }
 
 void printTableList()
 {
     QStringList list = QSqlDatabase::database().tables();
     for (int i = 0; i < list.size(); ++i)
+    {
         std::cout << list.at(i).toLocal8Bit().constData() << std::endl;
+    }
+}
+
+int insertBooking(DatabaseHandler &dh, int showID, const QString &phone)
+{
+    QList<QPair<QString, QVariant> > list;
+    list.append(qMakePair(QString("ShowID"), showID));
+    list.append(qMakePair(QString("Phone"), phone));
+    return dh.insert("booking", list);
+}
+
+bool editBooking(DatabaseHandler &dh, int bookingID, int showID, const QString & phone)
+{
+    QList<QPair<QString, QVariant> > list;
+    list.append(qMakePair(QString("ShowID"), showID));
+    list.append(qMakePair(QString("Phone"), phone));
+    return dh.edit("booking", list, "BookingID", bookingID);
+}
+
+bool removeBooking(DatabaseHandler &dh, int bookingID)
+{
+    return dh.remove("booking", "BookingID", bookingID);
 }
