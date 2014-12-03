@@ -140,6 +140,7 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
     {
         qDebug() << "Could not insert. The database reported an error: "
                  << db.lastError().text();
+        qDebug() << sqlStr;
         return -1;
     }
 

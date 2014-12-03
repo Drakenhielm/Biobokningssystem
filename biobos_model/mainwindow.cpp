@@ -12,7 +12,24 @@ MainWindow::MainWindow(QWidget *parent) :
     /*for(int i = 0; i < 10; i++)
     {
         showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
-        hallModel->insertHall("Rigoletto", "3x5", "Dolby", 10, 5);
+        */
+    /*QList<QList<bool> > list;
+    for(int i = 0; i < 5; i++)
+    {
+        QList<bool> rowList;
+        for(int j = 0; j < 3; j++)
+        {
+            if(i == 1)
+                rowList.append(false);
+            else
+                rowList.append(true);
+        }
+        list.append(rowList);
+    }
+    hallModel->insertHall("Rigoletto", "3x5", "Dolby", list);
+    hallModel->refresh();
+    seatModel->refresh();*/
+    /*
     }
     QList<int> bl;
     bl.append(1);

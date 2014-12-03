@@ -90,7 +90,6 @@ void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placehol
     query.exec();
     setQuery(query);
     lastFilterQuery = sql;
-    qDebug() << sql;
 }
 
 void BaseModel::clearFilter()
