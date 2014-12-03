@@ -9,10 +9,10 @@ MainWindow::MainWindow(QWidget *parent) :
     setUpTable();
     QElapsedTimer timer;
     timer.start();
-    /*for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 500; i++)
     {
-        showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
-        */
+        //showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
+    }
     /*QList<QList<bool> > list;
     for(int i = 0; i < 5; i++)
     {
@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //seatModel->refresh();
     //bookingModel->insertBooking(1, 17, "070346757548");
     //bookingModel->refresh();*/
-
+    ui->comboBox->setModel(showModel);
     qDebug() << timer.elapsed();
     qDebug() << 0 << bookingModel->getSeatIDs(0);
     qDebug() << 1 << bookingModel->getSeatIDs(1);
@@ -64,9 +64,6 @@ void MainWindow::setUpTable()
     movieModel = new MovieModel(this);
     //movieModel->refresh();
     ui->tableView->setModel(movieModel);
-    QList<QVariant> list;
-    list.append(20);
-    movieModel->setFilter(QString("MovieID > ?"), list);
     //movieModel->refresh();
     //movieModel->setQuery(movieModel->query());
     //qDebug() << movieModel->query().executedQuery()
@@ -159,7 +156,7 @@ void MainWindow::setUpTable()
 
 void MainWindow::on_pushButton_clicked()
 {
-    movieModel->insertMovie("City of God", 127, 15, "Hmmm hm hm", "Drama", 2006, "");
+    movieModel->editMovie(1, "City of Blood", 127, 15, "Hmmm hm hm", "Drama", 2006, "");
     movieModel->clearFilter();
     movieModel->refresh();
     qDebug() << movieModel->query().executedQuery();

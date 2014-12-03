@@ -35,9 +35,11 @@ public:
     int getColumns(int row) const { return data(index(row, Cols)).toInt(); }
 
 private:
-    int insertSeats(int row, const QList<QList<bool> > &seats, int startSeatNr = 1);
-    /*int editSeats(int row, const QList<QList<bool> > &seats,
-                  int startSeatNr = 1, QPoint offset = QPoint());*/
+    int insertSeats(int hallID, const QList<QList<bool> > &seats, int firstSeatNr, QPoint offset = QPoint());
+    int insertSeat(int hallID, int row, int col, bool seatType, int seatNr);
+    bool editSeats(int row, const QList<QList<bool> > &seats,
+                  int startSeatNr = 1, QPoint offset = QPoint());
+    bool editSeat(int row, int r, int c, int seatNr);
 };
 
 #endif // HALLMODEL_H

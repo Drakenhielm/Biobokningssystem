@@ -15,8 +15,6 @@ class DatabaseHandler
 public:
     DatabaseHandler();
 
-    typedef QList<QPair<QString, QVariant> > DatabaseRecord;
-
     //functions
     bool openDatabase();
     bool databaseComplete();

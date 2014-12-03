@@ -24,13 +24,6 @@ QList<int> BookingModel::getSeatIDs(int row) const
     return list;
 }
 
-int BookingModel::insertBooking(int showID, int seatID, const QString &phone)
-{
-    QList<int> seatIDs;
-    seatIDs.append(seatID);
-    return insertBookings(showID, seatIDs, phone);
-}
-
 int BookingModel::insertBookings(int showID, const QList<int> &seatIDs, const QString &phone)
 {
     QList<QPair<QString, QVariant> > values;
@@ -44,15 +37,8 @@ int BookingModel::insertBookings(int showID, const QList<int> &seatIDs, const QS
     id = dh.insert("booking", values);
     ok = (id != -1);
     values.clear();
-
     //insert seatbookings
-    for(int i = 0; i < seatIDs.size(); i++)
-    {
-        values.append(qMakePair(QString("BookingID"), id));
-        values.append(qMakePair(QString("SeatID"), seatIDs.at(i)));
-        ok &= (dh.insert("seatbooking", values) != -1);
-        values.clear();
-    }
+    insertSeatBookings(id, seatIDs);
     dh.endTransaction(ok);
 
     return id; //BookingID
@@ -62,7 +48,41 @@ bool BookingModel::remove(const QVariant &pkValue)
 {
     bool ok = true;
     dh.transaction();
-    ok &= dh.remove(tableName, primaryKey, pkValue);
-    ok &= dh.remove("seatbooking", primaryKey, pkValue);
+    ok &= dh.remove(tableName, "BookingID", pkValue);
+    ok &= dh.remove("seatbooking", "BookingID", pkValue);
     return ok && dh.endTransaction(ok);;
+}
+
+bool BookingModel::editBookings(int bookingID, int showID, const QList<int> &seatIDs, const QString &phone)
+{
+    QList<QPair<QString, QVariant> > values;
+    bool ok = true;
+
+    dh.transaction();
+    //edit booking
+    values.append(qMakePair(QString("ShowID"), showID));
+    values.append(qMakePair(QString("Phone"), phone));
+    ok &= dh.edit("booking", values, "BookingID", bookingID);
+    values.clear();
+
+    //remove old and insert new seatbookings
+    dh.remove("seatbooking", "BookingID", bookingID);
+    insertSeatBookings(bookingID, seatIDs);
+
+    dh.endTransaction(ok);
+    return ok;
+}
+
+bool BookingModel::insertSeatBookings(int bookingID, const QList<int> &seatIDs)
+{
+    QList<QPair<QString, QVariant> > values;
+    bool ok = true;
+    for(int i = 0; i < seatIDs.size(); i++)
+    {
+        values.append(qMakePair(QString("BookingID"), bookingID));
+        values.append(qMakePair(QString("SeatID"), seatIDs.at(i)));
+        ok &= dh.insert("seatbooking", values);
+        values.clear();
+    }
+    return ok;
 }

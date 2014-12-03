@@ -25,7 +25,7 @@ public:
 
     int insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                      const QString & genre, int year, const QString &imagePath);
-    int editMovie(int row, const QString & title, int playTime, int ageLimit, const QString & description,
+    bool editMovie(int row, const QString & title, int playTime, int ageLimit, const QString & description,
                      const QString & genre, int year, const QString &imagePath);
 
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
@@ -36,9 +36,6 @@ public:
     QString getGenre(int row) const { return data(index(row, Genre)).toString(); }
     int getYear(int row) const { return data(index(row, Year)).toInt(); }
     QString getMoviePoster(int row) const { return data(index(row, MoviePoster)).toString(); }
-
-private:
-    QList<QPair<QString, QVariant> > toList() const;
 };
 
 #endif // MOVIEMODEL_H
