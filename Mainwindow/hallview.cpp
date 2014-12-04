@@ -30,14 +30,17 @@ QList<int> HallView::getSelectedSeats()
 void HallView::setSeperateSeats(bool seperate)
 {
     seperateSeats = seperate;
+    clearSelectedSeats();
+}
 
+void HallView::clearSelectedSeats()
+{
     for (int row = 0; row < row_count; ++row) {
         for (int column = 0; column < column_count; ++column) {
             if(seats[column][row].first == 1)
                 seats[column][row].first = 0;
          }
     }
-    emit selectedSeatsChanged(getSelectedSeats());
     update();
 }
 
@@ -62,7 +65,6 @@ void HallView::comfirmSelectedSeats()
                 seats[column][row].first = 2;
          }
     }
-    emit selectedSeatsChanged(getSelectedSeats());
     update();
 }
 
@@ -134,7 +136,6 @@ void HallView::mousePressEvent(QMouseEvent *event)
                 else
                     seats[i][rowIndex].first = 0;
 
-                emit selectedSeatsChanged(getSelectedSeats());
                 update(); //Update graphics
             }
         }
@@ -248,5 +249,5 @@ void HallView::paintEvent(QPaintEvent *event)
             }
         }
     }
-    emit selectedSeatsChanged(getSelectedSeats()); //ska bytas ut
+    emit selectedSeatsChanged(getSelectedSeats()); //ska kanske bytas ut
 }

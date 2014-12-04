@@ -374,5 +374,6 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
 
 void MainWindow::on_pushButton_hallview_info_clear_clicked()
 {
+    hallView->clearSelectedSeats();
     ui->lineEdit_phone->QLineEdit::clear();
 }
