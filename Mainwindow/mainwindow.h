@@ -29,13 +29,21 @@ private slots:
     void movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 
+    //add movie
+    void openAddMovieDialog();
+    void addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
+
+    //delete movei
+    void on_pushButton_movies_delete_clicked();
+
+    //edit movie
+    void openEditMovieDialog(const QModelIndex &index);
+    void editMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
+
     void on_actionQuit_triggered();
 
     void on_pushButton_info_edit_clicked();
 
-    void on_pushButton_movies_add_clicked();
-
-    void on_pushButton_movies_delete_clicked();
 
     void on_listView_movies_clicked(const QModelIndex &index);
 
@@ -75,6 +83,7 @@ private:
     SeatModel *seatModel;
     BookingModel * bookingModel;
 
+    void initConnections();
     void filterBookings();
 
 };

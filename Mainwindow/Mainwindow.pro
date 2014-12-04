@@ -22,8 +22,10 @@ SOURCES += main.cpp\
     Model/seatmodel.cpp \
     Model/showmodel.cpp \
     DatabaseHandler/databasehandler.cpp \
+    add_hall/hall.cpp \
+    add_movie/confirmaddmovie.cpp \
     add_movie/popup.cpp \
-    add_hall/hall.cpp
+    add_show/addshowdialog.cpp
 
 HEADERS  += mainwindow.h \
     hallview.h \
@@ -34,12 +36,16 @@ HEADERS  += mainwindow.h \
     Model/seatmodel.h \
     Model/showmodel.h \
     DatabaseHandler/databasehandler.h \
+    add_hall/hall.h \
+    add_movie/confirmaddmovie.h \
     add_movie/popup.h \
-    add_hall/hall.h
+    add_show/addshowdialog.h
 
 FORMS    += mainwindow.ui \
+    add_hall/hall.ui \
+    add_movie/confirmaddmovie.ui \
     add_movie/popup.ui \
-    add_hall/hall.ui
+    add_show/addshowdialog.ui
 
 OTHER_FILES += \
     Mainwindow.pro.user \

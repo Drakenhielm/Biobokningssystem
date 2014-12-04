@@ -15,38 +15,53 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_popup
 {
 public:
-    QLabel *TitleLabel;
-    QLabel *PlaytimeLabel;
-    QLabel *GenreLabel;
-    QLabel *PictureLabel;
-    QLabel *YearLabel;
-    QLabel *DescLabel;
-    QComboBox *GenreCbb;
-    QSpinBox *YearSpinBox;
-    QSpinBox *AgeSpinBox;
-    QTextEdit *DescritionEdit;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout_8;
     QPushButton *AddButton;
     QPushButton *CancelButton;
+    QWidget *layoutWidget1;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout;
+    QLabel *TitleLabel;
     QLineEdit *TitleBox;
-    QLineEdit *PictureEdit;
-    QPushButton *ExploreButton;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *PlaytimeLabel;
+    QSpinBox *PlaytimeSpinBox;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *AgeLabel;
+    QSpinBox *AgeSpinBox;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *GenreLabel;
+    QComboBox *GenreCbb;
+    QPushButton *AddGenreButton;
+    QHBoxLayout *horizontalLayout_5;
     QLabel *CurrGenreLabel;
     QPushButton *RemoveGenreButton;
-    QSpinBox *PlaytimeSpinBox;
-    QLabel *AgeLabel;
-    QPushButton *AddGenreButton;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *PictureLabel;
+    QLineEdit *PictureEdit;
+    QPushButton *ExploreButton;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *YearLabel;
+    QSpinBox *YearSpinBox;
+    QVBoxLayout *verticalLayout;
+    QLabel *DescLabel;
+    QTextEdit *DescritionEdit;
 
     void setupUi(QDialog *popup)
     {
@@ -58,93 +73,165 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(popup->sizePolicy().hasHeightForWidth());
         popup->setSizePolicy(sizePolicy);
-        TitleLabel = new QLabel(popup);
-        TitleLabel->setObjectName(QStringLiteral("TitleLabel"));
-        TitleLabel->setGeometry(QRect(83, 103, 26, 16));
-        PlaytimeLabel = new QLabel(popup);
-        PlaytimeLabel->setObjectName(QStringLiteral("PlaytimeLabel"));
-        PlaytimeLabel->setGeometry(QRect(83, 134, 61, 16));
-        GenreLabel = new QLabel(popup);
-        GenreLabel->setObjectName(QStringLiteral("GenreLabel"));
-        GenreLabel->setGeometry(QRect(84, 199, 37, 16));
-        PictureLabel = new QLabel(popup);
-        PictureLabel->setObjectName(QStringLiteral("PictureLabel"));
-        PictureLabel->setGeometry(QRect(81, 260, 41, 16));
-        YearLabel = new QLabel(popup);
-        YearLabel->setObjectName(QStringLiteral("YearLabel"));
-        YearLabel->setGeometry(QRect(81, 291, 41, 16));
-        DescLabel = new QLabel(popup);
-        DescLabel->setObjectName(QStringLiteral("DescLabel"));
-        DescLabel->setGeometry(QRect(79, 323, 71, 16));
-        GenreCbb = new QComboBox(popup);
-        GenreCbb->setObjectName(QStringLiteral("GenreCbb"));
-        GenreCbb->setGeometry(QRect(210, 200, 74, 23));
-        GenreCbb->setContextMenuPolicy(Qt::DefaultContextMenu);
-        YearSpinBox = new QSpinBox(popup);
-        YearSpinBox->setObjectName(QStringLiteral("YearSpinBox"));
-        YearSpinBox->setGeometry(QRect(290, 290, 62, 24));
-        YearSpinBox->setMaximum(9999);
-        YearSpinBox->setValue(2014);
-        AgeSpinBox = new QSpinBox(popup);
-        AgeSpinBox->setObjectName(QStringLiteral("AgeSpinBox"));
-        AgeSpinBox->setGeometry(QRect(290, 160, 62, 24));
-        AgeSpinBox->setMaximum(9999);
-        AgeSpinBox->setValue(12);
-        DescritionEdit = new QTextEdit(popup);
-        DescritionEdit->setObjectName(QStringLiteral("DescritionEdit"));
-        DescritionEdit->setGeometry(QRect(79, 344, 271, 192));
-        AddButton = new QPushButton(popup);
+        layoutWidget = new QWidget(popup);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(240, 590, 168, 25));
+        horizontalLayout_8 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        AddButton = new QPushButton(layoutWidget);
         AddButton->setObjectName(QStringLiteral("AddButton"));
-        AddButton->setGeometry(QRect(220, 570, 80, 23));
-        CancelButton = new QPushButton(popup);
+
+        horizontalLayout_8->addWidget(AddButton);
+
+        CancelButton = new QPushButton(layoutWidget);
         CancelButton->setObjectName(QStringLiteral("CancelButton"));
-        CancelButton->setGeometry(QRect(310, 570, 80, 23));
-        TitleBox = new QLineEdit(popup);
+
+        horizontalLayout_8->addWidget(CancelButton);
+
+        layoutWidget1 = new QWidget(popup);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(70, 56, 311, 481));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        TitleLabel = new QLabel(layoutWidget1);
+        TitleLabel->setObjectName(QStringLiteral("TitleLabel"));
+
+        horizontalLayout->addWidget(TitleLabel);
+
+        TitleBox = new QLineEdit(layoutWidget1);
         TitleBox->setObjectName(QStringLiteral("TitleBox"));
-        TitleBox->setGeometry(QRect(140, 100, 211, 23));
-        PictureEdit = new QLineEdit(popup);
-        PictureEdit->setObjectName(QStringLiteral("PictureEdit"));
-        PictureEdit->setGeometry(QRect(131, 259, 171, 23));
-        ExploreButton = new QPushButton(popup);
-        ExploreButton->setObjectName(QStringLiteral("ExploreButton"));
-        ExploreButton->setGeometry(QRect(310, 259, 41, 23));
-        CurrGenreLabel = new QLabel(popup);
-        CurrGenreLabel->setObjectName(QStringLiteral("CurrGenreLabel"));
-        CurrGenreLabel->setGeometry(QRect(80, 220, 211, 21));
-        RemoveGenreButton = new QPushButton(popup);
-        RemoveGenreButton->setObjectName(QStringLiteral("RemoveGenreButton"));
-        RemoveGenreButton->setGeometry(QRect(270, 230, 81, 23));
-        PlaytimeSpinBox = new QSpinBox(popup);
+
+        horizontalLayout->addWidget(TitleBox);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        PlaytimeLabel = new QLabel(layoutWidget1);
+        PlaytimeLabel->setObjectName(QStringLiteral("PlaytimeLabel"));
+
+        horizontalLayout_2->addWidget(PlaytimeLabel);
+
+        PlaytimeSpinBox = new QSpinBox(layoutWidget1);
         PlaytimeSpinBox->setObjectName(QStringLiteral("PlaytimeSpinBox"));
-        PlaytimeSpinBox->setGeometry(QRect(290, 130, 62, 24));
         PlaytimeSpinBox->setMaximum(9999);
         PlaytimeSpinBox->setValue(180);
-        AgeLabel = new QLabel(popup);
+
+        horizontalLayout_2->addWidget(PlaytimeSpinBox, 0, Qt::AlignRight);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_2);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        AgeLabel = new QLabel(layoutWidget1);
         AgeLabel->setObjectName(QStringLiteral("AgeLabel"));
-        AgeLabel->setGeometry(QRect(83, 166, 72, 16));
-        AddGenreButton = new QPushButton(popup);
+
+        horizontalLayout_3->addWidget(AgeLabel);
+
+        AgeSpinBox = new QSpinBox(layoutWidget1);
+        AgeSpinBox->setObjectName(QStringLiteral("AgeSpinBox"));
+        AgeSpinBox->setMaximum(9999);
+        AgeSpinBox->setValue(12);
+
+        horizontalLayout_3->addWidget(AgeSpinBox, 0, Qt::AlignRight);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_3);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        GenreLabel = new QLabel(layoutWidget1);
+        GenreLabel->setObjectName(QStringLiteral("GenreLabel"));
+
+        horizontalLayout_4->addWidget(GenreLabel);
+
+        GenreCbb = new QComboBox(layoutWidget1);
+        GenreCbb->setObjectName(QStringLiteral("GenreCbb"));
+        GenreCbb->setContextMenuPolicy(Qt::DefaultContextMenu);
+
+        horizontalLayout_4->addWidget(GenreCbb);
+
+        AddGenreButton = new QPushButton(layoutWidget1);
         AddGenreButton->setObjectName(QStringLiteral("AddGenreButton"));
-        AddGenreButton->setGeometry(QRect(300, 200, 51, 23));
-        TitleLabel->raise();
-        PlaytimeLabel->raise();
-        GenreLabel->raise();
-        PictureLabel->raise();
-        YearLabel->raise();
-        DescLabel->raise();
-        GenreCbb->raise();
-        YearSpinBox->raise();
-        AgeSpinBox->raise();
-        DescritionEdit->raise();
-        AddButton->raise();
-        CancelButton->raise();
-        TitleBox->raise();
-        PictureEdit->raise();
-        ExploreButton->raise();
-        CurrGenreLabel->raise();
-        PlaytimeSpinBox->raise();
-        AgeLabel->raise();
-        RemoveGenreButton->raise();
-        AddGenreButton->raise();
+
+        horizontalLayout_4->addWidget(AddGenreButton, 0, Qt::AlignRight);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        CurrGenreLabel = new QLabel(layoutWidget1);
+        CurrGenreLabel->setObjectName(QStringLiteral("CurrGenreLabel"));
+
+        horizontalLayout_5->addWidget(CurrGenreLabel);
+
+        RemoveGenreButton = new QPushButton(layoutWidget1);
+        RemoveGenreButton->setObjectName(QStringLiteral("RemoveGenreButton"));
+
+        horizontalLayout_5->addWidget(RemoveGenreButton, 0, Qt::AlignRight);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_5);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        PictureLabel = new QLabel(layoutWidget1);
+        PictureLabel->setObjectName(QStringLiteral("PictureLabel"));
+
+        horizontalLayout_6->addWidget(PictureLabel);
+
+        PictureEdit = new QLineEdit(layoutWidget1);
+        PictureEdit->setObjectName(QStringLiteral("PictureEdit"));
+
+        horizontalLayout_6->addWidget(PictureEdit);
+
+        ExploreButton = new QPushButton(layoutWidget1);
+        ExploreButton->setObjectName(QStringLiteral("ExploreButton"));
+
+        horizontalLayout_6->addWidget(ExploreButton);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_6);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        YearLabel = new QLabel(layoutWidget1);
+        YearLabel->setObjectName(QStringLiteral("YearLabel"));
+
+        horizontalLayout_7->addWidget(YearLabel);
+
+        YearSpinBox = new QSpinBox(layoutWidget1);
+        YearSpinBox->setObjectName(QStringLiteral("YearSpinBox"));
+        YearSpinBox->setMaximum(9999);
+        YearSpinBox->setValue(2014);
+
+        horizontalLayout_7->addWidget(YearSpinBox, 0, Qt::AlignRight);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_7);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        DescLabel = new QLabel(layoutWidget1);
+        DescLabel->setObjectName(QStringLiteral("DescLabel"));
+
+        verticalLayout->addWidget(DescLabel);
+
+        DescritionEdit = new QTextEdit(layoutWidget1);
+        DescritionEdit->setObjectName(QStringLiteral("DescritionEdit"));
+
+        verticalLayout->addWidget(DescritionEdit);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
+
 
         retranslateUi(popup);
 
@@ -154,12 +241,12 @@ public:
     void retranslateUi(QDialog *popup)
     {
         popup->setWindowTitle(QApplication::translate("popup", "Dialog", 0));
+        AddButton->setText(QApplication::translate("popup", "Add", 0));
+        CancelButton->setText(QApplication::translate("popup", "Cancel", 0));
         TitleLabel->setText(QApplication::translate("popup", "Title", 0));
         PlaytimeLabel->setText(QApplication::translate("popup", "Playtime", 0));
+        AgeLabel->setText(QApplication::translate("popup", "Age", 0));
         GenreLabel->setText(QApplication::translate("popup", "Genre", 0));
-        PictureLabel->setText(QApplication::translate("popup", "Image", 0));
-        YearLabel->setText(QApplication::translate("popup", "Year", 0));
-        DescLabel->setText(QApplication::translate("popup", "Description", 0));
         GenreCbb->clear();
         GenreCbb->insertItems(0, QStringList()
          << QApplication::translate("popup", "Drama", 0)
@@ -167,14 +254,14 @@ public:
          << QApplication::translate("popup", "Thriller", 0)
          << QApplication::translate("popup", "Action", 0)
         );
-        AddButton->setText(QApplication::translate("popup", "Add", 0));
-        CancelButton->setText(QApplication::translate("popup", "Cancel", 0));
-        PictureEdit->setText(QString());
-        ExploreButton->setText(QApplication::translate("popup", "...", 0));
+        AddGenreButton->setText(QApplication::translate("popup", "+", 0));
         CurrGenreLabel->setText(QString());
         RemoveGenreButton->setText(QApplication::translate("popup", "Remove", 0));
-        AgeLabel->setText(QApplication::translate("popup", "Age-limit", 0));
-        AddGenreButton->setText(QApplication::translate("popup", "+", 0));
+        PictureLabel->setText(QApplication::translate("popup", "Picture", 0));
+        PictureEdit->setText(QString());
+        ExploreButton->setText(QApplication::translate("popup", "...", 0));
+        YearLabel->setText(QApplication::translate("popup", "Year", 0));
+        DescLabel->setText(QApplication::translate("popup", "Description", 0));
     } // retranslateUi
 
 };

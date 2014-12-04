@@ -4,6 +4,7 @@
 #include "hallview.h"
 #include "add_hall/hall.h"
 #include "add_movie/popup.h"
+#include "add_show/addshowdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,6 +51,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     seatModel = new SeatModel(this);
 
+    initConnections();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::initConnections()
+{
+    //add movie
+    connect(ui->pushButton_movies_add, SIGNAL(clicked()),
+            this, SLOT(openAddMovieDialog()));
+
     connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
 
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(addHall()));
@@ -65,14 +80,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->listView_movies->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(movieSelectionChanged(QItemSelection,QItemSelection)));
 
-    //connect movie list from selectionChanged
+    //connect show table from selectionChanged
     connect(ui->tableView_show->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(showSelectionChanged(QItemSelection,QItemSelection)));
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -121,17 +131,42 @@ void MainWindow::on_pushButton_info_edit_clicked()
 
 }
 
-void MainWindow::on_pushButton_movies_add_clicked()
+void MainWindow::openAddMovieDialog()
 {
-    movieModel->insertMovie("Avatar", 123, 11, "Handlar om blue figures.", "Adventure", 2009, "/images/avatar.jpg");
-    movieModel->insertMovie("Bad Boys 2", 456, 11, "The boys are back in town. Watch out. tjalalalala mmmmm mm mm mmmmm mm mm mmmmm mm", "Drama", 2009, "/images/Bad_boys_two.jpg");
-    movieModel->refresh();
-    qDebug() << movieModel->record(0).value(MovieModel::AgeLimit).toInt();
-
+    //declare the popup window
     popup popuper;
-    popuper.setModal(true);
-    popuper.exec();
 
+    //connect it with the add_Movie signal from the popup
+    QObject::connect(&popuper, SIGNAL(add_Movie(QString, int, int, QString, QString, int, QString)),this, SLOT(addMovie(QString, int, int, QString, QString, int, QString)));
+
+    //donno wat dis is
+    popuper.setModal(true);
+
+    //launch the popup
+    popuper.exec();
+}
+
+void MainWindow::addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter)
+{
+    movieModel->insertMovie(title, playtime, age, desc, genre, year, movieposter);
+    movieModel->refresh();
+}
+
+
+void MainWindow::openEditMovieDialog(const QModelIndex &index)
+{
+
+}
+
+void MainWindow::editMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter)
+{
+    Q_UNUSED(title);
+    Q_UNUSED(playtime);
+    Q_UNUSED(age);
+    Q_UNUSED(desc);
+    Q_UNUSED(genre);
+    Q_UNUSED(year);
+    Q_UNUSED(movieposter);
 }
 
 void MainWindow::on_pushButton_movies_delete_clicked()
@@ -245,19 +280,22 @@ int MainWindow::getSelected(QItemSelectionModel *selectionModel)
 void MainWindow::on_pushButton_hallview_info_book_clicked()
 {
     QString phone = ui->lineEdit_phone->text();
-    int showID = getSelected(ui->tableView_show->selectionModel());
+    int showID = showModel->getShowID(getSelected(ui->tableView_show->selectionModel()));
     QList<int> seatIDs = hallView->getSelectedSeats();
     for(int i = 0; i < seatIDs.size(); i++)
     {
         seatIDs[i] = seatModel->getSeatID(seatIDs.at(i));
     }
+    if(showID > 0 && !phone.isEmpty())// && !seatIDs.isEmpty()) //check if valid booking
+    {
+        bookingModel->insertBookings(showID, seatIDs, phone);
+        bookingModel->refresh();
 
-    bookingModel->insertBookings(showID, seatIDs, phone);
-    bookingModel->refresh();
+        hallView->comfirmSelectedSeats();
 
-    hallView->comfirmSelectedSeats();
-
-    ui->lineEdit_phone->QLineEdit::clear();
+        ui->lineEdit_phone->QLineEdit::clear();
+    }
+    qDebug() << phone << showID << seatIDs;
 }
 
 //NEW FUNCTIONS BELOW
