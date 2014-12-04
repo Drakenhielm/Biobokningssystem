@@ -35,7 +35,7 @@ QVariant ShowModel::data(const QModelIndex &item, int role) const
 int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,
                 int movieID, int hallID)
 {
-    DatabaseHandler::DatabaseRecord values;
+    QList<QPair<QString, QVariant> > values;
     values.append(qMakePair(QString("DateTime"), dateTime));
     values.append(qMakePair(QString("Price"), price));
     values.append(qMakePair(QString("ThreeD"), threeD));
@@ -44,5 +44,21 @@ int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, 
     values.append(qMakePair(QString("MovieID"), movieID));
     values.append(qMakePair(QString("HallID"), hallID));
     dh.insert("show", values);
+    return true;
+}
+
+bool ShowModel::editShow(int showID, const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
+                int movieID, int hallID)
+{
+    QList<QPair<QString, QVariant> > values;
+    values.append(qMakePair(QString("ShowID"), showID));
+    values.append(qMakePair(QString("DateTime"), dateTime));
+    values.append(qMakePair(QString("Price"), price));
+    values.append(qMakePair(QString("ThreeD"), threeD));
+    values.append(qMakePair(QString("Subtitles"), subtitles));
+    values.append(qMakePair(QString("Language"), language));
+    values.append(qMakePair(QString("MovieID"), movieID));
+    values.append(qMakePair(QString("HallID"), hallID));
+    dh.edit("show", values, "ShowID", showID);
     return true;
 }

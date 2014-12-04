@@ -31,6 +31,8 @@ public:
 
     int insertShow(const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
                     int movieID, int hallID);
+    bool editShow(int showID, const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
+                    int movieID, int hallID);
 
     int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }
     QDateTime getDateTime(int row) const { return data(index(row, DateTime)).toDateTime(); }

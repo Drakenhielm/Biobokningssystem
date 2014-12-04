@@ -49,10 +49,9 @@ QPair<int, int> SeatModel::getHallSize(int hallID)
 {
     QString queryStr = QString("SELECT Max(Row), MAX(Column) FROM seat WHERE HallID = %1").arg(hallID);
     QSqlQuery query(queryStr);
-    qDebug() << queryStr;
     if(query.next())
     {
-        qDebug() << "getMatrixSize() rows, cols" << query.value(0).toInt() << query.value(1).toInt();
+        //qDebug() << "getMatrixSize() rows, cols" << query.value(0).toInt() << query.value(1).toInt();
         return qMakePair(query.value(0).toInt(), query.value(1).toInt());
     }
     return qMakePair(0, 0);

@@ -55,6 +55,7 @@ void DatabaseHandler::createDatabase()
                "Row INTEGER, "
                "Column INTEGER, "
                "SeatNr INTEGER, "
+               "SeatType INTEGER, "
                "HallID INTEGER)");
 
     //create show table
@@ -108,7 +109,7 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &column, co
     query.bindValue(0, value);
     if(!query.exec())
     {
-        qDebug() << "The database reported an error: "
+        qDebug() << "Could not remove. The database reported an error: "
                  << db.lastError().text();
         return false;
     }
@@ -137,10 +138,37 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
     }
     if(!query.exec())
     {
-        qDebug() << "The database reported an error: "
+        qDebug() << "Could not insert. The database reported an error: "
                  << db.lastError().text();
+        qDebug() << sqlStr;
         return -1;
     }
 
     return query.lastInsertId().toInt();
+}
+
+bool DatabaseHandler::edit(const QString &tableName, const QList<QPair<QString, QVariant> > &record,
+          const QString &whereColumn, const QVariant &whereValue)
+{
+    QSqlQuery query;
+    QString sqlStr = QString("UPDATE %1 SET ").arg(tableName);
+    for(int i = 0; i < record.size(); i++)
+    {
+        QString fieldName = record.at(i).first;
+        sqlStr += fieldName + " = ?, ";
+    }
+    sqlStr.remove(sqlStr.size()-2, 2);
+    sqlStr += QString(" WHERE ") + whereColumn + " = " + whereValue.toString();
+    query.prepare(sqlStr);
+    for(int i = 0; i < record.size(); i++)
+    {
+        query.bindValue(i, record.at(i).second);
+    }
+    if(!query.exec())
+    {
+        qDebug() << "Could not edit. The database reported an error: "
+                 << db.lastError().text();
+        return false;
+    }
+    return true;
 }

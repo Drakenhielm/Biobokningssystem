@@ -11,12 +11,19 @@ public:
 
     enum Column
     {
-        SeatID,
-        Row,
-        Column,
-        SeatNr,
-        HallID,
-        BookingID
+        SeatID = 0,
+        Row = 1,
+        Column = 2,
+        SeatNr = 3,
+        SeatTypeIndex = 4,
+        HallID = 5,
+        BookingID = 6
+    };
+
+    enum SeatType
+    {
+        None = 0,
+        Seat = 1
     };
 
     virtual void refresh();
@@ -25,6 +32,7 @@ public:
     int getRow(int row) const { return data(index(row, Row)).toInt(); }
     int getColumn(int row) const { return data(index(row, Column)).toInt(); }
     int getSeatNr(int row) const { return data(index(row, SeatNr)).toInt(); }
+    int getSeatType(int row) const { return data(index(row, SeatTypeIndex)).toInt(); }
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
     int getBookingID(int row) const { return data(index(row, BookingID)).toInt(); }
 

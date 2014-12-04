@@ -20,8 +20,8 @@ public:
         SeatIDs = 7
     };
 
-    int insertBooking(int ShowID, int seatID, const QString &phone);
     int insertBookings(int ShowID, const QList<int> &seatIDs, const QString &phone);
+    bool editBookings(int bookingID, int showID, const QList<int> &seatIDs, const QString &phone);
     virtual bool remove(const QVariant &pkValue);
 
     int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }
@@ -31,6 +31,9 @@ public:
     QDateTime getDateTime(int row) const { return data(index(row, DateTime)).toDateTime(); }
     int getTickets(int row) const { return data(index(row, Tickets)).toInt(); }
     QList<int> getSeatIDs(int row) const;
+
+private:
+    bool insertSeatBookings(int bookingID, const QList<int> &seatIDs);
 
 };
 

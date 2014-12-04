@@ -90,7 +90,6 @@ void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placehol
     query.exec();
     setQuery(query);
     lastFilterQuery = sql;
-    qDebug() << sql;
 }
 
 void BaseModel::clearFilter()
@@ -101,7 +100,7 @@ void BaseModel::clearFilter()
     prepareQuery(query, sql, getBoundValues(query));
     query.exec(sql);
     setQuery(query);
-    lastFilterQuery.clear();
+    lastFilterQuery = "";
 }
 
 /*Prepare "query" with the statement from "sql" and bind parameters from "parameterList" */
