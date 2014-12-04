@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->frame_3->setFrameStyle(1);
     ui->frame_3->setFrameShadow(QFrame::Plain);
 
+    seatModel = new SeatModel(this);
+
     connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
 
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(addHall()));
@@ -57,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), hallView, SLOT(setSeperateSeats(bool)));
     connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), this, SLOT(setComboBox(bool)));
 
-    connect(ui->lineEdit, SIGNAL(textChanged(QString)), this, SLOT(enableBookButton()));
+    connect(ui->lineEdit_phone, SIGNAL(textChanged(QString)), this, SLOT(enableBookButton()));
 
     //connect movie list from selectionChanged
     connect(ui->listView_movies->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
@@ -80,7 +82,7 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::enableBookButton()
 {
-    if(hallView->getSelectedSeats().size() > 0 && ui->lineEdit->text().size() > 0)
+    if(hallView->getSelectedSeats().size() > 0 && ui->lineEdit_phone->text().size() > 0)
         ui->pushButton_hallview_info_book->setEnabled(true);
     else
         ui->pushButton_hallview_info_book->setEnabled(false);
@@ -242,8 +244,15 @@ int MainWindow::getSelected(QItemSelectionModel *selectionModel)
 
 void MainWindow::on_pushButton_hallview_info_book_clicked()
 {
+    QString phone = ui->lineEdit_phone->text();
+    int showID = getSelected(ui->tableView_show->selectionModel());
     QList<int> seatIDs = hallView->getSelectedSeats();
-    bookingModel->insertBookings(1, seatIDs, "070654321");
+    for(int i = 0; i < seatIDs.size(); i++)
+    {
+        seatIDs[i] = seatModel->getSeatID(seatIDs.at(i));
+    }
+
+    bookingModel->insertBookings(showID, seatIDs, phone);
     bookingModel->refresh();
 
     hallView->comfirmSelectedSeats();

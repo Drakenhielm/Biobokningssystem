@@ -102,7 +102,7 @@ public:
     QLabel *label_hallinfo_selectedSeats;
     QLabel *label_hallinfo_selectedSeats_display;
     QLabel *label_phone;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_phone;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_9;
     QPushButton *pushButton_hallview_info_clear;
@@ -475,12 +475,12 @@ public:
 
         verticalLayout_4->addWidget(label_phone);
 
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMaximumSize(QSize(155, 16777215));
-        lineEdit->setFont(font);
+        lineEdit_phone = new QLineEdit(groupBox);
+        lineEdit_phone->setObjectName(QStringLiteral("lineEdit_phone"));
+        lineEdit_phone->setMaximumSize(QSize(155, 16777215));
+        lineEdit_phone->setFont(font);
 
-        verticalLayout_4->addWidget(lineEdit);
+        verticalLayout_4->addWidget(lineEdit_phone);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
@@ -599,8 +599,6 @@ public:
         verticalLayout_3->addLayout(horizontalLayout_8);
 
         splitter_2->addWidget(widget_6);
-        label_bookings->raise();
-        tableView_search->raise();
 
         horizontalLayout_2->addWidget(splitter_2);
 
@@ -610,7 +608,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 892, 22));
+        menuBar->setGeometry(QRect(0, 0, 892, 21));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         MainWindow->setMenuBar(menuBar);
@@ -669,8 +667,8 @@ public:
         textBrowser_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'.Helvetica Neue DeskInterface'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:13pt;\"><br /></p></body></html>", 0));
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt;\"><br /></p></body></html>", 0));
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         label_hallinfo_title->setText(QApplication::translate("MainWindow", "Hall info", 0));
         label_hallinfo->setText(QApplication::translate("MainWindow", "xxx platser, Dolby Digital, 3D", 0));
