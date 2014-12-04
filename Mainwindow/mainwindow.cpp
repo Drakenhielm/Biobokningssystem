@@ -256,6 +256,8 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     bookingModel->refresh();
 
     hallView->comfirmSelectedSeats();
+
+    ui->lineEdit_phone->QLineEdit::clear();
 }
 
 //NEW FUNCTIONS BELOW
@@ -311,4 +313,9 @@ void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QIt
 void MainWindow::showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     filterBookings();
+}
+
+void MainWindow::on_pushButton_hallview_info_clear_clicked()
+{
+    ui->lineEdit_phone->QLineEdit::clear();
 }

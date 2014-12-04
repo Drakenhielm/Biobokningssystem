@@ -63,6 +63,8 @@ private slots:
 
     void enableBookButton();
 
+    void on_pushButton_hallview_info_clear_clicked();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;
