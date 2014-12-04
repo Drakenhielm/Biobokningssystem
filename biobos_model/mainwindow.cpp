@@ -9,24 +9,24 @@ MainWindow::MainWindow(QWidget *parent) :
     setUpTable();
     QElapsedTimer timer;
     timer.start();
-    for(int i = 0; i < 500; i++)
+    /*for(int i = 0; i < 500; i++)
     {
         //showModel->insertShow(QDateTime::currentDateTime().addDays(1), 99.5, false, true, "Swe", 10, 1);
     }
-    /*QList<QList<bool> > list;
-    for(int i = 0; i < 5; i++)
+    QList<QList<bool> > list;
+    for(int i = 0; i < 4; i++)
     {
         QList<bool> rowList;
-        for(int j = 0; j < 3; j++)
+        for(int j = 0; j < 2; j++)
         {
-            if(i == 1)
+            if(i == 0)
                 rowList.append(false);
             else
                 rowList.append(true);
         }
         list.append(rowList);
     }
-    hallModel->insertHall("Rigoletto", "3x5", "Dolby", list);
+    hallModel->editHall(1, "Rigoletto", "3x5", "Dolby", list);
     hallModel->refresh();
     seatModel->refresh();*/
     /*
@@ -82,7 +82,7 @@ void MainWindow::setUpTable()
     ui->tableView_3->setModel(hallModel);
 
     seatModel = new SeatModel(this);
-    seatModel->setHall(1);
+    seatModel->setHall(2);
     seatModel->setShow(1);
     seatModel->refresh();
     ui->tableView_2->setModel(seatModel);
@@ -149,7 +149,7 @@ void MainWindow::setUpTable()
     str = "abcdefgh";
     qDebug() << str.mid(1, 7);
 
-    /*customModel = new CustomModel(this);
+    customModel = new CustomModel(this);
     customModel->setQuery("select * from movie");
     ui->tableView->setModel(customModel);*/
 }

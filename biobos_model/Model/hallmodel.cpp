@@ -13,7 +13,7 @@ HallModel::HallModel(QObject *parent)
 int HallModel::insertHall(const QString &name, const QString &screenSize, const QString &soundSystem,
            const QList<QList<bool> > &seats)
 {
-    /*QList<QPair<QString, QVariant> > values;
+    QList<QPair<QString, QVariant> > values;
     dh.transaction();
     values.append(qMakePair(QString("Name"), name));
     values.append(qMakePair(QString("ScreenSize"), screenSize));
@@ -24,21 +24,42 @@ int HallModel::insertHall(const QString &name, const QString &screenSize, const 
     dh.endTransaction(ok);
     if(ok)
         return id;
-    else*/
+    else
         return -1;
 }
 
-int HallModel::insertSeats(int hallID, const QList<QList<bool> > &seats, int firstSeatNr, QPoint offset)
+bool HallModel::editHall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
+                          const QList<QList<bool> > &seats)
+{
+   bool ok = true;
+   QList<QPair<QString, QVariant> > values;
+   if(!seats.isEmpty())
+       dh.transaction();
+
+   values.append(qMakePair(QString("Name"), name));
+   values.append(qMakePair(QString("ScreenSize"), screenSize));
+   values.append(qMakePair(QString("SoundSystem"), soundSystem));
+   ok &= dh.edit("hall", values, "HallID", hallID);
+   values.clear();
+
+   if(seats.isEmpty())
+       return ok;
+
+   ok &= editSeats(hallID, seats);
+   return ok && dh.endTransaction(ok);
+}
+
+int HallModel::insertSeats(int hallID, const QList<QList<bool> > &seats)
 {
     QList<QPair<QString, QVariant> > values;
-    int seatNr = firstSeatNr;
+    int seatNr = 1;
     int lastID = -1;
-    /*for(int r = 0; r < seats.size(); r++)
+    for(int r = 0; r < seats.size(); r++)
     {
         for(int c = 0; c < seats.at(r).size(); c++)
         {
-            values.append(qMakePair(QString("Row"), r+offset.y()+1));
-            values.append(qMakePair(QString("Column"), c+offset.x()+1));
+            values.append(qMakePair(QString("Row"), r+1));
+            values.append(qMakePair(QString("Column"), c+1));
             if(seats.at(r).at(c))
             {
                 values.append(qMakePair(QString("SeatNr"), seatNr++));
@@ -48,7 +69,7 @@ int HallModel::insertSeats(int hallID, const QList<QList<bool> > &seats, int fir
             {
                 values.append(qMakePair(QString("SeatType"), 0));
             }
-            values.append(qMakePair(QString("HallID"), getHallID(row)));
+            values.append(qMakePair(QString("HallID"), hallID));
 
             lastID = dh.insert("seat", values);
             values.clear();
@@ -56,45 +77,19 @@ int HallModel::insertSeats(int hallID, const QList<QList<bool> > &seats, int fir
             if(lastID == -1)
                 return -1;
         }
-    }*/
+    }
     return lastID;
-}
-
-bool HallModel::remove(const QVariant &pkValue)
-{
-    bool ok = true;
-    dh.transaction();
-    ok &= dh.remove(tableName, primaryKey, pkValue);
-    ok &= dh.remove("seat", primaryKey, pkValue);
-    return ok && dh.endTransaction(ok);
-}
-
-/*bool HallModel::editHall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
-           const QList<QList<bool> > &seats)
-{
-    bool ok = true;
-    QList<QPair<QString, QVariant> > values;
-    if(!seats.isEmpty())
-        dh.transaction();
-
-    values.append(qMakePair(QString("Name"), name));
-    values.append(qMakePair(QString("ScreenSize"), screenSize));
-    values.append(qMakePair(QString("SoundSystem"), soundSystem));
-    ok &= dh.edit("hall", values, "HallID", hallID);
-    values.clear();
-
-    if(seats.isEmpty())
-        return ok;
-
-    ok &= editSeats(hallID, seats);
-    return ok && dh.endTransaction(ok);
 }
 
 
 
 bool HallModel::editSeats(int row, const QList<QList<bool> > &seats)
 {
-    QList<QPair<QString, QVariant> > values;
+    bool ok = true;
+    ok &= dh.remove("seat", "HallID", getHallID(row));
+    int lastId = insertSeats(getHallID(row), seats);
+    ok &= lastId != -1;
+    /*QList<QPair<QString, QVariant> > values;
     if(seats.size() < getRows(row))
         dh.remove("seatbooking", "HallID = ? AND Row > ?", seats.size());
 
@@ -117,17 +112,18 @@ bool HallModel::editSeats(int row, const QList<QList<bool> > &seats)
             if(lastId == -1)
                 ok = false;
         }
-    }
+    }*/
     return ok;
 }
 
-int HallModel::insertSeat(int hallID, int r, int c, bool seatType, int seatNr)
+/*int HallModel::insertSeat(int hallID, int r, int c, bool seatType, int seatNr)
 {
+    QList<QPair<QString, QVariant> > values;
     values.append(qMakePair(QString("Row"), r));
     values.append(qMakePair(QString("Column"), c));
-    if(seats.at(r).at(c))
+    if(seatType)
     {
-        values.append(qMakePair(QString("SeatNr"), seatNr++));
+        values.append(qMakePair(QString("SeatNr"), seatNr));
         values.append(qMakePair(QString("SeatType"), 1));
     }
     else
@@ -143,6 +139,11 @@ int HallModel::insertSeat(int hallID, int r, int c, bool seatType, int seatNr)
         return -1;
 }*/
 
-bool editSeats(int row, const QList<QList<bool> > &seats,
-              int startSeatNr = 1, QPoint offset = QPoint());
-bool editSeat(int row, int r, int c, int seatNr);
+bool HallModel::remove(const QVariant &pkValue)
+{
+    bool ok = true;
+    dh.transaction();
+    ok &= dh.remove(tableName, primaryKey, pkValue);
+    ok &= dh.remove("seat", primaryKey, pkValue);
+    return ok && dh.endTransaction(ok);
+}
