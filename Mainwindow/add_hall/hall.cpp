@@ -17,6 +17,8 @@ hall::hall(QWidget *parent) :
     connect(ui->spinBox_rows, SIGNAL(valueChanged(int)), hallView, SLOT(setRows(int)));
     connect(ui->spinBox_columns, SIGNAL(valueChanged(int)), hallView, SLOT(setColumns(int)));
 
+    connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(setLabelNumberOfSeats()));
+
     hallView->setMode(true);
 }
 
@@ -24,6 +26,11 @@ hall::~hall()
 {
 
     delete ui;
+}
+
+void hall::setLabelNumberOfSeats()
+{
+    ui->label_number_of_seats->setText("Seats: " + QString::number(hallView->getTotalNumberOfSeats()));
 }
 
 

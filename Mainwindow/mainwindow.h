@@ -9,7 +9,7 @@
 #include "Model/bookingmodel.h"
 #include <QItemSelection>
 #include "hallview.h"
-
+#include <QKeyEvent>
 #include <QDebug>
 
 
@@ -30,14 +30,14 @@ private slots:
     void showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 
     //add movie
-    void openAddMovieDialog();
+    void openAddMovieDialogue();
     void addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
 
     //delete movei
     void on_pushButton_movies_delete_clicked();
 
     //edit movie
-    void openEditMovieDialog(const QModelIndex &index);
+    void openEditMovieDialogue(const QModelIndex &index);
     void editMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
 
     void on_actionQuit_triggered();
@@ -63,7 +63,7 @@ private slots:
 
     void on_comboBox_search_currentIndexChanged(int index);
 
-    void addHall();
+    void openAddHallDialogue();
 
     void updateSelectedSeats(QList<int> seats);
 
@@ -72,6 +72,8 @@ private slots:
     void enableBookButton();
 
     void on_pushButton_hallview_info_clear_clicked();
+
+    void keyPressEvent( QKeyEvent * event );
 
 private:
     Ui::MainWindow *ui;

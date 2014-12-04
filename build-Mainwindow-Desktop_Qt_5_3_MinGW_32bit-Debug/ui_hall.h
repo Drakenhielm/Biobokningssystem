@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hall.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -34,6 +34,7 @@ public:
     QSpinBox *spinBox_columns;
     QLabel *label_rows;
     QLabel *label_columns;
+    QLabel *label_number_of_seats;
     QLabel *label_hall_name;
     QLabel *label_sound_system;
     QLabel *label_screen_size;
@@ -111,6 +112,10 @@ public:
         label_columns->setObjectName(QStringLiteral("label_columns"));
         label_columns->setGeometry(QRect(370, 390, 71, 21));
         label_columns->setFont(font);
+        label_number_of_seats = new QLabel(frame_rows_columns);
+        label_number_of_seats->setObjectName(QStringLiteral("label_number_of_seats"));
+        label_number_of_seats->setGeometry(QRect(10, 390, 91, 21));
+        label_number_of_seats->setFont(font);
         label_hall_name = new QLabel(hall);
         label_hall_name->setObjectName(QStringLiteral("label_hall_name"));
         label_hall_name->setGeometry(QRect(550, 80, 46, 13));
@@ -154,6 +159,7 @@ public:
         AddButton->setText(QApplication::translate("hall", "Add", 0));
         label_rows->setText(QApplication::translate("hall", "Rows:", 0));
         label_columns->setText(QApplication::translate("hall", "Columns:", 0));
+        label_number_of_seats->setText(QApplication::translate("hall", "Seats:", 0));
         label_hall_name->setText(QApplication::translate("hall", "Name:", 0));
         label_sound_system->setText(QApplication::translate("hall", "Sound system:", 0));
         label_screen_size->setText(QApplication::translate("hall", "Screen size:", 0));

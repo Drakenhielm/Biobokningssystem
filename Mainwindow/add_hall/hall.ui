@@ -286,6 +286,24 @@
      <string>Columns:</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_number_of_seats">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Seats:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QLabel" name="label_hall_name">
    <property name="geometry">

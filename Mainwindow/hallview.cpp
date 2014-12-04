@@ -41,6 +41,19 @@ void HallView::setSeperateSeats(bool seperate)
     update();
 }
 
+int HallView::getTotalNumberOfSeats()
+{
+    int numberOfSeats = 0;
+
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column) {
+            if(seats[column][row].first != 3)
+                numberOfSeats++;
+         }
+    }
+    return numberOfSeats;
+}
+
 void HallView::comfirmSelectedSeats()
 {
     for (int row = 0; row < row_count; ++row) {
@@ -235,4 +248,5 @@ void HallView::paintEvent(QPaintEvent *event)
             }
         }
     }
+    emit selectedSeatsChanged(getSelectedSeats()); //ska bytas ut
 }

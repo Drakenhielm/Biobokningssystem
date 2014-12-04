@@ -63,11 +63,11 @@ void MainWindow::initConnections()
 {
     //add movie
     connect(ui->pushButton_movies_add, SIGNAL(clicked()),
-            this, SLOT(openAddMovieDialog()));
+            this, SLOT(openAddMovieDialogue()));
 
     connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
 
-    connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(addHall()));
+    connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(openAddHallDialogue()));
 
     connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(updateSelectedSeats(QList<int>)));
 
@@ -90,9 +90,28 @@ void MainWindow::on_actionQuit_triggered()
     close();
 }
 
+void MainWindow::keyPressEvent( QKeyEvent * event )
+{
+    if( event->key() == Qt::Key_H )
+    {
+        openAddHallDialogue();
+    }
+    else if( event->key() == Qt::Key_M )
+    {
+        openAddMovieDialogue();
+    }
+    else if(event->key() == Qt::Key_F)
+    {
+        ui->lineEdit_search->setFocus();
+    }
+}
+
 void MainWindow::enableBookButton()
 {
-    if(hallView->getSelectedSeats().size() > 0 && ui->lineEdit_phone->text().size() > 0)
+    bool isInt;
+    ui->lineEdit_phone->text().toInt(&isInt);
+
+    if(hallView->getSelectedSeats().size() > 0 && ui->lineEdit_phone->text().size() >= 5 && isInt == true)
         ui->pushButton_hallview_info_book->setEnabled(true);
     else
         ui->pushButton_hallview_info_book->setEnabled(false);
@@ -119,7 +138,7 @@ void MainWindow::updateSelectedSeats(QList<int> seats)
     ui->label_hallinfo_selectedSeats_display->setText(selectedSeats);
 }
 
-void MainWindow::addHall()
+void MainWindow::openAddHallDialogue()
 {
     hall hallPopup;
     hallPopup.setModal(true);
@@ -131,7 +150,7 @@ void MainWindow::on_pushButton_info_edit_clicked()
 
 }
 
-void MainWindow::openAddMovieDialog()
+void MainWindow::openAddMovieDialogue()
 {
     //declare the popup window
     popup popuper;
@@ -153,7 +172,7 @@ void MainWindow::addMovie(QString title, int playtime, int age, QString desc, QS
 }
 
 
-void MainWindow::openEditMovieDialog(const QModelIndex &index)
+void MainWindow::openEditMovieDialogue(const QModelIndex &index)
 {
 
 }

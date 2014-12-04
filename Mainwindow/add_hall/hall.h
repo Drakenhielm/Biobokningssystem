@@ -18,7 +18,7 @@ public:
 
 
 private slots:
-
+    void setLabelNumberOfSeats();
 
 private:
     Ui::hall *ui;

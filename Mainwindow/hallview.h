@@ -28,6 +28,7 @@ public slots:
     void setMode(bool);
     void comfirmSelectedSeats();
     void setSeperateSeats(bool seperate);
+    int getTotalNumberOfSeats();
 signals:
     void selectedSeatsChanged(QList<int>);
 
