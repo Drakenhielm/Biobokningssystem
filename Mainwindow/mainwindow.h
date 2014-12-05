@@ -11,6 +11,7 @@
 #include "hallview.h"
 #include <QKeyEvent>
 #include <QDebug>
+#include <QMessageBox>
 
 
 namespace Ui {
@@ -33,7 +34,7 @@ private slots:
     void openAddMovieDialogue();
     void addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
 
-    //delete movei
+    //delete movie
     void on_pushButton_movies_delete_clicked();
 
     //edit movie
@@ -44,11 +45,6 @@ private slots:
 
     void on_pushButton_info_edit_clicked();
 
-
-    void on_listView_movies_clicked(const QModelIndex &index);
-
-    void on_listView_movies_activated(const QModelIndex &index);
-
     void on_pushButton_show_add_clicked();
 
     void on_pushButton_show_delete_clicked();
@@ -56,8 +52,6 @@ private slots:
     void on_pushButton_search_clicked();
 
     void setHTML();
-
-    int getSelected(QItemSelectionModel *selectionModel);
 
     void on_pushButton_hallview_info_book_clicked();
 
@@ -87,6 +81,8 @@ private:
 
     void initConnections();
     void filterBookings();
+    int getSelected(const QItemSelection &selection);
+    int getSelected(QItemSelectionModel *selectionModel);
 
 };
 

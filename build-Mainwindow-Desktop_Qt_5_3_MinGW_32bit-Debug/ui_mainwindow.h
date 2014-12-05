@@ -103,6 +103,7 @@ public:
     QLabel *label_hallinfo_selectedSeats_display;
     QLabel *label_phone;
     QLineEdit *lineEdit_phone;
+    QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_9;
     QPushButton *pushButton_hallview_info_clear;
@@ -408,6 +409,9 @@ public:
         font1.setBold(true);
         font1.setWeight(75);
         label_hallinfo_title->setFont(font1);
+        label_hallinfo_title->setFrameShape(QFrame::NoFrame);
+        label_hallinfo_title->setLineWidth(1);
+        label_hallinfo_title->setMidLineWidth(0);
 
         verticalLayout_7->addWidget(label_hallinfo_title);
 
@@ -482,6 +486,10 @@ public:
 
         verticalLayout_4->addWidget(lineEdit_phone);
 
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_2);
+
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
@@ -532,6 +540,7 @@ public:
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         label_bookings = new QLabel(widget_6);
         label_bookings->setObjectName(QStringLiteral("label_bookings"));
 
@@ -670,8 +679,8 @@ public:
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt;\"><br /></p></body></html>", 0));
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
-        label_hallinfo_title->setText(QApplication::translate("MainWindow", "Hall info", 0));
-        label_hallinfo->setText(QApplication::translate("MainWindow", "xxx platser, Dolby Digital, 3D", 0));
+        label_hallinfo_title->setText(QString());
+        label_hallinfo->setText(QString());
         groupBox->setTitle(QApplication::translate("MainWindow", "Book", 0));
         label_num_of_seats->setText(QApplication::translate("MainWindow", "Number of seats:", 0));
         comboBox_numberOfSeats->clear();

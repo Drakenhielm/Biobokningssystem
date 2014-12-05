@@ -2,6 +2,7 @@
 #define MOVIEMODEL_H
 
 #include "basemodel.h"
+#include "imagehandler.h"
 
 #include <QDebug>
 #include <QSqlError>
@@ -23,6 +24,8 @@ public:
 
     MovieModel(QObject *parent = 0);
 
+    virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
+
     int insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                      const QString & genre, int year, const QString &imagePath);
     bool editMovie(int row, const QString & title, int playTime, int ageLimit, const QString & description,
@@ -36,6 +39,9 @@ public:
     QString getGenre(int row) const { return data(index(row, Genre)).toString(); }
     int getYear(int row) const { return data(index(row, Year)).toInt(); }
     QString getMoviePoster(int row) const { return data(index(row, MoviePoster)).toString(); }
+
+private:
+    ImageHandler imgHandler;
 };
 
 #endif // MOVIEMODEL_H

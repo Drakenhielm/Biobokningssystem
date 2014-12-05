@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     showModel = new ShowModel(this);
     showModel->setFilter("MovieID = -1");
     showModel->setHeaderData(ShowModel::ThreeD, Qt::Horizontal, "3D");
+    showModel->setHeaderData(ShowModel::Hall, Qt::Horizontal, "Hall");
     showModel->setHeaderData(ShowModel::AvailableSeats, Qt::Horizontal, "Available seats");
     ui->tableView_show->setModel(showModel);
     ui->tableView_show->hideColumn(ShowModel::ShowID);
@@ -41,8 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_hallview_info_book->setEnabled(false);
 
     hallView = new HallView(this);
-    hallView->setRows(10);
-    hallView->setColumns(8);
     QHBoxLayout *lineLayout = new QHBoxLayout;
     lineLayout->addWidget(hallView);
     ui->frame_3->setLayout(lineLayout);
@@ -50,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->frame_3->setFrameShadow(QFrame::Plain);
 
     seatModel = new SeatModel(this);
+    hallModel = new HallModel(this);
 
     initConnections();
 }
@@ -198,25 +198,8 @@ void MainWindow::on_pushButton_movies_delete_clicked()
     }
 }
 
-
-void MainWindow::on_listView_movies_clicked(const QModelIndex &index)
-{
-
-    //if(ui->comboBox_search->currentText("Selected show"))
-        //bookingModel->setFilter("ShowID = ?", showModel);
-}
-
-
-
-void MainWindow::on_listView_movies_activated(const QModelIndex &index)
-{
-    qDebug() << "activated used";
-    setHTML();
-}
-
 void MainWindow::setHTML()
 {
-
     int selIndex = getSelected(ui->listView_movies->selectionModel());
 
     if(selIndex==(-1))
@@ -226,49 +209,50 @@ void MainWindow::setHTML()
 
     else
     {
-    ui->textBrowser_info->setHtml
-    (
+        QString img;
+        if(!movieModel->getMoviePoster(selIndex).isEmpty()
+                && ui->textBrowser_info->width() > 300)
+        {
+            img = "<img src='" + movieModel->getMoviePoster(selIndex) + "' width='150'/>";
+        }
 
-        "<html><head><meta name='qrichtext' content='1' /><style type='text/css'>"
-        "p, li { white-space: pre-wrap; }"
-        "</style></head><body style=' font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;'>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'> <b><span style=' font-size:18pt; text-decoration: underline;'>"
-        + movieModel->getTitle(selIndex) +
-        "</span></b> </p>"
-        "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
-        + QString::number(movieModel->getPlayTime(selIndex)) +
-        " min. "
-        + movieModel->getGenre(selIndex) +
-        "."
-        "</p>"
-
+        ui->textBrowser_info->setHtml
+        (
+            "<html><head><meta name='qrichtext' content='1' /><style type='text/css'>"
+            "p, li { white-space: pre-wrap; }"
+            "</style></head><body style=' font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;'>"
+            "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'> <b><span style=' font-size:18pt; text-decoration: underline;'>"
+            + movieModel->getTitle(selIndex) +
+            "</span></b> </p>"
+            "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
+            + QString::number(movieModel->getPlayTime(selIndex)) +
+            " min. "
+            + movieModel->getGenre(selIndex) +
+            "."
+            "</p>"
                 "<table width='100%' cellpadding='0' cellspacing='10' border='0'>"
                     "<tr>"
                         "<td width='50%' valign='top'>"
                             "<p style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
-                            + movieModel->getDescription(selIndex) +
+                                + movieModel->getDescription(selIndex) +
                             "</p>"
                         "</td>"
                         "<td width='50%' valign='top'>"
-                            "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':"
-                             + movieModel->getMoviePoster(selIndex) +
-                             "' height='180' /></p>"
+                            "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>"
+                                +img+
+                            "</p>"
                         "</td>"
                     "</tr>"
                 "</table>"
-
-
-      "</body></html>"
-    );
-
+            "</body></html>"
+        );
     }
-
 }
 
 
 void MainWindow::on_pushButton_show_add_clicked()
 {
-    showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 1, 1);
+    showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 1, 2);
     showModel->refresh();
 }
 
@@ -291,9 +275,29 @@ void MainWindow::on_pushButton_search_clicked()
 int MainWindow::getSelected(QItemSelectionModel *selectionModel)
 {
     if(selectionModel->selectedIndexes().empty())
+    {
         return (-1);
+    }
     else
+    {
         return selectionModel->selectedIndexes().first().row();
+    }
+}
+
+int MainWindow::getSelected(const QItemSelection &selection)
+{
+    if(selection.empty())
+    {
+        return (-1);
+    }
+    else if(selection.first().indexes().empty())
+    {
+        return (-1);
+    }
+    else
+    {
+        return selection.first().indexes().first().row();
+    }
 }
 
 void MainWindow::on_pushButton_hallview_info_book_clicked()
@@ -305,7 +309,7 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     {
         seatIDs[i] = seatModel->getSeatID(seatIDs.at(i));
     }
-    if(showID > 0 && !phone.isEmpty())// && !seatIDs.isEmpty()) //check if valid booking
+    if(showID > 0 && !phone.isEmpty() && !seatIDs.isEmpty()) //check if valid booking
     {
         bookingModel->insertBookings(showID, seatIDs, phone);
         bookingModel->refresh();
@@ -314,7 +318,13 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
 
         ui->lineEdit_phone->QLineEdit::clear();
     }
-    qDebug() << phone << showID << seatIDs;
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Error: could not perform booking.");
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.exec();
+    }
 }
 
 //NEW FUNCTIONS BELOW
@@ -322,7 +332,6 @@ void MainWindow::filterBookings()
 {
     QString showFilter;
     QString phone = ui->lineEdit_search->text();
-    qDebug() << ui->comboBox_search->currentIndex();
     if(ui->comboBox_search->currentIndex() == 1) //within selected show
     {
         int row = getSelected(ui->tableView_show->selectionModel());
@@ -355,21 +364,49 @@ void MainWindow::on_comboBox_search_currentIndexChanged(int index)
 void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     setHTML();
+    int selIndex = getSelected(selected);
 
-    if(selected.empty())
+    if(selIndex == -1)
     {
         showModel->clearFilter();
     }
     else
     {
-        int row = selected.first().indexes().first().row();
-        showModel->setFilter("MovieID = ?", movieModel->getMovieID(row));
+        showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
     }
+    showSelectionChanged(QItemSelection(), QItemSelection());
 }
 
 void MainWindow::showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
+    int selIndex = getSelected(selected);
+
+    //update bookings table
     filterBookings();
+
+    //set seatModel to selected show
+    seatModel->setHall(showModel->getHallID(selIndex));
+    seatModel->setShow(showModel->getShowID(selIndex));
+
+    //set hall info labels
+    if(selIndex == -1)
+    {
+        ui->label_hallinfo_title->setText("");
+        ui->label_hallinfo->setText("");
+    }
+    else
+    {
+        ui->label_hallinfo_title->setText(showModel->getHall(selIndex));
+        int hallIndex = hallModel->getRowByPrimaryKeyValue(showModel->getHallID(selIndex));
+        int numOfSeats = hallModel->getSeats(hallIndex);
+        QString soundSystem = hallModel->getSoundSystem(hallIndex);
+        QString screenSize = hallModel->getScreenSize(hallIndex);
+        ui->label_hallinfo->setText(
+            QString::number(numOfSeats) + " seats"+", "
+            +soundSystem+", "
+            +screenSize+"m"
+        );
+    }
 }
 
 void MainWindow::on_pushButton_hallview_info_clear_clicked()

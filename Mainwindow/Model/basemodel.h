@@ -26,6 +26,7 @@ public:
     void setFilter(const QString &filter, QVariant placeholder);
     void setFilter(const QString &filter, const QList<QVariant> &placeholderList  = QList<QVariant>());
     void clearFilter();
+    int getRowByPrimaryKeyValue(const QVariant &pkValue) const;
 
 protected:
     //variables
