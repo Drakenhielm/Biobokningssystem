@@ -92,9 +92,6 @@ void popup::on_AddButton_clicked()
 //open file explorer
 void popup::on_ExploreButton_clicked()
 {
-    //debugging
-   ui->DescritionEdit->setText("Clicked on explore");
-
    //get the path to the file selected, tr("Image Files...") adds filters to file endings
    QString fileName = QFileDialog::getOpenFileName(this,
         tr("Open Image"), "/home/rasfa749", tr("Image Files (*.png *.jpg *.bmp)"));
