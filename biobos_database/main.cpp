@@ -7,7 +7,9 @@
 #include <QStringList>
 #include <QPair>
 
-#include <databasehandler.h>
+#include "databasehandler.h"
+#include "sqlhandler.h"
+#include "imagehandler.h"
 
 void printTableTest();
 bool hallTableOk();
@@ -43,7 +45,7 @@ int main(int argc, char *argv[])
     printTableTest();
     std::cout << std::endl;
 
-    std::cout << "4. Print table list";
+    std::cout << "4. Print table list" << std::endl;
     printTableList();
     std::cout << std::endl;
 
@@ -170,21 +172,21 @@ void printTableList()
 
 int insertBooking(DatabaseHandler &dh, int showID, const QString &phone)
 {
-    QList<QPair<QString, QVariant> > list;
-    list.append(qMakePair(QString("ShowID"), showID));
-    list.append(qMakePair(QString("Phone"), phone));
-    return dh.insert("booking", list);
+    QMap<QString, QVariant> values;
+    values.insert(QString("ShowID"), showID);
+    values.insert(QString("Phone"), phone);
+    return dh.insert("booking", values);
 }
 
 bool editBooking(DatabaseHandler &dh, int bookingID, int showID, const QString & phone)
 {
-    QList<QPair<QString, QVariant> > list;
-    list.append(qMakePair(QString("ShowID"), showID));
-    list.append(qMakePair(QString("Phone"), phone));
-    return dh.edit("booking", list, "BookingID", bookingID);
+    QMap<QString, QVariant> values;
+    values.insert(QString("ShowID"), showID);
+    values.insert(QString("Phone"), phone);
+    return dh.edit("booking", values, "BookingID = ?", bookingID);
 }
 
 bool removeBooking(DatabaseHandler &dh, int bookingID)
 {
-    return dh.remove("booking", "BookingID", bookingID);
+    return dh.remove("booking", "BookingID = ?", bookingID);
 }

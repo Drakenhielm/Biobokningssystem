@@ -16,7 +16,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    databasehandler.cpp
+    databasehandler.cpp \
+    imagehandler.cpp \
+    sqlhandler.cpp
 
 HEADERS += \
-    databasehandler.h
+    databasehandler.h \
+    imagehandler.h \
+    sqlhandler.h
