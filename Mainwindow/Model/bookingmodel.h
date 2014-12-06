@@ -22,6 +22,7 @@ public:
 
     int insertBookings(int ShowID, const QList<int> &seatIDs, const QString &phone);
     bool editBookings(int bookingID, int showID, const QList<int> &seatIDs, const QString &phone);
+
     virtual bool remove(const QVariant &pkValue);
 
     int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }

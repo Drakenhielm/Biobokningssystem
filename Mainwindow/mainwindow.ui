@@ -107,8 +107,20 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_movies_delete">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Delete</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -226,8 +238,20 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_show_delete">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Delete</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -315,8 +339,20 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_info_edit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Edit</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -883,15 +919,39 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_bookings_delete">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Delete</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_bookings_edit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Edit</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -936,14 +996,16 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionAdd_show"/>
     <addaction name="actionAdd_hall"/>
     <addaction name="separator"/>
+    <addaction name="actionHall_List"/>
+    <addaction name="separator"/>
     <addaction name="actionBook"/>
     <addaction name="actionDelete_booking"/>
     <addaction name="separator"/>
     <addaction name="actionDelete_movie"/>
     <addaction name="actionDelete_show"/>
-    <addaction name="actionDelete_hall"/>
     <addaction name="separator"/>
-    <addaction name="actionEdit_text"/>
+    <addaction name="actionEdit_Movie"/>
+    <addaction name="actionEdit_Show"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
     <addaction name="separator"/>
@@ -961,27 +1023,33 @@ p, li { white-space: pre-wrap; }
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_movie">
    <property name="text">
-    <string>Add movie</string>
+    <string>Add Movie</string>
    </property>
   </action>
   <action name="actionAdd_show">
    <property name="text">
-    <string>Add show</string>
+    <string>Add Show</string>
    </property>
   </action>
   <action name="actionAdd_hall">
    <property name="text">
-    <string>Add hall</string>
+    <string>Add Hall</string>
    </property>
   </action>
   <action name="actionDelete_movie">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Delete movie</string>
+    <string>Delete Movie</string>
    </property>
   </action>
   <action name="actionDelete_show">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Delete show</string>
+    <string>Delete Show</string>
    </property>
   </action>
   <action name="actionDelete_hall">
@@ -995,21 +1063,40 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionDelete_booking">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Delete booking</string>
+    <string>Delete Booking</string>
    </property>
   </action>
-  <action name="actionEdit_text">
+  <action name="actionEdit_Movie">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Edit text</string>
+    <string>Edit Movie</string>
    </property>
   </action>
   <action name="actionQuit">
    <property name="text">
-    <string>Qui</string>
+    <string>Quit</string>
    </property>
    <property name="toolTip">
     <string>Qui</string>
+   </property>
+  </action>
+  <action name="actionHall_List">
+   <property name="text">
+    <string>Hall List</string>
+   </property>
+  </action>
+  <action name="actionEdit_Show">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Edit Show</string>
    </property>
   </action>
  </widget>

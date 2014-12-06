@@ -48,6 +48,15 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
     values.append(qMakePair(QString("Description"), description));
     values.append(qMakePair(QString("Genre"), genre));
     values.append(qMakePair(QString("Year"), year));
-    values.append(qMakePair(QString("MoviePoster"), imagePath));
+    //values.append(qMakePair(QString("MoviePoster"), imagePath));
     return dh.edit("movie", values, "MovieID", movieID);
+}
+
+bool MovieModel::remove(const QVariant &pkValue)
+{
+    bool ok = true;
+    dh.transaction();
+    ok &= dh.remove("movie", primaryKey, pkValue);
+    ok &= dh.remove("show", primaryKey, pkValue);
+    return ok && dh.endTransaction(ok);
 }

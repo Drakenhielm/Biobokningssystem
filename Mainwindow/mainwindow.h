@@ -9,6 +9,9 @@
 #include "Model/bookingmodel.h"
 #include <QItemSelection>
 #include "hallview.h"
+#include "add_hall/hall.h"
+#include "add_movie/popup.h"
+#include "add_show/addshowdialog.h"
 #include <QKeyEvent>
 #include <QDebug>
 #include <QMessageBox>
@@ -27,36 +30,40 @@ public:
     ~MainWindow();
 
 private slots:
+    //SelectionChanged slots for TableViews and ListViews
     void movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+    void bookingSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 
-    //add movie
+    //Add Movie
     void openAddMovieDialogue();
     void addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
+    //Delete Movie
+    void deleteMovie();
+    //Edit Movie
+    void openEditMovieDialogue();
+    void editMovie(int movieID, QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
 
-    //delete movie
-    void on_pushButton_movies_delete_clicked();
+    //Add Show
+    void openAddShowDialog();
+    void addShow();
+    //Delete Show
+    void deleteShow();
+    //Edit Show
+    //void openEditShowDialogue();
+    //void editShow();
 
-    //edit movie
-    void openEditMovieDialogue(const QModelIndex &index);
-    void editMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
-
-    void on_actionQuit_triggered();
-
-    void on_pushButton_info_edit_clicked();
-
-    void on_pushButton_show_add_clicked();
-
-    void on_pushButton_show_delete_clicked();
-
-    void on_pushButton_search_clicked();
-
-    void setHTML();
-
+    //Add Booking
     void on_pushButton_hallview_info_book_clicked();
 
+    //Delete Booking
+    void deleteBooking();
+
+    //Search Booking
+    void on_pushButton_search_clicked();
     void on_comboBox_search_currentIndexChanged(int index);
 
+    //Add Hall
     void openAddHallDialogue();
 
     void updateSelectedSeats(QList<int> seats);
@@ -69,6 +76,9 @@ private slots:
 
     void keyPressEvent( QKeyEvent * event );
 
+    //Quit
+    void on_actionQuit_triggered();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;
@@ -80,7 +90,11 @@ private:
     BookingModel * bookingModel;
 
     void initConnections();
+    void initModels();
+    void initViews();
+
     void filterBookings();
+    void setHTML();
     int getSelected(const QItemSelection &selection);
     int getSelected(QItemSelectionModel *selectionModel);
 

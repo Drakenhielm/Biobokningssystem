@@ -7,6 +7,25 @@ popup::popup(QWidget *parent) :
     ui(new Ui::popup)
 {
     ui->setupUi(this);
+    role = Add;
+}
+
+popup::popup(int movieID, QString title, int playtime, int age, QString desc, QString genre,
+                   int year, QString movieposter, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::popup)
+{
+    ui->setupUi(this);
+    role = Edit;
+
+    this->movieID = movieID;
+    ui->TitleBox->setText(title);
+    ui->PlaytimeSpinBox->setValue(playtime);
+    ui->AgeSpinBox->setValue(age);
+    ui->DescritionEdit->setText(desc);
+    ui->CurrGenreLabel->setText(genre); //behöver fixas så att de tas bort from ccbgenre
+    ui->YearSpinBox->setValue(year);
+    ui->PictureEdit->setText(movieposter);
 }
 
 popup::~popup()
@@ -83,8 +102,11 @@ void popup::on_AddButton_clicked()
     year = ui->YearSpinBox->value();
     movieposter = ui->PictureEdit->text();
 
-    //emit the signal
-    emit add_Movie(title, playtime, age, desc, genre, year, movieposter);
+    //emit the signal depending on the role
+    if(role == Add)
+        emit add_Movie(title, playtime, age, desc, genre, year, movieposter);
+    if(role == Edit)
+        emit edit_Movie(movieID, title, playtime, age, desc, genre, year, movieposter);
 
     close();
 }

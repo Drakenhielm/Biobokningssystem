@@ -12,45 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    movieModel = new MovieModel(this);
-    ui->listView_movies->setModel(movieModel);
-    ui->listView_movies->setModelColumn(MovieModel::Title);
-
-    showModel = new ShowModel(this);
-    showModel->setFilter("MovieID = -1");
-    showModel->setHeaderData(ShowModel::ThreeD, Qt::Horizontal, "3D");
-    showModel->setHeaderData(ShowModel::Hall, Qt::Horizontal, "Hall");
-    showModel->setHeaderData(ShowModel::AvailableSeats, Qt::Horizontal, "Available seats");
-    ui->tableView_show->setModel(showModel);
-    ui->tableView_show->hideColumn(ShowModel::ShowID);
-    ui->tableView_show->hideColumn(ShowModel::MovieID);
-    ui->tableView_show->hideColumn(ShowModel::HallID);
-    ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
-
-    ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
-    ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
-
-    bookingModel = new BookingModel(this);
-    //bookingModel->setFilter("Phone = '070'");
-    ui->tableView_search->setModel(bookingModel);
-    ui->tableView_search->hideColumn(BookingModel::ShowID);
-    ui->tableView_search->hideColumn(BookingModel::MovieID);
-    ui->tableView_search->hideColumn(BookingModel::BookingID);
-    ui->tableView_search->hideColumn(BookingModel::SeatIDs);
-    ui->tableView_search->horizontalHeader()->setStretchLastSection(true);
-
-    ui->pushButton_hallview_info_book->setEnabled(false);
-
-    hallView = new HallView(this);
-    QHBoxLayout *lineLayout = new QHBoxLayout;
-    lineLayout->addWidget(hallView);
-    ui->frame_3->setLayout(lineLayout);
-    ui->frame_3->setFrameStyle(1);
-    ui->frame_3->setFrameShadow(QFrame::Plain);
-
-    seatModel = new SeatModel(this);
-    hallModel = new HallModel(this);
-
+    initModels();
+    initViews();
     initConnections();
 }
 
@@ -59,30 +22,114 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::initModels()
+{
+    //MovieModel
+    movieModel = new MovieModel(this);
+
+    //ShowModel
+    showModel = new ShowModel(this);
+    showModel->setFilter("MovieID = -1");
+    showModel->setHeaderData(ShowModel::ThreeD, Qt::Horizontal, "3D");
+    showModel->setHeaderData(ShowModel::Hall, Qt::Horizontal, "Hall");
+    showModel->setHeaderData(ShowModel::AvailableSeats, Qt::Horizontal, "Available seats");
+
+    //BookingModel
+    bookingModel = new BookingModel(this);
+
+    //HallModel
+    hallModel = new HallModel(this);
+
+    //SeatModel
+    seatModel = new SeatModel(this);
+}
+
+void MainWindow::initViews()
+{
+    //Movies
+    ui->listView_movies->setModel(movieModel);
+    ui->listView_movies->setModelColumn(MovieModel::Title);
+
+    //Shows
+    ui->tableView_show->setModel(showModel);
+    ui->tableView_show->hideColumn(ShowModel::ShowID);
+    ui->tableView_show->hideColumn(ShowModel::MovieID);
+    ui->tableView_show->hideColumn(ShowModel::HallID);
+    ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
+    ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
+
+    //Bookings
+    ui->tableView_search->setModel(bookingModel);
+    ui->tableView_search->hideColumn(BookingModel::ShowID);
+    ui->tableView_search->hideColumn(BookingModel::MovieID);
+    ui->tableView_search->hideColumn(BookingModel::BookingID);
+    ui->tableView_search->hideColumn(BookingModel::SeatIDs);
+    ui->tableView_search->horizontalHeader()->setStretchLastSection(true);
+
+    //New Booking
+    ui->pushButton_hallview_info_book->setEnabled(false);
+
+    //HallView
+    hallView = new HallView(this);
+    QHBoxLayout *lineLayout = new QHBoxLayout;
+    lineLayout->addWidget(hallView);
+    ui->frame_3->setLayout(lineLayout);
+    ui->frame_3->setFrameStyle(1);
+    ui->frame_3->setFrameShadow(QFrame::Plain);
+}
+
 void MainWindow::initConnections()
 {
-    //add movie
-    connect(ui->pushButton_movies_add, SIGNAL(clicked()),
-            this, SLOT(openAddMovieDialogue()));
+    //Add Movie
+    connect(ui->pushButton_movies_add, SIGNAL(clicked()), this, SLOT(openAddMovieDialogue()));
+    connect(ui->actionAdd_movie, SIGNAL(triggered()), this, SLOT(openAddMovieDialogue()));
 
-    connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
+    //Delete Movie
+    connect(ui->pushButton_movies_delete, SIGNAL(clicked()), this, SLOT(deleteMovie()));
+    connect(ui->actionDelete_movie, SIGNAL(triggered()), this, SLOT(deleteMovie()));
 
+    //Edit Movie
+    connect(ui->pushButton_info_edit, SIGNAL(clicked()), this, SLOT(openEditMovieDialogue()));
+    connect(ui->actionEdit_Movie, SIGNAL(triggered()), this, SLOT(openEditMovieDialogue()));
+
+    //Add Show
+    connect(ui->pushButton_show_add, SIGNAL(clicked()), this, SLOT(openAddShowDialog()));
+    connect(ui->actionAdd_show, SIGNAL(triggered()), this, SLOT(openAddShowDialog()));
+
+    //Delete Show
+    connect(ui->pushButton_show_delete, SIGNAL(clicked()), this, SLOT(deleteShow()));
+    connect(ui->actionDelete_show, SIGNAL(triggered()), this, SLOT(deleteShow()));
+
+    //Edit Show
+
+    //Add Booking
+
+    //Delete Booking
+
+    //Edit Booking
+
+    //Add Hall
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(openAddHallDialogue()));
 
-    connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(updateSelectedSeats(QList<int>)));
-
+    //Booking Form
     connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), hallView, SLOT(setSeperateSeats(bool)));
     connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), this, SLOT(setComboBox(bool)));
-
+    connect(ui->comboBox_numberOfSeats, SIGNAL(currentIndexChanged(int)), hallView, SLOT(setNumberOfSelected(int)));
     connect(ui->lineEdit_phone, SIGNAL(textChanged(QString)), this, SLOT(enableBookButton()));
+    connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(updateSelectedSeats(QList<int>)));
 
-    //connect movie list from selectionChanged
+    //movieSelectionChanged
     connect(ui->listView_movies->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(movieSelectionChanged(QItemSelection,QItemSelection)));
 
-    //connect show table from selectionChanged
+    //showSelectionChanged
     connect(ui->tableView_show->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(showSelectionChanged(QItemSelection,QItemSelection)));
+
+    //bookingSelectionChanged
+    connect(ui->tableView_search->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+            this, SLOT(bookingSelectionChanged(QItemSelection,QItemSelection)));
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -145,11 +192,6 @@ void MainWindow::openAddHallDialogue()
     hallPopup.exec();
 }
 
-void MainWindow::on_pushButton_info_edit_clicked()
-{
-
-}
-
 void MainWindow::openAddMovieDialogue()
 {
     //declare the popup window
@@ -172,23 +214,43 @@ void MainWindow::addMovie(QString title, int playtime, int age, QString desc, QS
 }
 
 
-void MainWindow::openEditMovieDialogue(const QModelIndex &index)
+void MainWindow::openEditMovieDialogue()
 {
+    //movieModel->editMovie(1, "title", 1, 1, "desc", "genre", 200, "");
+    int selIndex = getSelected(ui->listView_movies->selectionModel());
+    if(selIndex != -1)
+    {
+        //declare the popup window
+        popup popuper(movieModel->getMovieID(selIndex), movieModel->getTitle(selIndex),
+                      movieModel->getPlayTime(selIndex), movieModel->getAgeLimit(selIndex),
+                      movieModel->getDescription(selIndex), movieModel->getGenre(selIndex),
+                      movieModel->getYear(selIndex), movieModel->getMoviePoster(selIndex));
 
+        //connect it with the add_Movie signal from the popup
+        QObject::connect(&popuper, SIGNAL(edit_Movie(int, QString, int, int, QString, QString, int, QString)),
+                         this, SLOT(editMovie(int, QString, int, int, QString, QString, int, QString)));
+
+        //donno wat dis is
+        popuper.setModal(true);
+
+        //launch the popup
+        popuper.exec();
+    }
 }
 
-void MainWindow::editMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter)
+void MainWindow::editMovie(int movieID, QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter)
 {
-    Q_UNUSED(title);
-    Q_UNUSED(playtime);
-    Q_UNUSED(age);
-    Q_UNUSED(desc);
-    Q_UNUSED(genre);
-    Q_UNUSED(year);
-    Q_UNUSED(movieposter);
+    int selIndex = getSelected(ui->listView_movies->selectionModel());
+    movieModel->editMovie(movieID, title, playtime, age, desc, genre, year, movieposter);
+    movieModel->refresh();
+    if(selIndex != -1)
+    {
+        QModelIndex index = movieModel->index(selIndex, 0);
+        ui->listView_movies->setCurrentIndex(index);
+    }
 }
 
-void MainWindow::on_pushButton_movies_delete_clicked()
+void MainWindow::deleteMovie()
 {
     if(getSelected(ui->listView_movies->selectionModel())!=(-1))
     {
@@ -250,13 +312,22 @@ void MainWindow::setHTML()
 }
 
 
-void MainWindow::on_pushButton_show_add_clicked()
+void MainWindow::openAddShowDialog()
+{
+    addShowDialog showDialog(movieModel, hallModel);
+    showDialog.exec();
+    showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 10, 2);
+    showModel->refresh();
+}
+
+
+void MainWindow::addShow()
 {
     showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 1, 2);
     showModel->refresh();
 }
 
-void MainWindow::on_pushButton_show_delete_clicked()
+void MainWindow::deleteShow()
 {
     int select = getSelected(ui->tableView_show->selectionModel());
 
@@ -354,6 +425,7 @@ void MainWindow::filterBookings()
     {
         bookingModel->clearFilter();
     }
+    bookingSelectionChanged(QItemSelection(),QItemSelection());
 }
 
 void MainWindow::on_comboBox_search_currentIndexChanged(int index)
@@ -363,15 +435,25 @@ void MainWindow::on_comboBox_search_currentIndexChanged(int index)
 
 void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
+    Q_UNUSED(deselected)
     setHTML();
     int selIndex = getSelected(selected);
 
     if(selIndex == -1)
     {
         showModel->clearFilter();
+        //disable delete and edit buttons
+        ui->pushButton_movies_delete->setDisabled(true);
+        ui->pushButton_info_edit->setDisabled(true);
+        ui->actionDelete_movie->setDisabled(true);
     }
     else
     {
+        //enable delete and edit buttons
+        ui->pushButton_movies_delete->setEnabled(true);
+        ui->pushButton_info_edit->setEnabled(true);
+        ui->actionDelete_movie->setEnabled(true);
+
         showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
     }
     showSelectionChanged(QItemSelection(), QItemSelection());
@@ -379,6 +461,7 @@ void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QIt
 
 void MainWindow::showSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
+    Q_UNUSED(deselected)
     int selIndex = getSelected(selected);
 
     //update bookings table
@@ -413,4 +496,38 @@ void MainWindow::on_pushButton_hallview_info_clear_clicked()
 {
     hallView->clearSelectedSeats();
     ui->lineEdit_phone->QLineEdit::clear();
+}
+
+void MainWindow::deleteBooking()
+{
+    int selIndex = getSelected(ui->tableView_search->selectionModel());
+
+    if(selIndex != -1)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Are you sure?");
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        if(msgBox.exec() == QMessageBox::Ok)
+        {
+            bookingModel->removeRow(selIndex);
+            bookingModel->refresh();
+        }
+    }
+}
+
+void MainWindow::bookingSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    Q_UNUSED(deselected)
+    int selIndex = getSelected(selected);
+
+    if(selIndex == -1)
+    {
+        ui->pushButton_bookings_delete->setDisabled(true);
+        ui->pushButton_bookings_edit->setDisabled(true);
+    }
+    else
+    {
+        ui->pushButton_bookings_delete->setEnabled(true);
+        ui->pushButton_bookings_edit->setEnabled(true);
+    }
 }

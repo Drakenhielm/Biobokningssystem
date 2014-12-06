@@ -30,16 +30,16 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_8">
     <item>
-     <widget class="QPushButton" name="AddButton">
+     <widget class="QPushButton" name="CancelButton">
       <property name="text">
-       <string>Add</string>
+       <string>Cancel</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="CancelButton">
+     <widget class="QPushButton" name="AddButton">
       <property name="text">
-       <string>Cancel</string>
+       <string>Submit</string>
       </property>
      </widget>
     </item>

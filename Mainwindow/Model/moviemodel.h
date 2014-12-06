@@ -31,6 +31,8 @@ public:
     bool editMovie(int row, const QString & title, int playTime, int ageLimit, const QString & description,
                      const QString & genre, int year, const QString &imagePath);
 
+    virtual bool remove(const QVariant &pkValue);
+
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
     QString getTitle(int row) const { return data(index(row, Title)).toString(); }
     int getPlayTime(int row) const { return data(index(row, PlayTime)).toInt(); }

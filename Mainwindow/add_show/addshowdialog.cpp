@@ -1,18 +1,18 @@
 #include "addshowdialog.h"
 #include "ui_addshowdialog.h"
 
-addShowDialog::addShowDialog(QWidget *parent) :
+addShowDialog::addShowDialog(MovieModel *movieModel, HallModel *hallModel, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addShowDialog)
 {
     ui->setupUi(this);
-
     /*
      * Get the movies/halls and insert them into the movieCBB and hallCBB here
-     *
-     *
      */
-
+    ui->movieCBB->setModel(movieModel);
+    ui->movieCBB->setModelColumn(1);
+    ui->hallCBB->setModel(hallModel);
+    ui->hallCBB->setModelColumn(1);
 }
 
 addShowDialog::~addShowDialog()

@@ -2,6 +2,8 @@
 #define ADDSHOWDIALOG_H
 
 #include <QDialog>
+#include "../Model/moviemodel.h"
+#include "../Model/hallmodel.h"
 
 namespace Ui {
 class addShowDialog;
@@ -12,7 +14,7 @@ class addShowDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit addShowDialog(QWidget *parent = 0);
+    explicit addShowDialog(MovieModel *movieModel, HallModel *hallModel, QWidget *parent = 0);
     ~addShowDialog();
 
 private slots:
@@ -25,6 +27,8 @@ signals:
 
 private:
     Ui::addShowDialog *ui;
+    MovieModel *movieModel;
+    HallModel *hallModel;
 };
 
 #endif // ADDSHOWDIALOG_H

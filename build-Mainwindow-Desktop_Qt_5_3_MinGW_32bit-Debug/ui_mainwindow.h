@@ -48,8 +48,10 @@ public:
     QAction *actionDelete_hall;
     QAction *actionBook;
     QAction *actionDelete_booking;
-    QAction *actionEdit_text;
+    QAction *actionEdit_Movie;
     QAction *actionQuit;
+    QAction *actionHall_List;
+    QAction *actionEdit_Show;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QWidget *widget;
@@ -144,18 +146,27 @@ public:
         actionAdd_hall->setObjectName(QStringLiteral("actionAdd_hall"));
         actionDelete_movie = new QAction(MainWindow);
         actionDelete_movie->setObjectName(QStringLiteral("actionDelete_movie"));
+        actionDelete_movie->setEnabled(false);
         actionDelete_show = new QAction(MainWindow);
         actionDelete_show->setObjectName(QStringLiteral("actionDelete_show"));
+        actionDelete_show->setEnabled(false);
         actionDelete_hall = new QAction(MainWindow);
         actionDelete_hall->setObjectName(QStringLiteral("actionDelete_hall"));
         actionBook = new QAction(MainWindow);
         actionBook->setObjectName(QStringLiteral("actionBook"));
         actionDelete_booking = new QAction(MainWindow);
         actionDelete_booking->setObjectName(QStringLiteral("actionDelete_booking"));
-        actionEdit_text = new QAction(MainWindow);
-        actionEdit_text->setObjectName(QStringLiteral("actionEdit_text"));
+        actionDelete_booking->setEnabled(false);
+        actionEdit_Movie = new QAction(MainWindow);
+        actionEdit_Movie->setObjectName(QStringLiteral("actionEdit_Movie"));
+        actionEdit_Movie->setEnabled(false);
         actionQuit = new QAction(MainWindow);
         actionQuit->setObjectName(QStringLiteral("actionQuit"));
+        actionHall_List = new QAction(MainWindow);
+        actionHall_List->setObjectName(QStringLiteral("actionHall_List"));
+        actionEdit_Show = new QAction(MainWindow);
+        actionEdit_Show->setObjectName(QStringLiteral("actionEdit_Show"));
+        actionEdit_Show->setEnabled(false);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout_2 = new QVBoxLayout(centralWidget);
@@ -215,6 +226,10 @@ public:
 
         pushButton_movies_delete = new QPushButton(widget_movies);
         pushButton_movies_delete->setObjectName(QStringLiteral("pushButton_movies_delete"));
+        pushButton_movies_delete->setEnabled(false);
+        pushButton_movies_delete->setCheckable(false);
+        pushButton_movies_delete->setChecked(false);
+        pushButton_movies_delete->setAutoDefault(false);
 
         horizontalLayout_4->addWidget(pushButton_movies_delete);
 
@@ -275,6 +290,10 @@ public:
 
         pushButton_show_delete = new QPushButton(widget_shows);
         pushButton_show_delete->setObjectName(QStringLiteral("pushButton_show_delete"));
+        pushButton_show_delete->setEnabled(false);
+        pushButton_show_delete->setCheckable(false);
+        pushButton_show_delete->setChecked(false);
+        pushButton_show_delete->setAutoDefault(false);
 
         horizontalLayout_6->addWidget(pushButton_show_delete);
 
@@ -320,6 +339,10 @@ public:
 
         pushButton_info_edit = new QPushButton(widget_info);
         pushButton_info_edit->setObjectName(QStringLiteral("pushButton_info_edit"));
+        pushButton_info_edit->setEnabled(false);
+        pushButton_info_edit->setCheckable(false);
+        pushButton_info_edit->setChecked(false);
+        pushButton_info_edit->setAutoDefault(false);
 
         horizontalLayout_7->addWidget(pushButton_info_edit);
 
@@ -592,11 +615,19 @@ public:
 
         pushButton_bookings_delete = new QPushButton(widget_6);
         pushButton_bookings_delete->setObjectName(QStringLiteral("pushButton_bookings_delete"));
+        pushButton_bookings_delete->setEnabled(false);
+        pushButton_bookings_delete->setCheckable(false);
+        pushButton_bookings_delete->setChecked(false);
+        pushButton_bookings_delete->setAutoDefault(false);
 
         horizontalLayout_8->addWidget(pushButton_bookings_delete);
 
         pushButton_bookings_edit = new QPushButton(widget_6);
         pushButton_bookings_edit->setObjectName(QStringLiteral("pushButton_bookings_edit"));
+        pushButton_bookings_edit->setEnabled(false);
+        pushButton_bookings_edit->setCheckable(false);
+        pushButton_bookings_edit->setChecked(false);
+        pushButton_bookings_edit->setAutoDefault(false);
 
         horizontalLayout_8->addWidget(pushButton_bookings_edit);
 
@@ -633,14 +664,16 @@ public:
         menuAdd_movie->addAction(actionAdd_show);
         menuAdd_movie->addAction(actionAdd_hall);
         menuAdd_movie->addSeparator();
+        menuAdd_movie->addAction(actionHall_List);
+        menuAdd_movie->addSeparator();
         menuAdd_movie->addAction(actionBook);
         menuAdd_movie->addAction(actionDelete_booking);
         menuAdd_movie->addSeparator();
         menuAdd_movie->addAction(actionDelete_movie);
         menuAdd_movie->addAction(actionDelete_show);
-        menuAdd_movie->addAction(actionDelete_hall);
         menuAdd_movie->addSeparator();
-        menuAdd_movie->addAction(actionEdit_text);
+        menuAdd_movie->addAction(actionEdit_Movie);
+        menuAdd_movie->addAction(actionEdit_Show);
         menuAdd_movie->addSeparator();
         menuAdd_movie->addAction(actionQuit);
         menuAdd_movie->addSeparator();
@@ -653,19 +686,21 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        actionAdd_movie->setText(QApplication::translate("MainWindow", "Add movie", 0));
-        actionAdd_show->setText(QApplication::translate("MainWindow", "Add show", 0));
-        actionAdd_hall->setText(QApplication::translate("MainWindow", "Add hall", 0));
-        actionDelete_movie->setText(QApplication::translate("MainWindow", "Delete movie", 0));
-        actionDelete_show->setText(QApplication::translate("MainWindow", "Delete show", 0));
+        actionAdd_movie->setText(QApplication::translate("MainWindow", "Add Movie", 0));
+        actionAdd_show->setText(QApplication::translate("MainWindow", "Add Show", 0));
+        actionAdd_hall->setText(QApplication::translate("MainWindow", "Add Hall", 0));
+        actionDelete_movie->setText(QApplication::translate("MainWindow", "Delete Movie", 0));
+        actionDelete_show->setText(QApplication::translate("MainWindow", "Delete Show", 0));
         actionDelete_hall->setText(QApplication::translate("MainWindow", "Delete hall", 0));
         actionBook->setText(QApplication::translate("MainWindow", "Book", 0));
-        actionDelete_booking->setText(QApplication::translate("MainWindow", "Delete booking", 0));
-        actionEdit_text->setText(QApplication::translate("MainWindow", "Edit text", 0));
-        actionQuit->setText(QApplication::translate("MainWindow", "Qui", 0));
+        actionDelete_booking->setText(QApplication::translate("MainWindow", "Delete Booking", 0));
+        actionEdit_Movie->setText(QApplication::translate("MainWindow", "Edit Movie", 0));
+        actionQuit->setText(QApplication::translate("MainWindow", "Quit", 0));
 #ifndef QT_NO_TOOLTIP
         actionQuit->setToolTip(QApplication::translate("MainWindow", "Qui", 0));
 #endif // QT_NO_TOOLTIP
+        actionHall_List->setText(QApplication::translate("MainWindow", "Hall List", 0));
+        actionEdit_Show->setText(QApplication::translate("MainWindow", "Edit Show", 0));
         label_movies->setText(QApplication::translate("MainWindow", "Movies:", 0));
         pushButton_movies_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_movies_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
