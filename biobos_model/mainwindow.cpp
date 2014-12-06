@@ -164,32 +164,39 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QString filter = ui->lineEdit->text();
+    /*QString filter = ui->lineEdit->text();
     movieModel->setFilter("Title LIKE ? || '%'", filter);
-    qDebug() << movieModel->query().lastError();
-}
-
-void MainWindow::on_tableView_activated(const QModelIndex &index)
-{
-    qDebug() << "activated" << index.row();
+    qDebug() << movieModel->query().lastError();*/
 }
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    qDebug() << "click" << index.row();
-}
-
-void MainWindow::on_tableView_entered(const QModelIndex &index)
-{
-    qDebug() << "entered" << index.row();
-}
-
-void MainWindow::on_tableView_pressed(const QModelIndex &index)
-{
-    qDebug() << "pressed" << index.row();
-}
-
-void MainWindow::on_tableView_viewportEntered()
-{
-    qDebug() << "viewport entered";
+    /*ui->textBrowser->document()->setDefaultStyleSheet(
+                "#poster{ max-width: 50px; }"
+    );
+    ui->textBrowser->setHtml(
+        "<!DOCTYPE html>"
+        "<html lang='en'>"
+            "<head>"
+            "<meta charset='UTF-8'>"
+            "<link href = 'style.css' rel = 'stylesheet'>"
+            "</head>"
+            "<body>"
+                "<img src=':img/avatar.png' >"
+                "<div style='width: 100; height: 20; background-color: #000000;' ></div>"
+            "</body>"
+        "</html>"
+    );*/
+    /*ui->webView->setHtml(
+        "<!DOCTYPE html>"
+        "<html lang='en'>"
+            "<head>"
+            "<link href = 'style.css' rel = 'stylesheet'>"
+            "</head>"
+            "<body>"
+                "<img src=':img/avatar.png' >"
+                "<div style='width: 100; height: 20; background-color: #000000;' ></div>"
+            "</body>"
+        "</html>"
+    );*/
 }

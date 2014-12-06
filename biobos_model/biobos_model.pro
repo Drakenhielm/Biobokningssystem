@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,3 +36,9 @@ HEADERS  += mainwindow.h \
     DatabaseHandler/sqlgenerator.h
 
 FORMS    += mainwindow.ui
+
+OTHER_FILES += \
+    style.css
+
+RESOURCES += \
+    imgtest.qrc
