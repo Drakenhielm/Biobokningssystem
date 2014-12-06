@@ -154,3 +154,14 @@ int BaseModel::numOfPlaceholders(const QString &sqlStr) const
     }
     return count;
 }
+
+/*Searches for a row in the model where the primary key value is equal to pkValue*/
+int BaseModel::getRowByPrimaryKeyValue(const QVariant &pkValue) const
+{
+    int col = record().indexOf(primaryKey);
+    QModelIndexList list = match(index(0, col), Qt::DisplayRole, pkValue, 1, Qt::MatchExactly);
+    if(list.empty())
+        return -1;
+
+    return list.first().row();
+}
