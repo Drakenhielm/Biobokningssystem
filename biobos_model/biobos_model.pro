@@ -22,7 +22,7 @@ SOURCES += main.cpp\
     Model/moviemodel.cpp \
     Model/seatmodel.cpp \
     Model/showmodel.cpp \
-    DatabaseHandler/sqlgenerator.cpp
+    DatabaseHandler/sqlhandler.cpp
 
 HEADERS  += mainwindow.h \
     custommodel.h \
@@ -33,7 +33,7 @@ HEADERS  += mainwindow.h \
     Model/moviemodel.h \
     Model/seatmodel.h \
     Model/showmodel.h \
-    DatabaseHandler/sqlgenerator.h
+    DatabaseHandler/sqlhandler.h
 
 FORMS    += mainwindow.ui
 
