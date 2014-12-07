@@ -75,84 +75,29 @@ void BaseModel::setFilter(const QString &filter, QVariant placeholder)
 void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placeholderList)
 {
     QSqlQuery query = this->query();
-    QString sql = query.lastQuery();
-    int numBefore = numOfPlaceholders(sql);
-    removeFilter(sql);
-    int numAfter = numOfPlaceholders(sql);
-    sql.prepend("SELECT * FROM (");
-    sql.append(") WHERE ");
-    sql.append(filter);
-    QList<QVariant> list = getBoundValues(query);
-    list.erase(list.end()-(numBefore-numAfter), list.end());
-    if(!placeholderList.isEmpty())
-        list.append(placeholderList);
-    prepareQuery(query, sql, list);
+    if(lastFilterQuery == query.lastQuery())
+    {
+        dh.removeLastFilter(query);
+    }
+    dh.addFilter(query, filter, placeholderList);
     query.exec();
     setQuery(query);
-    lastFilterQuery = sql;
+    lastFilterQuery = query.lastQuery();
 }
 
 void BaseModel::clearFilter()
 {
     QSqlQuery query = this->query();
-    QString sql = query.lastQuery();
-    removeFilter(sql);
-    prepareQuery(query, sql, getBoundValues(query));
-    query.exec(sql);
-    setQuery(query);
-    lastFilterQuery = "";
-}
-
-/*Prepare "query" with the statement from "sql" and bind parameters from "parameterList" */
-void BaseModel::prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList)
-{
-    query.prepare(sql);
-    for(int i = 0; i < parameterList.size(); i++)
+    if(lastFilterQuery == query.lastQuery())
     {
-        query.addBindValue(parameterList.at(i));
+        dh.removeLastFilter(query);
+        /*QString sql = query.lastQuery();
+        removeFilter(sql);
+        prepareQuery(query, sql, getBoundValues(query));*/
+        query.exec();
+        setQuery(query);
+        lastFilterQuery = "";
     }
-}
-
-/*Manipulate the string by removing the part that was added by setFilter() */
-void BaseModel::removeFilter(QString &query)
-{
-    //qDebug() << lastFilterQuery << " : " << query;
-    if(query != lastFilterQuery)
-        return;
-
-    int i = QString("SELECT * FROM (").length();
-    int n = query.lastIndexOf(") WHERE ") - i;
-    query = query.mid(i, n);
-}
-
-/*Returns the bound values from the query in a list*/
-QList<QVariant> BaseModel::getBoundValues(const QSqlQuery &query) const
-{
-    QList<QVariant> list;
-    int i = 0;
-    while(query.boundValue(i).isValid())
-    {
-        list.append(query.boundValue(i));
-        i++;
-    }
-    return list;
-}
-
-/*Return the number of placeholders in a sql string*/
-int BaseModel::numOfPlaceholders(const QString &sqlStr) const
-{
-    int i = 0;
-    int count = 0;
-    bool b = true;
-    while(b)
-    {
-        i = sqlStr.indexOf(QRegExp("[:?]"), ++i); //search for next position of : or ?
-        if(i == -1) // no match
-            b = false;
-        else //match
-            count++;
-    }
-    return count;
 }
 
 /*Searches for a row in the model where the primary key value is equal to pkValue*/

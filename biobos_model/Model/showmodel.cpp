@@ -35,14 +35,14 @@ QVariant ShowModel::data(const QModelIndex &item, int role) const
 int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,
                 int movieID, int hallID)
 {
-    QList<QPair<QString, QVariant> > values;
-    values.append(qMakePair(QString("DateTime"), dateTime));
-    values.append(qMakePair(QString("Price"), price));
-    values.append(qMakePair(QString("ThreeD"), threeD));
-    values.append(qMakePair(QString("Subtitles"), subtitles));
-    values.append(qMakePair(QString("Language"), language));
-    values.append(qMakePair(QString("MovieID"), movieID));
-    values.append(qMakePair(QString("HallID"), hallID));
+    QMap<QString, QVariant> values;
+    values.insert(QString("DateTime"), dateTime);
+    values.insert(QString("Price"), price);
+    values.insert(QString("ThreeD"), threeD);
+    values.insert(QString("Subtitles"), subtitles);
+    values.insert(QString("Language"), language);
+    values.insert(QString("MovieID"), movieID);
+    values.insert(QString("HallID"), hallID);
     dh.insert("show", values);
     return true;
 }
@@ -50,15 +50,27 @@ int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, 
 bool ShowModel::editShow(int showID, const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
                 int movieID, int hallID)
 {
-    QList<QPair<QString, QVariant> > values;
-    values.append(qMakePair(QString("ShowID"), showID));
-    values.append(qMakePair(QString("DateTime"), dateTime));
-    values.append(qMakePair(QString("Price"), price));
-    values.append(qMakePair(QString("ThreeD"), threeD));
-    values.append(qMakePair(QString("Subtitles"), subtitles));
-    values.append(qMakePair(QString("Language"), language));
-    values.append(qMakePair(QString("MovieID"), movieID));
-    values.append(qMakePair(QString("HallID"), hallID));
-    dh.edit("show", values, "ShowID", showID);
+    QMap<QString, QVariant> values;
+    values.insert(QString("ShowID"), showID);
+    values.insert(QString("DateTime"), dateTime);
+    values.insert(QString("Price"), price);
+    values.insert(QString("ThreeD"), threeD);
+    values.insert(QString("Subtitles"), subtitles);
+    values.insert(QString("Language"), language);
+    values.insert(QString("MovieID"), movieID);
+    values.insert(QString("HallID"), hallID);
+    dh.edit("show", values, "ShowID = ?", showID);
     return true;
+}
+
+bool ShowModel::remove(const QVariant &pkValue)
+{
+    bool ok = true;
+    dh.transaction();
+    ok = ok && dh.remove("show", "ShowID = ?", pkValue);
+    ok = ok && dh.remove("booking", "ShowID IN (SELECT ShowID FROM show WHERE MovieID = ?)", pkValue);
+    ok = ok && dh.remove("seatbooking",
+                         "BookingID IN (SELECT BookingID FROM booking JOIN show ON booking.ShowID = show.ShowID WHERE MovieID = ?)",
+                         pkValue);
+    return ok && dh.endTransaction(ok);
 }

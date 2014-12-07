@@ -29,7 +29,7 @@ bool DatabaseHandler::databaseComplete()
 /*Create all missing tables in the database.*/
 void DatabaseHandler::createDatabase()
 {
-    QSqlQuery query;
+    QSqlQuery query(db);
 
     //create hall table
     query.exec("CREATE TABLE IF NOT EXISTS hall("
@@ -101,12 +101,23 @@ bool DatabaseHandler::endTransaction(bool ok)
     }
 }
 
-bool DatabaseHandler::remove(const QString &tableName, const QString &column, const QVariant &value)
+bool DatabaseHandler::remove(const QString &tableName, const QString &where, const QVariant &placeholder)
 {
-    QSqlQuery query;
-    QString sql = QString("DELETE FROM %1 WHERE %2 = ?").arg(tableName).arg(column);
-    query.prepare(sql);
-    query.bindValue(0, value);
+    QList<QVariant> list;
+    list.append(placeholder);
+
+    return remove(tableName, where, list);
+}
+
+/*Remove rows from the database*/
+bool DatabaseHandler::remove(const QString &tableName, const QString &where, const QList<QVariant> &parameterList)
+{
+    QSqlQuery query(db);
+
+    QString sql = QString("DELETE FROM %1 WHERE %2").arg(tableName).arg(where);
+
+    prepareQuery(query, sql, parameterList);
+
     if(!query.exec())
     {
         qDebug() << "Could not remove. The database reported an error: "
@@ -116,26 +127,34 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &column, co
     return true;
 }
 
-int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString, QVariant> > &record)
+/*Insert a new row into a table in the database.
+ * tableName represent the name of the table and
+ * the QMap has the values to insert where the key is the name of the column
+ * and the value is the value to insert. */
+int DatabaseHandler::insert(const QString &tableName, const QMap<QString, QVariant> &values)
 {
-    QSqlQuery query;
+    QSqlQuery query(db);
     QString sqlStr = QString("INSERT INTO %1(").arg(tableName);
     QString valStr;
     QString fieldName;
-    for(int i = 0; i < record.size(); i++)
+    QList<QVariant> parameterList;
+
+    QMap<QString, QVariant>::const_iterator it = values.cbegin();
+    for(; it != values.cend(); it++) //navigate through all pairs in the map
     {
-        fieldName = record.at(i).first;
+        fieldName = it.key(); //name of the column
         sqlStr += fieldName + QString(", ");
         valStr += "?, ";
+        parameterList.append(it.value()); //inserted value
     }
-    sqlStr.remove(sqlStr.size()-2, 2);
-    valStr.remove(valStr.size()-2, 2);
+    sqlStr.remove(sqlStr.size()-2, 2); //remove the last: ", "
+    valStr.remove(valStr.size()-2, 2); //remove the last: ", "
     sqlStr += QString(") VALUES(") + valStr + ')';
-    query.prepare(sqlStr);
-    for(int i = 0; i < record.size(); i++)
-    {
-        query.bindValue(i, record.at(i).second);
-    }
+
+    //prepare query
+    prepareQuery(query, sqlStr, parameterList);
+
+    //execute query
     if(!query.exec())
     {
         qDebug() << "Could not insert. The database reported an error: "
@@ -147,28 +166,127 @@ int DatabaseHandler::insert(const QString &tableName, const QList<QPair<QString,
     return query.lastInsertId().toInt();
 }
 
-bool DatabaseHandler::edit(const QString &tableName, const QList<QPair<QString, QVariant> > &record,
-          const QString &whereColumn, const QVariant &whereValue)
+bool DatabaseHandler::edit(const QString &tableName, const QMap<QString, QVariant> &values,
+          const QString &where, const QVariant &wherePlaceholder)
 {
-    QSqlQuery query;
+    QList<QVariant> list;
+    list.append(wherePlaceholder);
+    return edit(tableName, values, where, list);
+}
+
+bool DatabaseHandler::edit(const QString &tableName, const QMap<QString, QVariant> &values,
+          const QString &where, const QList<QVariant> &wherePlaceholders)
+{
+    QSqlQuery query(db);
     QString sqlStr = QString("UPDATE %1 SET ").arg(tableName);
-    for(int i = 0; i < record.size(); i++)
+    QList<QVariant> placeholderList;
+    QMap<QString, QVariant>::const_iterator it = values.cbegin();
+    for(; it != values.cend(); it++) //navigate through all pairs in the map
     {
-        QString fieldName = record.at(i).first;
+        QString fieldName = it.key(); //name of the column
         sqlStr += fieldName + " = ?, ";
+        placeholderList.append(it.value()); //inserted value
     }
-    sqlStr.remove(sqlStr.size()-2, 2);
-    sqlStr += QString(" WHERE ") + whereColumn + " = " + whereValue.toString();
-    query.prepare(sqlStr);
-    for(int i = 0; i < record.size(); i++)
-    {
-        query.bindValue(i, record.at(i).second);
-    }
+    sqlStr.remove(sqlStr.size()-2, 2); //remove the last: ", "
+
+    //where part
+    sqlStr += QString(" WHERE ") + where;
+    placeholderList.append(wherePlaceholders);
+
+    //prepare
+    prepareQuery(query, sqlStr, placeholderList);
+
+    //execute query
     if(!query.exec())
     {
         qDebug() << "Could not edit. The database reported an error: "
                  << db.lastError().text();
+        qDebug() << sqlStr;
         return false;
     }
     return true;
+}
+
+void DatabaseHandler::addFilter(QSqlQuery &query, const QString &filter, const QVariant &filterPlaceholder)
+{
+    QList<QVariant> list;
+    list.append(filterPlaceholder);
+    addFilter(query, filter, list);
+}
+
+void DatabaseHandler::addFilter(QSqlQuery &query, const QString &filter, const QList<QVariant> &filterPlaceholders)
+{
+    QString sql = query.lastQuery();
+
+    //add filter
+    sql.prepend("SELECT * FROM (");
+    sql.append(") WHERE ");
+    sql.append(filter);
+
+    //get all placeholders and insert them in a QList
+    QList<QVariant> placeholderList = getBoundValues(query);
+    if(!filterPlaceholders.isEmpty())
+        placeholderList.append(filterPlaceholders);
+
+    //prepare query
+    prepareQuery(query, sql, placeholderList);
+}
+
+void DatabaseHandler::removeLastFilter(QSqlQuery &query)
+{
+    QString sql = query.lastQuery();
+
+    int numBefore = numOfPlaceholders(sql);
+
+    int p = QString("SELECT * FROM (").length();
+    int n = sql.lastIndexOf(") WHERE ") - p;
+    sql = sql.mid(p, n); //removes last filter from sql string
+
+    int numAfter = numOfPlaceholders(sql);
+
+    QList<QVariant> list = getBoundValues(query); //all placeholders from the last query
+    list.erase(list.end()-(numBefore-numAfter), list.end()); //erase placeholders from the filter part
+
+    prepareQuery(query, sql, list);
+}
+
+/*Prepare "query" with the statement from "sql" and bind parameters from "parameterList" */
+void DatabaseHandler::prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &placeholderList)
+{
+    query.prepare(sql);
+    for(int i = 0; i < placeholderList.size(); i++)
+    {
+        query.addBindValue(placeholderList.at(i));
+    }
+}
+
+/*Return the number of placeholders in a sql string
+ * or in other words how many times ':' or '?' appears in the string. */
+int DatabaseHandler::numOfPlaceholders(const QString &sqlStr) const
+{
+    int count = 0;
+    int i = 0;
+    bool b = true;
+    while(b)
+    {
+        i = sqlStr.indexOf(QRegExp("[:?]"), ++i); //search for next position of : or ?
+        if(i == -1) // no match
+            b = false;
+        else //match
+            count++;
+    }
+    return count;
+}
+
+/*Returns the bound values from the query in a list*/
+QList<QVariant> DatabaseHandler::getBoundValues(const QSqlQuery &query) const
+{
+    QList<QVariant> list;
+    int i = 0;
+    while(query.boundValue(i).isValid())
+    {
+        list.append(query.boundValue(i));
+        i++;
+    }
+    return list;
 }

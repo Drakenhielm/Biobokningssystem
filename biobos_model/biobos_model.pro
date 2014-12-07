@@ -12,28 +12,31 @@ TARGET = biobos_model
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += main.cpp \
     custommodel.cpp \
+    mainwindow.cpp \
     DatabaseHandler/databasehandler.cpp \
+    DatabaseHandler/imagehandler.cpp \
+    DatabaseHandler/sqlhandler.cpp \
     Model/basemodel.cpp \
     Model/bookingmodel.cpp \
     Model/hallmodel.cpp \
     Model/moviemodel.cpp \
     Model/seatmodel.cpp \
-    Model/showmodel.cpp \
-    DatabaseHandler/sqlhandler.cpp
+    Model/showmodel.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     custommodel.h \
+    mainwindow.h \
     DatabaseHandler/databasehandler.h \
+    DatabaseHandler/imagehandler.h \
+    DatabaseHandler/sqlhandler.h \
     Model/basemodel.h \
     Model/bookingmodel.h \
     Model/hallmodel.h \
     Model/moviemodel.h \
     Model/seatmodel.h \
-    Model/showmodel.h \
-    DatabaseHandler/sqlhandler.h
+    Model/showmodel.h
 
 FORMS    += mainwindow.ui
 

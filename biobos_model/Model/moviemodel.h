@@ -36,6 +36,10 @@ public:
     QString getGenre(int row) const { return data(index(row, Genre)).toString(); }
     int getYear(int row) const { return data(index(row, Year)).toInt(); }
     QString getMoviePoster(int row) const { return data(index(row, MoviePoster)).toString(); }
+
+protected:
+    virtual bool remove(const QVariant &pkValue);
+
 };
 
 #endif // MOVIEMODEL_H

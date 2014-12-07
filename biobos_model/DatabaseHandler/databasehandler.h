@@ -6,6 +6,9 @@
 #include <QSqlRecord>
 #include <QSqlDriver>
 #include <QSqlError>
+#include <iterator>
+
+#include "sqlhandler.h"
 
 //temp for debugging
 #include <QDebug>
@@ -25,16 +28,31 @@ public:
     bool transaction();
     bool endTransaction(bool ok);
 
-    bool remove(const QString &tableName, const QString &column, const QVariant &value);
-    int  insert(const QString &tableName, const QList<QPair<QString, QVariant> > &record);
-    bool edit(const QString &tableName, const QList<QPair<QString, QVariant> > &record,
-              const QString &whereColumn, const QVariant &whereValue);
+    bool remove(const QString &tableName, const QString &where, const QVariant &placeholder);
+    bool remove(const QString &tableName, const QString &where, const QList<QVariant> &parameterList = QList<QVariant>());
+
+    int  insert(const QString &tableName, const QMap<QString, QVariant> &values);
+
+    bool edit(const QString &tableName, const QMap<QString, QVariant> &values,
+              const QString &where, const QVariant &wherePlaceholder);
+    bool edit(const QString &tableName, const QMap<QString, QVariant> &values,
+              const QString &where, const QList<QVariant> &wherePlaceholders = QList<QVariant>());
+
+    void addFilter(QSqlQuery &query, const QString &filter, const QVariant &filterPlaceholder);
+    void addFilter(QSqlQuery &query, const QString &filter, const QList<QVariant> &filterPlaceholders = QList<QVariant>());
+
+    void removeLastFilter(QSqlQuery &query);
 
 private:
     //variables
     const QString fileName;
     QSqlDatabase db;
+    SqlHandler sh;
+
     //functions
+    void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &placeholderList);
+    QList<QVariant> getBoundValues(const QSqlQuery &query) const;
+    int numOfPlaceholders(const QString &sqlStr) const;
 };
 
 #endif // DATABASEHANDLER_H

@@ -45,6 +45,9 @@ public:
     QString getHall(int row) const { return data(index(row, Hall)).toString(); }
     int getAvailableSeats(int row) const { return data(index(row, AvailableSeats)).toInt(); }
 
+protected:
+    virtual bool remove(const QVariant &pkValue);
+
 };
 
 #endif // SHOWMODEL_H
