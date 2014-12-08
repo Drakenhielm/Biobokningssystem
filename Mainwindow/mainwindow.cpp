@@ -5,6 +5,7 @@
 #include "add_hall/hall.h"
 #include "add_movie/popup.h"
 #include "add_show/addshowdialog.h"
+#include "edit_hall/edit_hall.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -55,7 +56,8 @@ void MainWindow::initViews()
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
     ui->tableView_show->hideColumn(ShowModel::HallID);
-    ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
+    //ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView_show->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
     ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
 
@@ -111,6 +113,9 @@ void MainWindow::initConnections()
 
     //Add Hall
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(openAddHallDialogue()));
+
+    //Hall List
+     connect(ui->actionHall_List, SIGNAL(triggered()), this, SLOT(openEditHallDialogue()));
 
     //Booking Form
     connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), hallView, SLOT(setSeperateSeats(bool)));
@@ -188,6 +193,13 @@ void MainWindow::updateSelectedSeats(QList<int> seats)
 void MainWindow::openAddHallDialogue()
 {
     hall hallPopup;
+    hallPopup.setModal(true);
+    hallPopup.exec();
+}
+
+void MainWindow::openEditHallDialogue()
+{
+    edit_hall hallPopup;
     hallPopup.setModal(true);
     hallPopup.exec();
 }

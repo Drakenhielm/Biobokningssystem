@@ -66,6 +66,8 @@ private slots:
     //Add Hall
     void openAddHallDialogue();
 
+    void openEditHallDialogue();
+
     void updateSelectedSeats(QList<int> seats);
 
     void setComboBox(bool);
