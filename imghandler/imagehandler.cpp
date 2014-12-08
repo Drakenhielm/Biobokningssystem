@@ -18,12 +18,12 @@ bool ImageHandler::createFolder()
 /*Copy an image file to img folder. Returns the filename in the new folder.
  * The filename will be changed if there already exists a image with that filename.
  * If the copy fails an empty string will be returned */
-QString ImageHandler::copyImage(const QString & fromPath)
+bool ImageHandler::copyImage(const QString & fromPath)
 {
     if(!dir.exists())
     {
         if(!createFolder())
-            return QString();
+            return false;
     }
     QString fileName = getFileName(fromPath);
     if(fileNameExists(fileName))
@@ -34,15 +34,36 @@ QString ImageHandler::copyImage(const QString & fromPath)
     if(validImageFile(fileName))
     {
         if(QFile::copy(fromPath, dir.path()+'/'+fileName))
-            return fileName;
+        {
+            lastInserted = fileName;
+            return true;
+        }
     }
-    return QString();
+    return false;
+}
+
+QPixmap ImageHandler::getPixmap(const QString &fileName) const
+{
+
+    return QPixmap(dir.path()+'/'+fileName);
+}
+
+QPixmap ImageHandler::getLastInsertedPixmap() const
+{
+    return getPixmap(folder+'/'+lastInserted);
+}
+
+QString ImageHandler::getLastInsertedFileName() const
+{
+    return dir.path()+'/'+lastInserted;
 }
 
 QString ImageHandler::getFolderPath() const
 {
     return dir.path();
 }
+
+//PRIVATE
 
 /*Check if the file extension is ".png", ".jpg", ".jpeg", ".gif" or ".bmp". */
 bool ImageHandler::validImageFile(const QString &fileName) const
