@@ -19,6 +19,7 @@ public:
 
 public slots:
     QList<int> getSelectedSeats();
+    QList<QList<bool>> getSeats();
     //void setSelectedSeats(vector<int> seats);
     void setRows(int rows);
     void setColumns(int columns);
@@ -30,6 +31,7 @@ public slots:
     void setSeperateSeats(bool seperate);
     int getTotalNumberOfSeats();
     void clearSelectedSeats();
+    void setHall(QList<QList<bool>>, int rows, int columns);
 signals:
     void selectedSeatsChanged(QList<int>);
 

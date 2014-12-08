@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'hallview.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,15 +13,15 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'hallview.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.1. It"
+#error "This file was generated using the moc from 5.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HallView_t {
-    QByteArrayData data[16];
-    char stringdata[207];
+    QByteArrayData data[19];
+    char stringdata[244];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,24 +35,29 @@ QT_MOC_LITERAL(1, 9, 20),
 QT_MOC_LITERAL(2, 30, 0),
 QT_MOC_LITERAL(3, 31, 10),
 QT_MOC_LITERAL(4, 42, 16),
-QT_MOC_LITERAL(5, 59, 7),
-QT_MOC_LITERAL(6, 67, 4),
-QT_MOC_LITERAL(7, 72, 10),
-QT_MOC_LITERAL(8, 83, 7),
-QT_MOC_LITERAL(9, 91, 19),
-QT_MOC_LITERAL(10, 111, 7),
-QT_MOC_LITERAL(11, 119, 20),
-QT_MOC_LITERAL(12, 140, 16),
-QT_MOC_LITERAL(13, 157, 8),
-QT_MOC_LITERAL(14, 166, 21),
-QT_MOC_LITERAL(15, 188, 18)
+QT_MOC_LITERAL(5, 59, 8),
+QT_MOC_LITERAL(6, 68, 19),
+QT_MOC_LITERAL(7, 88, 7),
+QT_MOC_LITERAL(8, 96, 4),
+QT_MOC_LITERAL(9, 101, 10),
+QT_MOC_LITERAL(10, 112, 7),
+QT_MOC_LITERAL(11, 120, 19),
+QT_MOC_LITERAL(12, 140, 7),
+QT_MOC_LITERAL(13, 148, 20),
+QT_MOC_LITERAL(14, 169, 16),
+QT_MOC_LITERAL(15, 186, 8),
+QT_MOC_LITERAL(16, 195, 21),
+QT_MOC_LITERAL(17, 217, 18),
+QT_MOC_LITERAL(18, 236, 7)
     },
     "HallView\0selectedSeatsChanged\0\0"
-    "QList<int>\0getSelectedSeats\0setRows\0"
-    "rows\0setColumns\0columns\0setNumberOfSelected\0"
+    "QList<int>\0getSelectedSeats\0getSeats\0"
+    "QList<QList<bool> >\0setRows\0rows\0"
+    "setColumns\0columns\0setNumberOfSelected\0"
     "setMode\0comfirmSelectedSeats\0"
     "setSeperateSeats\0seperate\0"
-    "getTotalNumberOfSeats\0clearSelectedSeats"
+    "getTotalNumberOfSeats\0clearSelectedSeats\0"
+    "setHall"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,7 +67,7 @@ static const uint qt_meta_data_HallView[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,32 +75,36 @@ static const uint qt_meta_data_HallView[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   64,    2, 0x06 /* Public */,
+       1,    1,   74,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   67,    2, 0x0a /* Public */,
-       5,    1,   68,    2, 0x0a /* Public */,
-       7,    1,   71,    2, 0x0a /* Public */,
-       9,    1,   74,    2, 0x0a /* Public */,
-      10,    1,   77,    2, 0x0a /* Public */,
-      11,    0,   80,    2, 0x0a /* Public */,
-      12,    1,   81,    2, 0x0a /* Public */,
-      14,    0,   84,    2, 0x0a /* Public */,
-      15,    0,   85,    2, 0x0a /* Public */,
+       4,    0,   77,    2, 0x0a /* Public */,
+       5,    0,   78,    2, 0x0a /* Public */,
+       7,    1,   79,    2, 0x0a /* Public */,
+       9,    1,   82,    2, 0x0a /* Public */,
+      11,    1,   85,    2, 0x0a /* Public */,
+      12,    1,   88,    2, 0x0a /* Public */,
+      13,    0,   91,    2, 0x0a /* Public */,
+      14,    1,   92,    2, 0x0a /* Public */,
+      16,    0,   95,    2, 0x0a /* Public */,
+      17,    0,   96,    2, 0x0a /* Public */,
+      18,    3,   97,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    2,
 
  // slots: parameters
     0x80000000 | 3,
-    QMetaType::Void, QMetaType::Int,    6,
+    0x80000000 | 6,
     QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   13,
+    QMetaType::Void, QMetaType::Bool,   15,
     QMetaType::Int,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 6, QMetaType::Int, QMetaType::Int,    2,    8,   10,
 
        0        // eod
 };
@@ -108,15 +117,18 @@ void HallView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 0: _t->selectedSeatsChanged((*reinterpret_cast< QList<int>(*)>(_a[1]))); break;
         case 1: { QList<int> _r = _t->getSelectedSeats();
             if (_a[0]) *reinterpret_cast< QList<int>*>(_a[0]) = _r; }  break;
-        case 2: _t->setRows((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->setColumns((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->setNumberOfSelected((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->setMode((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 6: _t->comfirmSelectedSeats(); break;
-        case 7: _t->setSeperateSeats((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 8: { int _r = _t->getTotalNumberOfSeats();
+        case 2: { QList<QList<bool> > _r = _t->getSeats();
+            if (_a[0]) *reinterpret_cast< QList<QList<bool> >*>(_a[0]) = _r; }  break;
+        case 3: _t->setRows((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->setColumns((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->setNumberOfSelected((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->setMode((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 7: _t->comfirmSelectedSeats(); break;
+        case 8: _t->setSeperateSeats((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 9: { int _r = _t->getTotalNumberOfSeats();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 9: _t->clearSelectedSeats(); break;
+        case 10: _t->clearSelectedSeats(); break;
+        case 11: _t->setHall((*reinterpret_cast< QList<QList<bool> >(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -127,6 +139,13 @@ void HallView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<int> >(); break;
+            }
+            break;
+        case 11:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<QList<bool> > >(); break;
             }
             break;
         }
@@ -167,13 +186,13 @@ int HallView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 12;
     }
     return _id;
 }

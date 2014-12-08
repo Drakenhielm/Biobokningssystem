@@ -33,4 +33,12 @@ void hall::setLabelNumberOfSeats()
     ui->label_number_of_seats->setText("Seats: " + QString::number(hallView->getTotalNumberOfSeats()));
 }
 
-
+void hall::on_AddButton_clicked()
+{
+    QString hallName = ui->hall_name->text();
+    QString screenSize = QString::number(ui->spinBox_screen_width->value()) + " X " + QString::number(ui->spinBox_screen_height->value());
+    QString soundSystem = ui->comboBox_sound->currentText();
+    QList<QList<bool>> seats = hallView->getSeats();
+    emit addHall(hallName, screenSize, soundSystem, seats);
+    close();
+}

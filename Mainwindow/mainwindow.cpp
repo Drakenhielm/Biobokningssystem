@@ -195,7 +195,9 @@ void MainWindow::updateSelectedSeats(QList<int> seats)
 
 void MainWindow::openAddHallDialogue()
 {
-    hall hallPopup;
+    hall hallPopup;   
+    QObject::connect(&hallPopup, SIGNAL(addHall(QString,QString,QString,QList<QList<bool> >)),this, SLOT(addHall(QString,QString,QString,QList<QList<bool> >)));
+
     hallPopup.setModal(true);
     hallPopup.exec();
 }
@@ -226,6 +228,12 @@ void MainWindow::addMovie(QString title, int playtime, int age, QString desc, QS
 {
     movieModel->insertMovie(title, playtime, age, desc, genre, year, movieposter);
     movieModel->refresh();
+}
+
+void MainWindow::addHall(QString name,QString soundSystem,QString screenSize,QList<QList<bool> > seats)
+{
+    hallModel->insertHall(name,soundSystem,screenSize,seats);
+    hallModel->refresh();
 }
 
 
@@ -524,6 +532,8 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         );
         ui->pushButton_show_delete->setEnabled(true);
         ui->actionDelete_show->setEnabled(true);
+
+        //hallView->setHall(???, hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
     }
 }
 

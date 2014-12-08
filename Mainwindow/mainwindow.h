@@ -68,7 +68,7 @@ private slots:
 
     //Add Hall
     void openAddHallDialogue();
-
+    void addHall(QString name,QString soundSystem,QString screenSize,QList<QList<bool> > seats);
     void openEditHallDialogue();
 
     void updateSelectedSeats(QList<int> seats);
