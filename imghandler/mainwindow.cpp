@@ -8,10 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     model = new QFileSystemModel;
+    model->setRootPath(QDir::currentPath());
     ui->treeView->setModel(model);
-    model->setRootPath("C:\\Users");
-    qDebug() << ih.getFolderPath();
-    qDebug() << model->rootPath();
 
     ui->label->setPixmap(pixmap);
 
@@ -35,6 +33,9 @@ void MainWindow::on_pushButton_2_clicked()
 {
     QString file = ui->lineEdit->text();
     ih.copyImage(file);
-    qDebug() << pixmap.load("C:/Users/Isac/Documents/Qt_projects/build-imghandler-Desktop_Qt_5_3_MinGW_32bit-Debug/img/stol_w4.png");
+    pixmap.load(ih.getLastInsertedFileName());
     ui->label->setPixmap(pixmap);
+    qDebug() << ih.getLastInsertedFileName();
+    qDebug() << ih.getLastInsertedPixmap();
+
 }
