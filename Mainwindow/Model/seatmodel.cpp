@@ -56,3 +56,27 @@ QPair<int, int> SeatModel::getHallSize(int hallID)
     }
     return qMakePair(0, 0);
 }
+
+QList<QList<int> > SeatModel::getSeatStateList() const
+{
+    QList<QList<int> > list;
+    for(int r = 0; r < rowMax; r++)
+    {
+        list.append(QList<int>());
+        for(int c = 0; c < colMax; c++)
+        {
+            int row = r*colMax+c;
+            if(getSeatType(row) == NoSeat)
+                list[r].append(NoSeat);
+            else if(getSeatType(row) == Seat)
+            {
+                if(getBookingID(row) > 0)
+                    list[r].append(Booked);
+                else
+                    list[r].append(Available);
+            }
+
+        }
+    }
+    return list;
+}

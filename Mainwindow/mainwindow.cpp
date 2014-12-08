@@ -43,6 +43,11 @@ void MainWindow::initModels()
 
     //SeatModel
     seatModel = new SeatModel(this);
+
+    seatModel->setHall(8);
+    seatModel->setShow(0);
+    seatModel->refresh();
+    qDebug() << seatModel->getSeatStateList();
 }
 
 void MainWindow::initViews()
@@ -533,7 +538,10 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         ui->pushButton_show_delete->setEnabled(true);
         ui->actionDelete_show->setEnabled(true);
 
-        //hallView->setHall(???, hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
+        seatModel->setHall(showModel->getHallID(selIndex));
+        seatModel->setShow(showModel->getShowID(selIndex));
+        seatModel->refresh();
+        hallView->setHall(seatModel->getSeatStateList(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
     }
 }
 

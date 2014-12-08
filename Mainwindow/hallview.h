@@ -31,7 +31,7 @@ public slots:
     void setSeperateSeats(bool seperate);
     int getTotalNumberOfSeats();
     void clearSelectedSeats();
-    void setHall(QList<QList<bool>>, int rows, int columns);
+    void setHall(QList<QList<int>>, int rows, int columns);
 signals:
     void selectedSeatsChanged(QList<int>);
 

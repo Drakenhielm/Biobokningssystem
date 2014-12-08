@@ -33,7 +33,7 @@ QList<QList<bool>> HallView::getSeats()
     for (int row = 0; row < row_count; ++row) {
         QList<bool> seatsRow;
         for (int column = 0; column < column_count; ++column) {
-            if(seats[column][row].first == 1)
+            if(seats[column][row].first == 0)
                 seatsRow.push_back(true);
             else
                 seatsRow.push_back(false);
@@ -43,14 +43,14 @@ QList<QList<bool>> HallView::getSeats()
     return hall;
 }
 
-void HallView::setHall(QList<QList<bool>> hall, int rows, int columns)
+void HallView::setHall(QList<QList<int>> hall, int rows, int columns)
 {
     setRows(rows);
     setColumns(columns);
 
     for (int row = 0; row < row_count; ++row) {
         for (int column = 0; column < column_count; ++column) {
-            if(hall.at(row).at(column))
+            if(hall.at(row).at(column) == 2)
                 seats[column][row].first = 0;
             else
                 seats[column][row].first = 3;

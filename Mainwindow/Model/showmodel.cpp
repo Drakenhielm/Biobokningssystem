@@ -4,7 +4,7 @@ ShowModel::ShowModel(QObject *parent)
     : BaseModel("show", "ShowID", parent)
 {
     setQuery("SELECT show.*, hall.Name, "
-             "COUNT(seat.SeatID) - COUNT(b.SeatBookingID) AS AvailableSeats "
+             "COUNT(seat.SeatNr) - COUNT(b.SeatBookingID) AS AvailableSeats "
              "FROM show "
              "LEFT JOIN hall ON hall.HallID = show.HallID "
              "LEFT JOIN seat ON seat.HallID = show.HallID "

@@ -3,7 +3,7 @@
 HallModel::HallModel(QObject *parent)
     : BaseModel("hall", "HallID", parent)
 {
-    setQuery(QString("SELECT hall.*, COUNT(seat.SeatID) AS Seats, "
+    setQuery(QString("SELECT hall.*, COUNT(seat.SeatNr) AS Seats, "
                      "MAX(seat.Row) AS Rows, MAX(seat.Column) AS Columns "
                      "FROM hall "
                      "LEFT JOIN seat ON seat.HallID = hall.HallID "
