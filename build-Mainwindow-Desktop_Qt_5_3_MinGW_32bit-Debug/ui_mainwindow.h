@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -31,7 +32,6 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextBrowser>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -68,7 +68,9 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QWidget *widget_shows;
     QVBoxLayout *verticalLayout_5;
+    QFormLayout *formLayout;
     QLabel *label_shows;
+    QComboBox *comboBox_shows;
     QTableView *tableView_show;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_5;
@@ -126,7 +128,6 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QMenuBar *menuBar;
     QMenu *menuAdd_movie;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -185,6 +186,7 @@ public:
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 9);
         splitter = new QSplitter(widget);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
@@ -198,6 +200,8 @@ public:
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         label_movies = new QLabel(widget_movies);
         label_movies->setObjectName(QStringLiteral("label_movies"));
+        label_movies->setMinimumSize(QSize(0, 22));
+        label_movies->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
         verticalLayout_6->addWidget(label_movies);
 
@@ -254,10 +258,25 @@ public:
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        formLayout = new QFormLayout();
+        formLayout->setSpacing(6);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setVerticalSpacing(0);
         label_shows = new QLabel(widget_shows);
         label_shows->setObjectName(QStringLiteral("label_shows"));
+        label_shows->setMinimumSize(QSize(0, 22));
+        label_shows->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
-        verticalLayout_5->addWidget(label_shows);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_shows);
+
+        comboBox_shows = new QComboBox(widget_shows);
+        comboBox_shows->setObjectName(QStringLiteral("comboBox_shows"));
+        comboBox_shows->setMaximumSize(QSize(120, 16777215));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, comboBox_shows);
+
+
+        verticalLayout_5->addLayout(formLayout);
 
         tableView_show = new QTableView(widget_shows);
         tableView_show->setObjectName(QStringLiteral("tableView_show"));
@@ -320,8 +339,10 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         label_movieinfo = new QLabel(widget_info);
         label_movieinfo->setObjectName(QStringLiteral("label_movieinfo"));
+        label_movieinfo->setMinimumSize(QSize(0, 22));
+        label_movieinfo->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
-        verticalLayout->addWidget(label_movieinfo);
+        verticalLayout->addWidget(label_movieinfo, 0, Qt::AlignBottom);
 
         textBrowser_info = new QTextBrowser(widget_info);
         textBrowser_info->setObjectName(QStringLiteral("textBrowser_info"));
@@ -375,6 +396,7 @@ public:
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 3);
         splitter_2 = new QSplitter(widget_2);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Horizontal);
@@ -566,6 +588,7 @@ public:
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         label_bookings = new QLabel(widget_6);
         label_bookings->setObjectName(QStringLiteral("label_bookings"));
+        label_bookings->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
         verticalLayout_3->addWidget(label_bookings);
 
@@ -652,9 +675,6 @@ public:
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -679,6 +699,9 @@ public:
         menuAdd_movie->addSeparator();
 
         retranslateUi(MainWindow);
+
+        comboBox_shows->setCurrentIndex(3);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -705,6 +728,13 @@ public:
         pushButton_movies_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_movies_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         label_shows->setText(QApplication::translate("MainWindow", "Shows:", 0));
+        comboBox_shows->clear();
+        comboBox_shows->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Coming", 0)
+         << QApplication::translate("MainWindow", "Today", 0)
+         << QApplication::translate("MainWindow", "This week", 0)
+         << QApplication::translate("MainWindow", "All Time", 0)
+        );
         pushButton_show_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_show_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         label_movieinfo->setText(QApplication::translate("MainWindow", "Information:", 0));

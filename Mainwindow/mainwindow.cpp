@@ -108,6 +108,8 @@ void MainWindow::initConnections()
     //Add Booking
 
     //Delete Booking
+    connect(ui->pushButton_bookings_delete, SIGNAL(clicked()), this, SLOT(deleteBooking()));
+    connect(ui->actionDelete_booking, SIGNAL(triggered()), this, SLOT(deleteBooking()));
 
     //Edit Booking
 
@@ -139,6 +141,7 @@ void MainWindow::initConnections()
 
 void MainWindow::on_actionQuit_triggered()
 {
+    //Exit program
     close();
 }
 
@@ -212,7 +215,7 @@ void MainWindow::openAddMovieDialogue()
     //connect it with the add_Movie signal from the popup
     QObject::connect(&popuper, SIGNAL(add_Movie(QString, int, int, QString, QString, int, QString)),this, SLOT(addMovie(QString, int, int, QString, QString, int, QString)));
 
-    //donno wat dis is
+    popuper.setWindowTitle("Add Movie");
     popuper.setModal(true);
 
     //launch the popup
@@ -228,7 +231,6 @@ void MainWindow::addMovie(QString title, int playtime, int age, QString desc, QS
 
 void MainWindow::openEditMovieDialogue()
 {
-    //movieModel->editMovie(1, "title", 1, 1, "desc", "genre", 200, "");
     int selIndex = getSelected(ui->listView_movies->selectionModel());
     if(selIndex != -1)
     {
@@ -242,8 +244,8 @@ void MainWindow::openEditMovieDialogue()
         QObject::connect(&popuper, SIGNAL(edit_Movie(int, QString, int, int, QString, QString, int, QString)),
                          this, SLOT(editMovie(int, QString, int, int, QString, QString, int, QString)));
 
-        //donno wat dis is
         popuper.setModal(true);
+        popuper.setWindowTitle("Edit Movie");
 
         //launch the popup
         popuper.exec();
@@ -266,9 +268,17 @@ void MainWindow::deleteMovie()
 {
     if(getSelected(ui->listView_movies->selectionModel())!=(-1))
     {
-        movieModel->removeRow(getSelected(ui->listView_movies->selectionModel()));
-        movieModel->refresh();
-        setHTML();
+        QMessageBox msgBox(QMessageBox::Question,
+                           "Delete Movie",
+                           "Are you sure?",
+                           QMessageBox::Yes | QMessageBox::No
+                           );
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            movieModel->removeRow(getSelected(ui->listView_movies->selectionModel()));
+            movieModel->refresh();
+            setHTML();
+        }
     }
 }
 
@@ -327,6 +337,7 @@ void MainWindow::setHTML()
 void MainWindow::openAddShowDialog()
 {
     addShowDialog showDialog(movieModel, hallModel);
+    showDialog.setWindowTitle("Add Show");
     showDialog.exec();
     showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 10, 2);
     showModel->refresh();
@@ -345,8 +356,16 @@ void MainWindow::deleteShow()
 
     if(select!=(-1))
     {
-    showModel->removeRow(select);
-    showModel->refresh();
+        QMessageBox msgBox(QMessageBox::Question,
+                           "Delete Show",
+                           "Are you sure?",
+                           QMessageBox::Yes | QMessageBox::No
+                           );
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            showModel->removeRow(select);
+            showModel->refresh();
+        }
     }
 }
 
@@ -392,7 +411,7 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     {
         seatIDs[i] = seatModel->getSeatID(seatIDs.at(i));
     }
-    if(showID > 0 && !phone.isEmpty() && !seatIDs.isEmpty()) //check if valid booking
+    if(!phone.isEmpty())// && showID > 0 && !seatIDs.isEmpty()) //check if valid booking
     {
         bookingModel->insertBookings(showID, seatIDs, phone);
         bookingModel->refresh();
@@ -410,7 +429,6 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     }
 }
 
-//NEW FUNCTIONS BELOW
 void MainWindow::filterBookings()
 {
     QString showFilter;
@@ -448,12 +466,11 @@ void MainWindow::on_comboBox_search_currentIndexChanged(int index)
 void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     Q_UNUSED(deselected)
-    setHTML();
+
     int selIndex = getSelected(selected);
 
     if(selIndex == -1)
     {
-        showModel->clearFilter();
         //disable delete and edit buttons
         ui->pushButton_movies_delete->setDisabled(true);
         ui->pushButton_info_edit->setDisabled(true);
@@ -465,9 +482,12 @@ void MainWindow::movieSelectionChanged(const QItemSelection &selected, const QIt
         ui->pushButton_movies_delete->setEnabled(true);
         ui->pushButton_info_edit->setEnabled(true);
         ui->actionDelete_movie->setEnabled(true);
-
-        showModel->setFilter("MovieID = ?", movieModel->getMovieID(selIndex));
     }
+
+    setHTML();
+
+    filterShows(selIndex, ui->comboBox_shows->currentIndex());
+
     showSelectionChanged(QItemSelection(), QItemSelection());
 }
 
@@ -488,6 +508,8 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
     {
         ui->label_hallinfo_title->setText("");
         ui->label_hallinfo->setText("");
+        ui->pushButton_show_delete->setDisabled(true);
+        ui->actionDelete_show->setDisabled(true);
     }
     else
     {
@@ -501,6 +523,8 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
             +soundSystem+", "
             +screenSize+"m"
         );
+        ui->pushButton_show_delete->setEnabled(true);
+        ui->actionDelete_show->setEnabled(true);
     }
 }
 
@@ -516,10 +540,12 @@ void MainWindow::deleteBooking()
 
     if(selIndex != -1)
     {
-        QMessageBox msgBox;
-        msgBox.setText("Are you sure?");
-        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-        if(msgBox.exec() == QMessageBox::Ok)
+        QMessageBox msgBox(QMessageBox::Question,
+                           "Delete Booking",
+                           "Are you sure?",
+                           QMessageBox::Yes | QMessageBox::No
+                           );
+        if(msgBox.exec() == QMessageBox::Yes)
         {
             bookingModel->removeRow(selIndex);
             bookingModel->refresh();
@@ -541,5 +567,53 @@ void MainWindow::bookingSelectionChanged(const QItemSelection &selected, const Q
     {
         ui->pushButton_bookings_delete->setEnabled(true);
         ui->pushButton_bookings_edit->setEnabled(true);
+    }
+}
+
+void MainWindow::on_comboBox_shows_currentIndexChanged(int index)
+{
+    filterShows(getSelected(ui->listView_movies->selectionModel()), index);
+}
+
+void MainWindow::filterShows(int selectedMovie, int showFilterIndex)
+{
+    QString filter;
+    QList<QVariant> placeholders;
+
+    if(selectedMovie != -1)
+    {
+        filter = "MovieID = ?";
+
+        if(showFilterIndex <3)
+            filter.append(" AND ");
+
+        placeholders.append(movieModel->getMovieID(selectedMovie));
+    }
+
+    switch(showFilterIndex)
+    {
+    case 0: filter += "DateTime > ?"; //Comming
+        placeholders.append(QDateTime::currentDateTime());
+        break;
+    case 1: filter += "DateTime BETWEEN ? AND ?"; //Today
+        placeholders.append(QDateTime::currentDateTime());
+        placeholders.append(QDateTime::currentDateTime());
+        break;
+    case 2: filter += "DateTime BETWEEN ? AND ?"; //This Week
+        placeholders.append(QDateTime::currentDateTime());
+        placeholders.append(QDateTime::currentDateTime());
+        break;
+    case 3: //All Time
+    default:
+        break;
+    }
+
+    if(filter.isEmpty())
+    {
+        showModel->clearFilter();
+    }
+    else
+    {
+        showModel->setFilter(filter, placeholders);
     }
 }

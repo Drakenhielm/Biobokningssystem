@@ -52,6 +52,8 @@ private slots:
     //Edit Show
     //void openEditShowDialogue();
     //void editShow();
+    //Filter shows
+    void on_comboBox_shows_currentIndexChanged(int index);
 
     //Add Booking
     void on_pushButton_hallview_info_book_clicked();
@@ -95,8 +97,11 @@ private:
     void initModels();
     void initViews();
 
-    void filterBookings();
     void setHTML();
+
+    void filterBookings();
+    void filterShows(int selectedMovie, int showFilterIndex);
+
     int getSelected(const QItemSelection &selection);
     int getSelected(QItemSelectionModel *selectionModel);
 

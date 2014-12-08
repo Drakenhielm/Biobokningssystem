@@ -12,8 +12,8 @@ public:
     enum Column {
         HallID = 0,
         Name = 1,
-        SoundSystem = 2,
-        ScreenSize = 3,
+        ScreenSize = 2,
+        SoundSystem = 3,
         Seats = 4,
         Rows = 5,
         Cols = 6
@@ -24,8 +24,6 @@ public:
     bool editHall(int row, const QString &name, const QString &screenSize, const QString &SoundSystem,
                     const QList<QList<bool> > &seats = QList<QList<bool> >());
 
-    virtual bool remove(const QVariant &pkValue);
-
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
     QString getName(int row) const { return data(index(row, Name)).toString(); }
     QString getScreenSize(int row) const { return data(index(row, ScreenSize)).toString(); }
@@ -33,6 +31,9 @@ public:
     int getSeats(int row) const { return data(index(row, Seats)).toInt(); }
     int getRows(int row) const { return data(index(row, Rows)).toInt(); }
     int getColumns(int row) const { return data(index(row, Cols)).toInt(); }
+
+protected:
+    virtual bool remove(const QVariant &pkValue);
 
 private:
     int insertSeats(int hallID, const QList<QList<bool> > &seats);

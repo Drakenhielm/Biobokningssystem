@@ -40,12 +40,6 @@ protected:
 private:
     //variables
     QString lastFilterQuery; //last sql statement executed by setFilter() or clearFilter()
-
-    //functions
-    void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList);
-    void removeFilter(QString &sqlStr);
-    QList<QVariant> getBoundValues(const QSqlQuery &query) const;
-    int numOfPlaceholders(const QString &sqlStr) const;
 };
 
 #endif // BASEMODEL_H
