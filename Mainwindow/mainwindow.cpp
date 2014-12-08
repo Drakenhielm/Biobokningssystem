@@ -337,16 +337,15 @@ void MainWindow::setHTML()
 void MainWindow::openAddShowDialog()
 {
     addShowDialog showDialog(movieModel, hallModel);
+    connect(&showDialog, SIGNAL(add_Show(QDateTime,double,QString,bool,bool,int,int)), this, SLOT(addShow(QDateTime,double,QString,bool,bool,int,int)));
     showDialog.setWindowTitle("Add Show");
     showDialog.exec();
-    showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 10, 2);
-    showModel->refresh();
 }
 
 
-void MainWindow::addShow()
+void MainWindow::addShow(QDateTime dateTime, double price, QString lang, bool DDD, bool subs, int movieID, int hallID)
 {
-    showModel->insertShow(QDateTime::currentDateTime(), 145, false, true, "English", 1, 2);
+    showModel->insertShow(dateTime, price, DDD, subs, lang, movieID, hallID);
     showModel->refresh();
 }
 

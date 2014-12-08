@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_addShowDialog_t {
-    QByteArrayData data[5];
-    char stringdata[77];
+    QByteArrayData data[12];
+    char stringdata[121];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,12 +32,20 @@ static const qt_meta_stringdata_addShowDialog_t qt_meta_stringdata_addShowDialog
 QT_MOC_LITERAL(0, 0, 13),
 QT_MOC_LITERAL(1, 14, 8),
 QT_MOC_LITERAL(2, 23, 0),
-QT_MOC_LITERAL(3, 24, 24),
-QT_MOC_LITERAL(4, 49, 27)
+QT_MOC_LITERAL(3, 24, 8),
+QT_MOC_LITERAL(4, 33, 5),
+QT_MOC_LITERAL(5, 39, 4),
+QT_MOC_LITERAL(6, 44, 3),
+QT_MOC_LITERAL(7, 48, 4),
+QT_MOC_LITERAL(8, 53, 7),
+QT_MOC_LITERAL(9, 61, 6),
+QT_MOC_LITERAL(10, 68, 24),
+QT_MOC_LITERAL(11, 93, 27)
     },
-    "addShowDialog\0add_Show\0\0"
-    "on_addHallButton_clicked\0"
-    "on_cancelHallButton_clicked"
+    "addShowDialog\0add_Show\0\0datetime\0price\0"
+    "lang\0DDD\0subs\0movieID\0hallID\0"
+    "on_addShowButton_clicked\0"
+    "on_cancelShowButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,14 +63,14 @@ static const uint qt_meta_data_addShowDialog[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
+       1,    7,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   30,    2, 0x08 /* Private */,
-       4,    0,   31,    2, 0x08 /* Private */,
+      10,    0,   44,    2, 0x08 /* Private */,
+      11,    0,   45,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QDateTime, QMetaType::Double, QMetaType::QString, QMetaType::Bool, QMetaType::Bool, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,    7,    8,    9,
 
  // slots: parameters
     QMetaType::Void,
@@ -76,22 +84,21 @@ void addShowDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         addShowDialog *_t = static_cast<addShowDialog *>(_o);
         switch (_id) {
-        case 0: _t->add_Show(); break;
-        case 1: _t->on_addHallButton_clicked(); break;
-        case 2: _t->on_cancelHallButton_clicked(); break;
+        case 0: _t->add_Show((*reinterpret_cast< QDateTime(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7]))); break;
+        case 1: _t->on_addShowButton_clicked(); break;
+        case 2: _t->on_cancelShowButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (addShowDialog::*_t)();
+            typedef void (addShowDialog::*_t)(QDateTime , double , QString , bool , bool , int , int );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&addShowDialog::add_Show)) {
                 *result = 0;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject addShowDialog::staticMetaObject = {
@@ -131,8 +138,9 @@ int addShowDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void addShowDialog::add_Show()
+void addShowDialog::add_Show(QDateTime _t1, double _t2, QString _t3, bool _t4, bool _t5, int _t6, int _t7)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)), const_cast<void*>(reinterpret_cast<const void*>(&_t6)), const_cast<void*>(reinterpret_cast<const void*>(&_t7)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

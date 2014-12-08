@@ -20,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[42];
-    char stringdata[651];
+    QByteArrayData data[48];
+    char stringdata[687];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -53,25 +53,31 @@ QT_MOC_LITERAL(19, 225, 9),
 QT_MOC_LITERAL(20, 235, 7),
 QT_MOC_LITERAL(21, 243, 17),
 QT_MOC_LITERAL(22, 261, 7),
-QT_MOC_LITERAL(23, 269, 10),
-QT_MOC_LITERAL(24, 280, 37),
-QT_MOC_LITERAL(25, 318, 5),
-QT_MOC_LITERAL(26, 324, 40),
-QT_MOC_LITERAL(27, 365, 13),
-QT_MOC_LITERAL(28, 379, 28),
-QT_MOC_LITERAL(29, 408, 38),
-QT_MOC_LITERAL(30, 447, 19),
-QT_MOC_LITERAL(31, 467, 20),
-QT_MOC_LITERAL(32, 488, 19),
-QT_MOC_LITERAL(33, 508, 10),
-QT_MOC_LITERAL(34, 519, 5),
-QT_MOC_LITERAL(35, 525, 11),
-QT_MOC_LITERAL(36, 537, 16),
-QT_MOC_LITERAL(37, 554, 41),
-QT_MOC_LITERAL(38, 596, 13),
-QT_MOC_LITERAL(39, 610, 10),
-QT_MOC_LITERAL(40, 621, 5),
-QT_MOC_LITERAL(41, 627, 23)
+QT_MOC_LITERAL(23, 269, 8),
+QT_MOC_LITERAL(24, 278, 5),
+QT_MOC_LITERAL(25, 284, 4),
+QT_MOC_LITERAL(26, 289, 3),
+QT_MOC_LITERAL(27, 293, 4),
+QT_MOC_LITERAL(28, 298, 6),
+QT_MOC_LITERAL(29, 305, 10),
+QT_MOC_LITERAL(30, 316, 37),
+QT_MOC_LITERAL(31, 354, 5),
+QT_MOC_LITERAL(32, 360, 40),
+QT_MOC_LITERAL(33, 401, 13),
+QT_MOC_LITERAL(34, 415, 28),
+QT_MOC_LITERAL(35, 444, 38),
+QT_MOC_LITERAL(36, 483, 19),
+QT_MOC_LITERAL(37, 503, 20),
+QT_MOC_LITERAL(38, 524, 19),
+QT_MOC_LITERAL(39, 544, 10),
+QT_MOC_LITERAL(40, 555, 5),
+QT_MOC_LITERAL(41, 561, 11),
+QT_MOC_LITERAL(42, 573, 16),
+QT_MOC_LITERAL(43, 590, 41),
+QT_MOC_LITERAL(44, 632, 13),
+QT_MOC_LITERAL(45, 646, 10),
+QT_MOC_LITERAL(46, 657, 5),
+QT_MOC_LITERAL(47, 663, 23)
     },
     "MainWindow\0movieSelectionChanged\0\0"
     "QItemSelection\0selected\0deselected\0"
@@ -80,7 +86,8 @@ QT_MOC_LITERAL(41, 627, 23)
     "playtime\0age\0desc\0genre\0year\0movieposter\0"
     "deleteMovie\0openEditMovieDialogue\0"
     "editMovie\0movieID\0openAddShowDialog\0"
-    "addShow\0deleteShow\0"
+    "addShow\0dateTime\0price\0lang\0DDD\0subs\0"
+    "hallID\0deleteShow\0"
     "on_comboBox_shows_currentIndexChanged\0"
     "index\0on_pushButton_hallview_info_book_clicked\0"
     "deleteBooking\0on_pushButton_search_clicked\0"
@@ -117,21 +124,21 @@ static const uint qt_meta_data_MainWindow[] = {
       18,    0,  166,    2, 0x08 /* Private */,
       19,    8,  167,    2, 0x08 /* Private */,
       21,    0,  184,    2, 0x08 /* Private */,
-      22,    0,  185,    2, 0x08 /* Private */,
-      23,    0,  186,    2, 0x08 /* Private */,
-      24,    1,  187,    2, 0x08 /* Private */,
-      26,    0,  190,    2, 0x08 /* Private */,
-      27,    0,  191,    2, 0x08 /* Private */,
-      28,    0,  192,    2, 0x08 /* Private */,
-      29,    1,  193,    2, 0x08 /* Private */,
-      30,    0,  196,    2, 0x08 /* Private */,
-      31,    0,  197,    2, 0x08 /* Private */,
-      32,    1,  198,    2, 0x08 /* Private */,
-      35,    1,  201,    2, 0x08 /* Private */,
-      36,    0,  204,    2, 0x08 /* Private */,
-      37,    0,  205,    2, 0x08 /* Private */,
-      38,    1,  206,    2, 0x08 /* Private */,
-      41,    0,  209,    2, 0x08 /* Private */,
+      22,    7,  185,    2, 0x08 /* Private */,
+      29,    0,  200,    2, 0x08 /* Private */,
+      30,    1,  201,    2, 0x08 /* Private */,
+      32,    0,  204,    2, 0x08 /* Private */,
+      33,    0,  205,    2, 0x08 /* Private */,
+      34,    0,  206,    2, 0x08 /* Private */,
+      35,    1,  207,    2, 0x08 /* Private */,
+      36,    0,  210,    2, 0x08 /* Private */,
+      37,    0,  211,    2, 0x08 /* Private */,
+      38,    1,  212,    2, 0x08 /* Private */,
+      41,    1,  215,    2, 0x08 /* Private */,
+      42,    0,  218,    2, 0x08 /* Private */,
+      43,    0,  219,    2, 0x08 /* Private */,
+      44,    1,  220,    2, 0x08 /* Private */,
+      47,    0,  223,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
@@ -143,20 +150,20 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::QString,   20,   10,   11,   12,   13,   14,   15,   16,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QDateTime, QMetaType::Double, QMetaType::QString, QMetaType::Bool, QMetaType::Bool, QMetaType::Int, QMetaType::Int,   23,   24,   25,   26,   27,   20,   28,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   31,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   25,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   25,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 33,   34,
-    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Int,   31,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 39,   40,
+    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 45,   46,
     QMetaType::Void,
 
        0        // eod
@@ -176,7 +183,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->openEditMovieDialogue(); break;
         case 7: _t->editMovie((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< QString(*)>(_a[8]))); break;
         case 8: _t->openAddShowDialog(); break;
-        case 9: _t->addShow(); break;
+        case 9: _t->addShow((*reinterpret_cast< QDateTime(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7]))); break;
         case 10: _t->deleteShow(); break;
         case 11: _t->on_comboBox_shows_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 12: _t->on_pushButton_hallview_info_book_clicked(); break;

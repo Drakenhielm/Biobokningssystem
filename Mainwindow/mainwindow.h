@@ -15,6 +15,7 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDateTime>
 
 
 namespace Ui {
@@ -46,7 +47,7 @@ private slots:
 
     //Add Show
     void openAddShowDialog();
-    void addShow();
+    void addShow(QDateTime dateTime, double price, QString lang, bool DDD, bool subs, int movieID, int hallID);
     //Delete Show
     void deleteShow();
     //Edit Show

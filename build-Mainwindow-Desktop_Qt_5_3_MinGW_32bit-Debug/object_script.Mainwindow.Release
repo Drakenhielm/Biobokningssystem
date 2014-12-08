@@ -12,9 +12,9 @@ INPUT(
 ./release\hall.o
 ./release\confirmaddmovie.o
 ./release\popup.o
-./release\addshowdialog.o
 ./release\edit_hall.o
 ./release\imagehandler.o
+./release\addshowdialog.o
 ./release\qrc_resource.o
 ./release\moc_mainwindow.o
 ./release\moc_hallview.o
@@ -22,6 +22,6 @@ INPUT(
 ./release\moc_hall.o
 ./release\moc_confirmaddmovie.o
 ./release\moc_popup.o
-./release\moc_addshowdialog.o
 ./release\moc_edit_hall.o
+./release\moc_addshowdialog.o
 );

@@ -21,6 +21,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,8 +34,9 @@ class Ui_addShowDialog
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_7;
-    QPushButton *addHallButton;
-    QPushButton *cancelHallButton;
+    QPushButton *addShowButton;
+    QPushButton *cancelShowButton;
+    QSplitter *splitter_2;
     QWidget *layoutWidget_2;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
@@ -59,6 +62,9 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QLabel *languageLabel;
     QComboBox *languageCBB;
+    QSplitter *splitter;
+    QLabel *priceLabel;
+    QSpinBox *priceSpinBox;
     QButtonGroup *buttonGroup_2;
     QButtonGroup *buttonGroup;
 
@@ -69,23 +75,26 @@ public:
         addShowDialog->resize(400, 536);
         layoutWidget = new QWidget(addShowDialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(200, 490, 168, 25));
+        layoutWidget->setGeometry(QRect(190, 490, 168, 25));
         horizontalLayout_7 = new QHBoxLayout(layoutWidget);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        addHallButton = new QPushButton(layoutWidget);
-        addHallButton->setObjectName(QStringLiteral("addHallButton"));
+        addShowButton = new QPushButton(layoutWidget);
+        addShowButton->setObjectName(QStringLiteral("addShowButton"));
 
-        horizontalLayout_7->addWidget(addHallButton);
+        horizontalLayout_7->addWidget(addShowButton);
 
-        cancelHallButton = new QPushButton(layoutWidget);
-        cancelHallButton->setObjectName(QStringLiteral("cancelHallButton"));
+        cancelShowButton = new QPushButton(layoutWidget);
+        cancelShowButton->setObjectName(QStringLiteral("cancelShowButton"));
 
-        horizontalLayout_7->addWidget(cancelHallButton);
+        horizontalLayout_7->addWidget(cancelShowButton);
 
-        layoutWidget_2 = new QWidget(addShowDialog);
+        splitter_2 = new QSplitter(addShowDialog);
+        splitter_2->setObjectName(QStringLiteral("splitter_2"));
+        splitter_2->setGeometry(QRect(40, 20, 321, 461));
+        splitter_2->setOrientation(Qt::Vertical);
+        layoutWidget_2 = new QWidget(splitter_2);
         layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(50, 10, 321, 441));
         verticalLayout_2 = new QVBoxLayout(layoutWidget_2);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -212,6 +221,18 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_5);
 
+        splitter_2->addWidget(layoutWidget_2);
+        splitter = new QSplitter(splitter_2);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        priceLabel = new QLabel(splitter);
+        priceLabel->setObjectName(QStringLiteral("priceLabel"));
+        splitter->addWidget(priceLabel);
+        priceSpinBox = new QSpinBox(splitter);
+        priceSpinBox->setObjectName(QStringLiteral("priceSpinBox"));
+        priceSpinBox->setMaximum(999);
+        splitter->addWidget(priceSpinBox);
+        splitter_2->addWidget(splitter);
 
         retranslateUi(addShowDialog);
 
@@ -221,8 +242,8 @@ public:
     void retranslateUi(QDialog *addShowDialog)
     {
         addShowDialog->setWindowTitle(QApplication::translate("addShowDialog", "Dialog", 0));
-        addHallButton->setText(QApplication::translate("addShowDialog", "Add", 0));
-        cancelHallButton->setText(QApplication::translate("addShowDialog", "Cancel", 0));
+        addShowButton->setText(QApplication::translate("addShowDialog", "Add", 0));
+        cancelShowButton->setText(QApplication::translate("addShowDialog", "Cancel", 0));
         movieLabel->setText(QApplication::translate("addShowDialog", "Movie", 0));
         hallLabel->setText(QApplication::translate("addShowDialog", "Hall", 0));
         dateLabel->setText(QApplication::translate("addShowDialog", "Date", 0));
@@ -234,6 +255,15 @@ public:
         subYesRB->setText(QApplication::translate("addShowDialog", "Yes", 0));
         subNoRB->setText(QApplication::translate("addShowDialog", "No", 0));
         languageLabel->setText(QApplication::translate("addShowDialog", "Language", 0));
+        languageCBB->clear();
+        languageCBB->insertItems(0, QStringList()
+         << QApplication::translate("addShowDialog", "English", 0)
+         << QApplication::translate("addShowDialog", "French", 0)
+         << QApplication::translate("addShowDialog", "German", 0)
+         << QApplication::translate("addShowDialog", "Spanish", 0)
+         << QApplication::translate("addShowDialog", "Swedish", 0)
+        );
+        priceLabel->setText(QApplication::translate("addShowDialog", "Price", 0));
     } // retranslateUi
 
 };
