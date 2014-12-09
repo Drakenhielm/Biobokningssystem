@@ -42,6 +42,11 @@ bool ImageHandler::copyImage(const QString & fromPath)
     return false;
 }
 
+bool ImageHandler::removeImage(const QString &fileName)
+{
+    return QFile::remove(dir.path()+'/'+fileName);
+}
+
 QPixmap ImageHandler::getPixmap(const QString &fileName) const
 {
 

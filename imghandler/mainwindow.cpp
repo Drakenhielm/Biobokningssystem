@@ -38,3 +38,9 @@ void MainWindow::on_pushButton_2_clicked()
     qDebug() << ih.lastInsertedFileName();
 
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString file = ui->lineEdit->text();
+    ih.removeImage(file);
+}
