@@ -16,16 +16,22 @@ edit_hall::edit_hall(QWidget *parent) :
     ui->frame_hall->setLayout(lineLayout);
     ui->frame_hall->layout()->addWidget(hallView);
 
-    connect(ui->spinBox_rows, SIGNAL(valueChanged(int)), hallView, SLOT(setRows(int)));
-    connect(ui->spinBox_columns, SIGNAL(valueChanged(int)), hallView, SLOT(setColumns(int)));
-
     connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(setLabelNumberOfSeats()));
 
     hallView->setMode(true);
 
 
-    showModel = new ShowModel(this);
-    ui->tableView_edit_hall->setModel(showModel);
+    hallModel = new HallModel(this);
+    ui->tableView_edit_hall->setModel(hallModel);
+    ui->tableView_edit_hall->hideColumn(HallModel::HallID);
+    ui->tableView_edit_hall->hideColumn(HallModel::Rows);
+    ui->tableView_edit_hall->hideColumn(HallModel::Cols);
+
+    ui->tableView_edit_hall->setColumnWidth(HallModel::Name, 120);
+    ui->tableView_edit_hall->setColumnWidth(HallModel::ScreenSize, 140);
+    ui->tableView_edit_hall->setColumnWidth(HallModel::SoundSystem, 70);
+    ui->tableView_edit_hall->setColumnWidth(HallModel::Seats, 39);
+
 
 }
 
@@ -39,5 +45,8 @@ void edit_hall::setLabelNumberOfSeats()
 {
     ui->label_number_of_seats->setText("Seats: " + QString::number(hallView->getTotalNumberOfSeats()));
 }
+
+
+
 
 
