@@ -42,6 +42,17 @@ bool ImageHandler::copyImage(const QString & fromPath)
     return false;
 }
 
+bool ImageHandler::replaceImage(const QString &oldFileName, const QString &newFileName)
+{
+    if(fileNameExists(oldFileName))
+        return false;
+
+    if(removeImage(oldFileName))
+        return copyImage(newFileName);
+
+    return false;
+}
+
 bool ImageHandler::removeImage(const QString &fileName)
 {
     return QFile::remove(dir.path()+'/'+fileName);

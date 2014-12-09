@@ -12,6 +12,7 @@ public:
     ImageHandler();
 
     bool copyImage(const QString & fromPath);
+    bool replaceImage(const QString &oldFileName, const QString &newFileName);
     bool removeImage(const QString &fileName);
     QString getFolderPath() const;
     QPixmap getPixmap(const QString &fileName) const;
