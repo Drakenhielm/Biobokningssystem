@@ -61,8 +61,8 @@ void MainWindow::initViews()
     ui->tableView_show->hideColumn(ShowModel::ShowID);
     ui->tableView_show->hideColumn(ShowModel::MovieID);
     ui->tableView_show->hideColumn(ShowModel::HallID);
-    //ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
-    ui->tableView_show->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
+    //ui->tableView_show->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
     ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
 
@@ -209,7 +209,7 @@ void MainWindow::openAddHallDialogue()
 
 void MainWindow::openEditHallDialogue()
 {
-    edit_hall hallPopup;
+    edit_hall hallPopup(seatModel);
     hallPopup.setModal(true);
     hallPopup.exec();
 }
