@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "hallview.h"
-#include "Model/showmodel.h"
+#include "Model/hallmodel.h"
 
 
 
@@ -26,7 +26,7 @@ private slots:
 private:
     Ui::edit_hall *ui;
     HallView *hallView;
-    ShowModel *showModel;
+    HallModel *hallModel;
 };
 
 
