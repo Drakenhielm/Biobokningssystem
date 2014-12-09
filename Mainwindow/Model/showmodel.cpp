@@ -13,7 +13,7 @@ ShowModel::ShowModel(QObject *parent)
                 "FROM booking "
                 "LEFT JOIN seatbooking ON seatbooking.BookingID = booking.BookingID "
              ") b ON b.ShowID = show.ShowID AND b.SeatID = seat.SeatID "
-             "GROUP BY show.ShowID");
+             "GROUP BY show.ShowID ORDER BY DateTime");
 }
 
 QVariant ShowModel::data(const QModelIndex &item, int role) const

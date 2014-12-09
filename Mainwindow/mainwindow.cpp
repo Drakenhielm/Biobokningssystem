@@ -301,19 +301,19 @@ void MainWindow::setHTML()
 
     if(selIndex==(-1))
     {
-        ui->textBrowser_info->setHtml("");
+        ui->movie_info->setHtml("");
     }
 
     else
     {
         QString img;
         if(!movieModel->getMoviePoster(selIndex).isEmpty()
-                && ui->textBrowser_info->width() > 300)
+                && ui->movie_info->width() > 300)
         {
             img = "<img src='" + movieModel->getMoviePoster(selIndex) + "' width='150'/>";
         }
 
-        ui->textBrowser_info->setHtml
+        ui->movie_info->setHtml
         (
             "<html><head><meta name='qrichtext' content='1' /><style type='text/css'>"
             "p, li { white-space: pre-wrap; }"
@@ -613,12 +613,12 @@ void MainWindow::filterShows(int selectedMovie, int showFilterIndex)
         placeholders.append(QDateTime::currentDateTime());
         break;
     case 1: filter += "DateTime BETWEEN ? AND ?"; //Today
-        placeholders.append(QDateTime::currentDateTime());
-        placeholders.append(QDateTime::currentDateTime());
+        placeholders.append(QDateTime(QDate::currentDate()));
+        placeholders.append(QDateTime(QDate::currentDate().addDays(1)));
         break;
     case 2: filter += "DateTime BETWEEN ? AND ?"; //This Week
-        placeholders.append(QDateTime::currentDateTime());
-        placeholders.append(QDateTime::currentDateTime());
+        placeholders.append(QDateTime(QDate::currentDate()));
+        placeholders.append(QDateTime(QDate::currentDate().addDays(7)));
         break;
     case 3: //All Time
     default:
@@ -633,4 +633,5 @@ void MainWindow::filterShows(int selectedMovie, int showFilterIndex)
     {
         showModel->setFilter(filter, placeholders);
     }
+    qDebug() << placeholders;
 }

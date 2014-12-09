@@ -31,7 +31,7 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -80,7 +80,7 @@ public:
     QWidget *widget_info;
     QVBoxLayout *verticalLayout;
     QLabel *label_movieinfo;
-    QTextBrowser *textBrowser_info;
+    QTextEdit *movie_info;
     QHBoxLayout *horizontalLayout_7;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_info_edit;
@@ -344,12 +344,12 @@ public:
 
         verticalLayout->addWidget(label_movieinfo, 0, Qt::AlignBottom);
 
-        textBrowser_info = new QTextBrowser(widget_info);
-        textBrowser_info->setObjectName(QStringLiteral("textBrowser_info"));
-        sizePolicy1.setHeightForWidth(textBrowser_info->sizePolicy().hasHeightForWidth());
-        textBrowser_info->setSizePolicy(sizePolicy1);
+        movie_info = new QTextEdit(widget_info);
+        movie_info->setObjectName(QStringLiteral("movie_info"));
+        sizePolicy1.setHeightForWidth(movie_info->sizePolicy().hasHeightForWidth());
+        movie_info->setSizePolicy(sizePolicy1);
 
-        verticalLayout->addWidget(textBrowser_info);
+        verticalLayout->addWidget(movie_info);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
@@ -700,7 +700,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        comboBox_shows->setCurrentIndex(3);
+        comboBox_shows->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -738,7 +738,7 @@ public:
         pushButton_show_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_show_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         label_movieinfo->setText(QApplication::translate("MainWindow", "Information:", 0));
-        textBrowser_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        movie_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;\">\n"

@@ -218,7 +218,7 @@
                 </size>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>0</number>
                </property>
                <item>
                 <property name="text">
@@ -385,7 +385,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QTextBrowser" name="textBrowser_info">
+            <widget class="QTextEdit" name="movie_info">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                <horstretch>0</horstretch>
