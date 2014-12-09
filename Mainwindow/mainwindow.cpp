@@ -209,7 +209,7 @@ void MainWindow::openAddHallDialogue()
 
 void MainWindow::openEditHallDialogue()
 {
-    edit_hall hallPopup;
+    edit_hall hallPopup(seatModel);
     hallPopup.setModal(true);
     hallPopup.exec();
 }
