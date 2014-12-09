@@ -11,11 +11,10 @@ class ImageHandler
 public:
     ImageHandler();
 
-    bool copyImage(const QString & imagePath);
+    bool copyImage(const QString & fromPath);
     QString getFolderPath() const;
     QPixmap getPixmap(const QString &fileName) const;
-    QPixmap getLastInsertedPixmap() const;
-    QString getLastInsertedFileName() const;
+    QString lastInsertedFileName() const;
 
 private:
     QString folder;

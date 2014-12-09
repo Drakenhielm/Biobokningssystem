@@ -33,9 +33,8 @@ void MainWindow::on_pushButton_2_clicked()
 {
     QString file = ui->lineEdit->text();
     ih.copyImage(file);
-    pixmap.load(ih.getLastInsertedFileName());
+    pixmap = ih.getPixmap(ih.lastInsertedFileName());
     ui->label->setPixmap(pixmap);
-    qDebug() << ih.getLastInsertedFileName();
-    qDebug() << ih.getLastInsertedPixmap();
+    qDebug() << ih.lastInsertedFileName();
 
 }

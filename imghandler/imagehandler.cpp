@@ -48,22 +48,15 @@ QPixmap ImageHandler::getPixmap(const QString &fileName) const
     return QPixmap(dir.path()+'/'+fileName);
 }
 
-QPixmap ImageHandler::getLastInsertedPixmap() const
+QString ImageHandler::lastInsertedFileName() const
 {
-    return getPixmap(folder+'/'+lastInserted);
-}
-
-QString ImageHandler::getLastInsertedFileName() const
-{
-    return dir.path()+'/'+lastInserted;
+    return lastInserted;
 }
 
 QString ImageHandler::getFolderPath() const
 {
     return dir.path();
 }
-
-//PRIVATE
 
 /*Check if the file extension is ".png", ".jpg", ".jpeg", ".gif" or ".bmp". */
 bool ImageHandler::validImageFile(const QString &fileName) const
@@ -89,10 +82,10 @@ QString ImageHandler::getFileName(const QString &path) const
  * */
 void ImageHandler::generateUniqueFileName(QString & fileName)
 {
-    QString fileNameWithoutExtension = fileName.mid(0, fileName.lastIndexOf('.')-1);
+    QString fileNameWithoutExtension = fileName.mid(0, fileName.lastIndexOf('.'));
     QString extension = fileName.mid(fileName.lastIndexOf('.'), -1);
     int i = 2;
-    while(!fileNameExists(fileName))
+    while(fileNameExists(fileName))
     {
         fileName = fileNameWithoutExtension+QString::number(i)+extension;
         i++;

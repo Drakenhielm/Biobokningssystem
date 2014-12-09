@@ -20,3 +20,5 @@ HEADERS  += mainwindow.h \
     imagehandler.h
 
 FORMS    += mainwindow.ui
+
+OTHER_FILES +=
