@@ -47,7 +47,7 @@ void MainWindow::initModels()
     seatModel->setHall(8);
     seatModel->setShow(0);
     seatModel->refresh();
-    qDebug() << seatModel->getSeatStateList();
+    qDebug() << seatModel->getSeatStateMatrix();
 }
 
 void MainWindow::initViews()
@@ -421,7 +421,7 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     QList<int> seatIDs = hallView->getSelectedSeats();
     for(int i = 0; i < seatIDs.size(); i++)
     {
-        seatIDs[i] = seatModel->getSeatID(seatIDs.at(i));
+        seatIDs[i] = seatModel->getSeatID(seatIDs.at(i)-1);
     }
     if(!phone.isEmpty())// && showID > 0 && !seatIDs.isEmpty()) //check if valid booking
     {
@@ -541,7 +541,9 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         seatModel->setHall(showModel->getHallID(selIndex));
         seatModel->setShow(showModel->getShowID(selIndex));
         seatModel->refresh();
-        hallView->setHall(seatModel->getSeatStateList(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
+
+        qDebug() << seatModel->getSeatStateMatrix();
+        //hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
     }
 }
 
@@ -633,5 +635,4 @@ void MainWindow::filterShows(int selectedMovie, int showFilterIndex)
     {
         showModel->setFilter(filter, placeholders);
     }
-    qDebug() << placeholders;
 }

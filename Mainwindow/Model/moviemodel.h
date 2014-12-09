@@ -42,6 +42,7 @@ protected:
 
 private:
     ImageHandler imgHandler;
+    bool editPoster(const QString &oldImage, const QString &newImage);
 
 };
 

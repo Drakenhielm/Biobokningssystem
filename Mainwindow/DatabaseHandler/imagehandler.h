@@ -12,9 +12,12 @@ public:
     ImageHandler();
 
     bool copyImage(const QString & fromPath);
+    //bool copyImageReplaceOnDuplicate()
+    bool removeImage(const QString &fileName);
     QString getFolderPath() const;
     QPixmap getPixmap(const QString &fileName) const;
     QString lastInsertedFileName() const;
+    bool fileNameExists(const QString &fileName) const;
 
 private:
     QString folder;
@@ -25,7 +28,6 @@ private:
     bool validImageFile(const QString &fileName) const;
     QString getFileName(const QString &path) const;
     void generateUniqueFileName(QString & fileName);
-    bool fileNameExists(const QString &fileName) const;
 };
 
 

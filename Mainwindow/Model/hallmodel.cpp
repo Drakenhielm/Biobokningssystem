@@ -58,24 +58,20 @@ int HallModel::insertSeats(int hallID, const QList<QList<bool> > &seats)
     {
         for(int c = 0; c < seats.at(r).size(); c++)
         {
-            values.insert(QString("Row"), r+1);
-            values.insert(QString("Column"), c+1);
             if(seats.at(r).at(c))
             {
+                values.insert(QString("Row"), r+1);
+                values.insert(QString("Column"), c+1);
                 values.insert(QString("SeatNr"), seatNr++);
                 values.insert(QString("SeatType"), 1);
-            }
-            else
-            {
-                values.insert(QString("SeatType"), 0);
-            }
-            values.insert(QString("HallID"), hallID);
+                values.insert(QString("HallID"), hallID);
 
-            lastID = dh.insert("seat", values);
-            values.clear();
+                lastID = dh.insert("seat", values);
+                values.clear();
 
-            if(lastID == -1)
-                return -1;
+                if(lastID == -1)
+                    return -1;
+            }
         }
     }
     return lastID;

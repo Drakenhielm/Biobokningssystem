@@ -46,10 +46,16 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
     values.insert(QString("Year"), year);
     values.insert(QString("MoviePoster"), imagePath);
 
-    //if(imgHandler.imageExists(getMoviePoster(row)))
-    //{
+    bool ok = true;
+    int row = getRowByPrimaryKeyValue(movieID);
+    if(imgHandler.fileNameExists(getMoviePoster(row)))
+    {
         //edit poster
-    //}
+        imgHandler.removeImage(getMoviePoster(row));
+        ok = ok && imgHandler.fileNameExists(getMoviePoster(row));
+        if(ok)
+            ok = ok && imgHandler.copyImage(imagePath);
+    }
     return dh.edit("movie", values, "MovieID = ?", movieID);
 }
 

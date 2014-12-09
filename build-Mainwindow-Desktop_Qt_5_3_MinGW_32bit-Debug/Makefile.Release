@@ -1426,10 +1426,24 @@ release/mainwindow.o: ../Mainwindow/mainwindow.cpp ../Mainwindow/mainwindow.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qmessagebox.h \
 		ui_mainwindow.h \
-		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAbstractItemView \
-		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QVariant \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAction \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QApplication \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QCheckBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QComboBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
@@ -1440,6 +1454,50 @@ release/mainwindow.o: ../Mainwindow/mainwindow.cpp ../Mainwindow/mainwindow.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyle.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QFormLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qformlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QFrame \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLabel \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLineEdit \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextcursor.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qpen.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QListView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlistview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QMenu \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qmenu.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QMenuBar \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qmenubar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSpacerItem \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSplitter \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qsplitter.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QStatusBar \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstatusbar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QTableView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtableview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QTextEdit \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextdocument.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAbstractItemView \
 		../Mainwindow/edit_hall/edit_hall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\Mainwindow\mainwindow.cpp
 
@@ -2622,6 +2680,54 @@ release/hall.o: ../Mainwindow/add_hall/hall.cpp ../Mainwindow/add_hall/hall.h \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QSize \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/QWidget \
 		ui_hall.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QVariant \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAction \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qicon.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QApplication \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QComboBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QFrame \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLabel \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLineEdit \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextcursor.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qpen.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSpinBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qspinbox.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayout.h \
@@ -2731,7 +2837,44 @@ release/confirmaddmovie.o: ../Mainwindow/add_movie/confirmaddmovie.cpp ../Mainwi
 		C:/Qt/5.3/mingw482_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.3/mingw482_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.3/mingw482_32/include/QtGui/qtouchdevice.h \
-		ui_confirmaddmovie.h
+		ui_confirmaddmovie.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QVariant \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAction \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qicon.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QApplication \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLabel \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\confirmaddmovie.o ..\Mainwindow\add_movie\confirmaddmovie.cpp
 
 release/popup.o: ../Mainwindow/add_movie/popup.cpp ../Mainwindow/add_movie/popup.h \
@@ -2841,6 +2984,63 @@ release/popup.o: ../Mainwindow/add_movie/popup.cpp ../Mainwindow/add_movie/popup
 		C:/Qt/5.3/mingw482_32/include/QtCore/qfileinfo.h \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QDebug \
 		ui_popup.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QVariant \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAction \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qicon.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QApplication \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QComboBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLabel \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLineEdit \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextcursor.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextformat.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qpen.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSpinBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QTextEdit \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtextedit.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qtextdocument.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QWidget \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/QFileDialog \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qfiledialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\popup.o ..\Mainwindow\add_movie\popup.cpp
@@ -2972,6 +3172,47 @@ release/edit_hall.o: ../Mainwindow/edit_hall/edit_hall.cpp ../Mainwindow/edit_ha
 		C:/Qt/5.3/mingw482_32/include/QtCore/QDebug \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QPair \
 		ui_edit_hall.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QVariant \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAction \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qicon.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QApplication \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QFrame \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLabel \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSpinBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QTableView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtableview.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayout.h \
@@ -3110,7 +3351,62 @@ release/addshowdialog.o: ../Mainwindow/add_show/addshowdialog.cpp ../Mainwindow/
 		C:/Qt/5.3/mingw482_32/include/QtGui/QPixmap \
 		../Mainwindow/Model/hallmodel.h \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QPoint \
-		ui_addshowdialog.h
+		ui_addshowdialog.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QVariant \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QAction \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qicon.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QApplication \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QCalendarWidget \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qcalendarwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QComboBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QLabel \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QRadioButton \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSpinBox \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qspinbox.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QSplitter \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qsplitter.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QTimeEdit \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/qdatetimeedit.h \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.3/mingw482_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\addshowdialog.o ..\Mainwindow\add_show\addshowdialog.cpp
 
 release/imagehandler.o: ../Mainwindow/DatabaseHandler/imagehandler.cpp ../Mainwindow/DatabaseHandler/imagehandler.h \

@@ -41,7 +41,7 @@ public:
     int getMaxRow() const { return rowMax; }
     int getMaxColumn() const { return colMax; }
 
-    QList<QList<int> > getSeatStateList() const;
+    QVector<QVector<int> > getSeatStateMatrix() const;
 
     void setHall(int id);
     void setShow(int id);
