@@ -10,16 +10,18 @@ public:
 
     enum Column
     {
-        ShowID = 0,
-        MovieID = 1,
-        Phone = 2,
-        Title = 3,
-        DateTime = 4,
-        Tickets = 5
+        BookingID = 0,
+        ShowID = 1,
+        MovieID = 2,
+        Phone = 3,
+        Title = 4,
+        DateTime = 5,
+        Tickets = 6,
+        SeatIDs = 7
     };
 
-    int insertBooking(int ShowID, int seatID, const QString &phone);
     int insertBookings(int ShowID, const QList<int> &seatIDs, const QString &phone);
+    bool editBookings(int bookingID, int showID, const QList<int> &seatIDs, const QString &phone);
 
     int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
@@ -27,6 +29,13 @@ public:
     QString getTitle(int row) const { return data(index(row, Title)).toString(); }
     QDateTime getDateTime(int row) const { return data(index(row, DateTime)).toDateTime(); }
     int getTickets(int row) const { return data(index(row, Tickets)).toInt(); }
+    QList<int> getSeatIDs(int row) const;
+
+protected:
+    virtual bool remove(const QVariant &pkValue);
+
+private:
+    bool insertSeatBookings(int bookingID, const QList<int> &seatIDs);
 
 };
 

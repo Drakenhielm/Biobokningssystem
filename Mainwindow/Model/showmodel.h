@@ -21,7 +21,7 @@ public:
         MovieID = 6,
         HallID = 7,
         Hall = 8,
-        AvaibleSeats = 9
+        AvailableSeats = 9
     };
 
     ShowModel(QObject *parent = 0);
@@ -30,6 +30,8 @@ public:
     virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
 
     int insertShow(const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
+                    int movieID, int hallID);
+    bool editShow(int showID, const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
                     int movieID, int hallID);
 
     int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }
@@ -41,7 +43,10 @@ public:
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
     QString getHall(int row) const { return data(index(row, Hall)).toString(); }
-    int getAvaibleSeats(int row) const { return data(index(row, AvaibleSeats)).toInt(); }
+    int getAvailableSeats(int row) const { return data(index(row, AvailableSeats)).toInt(); }
+
+protected:
+    virtual bool remove(const QVariant &pkValue);
 
 };
 

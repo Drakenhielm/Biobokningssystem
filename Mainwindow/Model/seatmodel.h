@@ -9,21 +9,51 @@ class SeatModel : public BaseModel
 public:
     SeatModel(QObject *parent = 0);
 
-    //virtual int rowCount(const QModelIndex & parent = QModelIndex()) const;
-    //virtual int columnCount(const QModelIndex & parent = QModelIndex()) const;
-    //virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole);
+    enum Column
+    {
+        SeatID = 0,
+        Row = 1,
+        Column = 2,
+        SeatNr = 3,
+        SeatTypeIndex = 4,
+        HallID = 5,
+        BookingID = 6
+    };
+
+    enum SeatType
+    {
+        NoSeat = 0,
+        Seat = 1,
+        Available = 2,
+        Booked = 4
+    };
+
     virtual void refresh();
+
+    int getSeatID(int row) const { return data(index(row, SeatID)).toInt(); }
+    int getRow(int row) const { return data(index(row, Row)).toInt(); }
+    int getColumn(int row) const { return data(index(row, Column)).toInt(); }
+    int getSeatNr(int row) const { return data(index(row, SeatNr)).toInt(); }
+    int getSeatType(int row) const { return data(index(row, SeatTypeIndex)).toInt(); }
+    int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
+    int getBookingID(int row) const { return data(index(row, BookingID)).toInt(); }
+
+    int getMaxRow() const { return rowMax; }
+    int getMaxColumn() const { return colMax; }
+
+    QList<QList<int> > getSeatStateList() const;
 
     void setHall(int id);
     void setShow(int id);
-    void setBooking(const QString &phone);
 
 private:
     int hallID;
     int showID;
-    QString bookingPhoneNr;
+    int rowMax;
+    int colMax;
 
-    void fixQuery();
+    QString sqlStatement(int hallID, int showID);
+    QPair<int, int> getHallSize(int hallID);
 
 };
 

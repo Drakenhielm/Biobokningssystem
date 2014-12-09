@@ -22,26 +22,24 @@ public:
 
     //public functions
     virtual void refresh();
-    bool removeWhere(const QString &column, const QVariant &value);
+    //virtual bool removeWhere(const QString &column, const QVariant &value);
     void setFilter(const QString &filter, QVariant placeholder);
     void setFilter(const QString &filter, const QList<QVariant> &placeholderList  = QList<QVariant>());
     void clearFilter();
+    int getRowByPrimaryKeyValue(const QVariant &pkValue) const;
 
 protected:
     //variables
     DatabaseHandler dh;
+    QString tableName;
+    QString primaryKey; //name of the primarykey column in the table
+
+    //functions
+    virtual bool remove(const QVariant &pkValue);
 
 private:
     //variables
-    QString tableName;
-    QString primaryKey; //name of the primarykey colimn in the table
-    QString lastFilterQuery; //last sql statement selected by setFilter() or clearFilter()
-
-    //functions
-    void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList);
-    void removeFilter(QString &sqlStr);
-    QList<QVariant> getBoundValues(const QSqlQuery &query) const;
-    int numOfPlaceholders(const QString &sqlStr) const;
+    QString lastFilterQuery; //last sql statement executed by setFilter() or clearFilter()
 };
 
 #endif // BASEMODEL_H

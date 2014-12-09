@@ -3,32 +3,19 @@
 SeatModel::SeatModel(QObject *parent)
     : BaseModel("seat", "SeatID", parent)
 {
-    //default - no hall or show set
+    //default
     hallID = 0;
     showID = 0;
+    rowMax = 0;
+    colMax = 0;
 }
-
-/*int SeatModel::rowCount(const QModelIndex & parent = QModelIndex()) const
-{
-    return BaseModel::data(BaseModel::index(BaseModel::rowCount(), 1)).toInt();
-}
-
-int SeatModel::columnCount(const QModelIndex & parent = QModelIndex()) const
-{
-    return BaseModel::data(BaseModel::index(BaseModel::rowCount(), 2)).toInt();
-}
-
-QVariant SeatModel::data(const QModelIndex & index, int role = Qt::DisplayRole)
-{
-    if(role == Qt::DisplayRole)
-    {
-
-    }
-}*/
 
 void SeatModel::refresh()
 {
-    fixQuery();
+    QPair<int, int> hallSize = getHallSize(hallID);
+    rowMax = hallSize.first;
+    colMax = hallSize.second;
+    setQuery(sqlStatement(hallID, showID));
     BaseModel::refresh();
     while(canFetchMore())
     {
@@ -46,21 +33,50 @@ void SeatModel::setShow(int id)
     showID = id;
 }
 
-void SeatModel::setBooking(const QString &phone)
+QString SeatModel::sqlStatement(int hallID, int showID)
 {
-    bookingPhoneNr = phone;
+    return QString("SELECT seat.*, b.BookingID FROM seat "
+                   "LEFT JOIN ( "
+                        "SELECT * FROM booking "
+                        "LEFT JOIN seatbooking ON seatbooking.BookingID = booking.BookingID "
+                   ") b ON b.SeatID = seat.SeatID AND b.ShowID = "+QString::number(showID)+
+                   " WHERE seat.HallID = "+QString::number(hallID)+
+                   " GROUP BY seat.SeatID"
+                   " ORDER BY seat.Row, seat.Column");
 }
 
-void SeatModel::fixQuery()
+QPair<int, int> SeatModel::getHallSize(int hallID)
 {
-    QString queryStr = QString("SELECT seat.*, b_all.BookingID AS Booked, b_current.BookingID AS CurrentBooking")
-                       +" FROM seat"
-                       +" LEFT JOIN booking as b_all ON b_all.SeatID = seat.SeatID AND b_all.ShowID = " +(showID+'0')
-                       +" LEFT JOIN booking as b_current ON b_current.SeatID = seat.SeatID AND b_current.ShowID = " +(showID+'0')
-                       +" WHERE HallID = "+(hallID+'0')
-                       +" GROUP BY seat.SeatID";
-    //setFilter("HallID = '1'");
-    //qDebug() << queryStr;
-    setQuery(queryStr);
+    QString queryStr = QString("SELECT Max(Row), MAX(Column) FROM seat WHERE HallID = %1").arg(hallID);
+    QSqlQuery query(queryStr);
+    if(query.next())
+    {
+        //qDebug() << "getMatrixSize() rows, cols" << query.value(0).toInt() << query.value(1).toInt();
+        return qMakePair(query.value(0).toInt(), query.value(1).toInt());
+    }
+    return qMakePair(0, 0);
 }
 
+QList<QList<int> > SeatModel::getSeatStateList() const
+{
+    QList<QList<int> > list;
+    for(int r = 0; r < rowMax; r++)
+    {
+        list.append(QList<int>());
+        for(int c = 0; c < colMax; c++)
+        {
+            int row = r*colMax+c;
+            if(getSeatType(row) == NoSeat)
+                list[r].append(NoSeat);
+            else if(getSeatType(row) == Seat)
+            {
+                if(getBookingID(row) > 0)
+                    list[r].append(Booked);
+                else
+                    list[r].append(Available);
+            }
+
+        }
+    }
+    return list;
+}

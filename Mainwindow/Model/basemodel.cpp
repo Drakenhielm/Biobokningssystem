@@ -26,34 +26,38 @@ QVariant BaseModel::data(const QModelIndex &item, int role) const
 
 bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
 {
+    Q_UNUSED(parent);
     if(row > rowCount())
         return false;
-
-    dh.transaction();
+    if(count > 1)
+        dh.transaction();
     bool ok = true;
     for(int i = 0; i < count; i++)
     {
         QSqlRecord rec(record(row));
         if(!rec.isEmpty())
         {
-            QVariant id = rec.value(0);
-            if(id.isValid())
-                ok = dh.remove(tableName, primaryKey, id);
+            QVariant pkValue = rec.value(primaryKey);
+            if(pkValue.isValid())
+                ok &= remove(pkValue);
         }
     }
-    return ok && dh.endTransaction(ok);
+    if(count > 1)
+        return ok && dh.endTransaction(ok);
+    else
+        return ok;
 }
 
-/*Delete every row in the database where the value in column is equal to value.
+/*Delete every row in the database where the value in "column" is equal to "value".
  * Calls remove function from DatabaseHandler. */
-bool BaseModel::removeWhere(const QString &column, const QVariant &value)
+bool BaseModel::remove(const QVariant &pkValue)//(const QString &column, const QVariant &value)
 {
-    return dh.remove(tableName, column, value);
+    return dh.remove(tableName, primaryKey, pkValue);
 }
 
 /*Refresh model.
  * Populates the model with data from the database
- * using the specified sqlStatement and filter.*/
+ * using the specified sql statement and filter.*/
 void BaseModel::refresh()
 {
     query().exec();
@@ -66,91 +70,43 @@ void BaseModel::setFilter(const QString &filter, QVariant placeholder)
     QList<QVariant> list;
     list.append(placeholder);
     setFilter(filter, list);
-
 }
 
 void BaseModel::setFilter(const QString &filter, const QList<QVariant> &placeholderList)
 {
     QSqlQuery query = this->query();
-    QString sql = query.lastQuery();
-    int numBefore = numOfPlaceholders(sql);
-    removeFilter(sql);
-    int numAfter = numOfPlaceholders(sql);
-    sql.prepend("SELECT * FROM (");
-    sql.append(") WHERE ");
-    sql.append(filter);
-    qDebug() << sql;
-    QList<QVariant> list = getBoundValues(query);
-    list.erase(list.end()-(numBefore-numAfter), list.end());
-    if(!placeholderList.isEmpty())
-        list.append(placeholderList);
-    prepareQuery(query, sql, list);
+    if(lastFilterQuery == query.lastQuery())
+    {
+        dh.removeLastFilter(query);
+    }
+    dh.addFilter(query, filter, placeholderList);
     query.exec();
     setQuery(query);
-    lastFilterQuery = sql;
+    lastFilterQuery = query.lastQuery();
 }
 
 void BaseModel::clearFilter()
 {
     QSqlQuery query = this->query();
-    QString sql = query.lastQuery();
-    removeFilter(sql);
-    prepareQuery(query, sql, getBoundValues(query));
-    query.exec(sql);
-    setQuery(query);
-    lastFilterQuery.clear();
-}
-
-/*Prepare "query" with the statement from "sql" and bind parameters from "parameterList" */
-void BaseModel::prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &parameterList)
-{
-    query.prepare(sql);
-    for(int i = 0; i < parameterList.size(); i++)
+    if(lastFilterQuery == query.lastQuery())
     {
-        query.addBindValue(parameterList.at(i));
-        qDebug() << i << ": "
-                 << parameterList.at(i);
+        dh.removeLastFilter(query);
+        /*QString sql = query.lastQuery();
+        removeFilter(sql);
+        prepareQuery(query, sql, getBoundValues(query));*/
+        query.exec();
+        setQuery(query);
+        lastFilterQuery = "";
     }
 }
 
-/*Manipulate the string by removing the part that was added by setFilter() */
-void BaseModel::removeFilter(QString &query)
+/*Searches for a row in the model where the primary key value is equal to pkValue*/
+int BaseModel::getRowByPrimaryKeyValue(const QVariant &pkValue) const
 {
-    //qDebug() << lastFilterQuery << " : " << query;
-    if(query != lastFilterQuery)
-        return;
+    int col = record().indexOf(primaryKey);
+    QModelIndexList list = match(index(0, col), Qt::DisplayRole, pkValue, 1, Qt::MatchExactly);
+    if(list.empty())
+        return -1;
 
-    int i = QString("SELECT * FROM (").length();
-    int n = query.lastIndexOf(") WHERE ") - i;
-    query = query.mid(i, n);
-}
-
-/*Returns the bound values from the query in a list*/
-QList<QVariant> BaseModel::getBoundValues(const QSqlQuery &query) const
-{
-    QList<QVariant> list;
-    int i = 0;
-    while(query.boundValue(i).isValid())
-    {
-        list.append(query.boundValue(i));
-        i++;
-    }
-    return list;
-}
-
-/*Return the number of placeholders in a sql string*/
-int BaseModel::numOfPlaceholders(const QString &sqlStr) const
-{
-    int i = 0;
-    int count = 0;
-    bool b = true;
-    while(b)
-    {
-        i = sqlStr.indexOf(QRegExp("[:?]"), ++i); //search for next position of : or ?
-        if(i == -1) // no match
-            b = false;
-        else //match
-            count++;
-    }
-    return count;
+    return list.first().row();
 }

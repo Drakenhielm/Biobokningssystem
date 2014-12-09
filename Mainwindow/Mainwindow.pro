@@ -14,25 +14,52 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    basemodel.cpp \
-    databasehandler.cpp \
-    moviemodel.cpp \
-    showmodel.cpp \
-    hallview.cpp
+    hallview.cpp \
+    Model/basemodel.cpp \
+    Model/bookingmodel.cpp \
+    Model/hallmodel.cpp \
+    Model/moviemodel.cpp \
+    Model/seatmodel.cpp \
+    Model/showmodel.cpp \
+    DatabaseHandler/databasehandler.cpp \
+    add_hall/hall.cpp \
+    add_movie/confirmaddmovie.cpp \
+    add_movie/popup.cpp \
+    edit_hall/edit_hall.cpp \
+    DatabaseHandler/imagehandler.cpp \
+    add_show/addshowdialog.cpp
 
 HEADERS  += mainwindow.h \
-    basemodel.h \
-    databasehandler.h \
-    moviemodel.h \
-    showmodel.h \
-    hallview.h
+    hallview.h \
+    Model/basemodel.h \
+    Model/bookingmodel.h \
+    Model/hallmodel.h \
+    Model/moviemodel.h \
+    Model/seatmodel.h \
+    Model/showmodel.h \
+    DatabaseHandler/databasehandler.h \
+    add_hall/hall.h \
+    add_movie/confirmaddmovie.h \
+    add_movie/popup.h \
+    Model/imagehandler.h \
+    edit_hall/edit_hall.h \
+    DatabaseHandler/imagehandler.h \
+    add_show/addshowdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    add_hall/hall.ui \
+    add_movie/confirmaddmovie.ui \
+    add_movie/popup.ui \
+    edit_hall/edit_hall.ui \
+    mainwindow.ui \
+    add_show/addshowdialog.ui
 
 OTHER_FILES += \
     Mainwindow.pro.user \
     Mainwindow.pro.user.81ecaa1 \
-    Mainwindow.pro.user.e8fc351
+    Mainwindow.pro.user.e8fc351 \
+    images/avatar.jpg \
+    images/Bad_boys_two.jpg
 
 RESOURCES += \
     resource.qrc
