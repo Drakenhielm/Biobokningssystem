@@ -254,8 +254,6 @@ void HallView::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(event->rect(), QBrush(Qt::white)); //Background color
 
-    if(row_count > 0 && column_count > 0)
-    {
         QRect widget = event->rect();
         int widgetHeight = widget.bottom();
         int widgetWidth = widget.right();
@@ -306,6 +304,5 @@ void HallView::paintEvent(QPaintEvent *event)
                 }
             }
         }
-    }
     emit selectedSeatsChanged(getSelectedSeats()); //ska kanske bytas ut
 }

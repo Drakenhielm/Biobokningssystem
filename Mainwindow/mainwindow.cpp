@@ -514,6 +514,7 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
     //set seatModel to selected show
     seatModel->setHall(showModel->getHallID(selIndex));
     seatModel->setShow(showModel->getShowID(selIndex));
+    seatModel->refresh();
 
     //set hall info labels
     if(selIndex == -1)
@@ -537,10 +538,6 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         );
         ui->pushButton_show_delete->setEnabled(true);
         ui->actionDelete_show->setEnabled(true);
-
-        seatModel->setHall(showModel->getHallID(selIndex));
-        seatModel->setShow(showModel->getShowID(selIndex));
-        seatModel->refresh();
 
         qDebug() << seatModel->getSeatStateMatrix();
         hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));

@@ -62,15 +62,16 @@ QVector<QVector<int> > SeatModel::getSeatStateMatrix() const
     QVector<QVector<int> > matrix(rowMax, QVector<int>(colMax, NoSeat));
     for(int i = 0; i < rowCount(); i++) //
     {
-        int x = getRow(i)-1;
-        int y = getColumn(i)-1;
+        int y = getRow(i)-1;
+        int x = getColumn(i)-1;
         if(y >= 0 && y < rowMax && x >= 0 && x < colMax)
         {
             if(getBookingID(i) > 0)
-                matrix[x][y] = Booked;
+                matrix[y][x] = Booked;
             else
-                matrix[x][y] = Available;
+                matrix[y][x] = Available;
         }
     }
+    qDebug() << matrix;
     return matrix;
 }

@@ -44,8 +44,9 @@ void edit_hall::hallSelectionChanged(const QItemSelection &selected, const QItem
     int selIndex = getSelected(selected);
 
     //set seatModel to selected show
-    seatModel->setHall(selIndex);
+    seatModel->setHall(hallModel->getHallID(selIndex));
     seatModel->refresh();
+    qDebug() << seatModel->getSeatStateMatrix();
     hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(selIndex), hallModel->getColumns(selIndex));
 
 }
