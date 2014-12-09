@@ -20,7 +20,8 @@ edit_hall::edit_hall(SeatModel *seatModel, QWidget *parent) :
 
     connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(setLabelNumberOfSeats()));
 
-    hallView->setMode(true);
+    //hallView->setMode(true);
+    hallView->setEnabled(false);
 
     hallModel = new HallModel(this);
     ui->tableView_edit_hall->setModel(hallModel);

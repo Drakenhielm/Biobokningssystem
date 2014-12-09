@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'popup.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.2
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -32,8 +32,8 @@ class Ui_popup
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_8;
-    QPushButton *CancelButton;
     QPushButton *AddButton;
+    QPushButton *CancelButton;
     QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
@@ -67,31 +67,33 @@ public:
     {
         if (popup->objectName().isEmpty())
             popup->setObjectName(QStringLiteral("popup"));
-        popup->resize(449, 647);
+        popup->resize(304, 491);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(popup->sizePolicy().hasHeightForWidth());
         popup->setSizePolicy(sizePolicy);
+        popup->setMinimumSize(QSize(304, 491));
+        popup->setMaximumSize(QSize(304, 491));
         layoutWidget = new QWidget(popup);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(240, 590, 168, 25));
+        layoutWidget->setGeometry(QRect(120, 450, 158, 25));
         horizontalLayout_8 = new QHBoxLayout(layoutWidget);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        CancelButton = new QPushButton(layoutWidget);
-        CancelButton->setObjectName(QStringLiteral("CancelButton"));
-
-        horizontalLayout_8->addWidget(CancelButton);
-
         AddButton = new QPushButton(layoutWidget);
         AddButton->setObjectName(QStringLiteral("AddButton"));
 
         horizontalLayout_8->addWidget(AddButton);
 
+        CancelButton = new QPushButton(layoutWidget);
+        CancelButton->setObjectName(QStringLiteral("CancelButton"));
+
+        horizontalLayout_8->addWidget(CancelButton);
+
         layoutWidget1 = new QWidget(popup);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(70, 56, 311, 481));
+        layoutWidget1->setGeometry(QRect(20, 20, 260, 420));
         verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -122,7 +124,7 @@ public:
         PlaytimeSpinBox->setMaximum(9999);
         PlaytimeSpinBox->setValue(180);
 
-        horizontalLayout_2->addWidget(PlaytimeSpinBox, 0, Qt::AlignRight);
+        horizontalLayout_2->addWidget(PlaytimeSpinBox);
 
 
         verticalLayout_2->addLayout(horizontalLayout_2);
@@ -139,7 +141,7 @@ public:
         AgeSpinBox->setMaximum(9999);
         AgeSpinBox->setValue(12);
 
-        horizontalLayout_3->addWidget(AgeSpinBox, 0, Qt::AlignRight);
+        horizontalLayout_3->addWidget(AgeSpinBox);
 
 
         verticalLayout_2->addLayout(horizontalLayout_3);
@@ -160,7 +162,7 @@ public:
         AddGenreButton = new QPushButton(layoutWidget1);
         AddGenreButton->setObjectName(QStringLiteral("AddGenreButton"));
 
-        horizontalLayout_4->addWidget(AddGenreButton, 0, Qt::AlignRight);
+        horizontalLayout_4->addWidget(AddGenreButton);
 
 
         verticalLayout_2->addLayout(horizontalLayout_4);
@@ -175,7 +177,7 @@ public:
         RemoveGenreButton = new QPushButton(layoutWidget1);
         RemoveGenreButton->setObjectName(QStringLiteral("RemoveGenreButton"));
 
-        horizontalLayout_5->addWidget(RemoveGenreButton, 0, Qt::AlignRight);
+        horizontalLayout_5->addWidget(RemoveGenreButton);
 
 
         verticalLayout_2->addLayout(horizontalLayout_5);
@@ -212,7 +214,7 @@ public:
         YearSpinBox->setMaximum(9999);
         YearSpinBox->setValue(2014);
 
-        horizontalLayout_7->addWidget(YearSpinBox, 0, Qt::AlignRight);
+        horizontalLayout_7->addWidget(YearSpinBox);
 
 
         verticalLayout_2->addLayout(horizontalLayout_7);
@@ -241,8 +243,8 @@ public:
     void retranslateUi(QDialog *popup)
     {
         popup->setWindowTitle(QApplication::translate("popup", "Dialog", 0));
-        CancelButton->setText(QApplication::translate("popup", "Cancel", 0));
         AddButton->setText(QApplication::translate("popup", "Submit", 0));
+        CancelButton->setText(QApplication::translate("popup", "Cancel", 0));
         TitleLabel->setText(QApplication::translate("popup", "Title", 0));
         PlaytimeLabel->setText(QApplication::translate("popup", "Playtime", 0));
         AgeLabel->setText(QApplication::translate("popup", "Age", 0));

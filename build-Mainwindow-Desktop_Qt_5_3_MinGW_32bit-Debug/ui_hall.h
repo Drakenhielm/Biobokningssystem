@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'hall.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.2
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -54,6 +54,8 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(hall->sizePolicy().hasHeightForWidth());
         hall->setSizePolicy(sizePolicy);
+        hall->setMinimumSize(QSize(858, 469));
+        hall->setMaximumSize(QSize(858, 16777215));
         AddButton = new QPushButton(hall);
         AddButton->setObjectName(QStringLiteral("AddButton"));
         AddButton->setGeometry(QRect(749, 420, 81, 31));

@@ -32,6 +32,7 @@ public slots:
     int getTotalNumberOfSeats();
     void clearSelectedSeats();
     void setHall(QVector<QVector<int>>, int rows, int columns);
+    void setEnabled(bool enabled);
 signals:
     void selectedSeatsChanged(QList<int>);
 
@@ -45,6 +46,7 @@ protected:
     void loadDefaultSeatValues();
     int getSeatNr(int rowIndex, int columnIndex);
 private:
+    bool enabled;
     int row_count;
     int column_count;
     int seatSelector;

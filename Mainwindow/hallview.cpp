@@ -12,6 +12,7 @@ HallView::HallView(QWidget *parent)
     seatSelector = 1;
     editMode = false;
     seperateSeats = false;
+    enabled = true;
     setMouseTracking(true); //Needed for mouseMoveEvent.
     loadDefaultSeatValues();
 }
@@ -146,6 +147,9 @@ void HallView::setMode(bool mode)
 
 void HallView::mousePressEvent(QMouseEvent *event)
 {
+    if(!enabled)
+        return;
+
     int mouseX = event->x();
     int mouseY = event->y();
 
@@ -195,6 +199,9 @@ void HallView::mousePressEvent(QMouseEvent *event)
 
 void HallView::leaveEvent(QEvent * event)
 {
+    if(!enabled)
+        return;
+
     for(auto& rows : seats){
         for(auto& seat : rows){
             seat.second = false;
@@ -206,6 +213,9 @@ void HallView::leaveEvent(QEvent * event)
 
 void HallView::mouseMoveEvent(QMouseEvent *event)
 {
+    if(!enabled)
+        return;
+
     for(auto& rows : seats){
         for(auto& seat : rows){
             seat.second = false;
@@ -305,4 +315,9 @@ void HallView::paintEvent(QPaintEvent *event)
             }
         }
     emit selectedSeatsChanged(getSelectedSeats()); //ska kanske bytas ut
+}
+
+void HallView::setEnabled(bool enabled)
+{
+    this->enabled = enabled;
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>449</width>
-    <height>647</height>
+    <width>304</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,30 +16,42 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>304</width>
+    <height>491</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>304</width>
+    <height>491</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>590</y>
-     <width>168</width>
+     <x>120</x>
+     <y>450</y>
+     <width>158</width>
      <height>25</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_8">
     <item>
-     <widget class="QPushButton" name="CancelButton">
+     <widget class="QPushButton" name="AddButton">
       <property name="text">
-       <string>Cancel</string>
+       <string>Submit</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="AddButton">
+     <widget class="QPushButton" name="CancelButton">
       <property name="text">
-       <string>Submit</string>
+       <string>Cancel</string>
       </property>
      </widget>
     </item>
@@ -48,10 +60,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>56</y>
-     <width>311</width>
-     <height>481</height>
+     <x>20</x>
+     <y>20</y>
+     <width>260</width>
+     <height>420</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -78,7 +90,7 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignRight">
+      <item>
        <widget class="QSpinBox" name="PlaytimeSpinBox">
         <property name="maximum">
          <number>9999</number>
@@ -99,7 +111,7 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignRight">
+      <item>
        <widget class="QSpinBox" name="AgeSpinBox">
         <property name="maximum">
          <number>9999</number>
@@ -147,7 +159,7 @@
         </item>
        </widget>
       </item>
-      <item alignment="Qt::AlignRight">
+      <item>
        <widget class="QPushButton" name="AddGenreButton">
         <property name="text">
          <string>+</string>
@@ -165,7 +177,7 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignRight">
+      <item>
        <widget class="QPushButton" name="RemoveGenreButton">
         <property name="text">
          <string>Remove</string>
@@ -208,7 +220,7 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignRight">
+      <item>
        <widget class="QSpinBox" name="YearSpinBox">
         <property name="maximum">
          <number>9999</number>

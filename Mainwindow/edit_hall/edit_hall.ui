@@ -10,6 +10,18 @@
     <height>469</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>858</width>
+    <height>469</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>858</width>
+    <height>469</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Hall List</string>
   </property>
@@ -200,10 +212,10 @@
   <widget class="QPushButton" name="DeleteButton">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>400</y>
-     <width>81</width>
-     <height>31</height>
+     <x>722</x>
+     <y>401</y>
+     <width>75</width>
+     <height>27</height>
     </rect>
    </property>
    <property name="font">
@@ -237,10 +249,10 @@
   <widget class="QPushButton" name="editButton">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>400</y>
-     <width>81</width>
-     <height>31</height>
+     <x>641</x>
+     <y>401</y>
+     <width>75</width>
+     <height>27</height>
     </rect>
    </property>
    <property name="font">
