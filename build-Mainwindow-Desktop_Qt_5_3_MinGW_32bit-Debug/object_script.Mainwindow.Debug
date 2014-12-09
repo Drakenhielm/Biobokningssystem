@@ -13,8 +13,8 @@ INPUT(
 ./debug\confirmaddmovie.o
 ./debug\popup.o
 ./debug\edit_hall.o
-./debug\imagehandler.o
 ./debug\addshowdialog.o
+./debug\imagehandler.o
 ./debug\qrc_resource.o
 ./debug\moc_mainwindow.o
 ./debug\moc_hallview.o

@@ -2,7 +2,7 @@
 #define MOVIEMODEL_H
 
 #include "basemodel.h"
-
+#include "../DatabaseHandler/imagehandler.h"
 #include <QDebug>
 #include <QSqlError>
 
@@ -39,6 +39,9 @@ public:
 
 protected:
     virtual bool remove(const QVariant &pkValue);
+
+private:
+    ImageHandler imgHandler;
 
 };
 

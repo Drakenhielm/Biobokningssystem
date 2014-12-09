@@ -13,8 +13,8 @@ INPUT(
 ./release\confirmaddmovie.o
 ./release\popup.o
 ./release\edit_hall.o
-./release\imagehandler.o
 ./release\addshowdialog.o
+./release\imagehandler.o
 ./release\qrc_resource.o
 ./release\moc_mainwindow.o
 ./release\moc_hallview.o

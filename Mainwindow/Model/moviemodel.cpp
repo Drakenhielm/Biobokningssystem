@@ -9,6 +9,12 @@ MovieModel::MovieModel(QObject *parent)
 int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                  const QString & genre, int year, const QString &imagePath)
 {
+    dh.transaction();
+
+    bool ok = imgHandler.copyImage(imagePath); //copy image
+
+    QString image = imgHandler.lastInsertedFileName();
+
     QMap<QString, QVariant> values;
     values.insert(QString("Title"), title);
     values.insert(QString("PlayTime"), playTime);
@@ -16,8 +22,15 @@ int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, c
     values.insert(QString("Description"), description);
     values.insert(QString("Genre"), genre);
     values.insert(QString("Year"), year);
-    values.insert(QString("MoviePoster"), imagePath);
-    return dh.insert("movie", values);
+    values.insert(QString("MoviePoster"), image);
+
+    int id = dh.insert("movie", values); // insert values to the database
+    ok = ok && id != -1;
+
+    if(ok && dh.endTransaction(ok))
+        return id;
+    else
+        return -1;
 }
 
 bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int ageLimit, const QString & description,
@@ -32,6 +45,11 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
     values.insert(QString("Genre"), genre);
     values.insert(QString("Year"), year);
     values.insert(QString("MoviePoster"), imagePath);
+
+    //if(imgHandler.imageExists(getMoviePoster(row)))
+    //{
+        //edit poster
+    //}
     return dh.edit("movie", values, "MovieID = ?", movieID);
 }
 

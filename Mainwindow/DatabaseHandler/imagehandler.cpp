@@ -18,12 +18,12 @@ bool ImageHandler::createFolder()
 /*Copy an image file to img folder. Returns the filename in the new folder.
  * The filename will be changed if there already exists a image with that filename.
  * If the copy fails an empty string will be returned */
-QString ImageHandler::copyImage(const QString & fromPath)
+bool ImageHandler::copyImage(const QString & fromPath)
 {
     if(!dir.exists())
     {
         if(!createFolder())
-            return QString();
+            return false;
     }
     QString fileName = getFileName(fromPath);
     if(fileNameExists(fileName))
@@ -34,9 +34,23 @@ QString ImageHandler::copyImage(const QString & fromPath)
     if(validImageFile(fileName))
     {
         if(QFile::copy(fromPath, dir.path()+'/'+fileName))
-            return fileName;
+        {
+            lastInserted = fileName;
+            return true;
+        }
     }
-    return QString();
+    return false;
+}
+
+QPixmap ImageHandler::getPixmap(const QString &fileName) const
+{
+
+    return QPixmap(dir.path()+'/'+fileName);
+}
+
+QString ImageHandler::lastInsertedFileName() const
+{
+    return lastInserted;
 }
 
 QString ImageHandler::getFolderPath() const
@@ -68,10 +82,10 @@ QString ImageHandler::getFileName(const QString &path) const
  * */
 void ImageHandler::generateUniqueFileName(QString & fileName)
 {
-    QString fileNameWithoutExtension = fileName.mid(0, fileName.lastIndexOf('.')-1);
+    QString fileNameWithoutExtension = fileName.mid(0, fileName.lastIndexOf('.'));
     QString extension = fileName.mid(fileName.lastIndexOf('.'), -1);
     int i = 2;
-    while(!fileNameExists(fileName))
+    while(fileNameExists(fileName))
     {
         fileName = fileNameWithoutExtension+QString::number(i)+extension;
         i++;

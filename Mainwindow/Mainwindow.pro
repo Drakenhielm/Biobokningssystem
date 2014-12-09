@@ -26,8 +26,8 @@ SOURCES += main.cpp\
     add_movie/confirmaddmovie.cpp \
     add_movie/popup.cpp \
     edit_hall/edit_hall.cpp \
-    DatabaseHandler/imagehandler.cpp \
-    add_show/addshowdialog.cpp
+    add_show/addshowdialog.cpp \
+    DatabaseHandler/imagehandler.cpp
 
 HEADERS  += mainwindow.h \
     hallview.h \
@@ -43,8 +43,8 @@ HEADERS  += mainwindow.h \
     add_movie/popup.h \
     Model/imagehandler.h \
     edit_hall/edit_hall.h \
-    DatabaseHandler/imagehandler.h \
-    add_show/addshowdialog.h
+    add_show/addshowdialog.h \
+    DatabaseHandler/imagehandler.h
 
 FORMS    += \
     add_hall/hall.ui \
