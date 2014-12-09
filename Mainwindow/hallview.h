@@ -31,7 +31,7 @@ public slots:
     void setSeperateSeats(bool seperate);
     int getTotalNumberOfSeats();
     void clearSelectedSeats();
-    void setHall(QList<QList<int>>, int rows, int columns);
+    void setHall(QVector<QVector<int>>, int rows, int columns);
 signals:
     void selectedSeatsChanged(QList<int>);
 
@@ -42,6 +42,8 @@ protected:
     void paintEvent(QPaintEvent *event);
     void reSizeSeats();
     bool HallSquare(int, int);
+    void loadDefaultSeatValues();
+    int getSeatNr(int rowIndex, int columnIndex);
 private:
     int row_count;
     int column_count;
@@ -51,6 +53,10 @@ private:
     int offset;
     bool editMode;
     bool seperateSeats;
+    int NoSeat = 0;
+    int Selected = 1;
+    int Available = 2;
+    int Booked = 4;
     QPair<int, bool> seats[25][25];
 };
 

@@ -543,7 +543,7 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         seatModel->refresh();
 
         qDebug() << seatModel->getSeatStateMatrix();
-        //hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
+        hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
     }
 }
 
