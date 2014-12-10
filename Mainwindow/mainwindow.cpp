@@ -63,7 +63,7 @@ void MainWindow::initViews()
     ui->tableView_show->hideColumn(ShowModel::HallID);
     ui->tableView_show->horizontalHeader()->setStretchLastSection(true);
    // ui->tableView_show->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView_show->setColumnWidth(ShowModel::DateTime,100);
+    ui->tableView_show->setColumnWidth(ShowModel::DateTime,120);
     ui->tableView_show->setColumnWidth(ShowModel::AvailableSeats, 100);
 
     //Bookings
