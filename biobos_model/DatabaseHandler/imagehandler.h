@@ -4,23 +4,30 @@
 #include <QDir>
 #include <QString>
 #include <QFile>
+#include <QPixmap>
 
 class ImageHandler
 {
 public:
     ImageHandler();
 
-    QString copyImage(const QString & imagePath);
+    bool copyImage(const QString & fromPath);
+    bool replaceImage(const QString &oldFileName, const QString &newFileName);
+    bool removeImage(const QString &fileName);
     QString getFolderPath() const;
+    QPixmap getPixmap(const QString &fileName) const;
+    QString lastInsertedFileName() const;
+    bool fileNameExists(const QString &fileName) const;
 
 private:
     QString folder;
+    QString lastInserted;
     QDir dir;
+
     bool createFolder();
     bool validImageFile(const QString &fileName) const;
     QString getFileName(const QString &path) const;
     void generateUniqueFileName(QString & fileName);
-    bool fileNameExists(const QString &fileName) const;
 };
 
 

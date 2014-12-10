@@ -22,8 +22,10 @@ public:
 
     enum SeatType
     {
-        None = 0,
-        Seat = 1
+        NoSeat = 0,
+        Seat = 1,
+        Available = 2,
+        Booked = 4
     };
 
     virtual void refresh();
@@ -38,6 +40,8 @@ public:
 
     int getMaxRow() const { return rowMax; }
     int getMaxColumn() const { return colMax; }
+
+    QVector<QVector<int> > getSeatStateMatrix() const;
 
     void setHall(int id);
     void setShow(int id);

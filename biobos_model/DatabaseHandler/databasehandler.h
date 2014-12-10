@@ -8,8 +8,6 @@
 #include <QSqlError>
 #include <iterator>
 
-#include "sqlhandler.h"
-
 //temp for debugging
 #include <QDebug>
 
@@ -47,7 +45,6 @@ private:
     //variables
     const QString fileName;
     QSqlDatabase db;
-    SqlHandler sh;
 
     //functions
     void prepareQuery(QSqlQuery &query, const QString &sql, const QList<QVariant> &placeholderList);

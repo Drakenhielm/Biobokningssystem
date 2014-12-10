@@ -90,7 +90,14 @@
     <item>
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>Add Movie</string>
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
       </property>
      </widget>
     </item>

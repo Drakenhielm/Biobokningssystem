@@ -4,7 +4,7 @@ ShowModel::ShowModel(QObject *parent)
     : BaseModel("show", "ShowID", parent)
 {
     setQuery("SELECT show.*, hall.Name, "
-             "COUNT(seat.SeatID) - COUNT(b.SeatBookingID) AS AvailableSeats "
+             "COUNT(seat.SeatNr) - COUNT(b.SeatBookingID) AS AvailableSeats "
              "FROM show "
              "LEFT JOIN hall ON hall.HallID = show.HallID "
              "LEFT JOIN seat ON seat.HallID = show.HallID "
@@ -13,7 +13,7 @@ ShowModel::ShowModel(QObject *parent)
                 "FROM booking "
                 "LEFT JOIN seatbooking ON seatbooking.BookingID = booking.BookingID "
              ") b ON b.ShowID = show.ShowID AND b.SeatID = seat.SeatID "
-             "GROUP BY show.ShowID");
+             "GROUP BY show.ShowID ORDER BY DateTime");
 }
 
 QVariant ShowModel::data(const QModelIndex &item, int role) const

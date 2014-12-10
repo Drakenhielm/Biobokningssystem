@@ -17,7 +17,7 @@ void SeatModel::refresh()
     colMax = hallSize.second;
     setQuery(sqlStatement(hallID, showID));
     BaseModel::refresh();
-    while(canFetchMore())
+    while(canFetchMore()) //fetch all rows
     {
         fetchMore();
     }
@@ -55,4 +55,22 @@ QPair<int, int> SeatModel::getHallSize(int hallID)
         return qMakePair(query.value(0).toInt(), query.value(1).toInt());
     }
     return qMakePair(0, 0);
+}
+
+QVector<QVector<int> > SeatModel::getSeatStateMatrix() const
+{
+    QVector<QVector<int> > matrix(rowMax, QVector<int>(colMax, NoSeat));
+    for(int i = 0; i < rowCount(); i++) //
+    {
+        int y = getRow(i)-1;
+        int x = getColumn(i)-1;
+        if(y >= 0 && y < rowMax && x >= 0 && x < colMax)
+        {
+            if(getBookingID(i) > 0)
+                matrix[y][x] = Booked;
+            else
+                matrix[y][x] = Available;
+        }
+    }
+    return matrix;
 }

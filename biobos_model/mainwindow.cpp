@@ -8,12 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setUpModels();
     setUpTables();
-    QElapsedTimer timer;
-    timer.start();
+
 
     //Your space
 
-    movieModel->insertMovie("Insert 1", 1, 1, "Desc", "genre", 2014, "");
+    /*movieModel->insertMovie("Insert 1", 1, 1, "Desc", "genre", 2014, "");
     movieModel->insertMovie("Insert 2", 1, 1, "Desc", "genre", 2014, "");
     movieModel->insertMovie("Should be Deleted", 1, 1, "Desc", "genre", 2014, "");
     movieModel->editMovie(movieModel->getMovieID(1), "Edit 2", 1, 1, "Edit", "genre", 2014, "");
@@ -48,12 +47,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QList<int> bookingSeats;
     bookingSeats.append(1);
     bookingModel->insertBookings(1, bookingSeats, "979");
-    bookingModel->refresh();
+    bookingModel->refresh();*/
 
     //End your space
 
-    ui->comboBox->setModel(showModel);
-    qDebug() << timer.elapsed();
+    //ui->comboBox->setModel(showModel);
+    //qDebug() << timer.elapsed();
 }
 
 MainWindow::~MainWindow()
@@ -84,10 +83,54 @@ void MainWindow::setUpTables()
 
 void MainWindow::on_pushButton_clicked()
 {
-    movieModel->editMovie(1, "ööölll", 127, 15, "Hmmm hm hm", "Drama", 2006, "");
-    movieModel->clearFilter();
-    movieModel->refresh();
-    qDebug() << movieModel->query().executedQuery();
+    QElapsedTimer timer;
+    timer.start();
+
+    QList<QList<bool> > hallSeats;
+    for(int i = 0; i < 10; i++)
+    {
+        hallSeats.append(QList<bool>());
+        for(int j = 0; j < 10; j++)
+        {
+            if(j == 1)
+                hallSeats[i].append(false);
+            else
+                hallSeats[i].append(true);
+        }
+    }
+
+    DatabaseHandler dh;
+    dh.transaction();
+    int c = 1000;
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setMaximum(c);
+    for(int i = 0; i < c; i++)
+    {
+        QString poster;
+        if(i%2 == 0)
+            poster = "C:/Users/Isac/Desktop/avatar.jpg";
+        else
+            poster = "C:/Users/Isac/Desktop/Bad_boys_two.jpg";
+
+        movieModel->insertMovie("Title "+QString::number(i), 1, 1, "Desc", "genre", 2014, poster);
+
+        showModel->insertShow(QDateTime::currentDateTime(), 99.50, false, true, "English", i, i);
+
+        hallModel->insertHall("Hall "+i, "2 x 3", "Dolby", hallSeats);
+
+        QList<int> bookingSeats;
+        bookingSeats.append((i+1)*10+0);
+        bookingSeats.append((i+1)*10+1);
+        bookingSeats.append((i+1)*10+2);
+        bookingSeats.append((i+1)*10+3);
+
+        bookingModel->insertBookings(bookingSeats);
+
+        ui->progressBar->setValue(c);
+    }
+    dh.endTransaction(true);
+
+    qDebug() << timer.elapsed();
 }
 
 void MainWindow::on_pushButton_2_clicked()

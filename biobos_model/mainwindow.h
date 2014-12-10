@@ -9,6 +9,7 @@
 #include <QtSql>
 #include <QElapsedTimer>
 
+#include "DatabaseHandler/databasehandler.h";
 #include "Model/moviemodel.h"
 #include "Model/showmodel.h"
 #include "Model/hallmodel.h"
