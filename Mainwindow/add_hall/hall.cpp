@@ -34,6 +34,9 @@ hall::hall(int hallID, const QString &name, const QString &screenSize, const QSt
     hallView->setHall(seats,seats.size(),seats.at(0).size());
     ui->spinBox_columns->setValue(seats.at(0).size());
     ui->spinBox_rows->setValue(seats.size());
+
+    this->move(165,165);
+
 }
 
 void hall::initConnections()
@@ -51,6 +54,7 @@ void hall::initHallView()
     ui->frame_hall->setLayout(lineLayout);
     ui->frame_hall->layout()->addWidget(hallView);
     hallView->setMode(true);
+
 }
 
 hall::~hall()

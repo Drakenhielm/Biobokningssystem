@@ -249,7 +249,7 @@
   <widget class="QPushButton" name="EditButton">
    <property name="geometry">
     <rect>
-     <x>661</x>
+     <x>670</x>
      <y>411</y>
      <width>75</width>
      <height>27</height>

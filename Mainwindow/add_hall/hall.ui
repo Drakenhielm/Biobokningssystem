@@ -46,7 +46,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Add</string>
+    <string>Submit</string>
    </property>
   </widget>
   <widget class="QFrame" name="frame_rows_columns">

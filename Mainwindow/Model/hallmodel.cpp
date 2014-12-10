@@ -39,13 +39,13 @@ bool HallModel::editHall(int hallID, const QString &name, const QString &screenS
    values.insert(QString("Name"), name);
    values.insert(QString("ScreenSize"), screenSize);
    values.insert(QString("SoundSystem"), soundSystem);
-   ok &= dh.edit("hall", values, "HallID", hallID);
+   ok = ok && dh.edit("hall", values, "HallID = ?", hallID);
    values.clear();
 
    if(seats.isEmpty())
        return ok;
 
-   ok &= editSeats(hallID, seats);
+   ok = ok && editSeats(hallID, seats);
    return ok && dh.endTransaction(ok);
 }
 

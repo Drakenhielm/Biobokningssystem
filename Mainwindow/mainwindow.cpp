@@ -147,6 +147,21 @@ void MainWindow::initConnections()
     //bookingSelectionChanged
     connect(ui->tableView_search->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(bookingSelectionChanged(QItemSelection,QItemSelection)));
+
+    //press enter for search instead of search-button
+    connect(ui->lineEdit_search, SIGNAL(returnPressed()),ui->pushButton_search,SIGNAL(clicked()));
+
+    //press enter for book instead of book-button
+    connect(ui->lineEdit_phone, SIGNAL(returnPressed()),ui->pushButton_hallview_info_book,SIGNAL(clicked()));
+
+    connect(ui->actionTest1, SIGNAL(triggered()), this, SLOT(hideShow()));
+
+
+}
+
+void MainWindow::hideShow()
+{
+    ;
 }
 
 void MainWindow::on_actionQuit_triggered()

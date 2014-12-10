@@ -53,7 +53,6 @@ void edit_hall::hallSelectionChanged(const QItemSelection &selected, const QItem
     //set seatModel to selected show
     seatModel->setHall(hallModel->getHallID(selIndex));
     seatModel->refresh();
-    qDebug() << seatModel->getSeatStateMatrix();
     hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(selIndex), hallModel->getColumns(selIndex));
 
 }
@@ -132,8 +131,8 @@ void edit_hall::openEditHallDialogue()
 
         hall hallPopup(hallModel->getHallID(selIndex), hallModel->getName(selIndex), hallModel->getScreenSize(selIndex),
                        hallModel->getSoundSystem(selIndex), seatModel->getSeatStateMatrix());
-        QObject::connect(&hallPopup, SIGNAL(editHall(QString,QString,QString,QList<QList<bool> >)),
-                         this, SLOT(editHall(QString,QString,QString,QList<QList<bool> >)));
+        QObject::connect(&hallPopup, SIGNAL(editHall(int,QString,QString,QString,QList<QList<bool> >)),
+                         this, SLOT(editHall(int,QString,QString,QString,QList<QList<bool> >)));
 
         hallPopup.setModal(true);
         hallPopup.setWindowTitle("Edit Hall");
@@ -147,7 +146,9 @@ void edit_hall::editHall(int hallID, const QString &name, const QString &screenS
 {
     int selIndex = getSelected(ui->tableView_edit_hall->selectionModel());
     hallModel->editHall(hallID, name, screenSize, soundSystem, seats);
+    qDebug() << hallID << " " << name << " " << screenSize << " " << soundSystem << " " << seats;
     hallModel->refresh();
+    if(selIndex != -1)
     {
         QModelIndex index = hallModel->index(selIndex, 0);
         ui->tableView_edit_hall->setCurrentIndex(index);

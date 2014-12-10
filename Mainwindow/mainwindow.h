@@ -83,6 +83,8 @@ private slots:
     //Quit
     void on_actionQuit_triggered();
 
+    void hideShow();
+
 private:
     Ui::MainWindow *ui;
     HallView *hallView;

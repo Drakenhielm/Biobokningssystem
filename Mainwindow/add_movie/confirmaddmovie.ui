@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Lägg till</string>
+    <string>Submit</string>
    </property>
   </widget>
   <widget class="QPushButton" name="CancelButton">
@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Avbryt</string>
+    <string>Cancel</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
