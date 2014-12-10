@@ -136,6 +136,7 @@ void edit_hall::openEditHallDialogue()
 
         hallPopup.setModal(true);
         hallPopup.setWindowTitle("Edit Hall");
+        hallPopup.move(this->x()+50,this->y()+50);
         hallPopup.exec();
     }
 

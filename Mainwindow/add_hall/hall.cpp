@@ -35,8 +35,6 @@ hall::hall(int hallID, const QString &name, const QString &screenSize, const QSt
     ui->spinBox_columns->setValue(seats.at(0).size());
     ui->spinBox_rows->setValue(seats.size());
 
-    this->move(165,165);
-
 }
 
 void hall::initConnections()
