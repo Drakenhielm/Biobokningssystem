@@ -118,6 +118,9 @@ void MainWindow::initConnections()
     connect(ui->pushButton_bookings_delete, SIGNAL(clicked()), this, SLOT(deleteBooking()));
     connect(ui->actionDelete_booking, SIGNAL(triggered()), this, SLOT(deleteBooking()));
 
+    //Search Booking
+    connect(ui->actionSearch_Booking, SIGNAL(triggered()), this, SLOT(highlightSearchBooking()));
+
     //Edit Booking
 
     //Add Hall
@@ -152,20 +155,10 @@ void MainWindow::on_actionQuit_triggered()
     close();
 }
 
-void MainWindow::keyPressEvent( QKeyEvent * event )
+
+void MainWindow::highlightSearchBooking()
 {
-    if( event->key() == Qt::Key_H )
-    {
-        openAddHallDialogue();
-    }
-    else if( event->key() == Qt::Key_M )
-    {
-        openAddMovieDialogue();
-    }
-    else if(event->key() == Qt::Key_F)
-    {
-        ui->lineEdit_search->setFocus();
-    }
+    ui->lineEdit_search->setFocus();
 }
 
 void MainWindow::enableBookButton()

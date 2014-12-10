@@ -1119,8 +1119,9 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionEdit_Movie"/>
     <addaction name="actionEdit_Show"/>
     <addaction name="separator"/>
-    <addaction name="actionQuit"/>
+    <addaction name="actionSearch_Booking"/>
     <addaction name="separator"/>
+    <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuAdd_movie"/>
   </widget>
@@ -1149,7 +1150,7 @@ p, li { white-space: pre-wrap; }
     <string>Add Hall</string>
    </property>
    <property name="shortcut">
-    <string>Meta+H</string>
+    <string>Ctrl+T</string>
    </property>
   </action>
   <action name="actionDelete_movie">
@@ -1219,6 +1220,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Edit Show</string>
+   </property>
+  </action>
+  <action name="actionSearch_Booking">
+   <property name="text">
+    <string>Search Booking</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>

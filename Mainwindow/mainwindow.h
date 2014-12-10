@@ -65,6 +65,7 @@ private slots:
     //Search Booking
     void on_pushButton_search_clicked();
     void on_comboBox_search_currentIndexChanged(int index);
+    void highlightSearchBooking();
 
     //Add Hall
     void openAddHallDialogue();
@@ -78,8 +79,6 @@ private slots:
     void enableBookButton();
 
     void on_pushButton_hallview_info_clear_clicked();
-
-    void keyPressEvent( QKeyEvent * event );
 
     //Quit
     void on_actionQuit_triggered();
