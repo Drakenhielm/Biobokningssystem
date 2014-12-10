@@ -22,16 +22,17 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_open_dialog_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_pushButton_copy_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_remove_clicked();
+
+    void on_pushButton_replace_clicked();
 
 private:
     Ui::MainWindow *ui;
 
-    QFileSystemModel *model;
     QPixmap pixmap;
     ImageHandler ih;
 };
