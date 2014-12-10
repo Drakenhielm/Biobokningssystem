@@ -92,8 +92,8 @@ QPoint hall::getScreenSizeFromString(const QString &str)
     QStringList strList = str.split('x', QString::SkipEmptyParts, Qt::CaseInsensitive);
     if(strList.size() == 2)
     {
-        point.setX(strList.at(0).toInt());
-        point.setY(strList.at(1).toInt());
+        point.setX(strList.at(0).trimmed().toInt());
+        point.setY(strList.at(1).trimmed().toInt());
     }
     return point;
 }

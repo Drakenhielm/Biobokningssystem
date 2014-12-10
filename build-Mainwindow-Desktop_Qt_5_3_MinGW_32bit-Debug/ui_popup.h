@@ -252,7 +252,7 @@ public:
         GenreCbb->clear();
         GenreCbb->insertItems(0, QStringList()
          << QApplication::translate("popup", "Drama", 0)
-         << QApplication::translate("popup", "Komedi", 0)
+         << QApplication::translate("popup", "Comedy", 0)
          << QApplication::translate("popup", "Thriller", 0)
          << QApplication::translate("popup", "Action", 0)
         );

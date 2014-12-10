@@ -88,7 +88,7 @@ public:
         tableView_edit_hall->verticalHeader()->setDefaultSectionSize(20);
         EditButton = new QPushButton(edit_hall);
         EditButton->setObjectName(QStringLiteral("EditButton"));
-        EditButton->setGeometry(QRect(661, 411, 75, 27));
+        EditButton->setGeometry(QRect(670, 411, 75, 27));
         EditButton->setFont(font);
         CloseButton = new QPushButton(edit_hall);
         CloseButton->setObjectName(QStringLiteral("CloseButton"));

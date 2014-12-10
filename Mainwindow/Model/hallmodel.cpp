@@ -40,12 +40,12 @@ bool HallModel::editHall(int hallID, const QString &name, const QString &screenS
    values.insert(QString("ScreenSize"), screenSize);
    values.insert(QString("SoundSystem"), soundSystem);
    ok = ok && dh.edit("hall", values, "HallID = ?", hallID);
-   values.clear();
 
    if(seats.isEmpty())
        return ok;
 
    ok = ok && editSeats(hallID, seats);
+
    return ok && dh.endTransaction(ok);
 }
 
@@ -79,12 +79,12 @@ int HallModel::insertSeats(int hallID, const QList<QList<bool> > &seats)
 
 
 
-bool HallModel::editSeats(int row, const QList<QList<bool> > &seats)
+bool HallModel::editSeats(int hallID, const QList<QList<bool> > &seats)
 {
     bool ok = true;
-    ok &= dh.remove("seat", "HallID", getHallID(row));
-    int lastId = insertSeats(getHallID(row), seats);
-    ok &= lastId != -1;
+    ok = ok && dh.remove("seat", "HallID = ?", hallID);
+    int lastId = insertSeats(hallID, seats);
+    ok = ok && lastId != -1;
     /*QMap<QString, QVariant> values;
     if(seats.size() < getRows(row))
         dh.remove("seatbooking", "HallID = ? AND Row > ?", seats.size());

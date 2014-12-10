@@ -163,7 +163,7 @@ public:
     void retranslateUi(QDialog *hall)
     {
         hall->setWindowTitle(QApplication::translate("hall", "Add hall", 0));
-        AddButton->setText(QApplication::translate("hall", "Add", 0));
+        AddButton->setText(QApplication::translate("hall", "Submit", 0));
         label_rows->setText(QApplication::translate("hall", "Rows:", 0));
         label_columns->setText(QApplication::translate("hall", "Columns:", 0));
         label_number_of_seats->setText(QApplication::translate("hall", "Seats:", 0));

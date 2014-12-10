@@ -946,8 +946,11 @@ release/moc_edit_hall.cpp: C:/Qt/5.3/mingw482_32/include/QtWidgets/QDialog \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QDebug \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QPoint \
 		../Mainwindow/Model/seatmodel.h \
+		../Mainwindow/Model/showmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QPair \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QItemSelection \
 		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		../Mainwindow/add_hall/hall.h \
 		../Mainwindow/edit_hall/edit_hall.h
 	C:\Qt\5.3\mingw482_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.3/mingw482_32/mkspecs/win32-g++ -IC:/Users/Isac/Documents/GitHub/Biobokningssytem/Mainwindow -IC:/Qt/5.3/mingw482_32/include -IC:/Qt/5.3/mingw482_32/include/QtWidgets -IC:/Qt/5.3/mingw482_32/include/QtSql -IC:/Qt/5.3/mingw482_32/include/QtGui -IC:/Qt/5.3/mingw482_32/include/QtCore -I. ..\Mainwindow\edit_hall\edit_hall.h -o release\moc_edit_hall.cpp
 
@@ -2975,8 +2978,11 @@ release/edit_hall.o: ../Mainwindow/edit_hall/edit_hall.cpp ../Mainwindow/edit_ha
 		C:/Qt/5.3/mingw482_32/include/QtCore/QDebug \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QPoint \
 		../Mainwindow/Model/seatmodel.h \
+		../Mainwindow/Model/showmodel.h \
+		C:/Qt/5.3/mingw482_32/include/QtCore/QPair \
 		C:/Qt/5.3/mingw482_32/include/QtCore/QItemSelection \
 		C:/Qt/5.3/mingw482_32/include/QtCore/qitemselectionmodel.h \
+		../Mainwindow/add_hall/hall.h \
 		ui_edit_hall.h \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.3/mingw482_32/include/QtWidgets/qboxlayout.h \

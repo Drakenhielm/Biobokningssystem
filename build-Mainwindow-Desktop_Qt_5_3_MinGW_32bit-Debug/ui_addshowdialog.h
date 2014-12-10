@@ -75,7 +75,7 @@ public:
         addShowDialog->resize(400, 536);
         layoutWidget = new QWidget(addShowDialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(190, 490, 168, 32));
+        layoutWidget->setGeometry(QRect(190, 490, 169, 32));
         horizontalLayout_7 = new QHBoxLayout(layoutWidget);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -243,7 +243,7 @@ public:
     {
         addShowDialog->setWindowTitle(QApplication::translate("addShowDialog", "Dialog", 0));
         cancelShowButton->setText(QApplication::translate("addShowDialog", "Cancel", 0));
-        addShowButton->setText(QApplication::translate("addShowDialog", "Add", 0));
+        addShowButton->setText(QApplication::translate("addShowDialog", "Submit", 0));
         movieLabel->setText(QApplication::translate("addShowDialog", "Movie", 0));
         hallLabel->setText(QApplication::translate("addShowDialog", "Hall", 0));
         dateLabel->setText(QApplication::translate("addShowDialog", "Date", 0));

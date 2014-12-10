@@ -50,8 +50,8 @@ public:
     void retranslateUi(QDialog *confirmAddMovie)
     {
         confirmAddMovie->setWindowTitle(QApplication::translate("confirmAddMovie", "Dialog", 0));
-        AddButton->setText(QApplication::translate("confirmAddMovie", "L\303\244gg till", 0));
-        CancelButton->setText(QApplication::translate("confirmAddMovie", "Avbryt", 0));
+        AddButton->setText(QApplication::translate("confirmAddMovie", "Submit", 0));
+        CancelButton->setText(QApplication::translate("confirmAddMovie", "Cancel", 0));
         label->setText(QApplication::translate("confirmAddMovie", "Du h\303\245ller p\303\245 att l\303\244gga till en film", 0));
     } // retranslateUi
 

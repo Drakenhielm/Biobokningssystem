@@ -21,7 +21,7 @@ public:
 
     int insertHall(const QString &name, const QString &screenSize, const QString &SoundSystem,
                const QList<QList<bool> > &seats);
-    bool editHall(int row, const QString &name, const QString &screenSize, const QString &SoundSystem,
+    bool editHall(int hallID, const QString &name, const QString &screenSize, const QString &SoundSystem,
                     const QList<QList<bool> > &seats = QList<QList<bool> >());
 
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
@@ -38,7 +38,7 @@ protected:
 private:
     int insertSeats(int hallID, const QList<QList<bool> > &seats);
     //int insertSeat(int hallID, int row, int col, bool seatType, int seatNr);
-    bool editSeats(int row, const QList<QList<bool> > &seats);
+    bool editSeats(int hallID, const QList<QList<bool> > &seats);
     //bool editSeat(int row, int r, int c, int seatNr);
 };
 
