@@ -25,6 +25,7 @@ public:
 private slots:
     void setLabelNumberOfSeats();
     void hallSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+    void deleteHall();
 
 private:
     Ui::edit_hall *ui;
@@ -33,6 +34,7 @@ private:
     SeatModel *seatModel;
 
     int getSelected(const QItemSelection &selection);
+    int getSelected(QItemSelectionModel *selectionModel);
 
 
 };

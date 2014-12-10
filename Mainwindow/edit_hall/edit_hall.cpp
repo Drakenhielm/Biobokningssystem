@@ -2,6 +2,7 @@
 #include "ui_edit_hall.h"
 #include "hallview.h"
 #include <QVBoxLayout>
+#include <QMessageBox>
 
 
 
@@ -38,6 +39,10 @@ edit_hall::edit_hall(SeatModel *seatModel, QWidget *parent) :
     connect(ui->tableView_edit_hall->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(hallSelectionChanged(QItemSelection,QItemSelection)));
 
+    //delete hall
+    connect(ui->DeleteButton, SIGNAL(clicked()), this, SLOT(deleteHall()));
+
+
 }
 
 void edit_hall::hallSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
@@ -69,6 +74,19 @@ int edit_hall::getSelected(const QItemSelection &selection)
 }
 
 
+int edit_hall::getSelected(QItemSelectionModel *selectionModel)
+{
+    if(selectionModel->selectedIndexes().empty())
+    {
+        return (-1);
+    }
+    else
+    {
+        return selectionModel->selectedIndexes().first().row();
+    }
+}
+
+
 edit_hall::~edit_hall()
 {
 
@@ -80,4 +98,21 @@ void edit_hall::setLabelNumberOfSeats()
     ui->label_number_of_seats->setText("Seats: " + QString::number(hallView->getTotalNumberOfSeats()));
 }
 
+void edit_hall::deleteHall()
+{
+    int select = getSelected(ui->tableView_edit_hall->selectionModel());
 
+    if(select!=(-1))
+    {
+        QMessageBox msgBox(QMessageBox::Question,
+                           "Delete Show",
+                           "Are you sure?",
+                           QMessageBox::Yes | QMessageBox::No
+                           );
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            hallModel->removeRow(select);
+            hallModel->refresh();
+        }
+    }
+}
