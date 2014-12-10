@@ -12,8 +12,8 @@ public:
     enum Column {
         HallID = 0,
         Name = 1,
-        ScreenSize = 2,
-        SoundSystem = 3,
+        SoundSystem = 2,
+        ScreenSize = 3,
         Seats = 4,
         Rows = 5,
         Cols = 6

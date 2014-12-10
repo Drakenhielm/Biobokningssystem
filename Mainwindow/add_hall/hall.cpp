@@ -29,7 +29,7 @@ hall::hall(int hallID, const QString &name, const QString &screenSize, const QSt
     ui->hall_name->setText(name);
     QPoint point =  getScreenSizeFromString(screenSize);
     ui->spinBox_screen_width->setValue(point.x());
-    ui->spinBox_screen_width->setValue(point.y());
+    ui->spinBox_screen_height->setValue(point.y());
     ui->comboBox_sound->setCurrentText(soundSystem);
     hallView->setHall(seats,seats.size(),seats.at(0).size());
     ui->spinBox_columns->setValue(seats.at(0).size());

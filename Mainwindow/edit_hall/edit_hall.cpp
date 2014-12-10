@@ -128,7 +128,8 @@ void edit_hall::openEditHallDialogue()
     int selIndex = getSelected(ui->tableView_edit_hall->selectionModel());
     if(selIndex != -1)
     {
-
+        QString scsi = hallModel->getScreenSize(selIndex);
+        QString sosy = hallModel->getSoundSystem(selIndex);
         hall hallPopup(hallModel->getHallID(selIndex), hallModel->getName(selIndex), hallModel->getScreenSize(selIndex),
                        hallModel->getSoundSystem(selIndex), seatModel->getSeatStateMatrix());
         QObject::connect(&hallPopup, SIGNAL(editHall(int,QString,QString,QString,QList<QList<bool> >)),
