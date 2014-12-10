@@ -172,7 +172,7 @@ void HallView::mousePressEvent(QMouseEvent *event)
 
         bool freeSeats = true;
         for(int i = columnDistance; i < (columnDistance+seatSelector); ++i){
-            if(seats[i][rowIndex].first == Booked || seats[i][rowIndex].first == NoSeat)
+            if(seats[i][rowIndex].first == Booked || (seats[i][rowIndex].first == NoSeat && !editMode))
                 freeSeats = false;
         }
 

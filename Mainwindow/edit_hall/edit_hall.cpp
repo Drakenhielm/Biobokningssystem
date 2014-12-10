@@ -148,7 +148,6 @@ void edit_hall::editHall(int hallID, const QString &name, const QString &screenS
 {
     int selIndex = getSelected(ui->tableView_edit_hall->selectionModel());
     hallModel->editHall(hallID, name, screenSize, soundSystem, seats);
-    qDebug() << hallID << " " << name << " " << screenSize << " " << soundSystem << " " << seats;
     hallModel->refresh();
     if(selIndex != -1)
     {

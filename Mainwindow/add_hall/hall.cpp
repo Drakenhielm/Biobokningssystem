@@ -12,6 +12,7 @@ hall::hall(QWidget *parent) :
 
     initHallView();
     initConnections();
+    hallView->setMode(true);
 }
 
 hall::hall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
@@ -25,6 +26,7 @@ hall::hall(int hallID, const QString &name, const QString &screenSize, const QSt
 
     initHallView();
     initConnections();
+    hallView->setMode(true);
 
     ui->hall_name->setText(name);
     QPoint point =  getScreenSizeFromString(screenSize);
@@ -51,7 +53,6 @@ void hall::initHallView()
     QHBoxLayout *lineLayout = new QHBoxLayout;
     ui->frame_hall->setLayout(lineLayout);
     ui->frame_hall->layout()->addWidget(hallView);
-    hallView->setMode(true);
 
 }
 

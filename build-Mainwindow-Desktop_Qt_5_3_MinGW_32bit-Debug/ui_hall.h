@@ -168,10 +168,11 @@ public:
         label_columns->setText(QApplication::translate("hall", "Columns:", 0));
         label_number_of_seats->setText(QApplication::translate("hall", "Seats:", 0));
         label_hall_name->setText(QApplication::translate("hall", "Name:", 0));
-        label_sound_system->setText(QApplication::translate("hall", "Sound system:", 0));
-        label_screen_size->setText(QApplication::translate("hall", "Screen size:", 0));
+        label_sound_system->setText(QApplication::translate("hall", "Sound System:", 0));
+        label_screen_size->setText(QApplication::translate("hall", "Screen Size:", 0));
         comboBox_sound->clear();
         comboBox_sound->insertItems(0, QStringList()
+         << QApplication::translate("hall", "Select Sound System", 0)
          << QApplication::translate("hall", "Dolby", 0)
          << QApplication::translate("hall", "Dolby Atmos", 0)
          << QApplication::translate("hall", "Dolby Digital", 0)
@@ -179,7 +180,6 @@ public:
          << QApplication::translate("hall", "Dolby SR", 0)
          << QApplication::translate("hall", "Dolby Surround 7.1", 0)
          << QApplication::translate("hall", "DTS", 0)
-         << QApplication::translate("hall", "New Item", 0)
         );
         label_6->setText(QApplication::translate("hall", "X", 0));
         cancel_Button->setText(QApplication::translate("hall", "Cancel", 0));

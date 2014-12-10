@@ -350,7 +350,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Sound system:</string>
+    <string>Sound System:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_screen_size">
@@ -368,7 +368,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Screen size:</string>
+    <string>Screen Size:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="hall_name">
@@ -395,6 +395,11 @@
      <height>31</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>Select Sound System</string>
+    </property>
+   </item>
    <item>
     <property name="text">
      <string>Dolby</string>
@@ -428,11 +433,6 @@
    <item>
     <property name="text">
      <string>DTS</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
     </property>
    </item>
   </widget>

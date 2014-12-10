@@ -213,6 +213,7 @@ void MainWindow::openAddHallDialogue()
     hall hallPopup;   
     QObject::connect(&hallPopup, SIGNAL(addHall(QString,QString,QString,QList<QList<bool> >)),this, SLOT(addHall(QString,QString,QString,QList<QList<bool> >)));
 
+
     hallPopup.setModal(true);
     hallPopup.exec();
 }
