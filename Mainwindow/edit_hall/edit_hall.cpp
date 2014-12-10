@@ -30,8 +30,8 @@ edit_hall::edit_hall(HallModel *hallModel, QWidget *parent) :
     ui->tableView_edit_hall->hideColumn(HallModel::Cols);
 
     ui->tableView_edit_hall->setColumnWidth(HallModel::Name, 120);
-    ui->tableView_edit_hall->setColumnWidth(HallModel::ScreenSize, 140);
-    ui->tableView_edit_hall->setColumnWidth(HallModel::SoundSystem, 70);
+    ui->tableView_edit_hall->setColumnWidth(HallModel::ScreenSize, 70);
+    ui->tableView_edit_hall->setColumnWidth(HallModel::SoundSystem, 140);
     ui->tableView_edit_hall->setColumnWidth(HallModel::Seats, 39);
 
     //hallSelectionChanged

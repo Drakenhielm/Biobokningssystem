@@ -5,8 +5,8 @@ HallView::HallView(QWidget *parent)
     : QWidget(parent)
 {
     //default values
-    row_count = 5;
-    column_count = 5;
+    row_count = 0;
+    column_count = 0;
     spacing = 3;
     offset = 0;
     seatSelector = 1;
