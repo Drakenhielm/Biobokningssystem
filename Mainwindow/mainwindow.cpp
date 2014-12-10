@@ -86,6 +86,12 @@ void MainWindow::initViews()
     ui->frame_3->setLayout(lineLayout);
     ui->frame_3->setFrameStyle(1);
     ui->frame_3->setFrameShadow(QFrame::Plain);
+
+    //left tableViews
+    ui->tableView_show->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->tableView_search->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+
+
 }
 
 void MainWindow::initConnections()

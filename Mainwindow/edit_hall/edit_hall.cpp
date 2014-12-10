@@ -43,6 +43,8 @@ edit_hall::edit_hall(HallModel *hallModel, QWidget *parent) :
 
     connect(ui->EditButton, SIGNAL(clicked()), this, SLOT(openEditHallDialogue()));
 
+    //left tableview
+    ui->tableView_edit_hall->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
 
 }
 

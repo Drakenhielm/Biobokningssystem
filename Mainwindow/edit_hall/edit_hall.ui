@@ -209,24 +209,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="DeleteButton">
-   <property name="geometry">
-    <rect>
-     <x>742</x>
-     <y>411</y>
-     <width>75</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Delete</string>
-   </property>
-  </widget>
   <widget class="QTableView" name="tableView_edit_hall">
    <property name="geometry">
     <rect>
@@ -246,41 +228,53 @@
     <number>20</number>
    </attribute>
   </widget>
-  <widget class="QPushButton" name="EditButton">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>411</y>
-     <width>75</width>
-     <height>27</height>
+     <x>620</x>
+     <y>430</y>
+     <width>223</width>
+     <height>32</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Edit</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="CloseButton">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>410</y>
-     <width>75</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Close</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="CloseButton">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="EditButton">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="DeleteButton">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
