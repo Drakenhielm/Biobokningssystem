@@ -30,8 +30,8 @@ public:
     QLabel *label_number_of_seats;
     QPushButton *DeleteButton;
     QTableView *tableView_edit_hall;
-    QPushButton *editButton;
-    QPushButton *CancelButton;
+    QPushButton *EditButton;
+    QPushButton *CloseButton;
 
     void setupUi(QWidget *edit_hall)
     {
@@ -86,14 +86,14 @@ public:
         tableView_edit_hall->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView_edit_hall->verticalHeader()->setVisible(false);
         tableView_edit_hall->verticalHeader()->setDefaultSectionSize(20);
-        editButton = new QPushButton(edit_hall);
-        editButton->setObjectName(QStringLiteral("editButton"));
-        editButton->setGeometry(QRect(661, 411, 75, 27));
-        editButton->setFont(font);
-        CancelButton = new QPushButton(edit_hall);
-        CancelButton->setObjectName(QStringLiteral("CancelButton"));
-        CancelButton->setGeometry(QRect(510, 410, 75, 27));
-        CancelButton->setFont(font);
+        EditButton = new QPushButton(edit_hall);
+        EditButton->setObjectName(QStringLiteral("EditButton"));
+        EditButton->setGeometry(QRect(661, 411, 75, 27));
+        EditButton->setFont(font);
+        CloseButton = new QPushButton(edit_hall);
+        CloseButton->setObjectName(QStringLiteral("CloseButton"));
+        CloseButton->setGeometry(QRect(510, 410, 75, 27));
+        CloseButton->setFont(font);
 
         retranslateUi(edit_hall);
 
@@ -105,8 +105,8 @@ public:
         edit_hall->setWindowTitle(QApplication::translate("edit_hall", "Hall List", 0));
         label_number_of_seats->setText(QApplication::translate("edit_hall", "Seats:", 0));
         DeleteButton->setText(QApplication::translate("edit_hall", "Delete", 0));
-        editButton->setText(QApplication::translate("edit_hall", "Edit", 0));
-        CancelButton->setText(QApplication::translate("edit_hall", "Cancel", 0));
+        EditButton->setText(QApplication::translate("edit_hall", "Edit", 0));
+        CloseButton->setText(QApplication::translate("edit_hall", "Close", 0));
     } // retranslateUi
 
 };

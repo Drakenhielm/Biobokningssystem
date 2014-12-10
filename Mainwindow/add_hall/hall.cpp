@@ -10,8 +10,8 @@ hall::hall(QWidget *parent) :
     ui->setupUi(this);
     role = Add;
 
-    initConnections();
     initHallView();
+    initConnections();
 }
 
 hall::hall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
@@ -23,8 +23,8 @@ hall::hall(int hallID, const QString &name, const QString &screenSize, const QSt
     role = Edit;
     this->hallID = hallID;
 
-    initConnections();
     initHallView();
+    initConnections();
 
     ui->hall_name->setText(name);
     QPoint point =  getScreenSizeFromString(screenSize);
