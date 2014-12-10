@@ -25,6 +25,8 @@ private slots:
 
     void on_AddButton_clicked();
 
+    void on_cancel_Button_clicked();
+
 private:
     Ui::hall *ui;
     HallView *hallView;

@@ -116,3 +116,8 @@ void edit_hall::deleteHall()
         }
     }
 }
+
+void edit_hall::on_CancelButton_clicked()
+{
+    close();
+}

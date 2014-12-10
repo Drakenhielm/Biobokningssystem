@@ -36,22 +36,22 @@
     <rect>
      <x>120</x>
      <y>450</y>
-     <width>158</width>
-     <height>25</height>
+     <width>169</width>
+     <height>32</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_8">
     <item>
-     <widget class="QPushButton" name="AddButton">
+     <widget class="QPushButton" name="CancelButton">
       <property name="text">
-       <string>Submit</string>
+       <string>Cancel</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="CancelButton">
+     <widget class="QPushButton" name="AddButton">
       <property name="text">
-       <string>Cancel</string>
+       <string>Submit</string>
       </property>
      </widget>
     </item>

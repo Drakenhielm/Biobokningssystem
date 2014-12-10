@@ -42,3 +42,8 @@ void hall::on_AddButton_clicked()
     emit addHall(hallName, screenSize, soundSystem, seats);
     close();
 }
+
+void hall::on_cancel_Button_clicked()
+{
+    close();
+}
