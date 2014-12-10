@@ -171,6 +171,11 @@ public:
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         CurrGenreLabel = new QLabel(layoutWidget1);
         CurrGenreLabel->setObjectName(QStringLiteral("CurrGenreLabel"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(CurrGenreLabel->sizePolicy().hasHeightForWidth());
+        CurrGenreLabel->setSizePolicy(sizePolicy1);
 
         horizontalLayout_5->addWidget(CurrGenreLabel);
 

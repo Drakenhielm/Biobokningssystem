@@ -43,11 +43,6 @@ void MainWindow::initModels()
 
     //SeatModel
     seatModel = new SeatModel(this);
-
-    seatModel->setHall(8);
-    seatModel->setShow(0);
-    seatModel->refresh();
-    qDebug() << seatModel->getSeatStateMatrix();
 }
 
 void MainWindow::initViews()

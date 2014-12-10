@@ -6,6 +6,21 @@ MovieModel::MovieModel(QObject *parent)
     setQuery("SELECT * FROM movie ORDER BY Title");
 }
 
+QString MovieModel::getMoviePoster(int row) const
+{
+    //name of the image
+    QString image = data(index(row, MoviePoster)).toString();
+
+    if(image != "" && imgHandler.fileNameExists(image))
+    {
+        //return the whole path to image
+        return imgHandler.getFolderPath()+'/'+image;
+    }
+
+    //if no image file was found
+    return QString();
+}
+
 int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, const QString & description,
                  const QString & genre, int year, const QString &imagePath)
 {
@@ -37,7 +52,7 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
                  const QString & genre, int year, const QString &imagePath)
 {
     int row = getRowByPrimaryKeyValue(movieID);
-    if(imgHandler.fileNameExists(getMoviePoster(row)))
+    if(!imgHandler.fileNameExists(getMoviePoster(row)))
     {
         imgHandler.copyImage(imagePath);
     }

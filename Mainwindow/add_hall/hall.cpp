@@ -12,7 +12,6 @@ hall::hall(QWidget *parent) :
 
     initHallView();
     initConnections();
-    hallView->setMode(true);
 }
 
 hall::hall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
@@ -50,10 +49,13 @@ void hall::initConnections()
 void hall::initHallView()
 {
     hallView = new HallView(this);
+    hallView->setRows(5);
+    hallView->setColumns(5);
+    hallView->setMode(true); //edit mode
+
     QHBoxLayout *lineLayout = new QHBoxLayout;
     ui->frame_hall->setLayout(lineLayout);
     ui->frame_hall->layout()->addWidget(hallView);
-
 }
 
 hall::~hall()

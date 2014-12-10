@@ -568,9 +568,6 @@ public:
         sizePolicy8.setVerticalStretch(0);
         sizePolicy8.setHeightForWidth(pushButton_hallview_info_clear->sizePolicy().hasHeightForWidth());
         pushButton_hallview_info_clear->setSizePolicy(sizePolicy8);
-        QFont font3;
-        font3.setPointSize(13);
-        pushButton_hallview_info_clear->setFont(font3);
 
         horizontalLayout_5->addWidget(pushButton_hallview_info_clear);
 
@@ -578,7 +575,6 @@ public:
         pushButton_hallview_info_book->setObjectName(QStringLiteral("pushButton_hallview_info_book"));
         sizePolicy8.setHeightForWidth(pushButton_hallview_info_book->sizePolicy().hasHeightForWidth());
         pushButton_hallview_info_book->setSizePolicy(sizePolicy8);
-        pushButton_hallview_info_book->setFont(font3);
 
         horizontalLayout_5->addWidget(pushButton_hallview_info_book, 0, Qt::AlignLeft);
 

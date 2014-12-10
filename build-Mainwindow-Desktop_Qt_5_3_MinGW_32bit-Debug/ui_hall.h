@@ -60,9 +60,6 @@ public:
         AddButton = new QPushButton(hall);
         AddButton->setObjectName(QStringLiteral("AddButton"));
         AddButton->setGeometry(QRect(749, 420, 81, 31));
-        QFont font;
-        font.setPointSize(12);
-        AddButton->setFont(font);
         frame_rows_columns = new QFrame(hall);
         frame_rows_columns->setObjectName(QStringLiteral("frame_rows_columns"));
         frame_rows_columns->setGeometry(QRect(20, 20, 501, 431));
@@ -96,6 +93,8 @@ public:
         spinBox_rows = new QSpinBox(frame_rows_columns);
         spinBox_rows->setObjectName(QStringLiteral("spinBox_rows"));
         spinBox_rows->setGeometry(QRect(310, 390, 41, 21));
+        QFont font;
+        font.setPointSize(12);
         spinBox_rows->setFont(font);
         spinBox_rows->setMinimum(1);
         spinBox_rows->setMaximum(25);
@@ -153,7 +152,6 @@ public:
         cancel_Button = new QPushButton(hall);
         cancel_Button->setObjectName(QStringLiteral("cancel_Button"));
         cancel_Button->setGeometry(QRect(660, 420, 81, 31));
-        cancel_Button->setFont(font);
 
         retranslateUi(hall);
 

@@ -44,6 +44,8 @@ private:
     QDir directory;
     enum Role { Add, Edit } role;
     int movieID; //used in edit mode
+
+    void removeGenresFromCbb(const QString &genreStr);
 };
 
 #endif // POPUP_H

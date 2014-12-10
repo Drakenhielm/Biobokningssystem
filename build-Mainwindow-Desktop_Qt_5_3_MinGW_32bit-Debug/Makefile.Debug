@@ -3211,15 +3211,7 @@ debug/imagehandler.o: ../Mainwindow/DatabaseHandler/imagehandler.cpp ../Mainwind
 		C:/Qt/5.3/mingw482_32/include/QtCore/qvector.h \
 		C:/Qt/5.3/mingw482_32/include/QtGui/qregion.h \
 		C:/Qt/5.3/mingw482_32/include/QtCore/qline.h \
-		C:/Qt/5.3/mingw482_32/include/QtGui/qpainterpath.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/QDebug \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qdebug.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qmap.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qlocale.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qvariant.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qset.h \
-		C:/Qt/5.3/mingw482_32/include/QtCore/qcontiguouscache.h
+		C:/Qt/5.3/mingw482_32/include/QtGui/qpainterpath.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\imagehandler.o ..\Mainwindow\DatabaseHandler\imagehandler.cpp
 
 debug/qrc_resource.o: debug/qrc_resource.cpp 
