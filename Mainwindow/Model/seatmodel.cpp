@@ -72,6 +72,5 @@ QVector<QVector<int> > SeatModel::getSeatStateMatrix() const
                 matrix[y][x] = Available;
         }
     }
-    qDebug() << matrix;
     return matrix;
 }

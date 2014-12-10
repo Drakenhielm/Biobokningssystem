@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addshowdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.2
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -34,8 +34,8 @@ class Ui_addShowDialog
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_7;
-    QPushButton *addShowButton;
     QPushButton *cancelShowButton;
+    QPushButton *addShowButton;
     QSplitter *splitter_2;
     QWidget *layoutWidget_2;
     QVBoxLayout *verticalLayout_2;
@@ -75,19 +75,19 @@ public:
         addShowDialog->resize(400, 536);
         layoutWidget = new QWidget(addShowDialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(190, 490, 168, 25));
+        layoutWidget->setGeometry(QRect(190, 490, 168, 32));
         horizontalLayout_7 = new QHBoxLayout(layoutWidget);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        addShowButton = new QPushButton(layoutWidget);
-        addShowButton->setObjectName(QStringLiteral("addShowButton"));
-
-        horizontalLayout_7->addWidget(addShowButton);
-
         cancelShowButton = new QPushButton(layoutWidget);
         cancelShowButton->setObjectName(QStringLiteral("cancelShowButton"));
 
         horizontalLayout_7->addWidget(cancelShowButton);
+
+        addShowButton = new QPushButton(layoutWidget);
+        addShowButton->setObjectName(QStringLiteral("addShowButton"));
+
+        horizontalLayout_7->addWidget(addShowButton);
 
         splitter_2 = new QSplitter(addShowDialog);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
@@ -242,8 +242,8 @@ public:
     void retranslateUi(QDialog *addShowDialog)
     {
         addShowDialog->setWindowTitle(QApplication::translate("addShowDialog", "Dialog", 0));
-        addShowButton->setText(QApplication::translate("addShowDialog", "Add", 0));
         cancelShowButton->setText(QApplication::translate("addShowDialog", "Cancel", 0));
+        addShowButton->setText(QApplication::translate("addShowDialog", "Add", 0));
         movieLabel->setText(QApplication::translate("addShowDialog", "Movie", 0));
         hallLabel->setText(QApplication::translate("addShowDialog", "Hall", 0));
         dateLabel->setText(QApplication::translate("addShowDialog", "Date", 0));

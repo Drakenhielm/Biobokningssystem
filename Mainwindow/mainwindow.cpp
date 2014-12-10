@@ -204,7 +204,7 @@ void MainWindow::openAddHallDialogue()
 
 void MainWindow::openEditHallDialogue()
 {
-    edit_hall hallPopup(seatModel);
+    edit_hall hallPopup(hallModel);
     hallPopup.setModal(true);
     hallPopup.exec();
 }
@@ -534,7 +534,6 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         ui->pushButton_show_delete->setEnabled(true);
         ui->actionDelete_show->setEnabled(true);
 
-        qDebug() << seatModel->getSeatStateMatrix();
         hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
     }
 }

@@ -43,6 +43,7 @@ public:
     QSpinBox *spinBox_screen_width;
     QSpinBox *spinBox_screen_height;
     QLabel *label_6;
+    QPushButton *cancel_Button;
 
     void setupUi(QDialog *hall)
     {
@@ -149,6 +150,10 @@ public:
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(760, 160, 16, 21));
         label_6->setFont(font);
+        cancel_Button = new QPushButton(hall);
+        cancel_Button->setObjectName(QStringLiteral("cancel_Button"));
+        cancel_Button->setGeometry(QRect(660, 420, 81, 31));
+        cancel_Button->setFont(font);
 
         retranslateUi(hall);
 
@@ -177,6 +182,7 @@ public:
          << QApplication::translate("hall", "New Item", 0)
         );
         label_6->setText(QApplication::translate("hall", "X", 0));
+        cancel_Button->setText(QApplication::translate("hall", "Cancel", 0));
     } // retranslateUi
 
 };

@@ -31,6 +31,7 @@ public:
     QPushButton *DeleteButton;
     QTableView *tableView_edit_hall;
     QPushButton *editButton;
+    QPushButton *CancelButton;
 
     void setupUi(QWidget *edit_hall)
     {
@@ -77,7 +78,7 @@ public:
         label_number_of_seats->setFont(font);
         DeleteButton = new QPushButton(edit_hall);
         DeleteButton->setObjectName(QStringLiteral("DeleteButton"));
-        DeleteButton->setGeometry(QRect(722, 401, 75, 27));
+        DeleteButton->setGeometry(QRect(742, 411, 75, 27));
         DeleteButton->setFont(font);
         tableView_edit_hall = new QTableView(edit_hall);
         tableView_edit_hall->setObjectName(QStringLiteral("tableView_edit_hall"));
@@ -87,8 +88,12 @@ public:
         tableView_edit_hall->verticalHeader()->setDefaultSectionSize(20);
         editButton = new QPushButton(edit_hall);
         editButton->setObjectName(QStringLiteral("editButton"));
-        editButton->setGeometry(QRect(641, 401, 75, 27));
+        editButton->setGeometry(QRect(661, 411, 75, 27));
         editButton->setFont(font);
+        CancelButton = new QPushButton(edit_hall);
+        CancelButton->setObjectName(QStringLiteral("CancelButton"));
+        CancelButton->setGeometry(QRect(510, 410, 75, 27));
+        CancelButton->setFont(font);
 
         retranslateUi(edit_hall);
 
@@ -101,6 +106,7 @@ public:
         label_number_of_seats->setText(QApplication::translate("edit_hall", "Seats:", 0));
         DeleteButton->setText(QApplication::translate("edit_hall", "Delete", 0));
         editButton->setText(QApplication::translate("edit_hall", "Edit", 0));
+        CancelButton->setText(QApplication::translate("edit_hall", "Cancel", 0));
     } // retranslateUi
 
 };

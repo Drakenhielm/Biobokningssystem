@@ -6,13 +6,11 @@
 
 
 
-edit_hall::edit_hall(SeatModel *seatModel, QWidget *parent) :
+edit_hall::edit_hall(HallModel *hallModel, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::edit_hall)
 {
     ui->setupUi(this);
-
-    this->seatModel = seatModel;
 
     hallView = new HallView(this);
     QHBoxLayout *lineLayout = new QHBoxLayout;
@@ -21,10 +19,11 @@ edit_hall::edit_hall(SeatModel *seatModel, QWidget *parent) :
 
     connect(hallView, SIGNAL(selectedSeatsChanged(QList<int>)), this, SLOT(setLabelNumberOfSeats()));
 
-    //hallView->setMode(true);
     hallView->setEnabled(false);
 
-    hallModel = new HallModel(this);
+    this->hallModel = hallModel;
+
+    seatModel = new SeatModel(this);
     ui->tableView_edit_hall->setModel(hallModel);
     ui->tableView_edit_hall->hideColumn(HallModel::HallID);
     ui->tableView_edit_hall->hideColumn(HallModel::Rows);
@@ -41,7 +40,6 @@ edit_hall::edit_hall(SeatModel *seatModel, QWidget *parent) :
 
     //delete hall
     connect(ui->DeleteButton, SIGNAL(clicked()), this, SLOT(deleteHall()));
-
 
 }
 

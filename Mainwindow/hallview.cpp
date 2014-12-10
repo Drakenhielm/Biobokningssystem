@@ -38,6 +38,7 @@ int HallView::getSeatNr(int rowIndex, int columnIndex)
                 seatNr++;
         }
     }
+    return -1;
 }
 
 QList<int> HallView::getSelectedSeats()
