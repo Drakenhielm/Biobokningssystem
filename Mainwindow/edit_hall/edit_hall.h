@@ -27,7 +27,7 @@ private slots:
     void hallSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void deleteHall();
 
-    void on_CancelButton_clicked();
+    void on_CloseButton_clicked();
 
 private:
     Ui::edit_hall *ui;

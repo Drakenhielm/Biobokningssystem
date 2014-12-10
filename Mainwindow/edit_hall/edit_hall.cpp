@@ -103,7 +103,7 @@ void edit_hall::deleteHall()
     if(select!=(-1))
     {
         QMessageBox msgBox(QMessageBox::Question,
-                           "Delete Show",
+                           "Delete Hall",
                            "Are you sure?",
                            QMessageBox::Yes | QMessageBox::No
                            );
@@ -115,7 +115,7 @@ void edit_hall::deleteHall()
     }
 }
 
-void edit_hall::on_CancelButton_clicked()
+void edit_hall::on_CloseButton_clicked()
 {
     close();
 }

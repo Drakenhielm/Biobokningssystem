@@ -264,7 +264,7 @@
     <string>Edit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="CancelButton">
+  <widget class="QPushButton" name="CloseButton">
    <property name="geometry">
     <rect>
      <x>510</x>
@@ -279,7 +279,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>Close</string>
    </property>
   </widget>
  </widget>
