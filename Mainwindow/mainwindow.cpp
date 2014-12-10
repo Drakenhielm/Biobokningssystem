@@ -74,6 +74,8 @@ void MainWindow::initViews()
     ui->tableView_search->hideColumn(BookingModel::SeatIDs);
     ui->tableView_search->horizontalHeader()->setStretchLastSection(true);
 
+    ui->tableView_search->setColumnWidth(BookingModel::DateTime,120);
+
     //New Booking
     ui->pushButton_hallview_info_book->setEnabled(false);
 
