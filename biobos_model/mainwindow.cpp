@@ -101,20 +101,23 @@ void MainWindow::on_pushButton_clicked()
 
     DatabaseHandler dh;
     dh.transaction();
-    int c = 1000;
+    int c = 100;
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(c);
-    for(int i = 0; i < c; i++)
+    for(int i = 1; i <= c; i++)
     {
-        QString poster;
-        if(i%2 == 0)
-            poster = "C:/Users/Isac/Desktop/avatar.jpg";
-        else
-            poster = "C:/Users/Isac/Desktop/Bad_boys_two.jpg";
+        if(i < c/10)
+        {
+            QString poster;
+            if(i%2 == 0)
+                poster = "C:/Users/Isac/Desktop/avatar.jpg";
+            else
+                poster = "C:/Users/Isac/Desktop/Bad_boys_two.jpg";
 
-        movieModel->insertMovie("Title "+QString::number(i), 1, 1, "Desc", "genre", 2014, poster);
+            movieModel->insertMovie("Title "+QString::number(i), 1, 1, "Desc", "genre", 2014, poster);
+        }
 
-        showModel->insertShow(QDateTime::currentDateTime(), 99.50, false, true, "English", i, i);
+        showModel->insertShow(QDateTime::currentDateTime(), 99.50, false, true, "English", i/10, i);
 
         hallModel->insertHall("Hall "+i, "2 x 3", "Dolby", hallSeats);
 
@@ -124,9 +127,9 @@ void MainWindow::on_pushButton_clicked()
         bookingSeats.append((i+1)*10+2);
         bookingSeats.append((i+1)*10+3);
 
-        bookingModel->insertBookings(bookingSeats);
+        bookingModel->insertBookings(i, bookingSeats, "070"+QString::number(i));
 
-        ui->progressBar->setValue(c);
+        ui->progressBar->setValue(i);
     }
     dh.endTransaction(true);
 

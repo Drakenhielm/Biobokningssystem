@@ -21,7 +21,7 @@ public:
 
     int insertHall(const QString &name, const QString &screenSize, const QString &SoundSystem,
                const QList<QList<bool> > &seats);
-    bool editHall(int row, const QString &name, const QString &screenSize, const QString &SoundSystem,
+    bool editHall(int hallID, const QString &name, const QString &screenSize, const QString &SoundSystem,
                     const QList<QList<bool> > &seats = QList<QList<bool> >());
 
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }

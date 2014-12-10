@@ -122,6 +122,7 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &where, con
     {
         qDebug() << "Could not remove. The database reported an error: "
                  << db.lastError().text();
+        qDebug() << sqlStr;
         return false;
     }
     return true;
