@@ -14,10 +14,14 @@ class hall : public QDialog
 
 public:
     explicit hall(QWidget *parent = 0);
+    explicit hall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
+                  const QVector<QVector<int> > &seats, QWidget *parent = 0);
     ~hall();
 
 signals:
     void addHall(const QString &name, const QString &screenSize, const QString &soundSystem,
+               const QList<QList<bool> > &seats);
+    void editHall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem,
                const QList<QList<bool> > &seats);
 
 private slots:
@@ -30,6 +34,13 @@ private slots:
 private:
     Ui::hall *ui;
     HallView *hallView;
+
+    enum Role { Add, Edit } role;
+    int hallID; //used in edit mode
+
+    void initConnections();
+    void initHallView();
+    QPoint getScreenSizeFromString(const QString &str);
 };
 
 #endif // POPUP_H

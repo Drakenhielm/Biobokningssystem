@@ -41,6 +41,9 @@ edit_hall::edit_hall(HallModel *hallModel, QWidget *parent) :
     //delete hall
     connect(ui->DeleteButton, SIGNAL(clicked()), this, SLOT(deleteHall()));
 
+    connect(ui->EditButton, SIGNAL(clicked()), this, SLOT(openEditHallDialogue()));
+
+
 }
 
 void edit_hall::hallSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
@@ -118,4 +121,35 @@ void edit_hall::deleteHall()
 void edit_hall::on_CloseButton_clicked()
 {
     close();
+}
+
+
+void edit_hall::openEditHallDialogue()
+{
+    int selIndex = getSelected(ui->tableView_edit_hall->selectionModel());
+    if(selIndex != -1)
+    {
+
+        hall hallPopup(hallModel->getHallID(selIndex), hallModel->getName(selIndex), hallModel->getScreenSize(selIndex),
+                       hallModel->getSoundSystem(selIndex), seatModel->getSeatStateMatrix());
+        QObject::connect(&hallPopup, SIGNAL(editHall(QString,QString,QString,QList<QList<bool> >)),
+                         this, SLOT(editHall(QString,QString,QString,QList<QList<bool> >)));
+
+        hallPopup.setModal(true);
+        hallPopup.setWindowTitle("Edit Hall");
+        hallPopup.exec();
+    }
+
+
+}
+
+void edit_hall::editHall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem, const QList<QList<bool> > &seats)
+{
+    int selIndex = getSelected(ui->tableView_edit_hall->selectionModel());
+    hallModel->editHall(hallID, name, screenSize, soundSystem, seats);
+    hallModel->refresh();
+    {
+        QModelIndex index = hallModel->index(selIndex, 0);
+        ui->tableView_edit_hall->setCurrentIndex(index);
+    }
 }

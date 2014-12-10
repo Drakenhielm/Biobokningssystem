@@ -246,7 +246,7 @@
     <number>20</number>
    </attribute>
   </widget>
-  <widget class="QPushButton" name="editButton">
+  <widget class="QPushButton" name="EditButton">
    <property name="geometry">
     <rect>
      <x>661</x>

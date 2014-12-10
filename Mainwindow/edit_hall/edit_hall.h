@@ -5,7 +5,9 @@
 #include "hallview.h"
 #include "Model/hallmodel.h"
 #include "Model/seatmodel.h"
+#include "Model/showmodel.h"
 #include <QItemSelection>
+#include <add_hall/hall.h>
 
 
 
@@ -26,6 +28,8 @@ private slots:
     void setLabelNumberOfSeats();
     void hallSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void deleteHall();
+    void openEditHallDialogue();
+    void editHall(int hallID, const QString &name, const QString &screenSize, const QString &soundSystem, const QList<QList<bool> > &seats);
 
     void on_CloseButton_clicked();
 
