@@ -38,7 +38,7 @@ protected:
 private:
     int insertSeats(int hallID, const QList<QList<bool> > &seats);
     //int insertSeat(int hallID, int row, int col, bool seatType, int seatNr);
-    bool editSeats(int row, const QList<QList<bool> > &seats);
+    bool editSeats(int hallID, const QList<QList<bool> > &seats);
     //bool editSeat(int row, int r, int c, int seatNr);
 };
 

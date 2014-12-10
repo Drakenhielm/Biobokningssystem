@@ -122,7 +122,7 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &where, con
     {
         qDebug() << "Could not remove. The database reported an error: "
                  << db.lastError().text();
-        qDebug() << sqlStr;
+        qDebug() << sql;
         return false;
     }
     return true;
@@ -163,7 +163,7 @@ int DatabaseHandler::insert(const QString &tableName, const QMap<QString, QVaria
         qDebug() << sqlStr;
         return -1;
     }
-
+    int i = query.lastInsertId().toInt();
     return query.lastInsertId().toInt();
 }
 

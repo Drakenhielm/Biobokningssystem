@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Your space
 
+
+
     /*movieModel->insertMovie("Insert 1", 1, 1, "Desc", "genre", 2014, "");
     movieModel->insertMovie("Insert 2", 1, 1, "Desc", "genre", 2014, "");
     movieModel->insertMovie("Should be Deleted", 1, 1, "Desc", "genre", 2014, "");
@@ -28,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     showModel->removeRow(2);
     showModel->refresh();
 
-    QList<QList<bool> > hallSeats;
+    */QList<QList<bool> > hallSeats;
     for(int i = 0; i < 5; i++)
     {
         hallSeats.append(QList<bool>());
@@ -40,10 +42,20 @@ MainWindow::MainWindow(QWidget *parent) :
                 hallSeats[i].append(true);
         }
     }
+    hallModel->insertHall("Hall 1", "3x5", "Dolby", hallSeats);
+    int edit = hallModel->insertHall("Hall 2", "3x5", "Dolby", hallSeats);
+    int remove = hallModel->insertHall("Hall 3", "3x5", "Dolby", hallSeats);
 
-    hallModel->insertHall("Rigoletto", "3x5", "Dolby", hallSeats);
+    hallSeats.removeLast();
+    hallSeats.removeLast();
+    hallModel->editHall(edit, "Hall Edit", "4x4", "Dolby Special Edition Deluxe Super Master Epica System", hallSeats);
+
     hallModel->refresh();
-
+    qDebug() << remove;
+    qDebug() << hallModel->getRowByPrimaryKeyValue(remove);
+    hallModel->removeRow(hallModel->getRowByPrimaryKeyValue(remove));
+    hallModel->refresh();
+    /*
     QList<int> bookingSeats;
     bookingSeats.append(1);
     bookingModel->insertBookings(1, bookingSeats, "979");
@@ -101,7 +113,7 @@ void MainWindow::on_pushButton_clicked()
 
     DatabaseHandler dh;
     dh.transaction();
-    int c = 100;
+    int c = 0;
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(c);
     for(int i = 1; i <= c; i++)
