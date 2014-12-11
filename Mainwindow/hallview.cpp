@@ -305,13 +305,12 @@ void HallView::paintEvent(QPaintEvent *event)
                         painter.setBrush(QBrush(QColor(200, 200, 200))); //White
                 }
 
-                if(seats[column][row].first != NoSeat || editMode != false){
+                if(seats[column][row].first != NoSeat || editMode != false)
                     painter.drawRect(column*(squareSize+spacing)+offset, row*(squareSize+spacing), squareSize, squareSize);
-                    if(seats[column][row].first == Booked && seats[column][row].second == true){
-                        painter.setBrush(QBrush(QColor(0, 0, 0))); //black
-                        painter.drawLine(column*(squareSize+spacing)+offset, row*(squareSize+spacing), column*(squareSize+spacing)+offset+squareSize, row*(squareSize+spacing)+squareSize);
-                        painter.drawLine(column*(squareSize+spacing)+offset, row*(squareSize+spacing)+squareSize, column*(squareSize+spacing)+offset+squareSize, row*(squareSize+spacing));
-                    }
+                if((seats[column][row].first == Booked && seats[column][row].second == true) || (seats[column][row].first == NoSeat && seats[column][row].second == true)){
+                    painter.setBrush(QBrush(QColor(0, 0, 0))); //black
+                    painter.drawLine(column*(squareSize+spacing)+offset, row*(squareSize+spacing), column*(squareSize+spacing)+offset+squareSize, row*(squareSize+spacing)+squareSize);
+                    painter.drawLine(column*(squareSize+spacing)+offset, row*(squareSize+spacing)+squareSize+1, column*(squareSize+spacing)+offset+squareSize, row*(squareSize+spacing)+1);
                 }
             }
         }
