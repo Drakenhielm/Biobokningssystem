@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,15 +13,15 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.2. It"
+#error "This file was generated using the moc from 5.3.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[52];
-    char stringdata[744];
+    QByteArrayData data[56];
+    char stringdata[768];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -60,28 +60,32 @@ QT_MOC_LITERAL(26, 289, 3),
 QT_MOC_LITERAL(27, 293, 4),
 QT_MOC_LITERAL(28, 298, 6),
 QT_MOC_LITERAL(29, 305, 10),
-QT_MOC_LITERAL(30, 316, 37),
-QT_MOC_LITERAL(31, 354, 5),
-QT_MOC_LITERAL(32, 360, 40),
-QT_MOC_LITERAL(33, 401, 13),
-QT_MOC_LITERAL(34, 415, 28),
-QT_MOC_LITERAL(35, 444, 38),
-QT_MOC_LITERAL(36, 483, 22),
-QT_MOC_LITERAL(37, 506, 19),
-QT_MOC_LITERAL(38, 526, 7),
-QT_MOC_LITERAL(39, 534, 4),
-QT_MOC_LITERAL(40, 539, 11),
-QT_MOC_LITERAL(41, 551, 10),
-QT_MOC_LITERAL(42, 562, 19),
-QT_MOC_LITERAL(43, 582, 5),
-QT_MOC_LITERAL(44, 588, 20),
-QT_MOC_LITERAL(45, 609, 19),
-QT_MOC_LITERAL(46, 629, 10),
-QT_MOC_LITERAL(47, 640, 11),
-QT_MOC_LITERAL(48, 652, 16),
-QT_MOC_LITERAL(49, 669, 41),
-QT_MOC_LITERAL(50, 711, 23),
-QT_MOC_LITERAL(51, 735, 8)
+QT_MOC_LITERAL(30, 316, 20),
+QT_MOC_LITERAL(31, 337, 8),
+QT_MOC_LITERAL(32, 346, 6),
+QT_MOC_LITERAL(33, 353, 37),
+QT_MOC_LITERAL(34, 391, 5),
+QT_MOC_LITERAL(35, 397, 10),
+QT_MOC_LITERAL(36, 408, 13),
+QT_MOC_LITERAL(37, 422, 28),
+QT_MOC_LITERAL(38, 451, 38),
+QT_MOC_LITERAL(39, 490, 22),
+QT_MOC_LITERAL(40, 513, 19),
+QT_MOC_LITERAL(41, 533, 7),
+QT_MOC_LITERAL(42, 541, 4),
+QT_MOC_LITERAL(43, 546, 11),
+QT_MOC_LITERAL(44, 558, 10),
+QT_MOC_LITERAL(45, 569, 19),
+QT_MOC_LITERAL(46, 589, 5),
+QT_MOC_LITERAL(47, 595, 20),
+QT_MOC_LITERAL(48, 616, 19),
+QT_MOC_LITERAL(49, 636, 10),
+QT_MOC_LITERAL(50, 647, 11),
+QT_MOC_LITERAL(51, 659, 16),
+QT_MOC_LITERAL(52, 676, 41),
+QT_MOC_LITERAL(53, 718, 23),
+QT_MOC_LITERAL(54, 742, 17),
+QT_MOC_LITERAL(55, 760, 7)
     },
     "MainWindow\0movieSelectionChanged\0\0"
     "QItemSelection\0selected\0deselected\0"
@@ -91,10 +95,10 @@ QT_MOC_LITERAL(51, 735, 8)
     "deleteMovie\0openEditMovieDialogue\0"
     "editMovie\0movieID\0openAddShowDialog\0"
     "addShow\0dateTime\0price\0lang\0DDD\0subs\0"
-    "hallID\0deleteShow\0"
-    "on_comboBox_shows_currentIndexChanged\0"
-    "index\0on_pushButton_hallview_info_book_clicked\0"
-    "deleteBooking\0on_pushButton_search_clicked\0"
+    "hallID\0deleteShow\0openEditShowDialogue\0"
+    "editShow\0showID\0on_comboBox_shows_currentIndexChanged\0"
+    "index\0addBooking\0deleteBooking\0"
+    "on_pushButton_search_clicked\0"
     "on_comboBox_search_currentIndexChanged\0"
     "highlightSearchBooking\0openAddHallDialogue\0"
     "addHall\0name\0soundSystem\0screenSize\0"
@@ -102,7 +106,8 @@ QT_MOC_LITERAL(51, 735, 8)
     "openEditHallDialogue\0updateSelectedSeats\0"
     "QList<int>\0setComboBox\0enableBookButton\0"
     "on_pushButton_hallview_info_clear_clicked\0"
-    "on_actionQuit_triggered\0hideShow"
+    "on_actionQuit_triggered\0setWidgetsVisible\0"
+    "visible"
 };
 #undef QT_MOC_LITERAL
 
@@ -112,7 +117,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      26,   14, // methods
+      28,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -120,32 +125,34 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,  144,    2, 0x08 /* Private */,
-       6,    2,  149,    2, 0x08 /* Private */,
-       7,    2,  154,    2, 0x08 /* Private */,
-       8,    0,  159,    2, 0x08 /* Private */,
-       9,    7,  160,    2, 0x08 /* Private */,
-      17,    0,  175,    2, 0x08 /* Private */,
-      18,    0,  176,    2, 0x08 /* Private */,
-      19,    8,  177,    2, 0x08 /* Private */,
-      21,    0,  194,    2, 0x08 /* Private */,
-      22,    7,  195,    2, 0x08 /* Private */,
-      29,    0,  210,    2, 0x08 /* Private */,
-      30,    1,  211,    2, 0x08 /* Private */,
-      32,    0,  214,    2, 0x08 /* Private */,
-      33,    0,  215,    2, 0x08 /* Private */,
-      34,    0,  216,    2, 0x08 /* Private */,
-      35,    1,  217,    2, 0x08 /* Private */,
-      36,    0,  220,    2, 0x08 /* Private */,
-      37,    0,  221,    2, 0x08 /* Private */,
-      38,    4,  222,    2, 0x08 /* Private */,
-      44,    0,  231,    2, 0x08 /* Private */,
-      45,    1,  232,    2, 0x08 /* Private */,
-      47,    1,  235,    2, 0x08 /* Private */,
-      48,    0,  238,    2, 0x08 /* Private */,
-      49,    0,  239,    2, 0x08 /* Private */,
-      50,    0,  240,    2, 0x08 /* Private */,
-      51,    0,  241,    2, 0x08 /* Private */,
+       1,    2,  154,    2, 0x08 /* Private */,
+       6,    2,  159,    2, 0x08 /* Private */,
+       7,    2,  164,    2, 0x08 /* Private */,
+       8,    0,  169,    2, 0x08 /* Private */,
+       9,    7,  170,    2, 0x08 /* Private */,
+      17,    0,  185,    2, 0x08 /* Private */,
+      18,    0,  186,    2, 0x08 /* Private */,
+      19,    8,  187,    2, 0x08 /* Private */,
+      21,    0,  204,    2, 0x08 /* Private */,
+      22,    7,  205,    2, 0x08 /* Private */,
+      29,    0,  220,    2, 0x08 /* Private */,
+      30,    0,  221,    2, 0x08 /* Private */,
+      31,    8,  222,    2, 0x08 /* Private */,
+      33,    1,  239,    2, 0x08 /* Private */,
+      35,    0,  242,    2, 0x08 /* Private */,
+      36,    0,  243,    2, 0x08 /* Private */,
+      37,    0,  244,    2, 0x08 /* Private */,
+      38,    1,  245,    2, 0x08 /* Private */,
+      39,    0,  248,    2, 0x08 /* Private */,
+      40,    0,  249,    2, 0x08 /* Private */,
+      41,    4,  250,    2, 0x08 /* Private */,
+      47,    0,  259,    2, 0x08 /* Private */,
+      48,    1,  260,    2, 0x08 /* Private */,
+      50,    1,  263,    2, 0x08 /* Private */,
+      51,    0,  266,    2, 0x08 /* Private */,
+      52,    0,  267,    2, 0x08 /* Private */,
+      53,    0,  268,    2, 0x08 /* Private */,
+      54,    1,  269,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
@@ -159,21 +166,23 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QDateTime, QMetaType::Double, QMetaType::QString, QMetaType::Bool, QMetaType::Bool, QMetaType::Int, QMetaType::Int,   23,   24,   25,   26,   27,   20,   28,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   31,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::QDateTime, QMetaType::Double, QMetaType::QString, QMetaType::Bool, QMetaType::Bool, QMetaType::Int, QMetaType::Int,   32,   23,   24,   25,   26,   27,   20,   28,
+    QMetaType::Void, QMetaType::Int,   34,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   31,
+    QMetaType::Void, QMetaType::Int,   34,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, 0x80000000 | 42,   39,   40,   41,   43,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, 0x80000000 | 45,   42,   43,   44,   46,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 46,   43,
+    QMetaType::Void, 0x80000000 | 49,   46,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   55,
 
        0        // eod
 };
@@ -194,34 +203,36 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->openAddShowDialog(); break;
         case 9: _t->addShow((*reinterpret_cast< QDateTime(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< bool(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7]))); break;
         case 10: _t->deleteShow(); break;
-        case 11: _t->on_comboBox_shows_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->on_pushButton_hallview_info_book_clicked(); break;
-        case 13: _t->deleteBooking(); break;
-        case 14: _t->on_pushButton_search_clicked(); break;
-        case 15: _t->on_comboBox_search_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->highlightSearchBooking(); break;
-        case 17: _t->openAddHallDialogue(); break;
-        case 18: _t->addHall((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QList<QList<bool> >(*)>(_a[4]))); break;
-        case 19: _t->openEditHallDialogue(); break;
-        case 20: _t->updateSelectedSeats((*reinterpret_cast< QList<int>(*)>(_a[1]))); break;
-        case 21: _t->setComboBox((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 22: _t->enableBookButton(); break;
-        case 23: _t->on_pushButton_hallview_info_clear_clicked(); break;
-        case 24: _t->on_actionQuit_triggered(); break;
-        case 25: _t->hideShow(); break;
+        case 11: _t->openEditShowDialogue(); break;
+        case 12: _t->editShow((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QDateTime(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5])),(*reinterpret_cast< bool(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8]))); break;
+        case 13: _t->on_comboBox_shows_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->addBooking(); break;
+        case 15: _t->deleteBooking(); break;
+        case 16: _t->on_pushButton_search_clicked(); break;
+        case 17: _t->on_comboBox_search_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 18: _t->highlightSearchBooking(); break;
+        case 19: _t->openAddHallDialogue(); break;
+        case 20: _t->addHall((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QList<QList<bool> >(*)>(_a[4]))); break;
+        case 21: _t->openEditHallDialogue(); break;
+        case 22: _t->updateSelectedSeats((*reinterpret_cast< QList<int>(*)>(_a[1]))); break;
+        case 23: _t->setComboBox((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 24: _t->enableBookButton(); break;
+        case 25: _t->on_pushButton_hallview_info_clear_clicked(); break;
+        case 26: _t->on_actionQuit_triggered(); break;
+        case 27: _t->setWidgetsVisible((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 18:
+        case 20:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 3:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<QList<bool> > >(); break;
             }
             break;
-        case 20:
+        case 22:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -257,13 +268,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 26)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 28;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 26)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 28;
     }
     return _id;
 }

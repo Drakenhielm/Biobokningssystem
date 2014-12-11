@@ -16,8 +16,7 @@ public:
         Phone = 3,
         Title = 4,
         DateTime = 5,
-        Tickets = 6,
-        SeatIDs = 7
+        Seats = 6
     };
 
     int insertBookings(int ShowID, const QList<int> &seatIDs, const QString &phone);
@@ -28,8 +27,7 @@ public:
     QString getPhone(int row) const { return data(index(row, Phone)).toString(); }
     QString getTitle(int row) const { return data(index(row, Title)).toString(); }
     QDateTime getDateTime(int row) const { return data(index(row, DateTime)).toDateTime(); }
-    int getTickets(int row) const { return data(index(row, Tickets)).toInt(); }
-    QList<int> getSeatIDs(int row) const;
+    QList<int> getSeats(int row) const;
 
 protected:
     virtual bool remove(const QVariant &pkValue);

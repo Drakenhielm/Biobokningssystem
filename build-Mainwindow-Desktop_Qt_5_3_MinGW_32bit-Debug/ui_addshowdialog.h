@@ -22,7 +22,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpinBox>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -36,8 +35,7 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QPushButton *addShowButton;
     QPushButton *cancelShowButton;
-    QSplitter *splitter_2;
-    QWidget *layoutWidget_2;
+    QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QLabel *movieLabel;
@@ -62,7 +60,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QLabel *languageLabel;
     QComboBox *languageCBB;
-    QSplitter *splitter;
+    QHBoxLayout *horizontalLayout_8;
     QLabel *priceLabel;
     QSpinBox *priceSpinBox;
     QButtonGroup *buttonGroup;
@@ -72,10 +70,12 @@ public:
     {
         if (addShowDialog->objectName().isEmpty())
             addShowDialog->setObjectName(QStringLiteral("addShowDialog"));
-        addShowDialog->resize(400, 536);
+        addShowDialog->resize(431, 623);
+        addShowDialog->setMinimumSize(QSize(431, 623));
+        addShowDialog->setMaximumSize(QSize(431, 623));
         layoutWidget = new QWidget(addShowDialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(190, 490, 169, 32));
+        layoutWidget->setGeometry(QRect(220, 550, 169, 32));
         horizontalLayout_7 = new QHBoxLayout(layoutWidget);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -89,23 +89,20 @@ public:
 
         horizontalLayout_7->addWidget(cancelShowButton);
 
-        splitter_2 = new QSplitter(addShowDialog);
-        splitter_2->setObjectName(QStringLiteral("splitter_2"));
-        splitter_2->setGeometry(QRect(40, 20, 321, 461));
-        splitter_2->setOrientation(Qt::Vertical);
-        layoutWidget_2 = new QWidget(splitter_2);
-        layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        verticalLayout_2 = new QVBoxLayout(layoutWidget_2);
+        widget = new QWidget(addShowDialog);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(40, 21, 351, 511));
+        verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        movieLabel = new QLabel(layoutWidget_2);
+        movieLabel = new QLabel(widget);
         movieLabel->setObjectName(QStringLiteral("movieLabel"));
 
         horizontalLayout->addWidget(movieLabel);
 
-        movieCBB = new QComboBox(layoutWidget_2);
+        movieCBB = new QComboBox(widget);
         movieCBB->setObjectName(QStringLiteral("movieCBB"));
 
         horizontalLayout->addWidget(movieCBB);
@@ -115,12 +112,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        hallLabel = new QLabel(layoutWidget_2);
+        hallLabel = new QLabel(widget);
         hallLabel->setObjectName(QStringLiteral("hallLabel"));
 
         horizontalLayout_2->addWidget(hallLabel);
 
-        hallCBB = new QComboBox(layoutWidget_2);
+        hallCBB = new QComboBox(widget);
         hallCBB->setObjectName(QStringLiteral("hallCBB"));
 
         horizontalLayout_2->addWidget(hallCBB);
@@ -130,13 +127,14 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        dateLabel = new QLabel(layoutWidget_2);
+        dateLabel = new QLabel(widget);
         dateLabel->setObjectName(QStringLiteral("dateLabel"));
 
         verticalLayout->addWidget(dateLabel);
 
-        calendarWidget = new QCalendarWidget(layoutWidget_2);
+        calendarWidget = new QCalendarWidget(widget);
         calendarWidget->setObjectName(QStringLiteral("calendarWidget"));
+        calendarWidget->setFirstDayOfWeek(Qt::Monday);
 
         verticalLayout->addWidget(calendarWidget);
 
@@ -145,12 +143,12 @@ public:
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        timeLabel = new QLabel(layoutWidget_2);
+        timeLabel = new QLabel(widget);
         timeLabel->setObjectName(QStringLiteral("timeLabel"));
 
         horizontalLayout_6->addWidget(timeLabel);
 
-        timeEdit = new QTimeEdit(layoutWidget_2);
+        timeEdit = new QTimeEdit(widget);
         timeEdit->setObjectName(QStringLiteral("timeEdit"));
 
         horizontalLayout_6->addWidget(timeEdit);
@@ -160,12 +158,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        DDDLabel = new QLabel(layoutWidget_2);
+        DDDLabel = new QLabel(widget);
         DDDLabel->setObjectName(QStringLiteral("DDDLabel"));
 
         horizontalLayout_3->addWidget(DDDLabel);
 
-        DDDYesRB = new QRadioButton(layoutWidget_2);
+        DDDYesRB = new QRadioButton(widget);
         buttonGroup = new QButtonGroup(addShowDialog);
         buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
         buttonGroup->addButton(DDDYesRB);
@@ -173,7 +171,7 @@ public:
 
         horizontalLayout_3->addWidget(DDDYesRB);
 
-        DDDNoRB = new QRadioButton(layoutWidget_2);
+        DDDNoRB = new QRadioButton(widget);
         buttonGroup->addButton(DDDNoRB);
         DDDNoRB->setObjectName(QStringLiteral("DDDNoRB"));
 
@@ -184,12 +182,12 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        subLabel = new QLabel(layoutWidget_2);
+        subLabel = new QLabel(widget);
         subLabel->setObjectName(QStringLiteral("subLabel"));
 
         horizontalLayout_4->addWidget(subLabel);
 
-        subYesRB = new QRadioButton(layoutWidget_2);
+        subYesRB = new QRadioButton(widget);
         buttonGroup_2 = new QButtonGroup(addShowDialog);
         buttonGroup_2->setObjectName(QStringLiteral("buttonGroup_2"));
         buttonGroup_2->addButton(subYesRB);
@@ -197,7 +195,7 @@ public:
 
         horizontalLayout_4->addWidget(subYesRB);
 
-        subNoRB = new QRadioButton(layoutWidget_2);
+        subNoRB = new QRadioButton(widget);
         buttonGroup_2->addButton(subNoRB);
         subNoRB->setObjectName(QStringLiteral("subNoRB"));
 
@@ -208,12 +206,12 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        languageLabel = new QLabel(layoutWidget_2);
+        languageLabel = new QLabel(widget);
         languageLabel->setObjectName(QStringLiteral("languageLabel"));
 
         horizontalLayout_5->addWidget(languageLabel);
 
-        languageCBB = new QComboBox(layoutWidget_2);
+        languageCBB = new QComboBox(widget);
         languageCBB->setObjectName(QStringLiteral("languageCBB"));
 
         horizontalLayout_5->addWidget(languageCBB);
@@ -221,18 +219,22 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_5);
 
-        splitter_2->addWidget(layoutWidget_2);
-        splitter = new QSplitter(splitter_2);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setOrientation(Qt::Horizontal);
-        priceLabel = new QLabel(splitter);
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        priceLabel = new QLabel(widget);
         priceLabel->setObjectName(QStringLiteral("priceLabel"));
-        splitter->addWidget(priceLabel);
-        priceSpinBox = new QSpinBox(splitter);
+
+        horizontalLayout_8->addWidget(priceLabel);
+
+        priceSpinBox = new QSpinBox(widget);
         priceSpinBox->setObjectName(QStringLiteral("priceSpinBox"));
         priceSpinBox->setMaximum(999);
-        splitter->addWidget(priceSpinBox);
-        splitter_2->addWidget(splitter);
+
+        horizontalLayout_8->addWidget(priceSpinBox);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_8);
+
 
         retranslateUi(addShowDialog);
 

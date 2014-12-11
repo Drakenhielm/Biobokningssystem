@@ -3,20 +3,21 @@
 BookingModel::BookingModel(QObject *parent)
     : BaseModel("booking", "BookingID", parent)
 {
-    setQuery("SELECT b.BookingID, b.ShowID, s.MovieID, b.Phone, m.Title, s.DateTime, "
-             "COUNT(b.BookingID) AS Tickets, GROUP_CONCAT(sb.SeatID) AS SeatIDs "
+    setQuery("SELECT b.BookingID, b.ShowID, s.MovieID, b.Phone, m.Title AS Movie, s.DateTime, "
+             "GROUP_CONCAT(seat.SeatNr) AS Seats "
              "FROM booking AS b "
              "LEFT JOIN show AS s ON s.ShowID = b.ShowID "
              "LEFT JOIN movie AS m ON m.MovieID = s.MovieID "
              "LEFT JOIN seatbooking AS sb ON sb.BookingID = b.BookingID "
+             "LEFT JOIN seat ON seat.SeatID = sb.SeatID "
              "GROUP BY b.BookingID "
              "ORDER BY b.BookingID DESC");
 }
 
-QList<int> BookingModel::getSeatIDs(int row) const
+QList<int> BookingModel::getSeats(int row) const
 {
     QList<int> list;
-    QStringList strList = data(index(row, SeatIDs)).toString().split(',');
+    QStringList strList = data(index(row, Seats)).toString().split(',');
     for(int i = 0; i < strList.size(); i++)
     {
         list.append(strList.at(i).toInt());
@@ -31,14 +32,17 @@ int BookingModel::insertBookings(int showID, const QList<int> &seatIDs, const QS
     bool ok;
 
     dh.transaction();
+
     //insert booking
     values.insert(QString("ShowID"), showID);
     values.insert(QString("Phone"), phone);
     id = dh.insert("booking", values);
     ok = (id != -1);
     values.clear();
+
     //insert seatbookings
     insertSeatBookings(id, seatIDs);
+
     dh.endTransaction(ok);
 
     return id; //BookingID
@@ -50,6 +54,7 @@ bool BookingModel::editBookings(int bookingID, int showID, const QList<int> &sea
     bool ok = true;
 
     dh.transaction();
+
     //edit booking
     values.insert(QString("ShowID"), showID);
     values.insert(QString("Phone"), phone);
@@ -61,6 +66,7 @@ bool BookingModel::editBookings(int bookingID, int showID, const QList<int> &sea
     insertSeatBookings(bookingID, seatIDs);
 
     dh.endTransaction(ok);
+
     return ok;
 }
 
@@ -81,8 +87,11 @@ bool BookingModel::insertSeatBookings(int bookingID, const QList<int> &seatIDs)
 bool BookingModel::remove(const QVariant &pkValue)
 {
     bool ok = true;
+
     dh.transaction();
+
     ok = ok && dh.remove("booking", "BookingID = ?", pkValue);
     ok = ok && dh.remove("seatbooking", "BookingID = ?", pkValue);
+
     return ok && dh.endTransaction(ok);;
 }

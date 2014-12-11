@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>536</height>
+    <width>431</width>
+    <height>623</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>431</width>
+    <height>623</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>431</width>
+    <height>623</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -16,8 +28,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>490</y>
+     <x>220</x>
+     <y>550</y>
      <width>169</width>
      <height>32</height>
     </rect>
@@ -39,195 +51,197 @@
     </item>
    </layout>
   </widget>
-  <widget class="QSplitter" name="splitter_2">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>20</y>
-     <width>321</width>
-     <height>461</height>
+     <y>21</y>
+     <width>351</width>
+     <height>511</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-   <widget class="QWidget" name="layoutWidget_2">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="movieLabel">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="movieLabel">
+        <property name="text">
+         <string>Movie</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="movieCBB"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="hallLabel">
+        <property name="text">
+         <string>Hall</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="hallCBB"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="dateLabel">
+        <property name="text">
+         <string>Date</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCalendarWidget" name="calendarWidget">
+        <property name="firstDayOfWeek">
+         <enum>Qt::Monday</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QLabel" name="timeLabel">
+        <property name="text">
+         <string>Time</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTimeEdit" name="timeEdit"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="DDDLabel">
+        <property name="text">
+         <string>3D</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="DDDYesRB">
+        <property name="text">
+         <string>Yes</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="DDDNoRB">
+        <property name="text">
+         <string>No</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="subLabel">
+        <property name="text">
+         <string>Subtitles</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="subYesRB">
+        <property name="text">
+         <string>Yes</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="subNoRB">
+        <property name="text">
+         <string>No</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="languageLabel">
+        <property name="text">
+         <string>Language</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="languageCBB">
+        <item>
          <property name="text">
-          <string>Movie</string>
+          <string>English</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="movieCBB"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="hallLabel">
+        </item>
+        <item>
          <property name="text">
-          <string>Hall</string>
+          <string>French</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="hallCBB"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="dateLabel">
+        </item>
+        <item>
          <property name="text">
-          <string>Date</string>
+          <string>German</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCalendarWidget" name="calendarWidget"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
-       <item>
-        <widget class="QLabel" name="timeLabel">
+        </item>
+        <item>
          <property name="text">
-          <string>Time</string>
+          <string>Spanish</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTimeEdit" name="timeEdit"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QLabel" name="DDDLabel">
+        </item>
+        <item>
          <property name="text">
-          <string>3D</string>
+          <string>Swedish</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="DDDYesRB">
-         <property name="text">
-          <string>Yes</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="DDDNoRB">
-         <property name="text">
-          <string>No</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
-        <widget class="QLabel" name="subLabel">
-         <property name="text">
-          <string>Subtitles</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="subYesRB">
-         <property name="text">
-          <string>Yes</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup_2</string>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="subNoRB">
-         <property name="text">
-          <string>No</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup_2</string>
-         </attribute>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QLabel" name="languageLabel">
-         <property name="text">
-          <string>Language</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="languageCBB">
-         <item>
-          <property name="text">
-           <string>English</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>French</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>German</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Spanish</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Swedish</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QSplitter" name="splitter">
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <widget class="QLabel" name="priceLabel">
-     <property name="text">
-      <string>Price</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="priceSpinBox">
-     <property name="maximum">
-      <number>999</number>
-     </property>
-    </widget>
-   </widget>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="priceLabel">
+        <property name="text">
+         <string>Price</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="priceSpinBox">
+        <property name="maximum">
+         <number>999</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

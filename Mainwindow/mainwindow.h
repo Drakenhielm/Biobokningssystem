@@ -51,13 +51,13 @@ private slots:
     //Delete Show
     void deleteShow();
     //Edit Show
-    //void openEditShowDialogue();
-    //void editShow();
+    void openEditShowDialogue();
+    void editShow(int showID, QDateTime dateTime, double price, QString lang, bool DDD, bool subs, int movieID, int hallID);
     //Filter shows
     void on_comboBox_shows_currentIndexChanged(int index);
 
     //Add Booking
-    void on_pushButton_hallview_info_book_clicked();
+    void addBooking();
 
     //Delete Booking
     void deleteBooking();
@@ -83,7 +83,7 @@ private slots:
     //Quit
     void on_actionQuit_triggered();
 
-    void hideShow();
+    void setWidgetsVisible(bool visible);
 
 private:
     Ui::MainWindow *ui;

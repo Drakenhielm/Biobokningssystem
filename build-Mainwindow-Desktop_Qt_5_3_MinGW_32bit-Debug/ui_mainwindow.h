@@ -54,6 +54,7 @@ public:
     QAction *actionEdit_Show;
     QAction *actionSearch_Booking;
     QAction *actionInformation;
+    QAction *actionBookings;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QWidget *widget;
@@ -77,6 +78,7 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_5;
     QPushButton *pushButton_show_add;
+    QPushButton *pushButton_show_edit;
     QPushButton *pushButton_show_delete;
     QSpacerItem *horizontalSpacer_6;
     QWidget *widget_info;
@@ -115,7 +117,7 @@ public:
     QPushButton *pushButton_hallview_info_clear;
     QPushButton *pushButton_hallview_info_book;
     QSpacerItem *horizontalSpacer_10;
-    QWidget *widget_6;
+    QWidget *widget_bookings;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_bookings;
     QHBoxLayout *horizontalLayout_9;
@@ -179,6 +181,10 @@ public:
         actionInformation->setObjectName(QStringLiteral("actionInformation"));
         actionInformation->setCheckable(true);
         actionInformation->setChecked(true);
+        actionBookings = new QAction(MainWindow);
+        actionBookings->setObjectName(QStringLiteral("actionBookings"));
+        actionBookings->setCheckable(true);
+        actionBookings->setChecked(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout_2 = new QVBoxLayout(centralWidget);
@@ -201,6 +207,7 @@ public:
         splitter = new QSplitter(widget);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
+        splitter->setChildrenCollapsible(false);
         widget_movies = new QWidget(splitter);
         widget_movies->setObjectName(QStringLiteral("widget_movies"));
         widget_movies->setMinimumSize(QSize(0, 0));
@@ -327,6 +334,11 @@ public:
 
         horizontalLayout_6->addWidget(pushButton_show_add);
 
+        pushButton_show_edit = new QPushButton(widget_shows);
+        pushButton_show_edit->setObjectName(QStringLiteral("pushButton_show_edit"));
+
+        horizontalLayout_6->addWidget(pushButton_show_edit);
+
         pushButton_show_delete = new QPushButton(widget_shows);
         pushButton_show_delete->setObjectName(QStringLiteral("pushButton_show_delete"));
         pushButton_show_delete->setEnabled(false);
@@ -421,10 +433,11 @@ public:
         splitter_2 = new QSplitter(widget_2);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
         splitter_2->setOrientation(Qt::Horizontal);
+        splitter_2->setChildrenCollapsible(false);
         frame = new QFrame(splitter_2);
         frame->setObjectName(QStringLiteral("frame"));
         QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy5.setHorizontalStretch(2);
+        sizePolicy5.setHorizontalStretch(1);
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy5);
@@ -449,19 +462,19 @@ public:
         frame_3 = new QFrame(frame);
         frame_3->setObjectName(QStringLiteral("frame_3"));
         frame_3->setEnabled(true);
-        sizePolicy5.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
-        frame_3->setSizePolicy(sizePolicy5);
-        frame_3->setMinimumSize(QSize(0, 0));
+        QSizePolicy sizePolicy6(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy6.setHorizontalStretch(2);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
+        frame_3->setSizePolicy(sizePolicy6);
+        frame_3->setMinimumSize(QSize(300, 0));
 
         horizontalLayout_3->addWidget(frame_3);
 
         widget_hallview_info = new QWidget(frame);
         widget_hallview_info->setObjectName(QStringLiteral("widget_hallview_info"));
-        QSizePolicy sizePolicy6(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy6.setHorizontalStretch(1);
-        sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(widget_hallview_info->sizePolicy().hasHeightForWidth());
-        widget_hallview_info->setSizePolicy(sizePolicy6);
+        sizePolicy5.setHeightForWidth(widget_hallview_info->sizePolicy().hasHeightForWidth());
+        widget_hallview_info->setSizePolicy(sizePolicy5);
         widget_hallview_info->setMinimumSize(QSize(153, 0));
         verticalLayout_7 = new QVBoxLayout(widget_hallview_info);
         verticalLayout_7->setSpacing(6);
@@ -594,16 +607,16 @@ public:
         horizontalLayout_3->addWidget(widget_hallview_info);
 
         splitter_2->addWidget(frame);
-        widget_6 = new QWidget(splitter_2);
-        widget_6->setObjectName(QStringLiteral("widget_6"));
-        sizePolicy6.setHeightForWidth(widget_6->sizePolicy().hasHeightForWidth());
-        widget_6->setSizePolicy(sizePolicy6);
-        verticalLayout_3 = new QVBoxLayout(widget_6);
+        widget_bookings = new QWidget(splitter_2);
+        widget_bookings->setObjectName(QStringLiteral("widget_bookings"));
+        sizePolicy5.setHeightForWidth(widget_bookings->sizePolicy().hasHeightForWidth());
+        widget_bookings->setSizePolicy(sizePolicy5);
+        verticalLayout_3 = new QVBoxLayout(widget_bookings);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        label_bookings = new QLabel(widget_6);
+        label_bookings = new QLabel(widget_bookings);
         label_bookings->setObjectName(QStringLiteral("label_bookings"));
         label_bookings->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
@@ -613,17 +626,17 @@ public:
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(0, -1, -1, -1);
-        lineEdit_search = new QLineEdit(widget_6);
+        lineEdit_search = new QLineEdit(widget_bookings);
         lineEdit_search->setObjectName(QStringLiteral("lineEdit_search"));
 
         horizontalLayout_9->addWidget(lineEdit_search);
 
-        pushButton_search = new QPushButton(widget_6);
+        pushButton_search = new QPushButton(widget_bookings);
         pushButton_search->setObjectName(QStringLiteral("pushButton_search"));
 
         horizontalLayout_9->addWidget(pushButton_search);
 
-        comboBox_search = new QComboBox(widget_6);
+        comboBox_search = new QComboBox(widget_bookings);
         comboBox_search->setObjectName(QStringLiteral("comboBox_search"));
 
         horizontalLayout_9->addWidget(comboBox_search);
@@ -631,7 +644,7 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_9);
 
-        tableView_search = new QTableView(widget_6);
+        tableView_search = new QTableView(widget_bookings);
         tableView_search->setObjectName(QStringLiteral("tableView_search"));
         sizePolicy.setHeightForWidth(tableView_search->sizePolicy().hasHeightForWidth());
         tableView_search->setSizePolicy(sizePolicy);
@@ -653,7 +666,7 @@ public:
 
         horizontalLayout_8->addItem(horizontalSpacer_7);
 
-        pushButton_bookings_edit = new QPushButton(widget_6);
+        pushButton_bookings_edit = new QPushButton(widget_bookings);
         pushButton_bookings_edit->setObjectName(QStringLiteral("pushButton_bookings_edit"));
         pushButton_bookings_edit->setEnabled(false);
         pushButton_bookings_edit->setCheckable(false);
@@ -662,7 +675,7 @@ public:
 
         horizontalLayout_8->addWidget(pushButton_bookings_edit);
 
-        pushButton_bookings_delete = new QPushButton(widget_6);
+        pushButton_bookings_delete = new QPushButton(widget_bookings);
         pushButton_bookings_delete->setObjectName(QStringLiteral("pushButton_bookings_delete"));
         pushButton_bookings_delete->setEnabled(false);
         pushButton_bookings_delete->setCheckable(false);
@@ -678,7 +691,7 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout_8);
 
-        splitter_2->addWidget(widget_6);
+        splitter_2->addWidget(widget_bookings);
 
         horizontalLayout_2->addWidget(splitter_2);
 
@@ -688,7 +701,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 892, 22));
+        menuBar->setGeometry(QRect(0, 0, 892, 21));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
         menuViews = new QMenu(menuBar);
@@ -719,6 +732,7 @@ public:
         menuAdd_movie->addSeparator();
         menuAdd_movie->addAction(actionQuit);
         menuViews->addAction(actionInformation);
+        menuViews->addAction(actionBookings);
 
         retranslateUi(MainWindow);
 
@@ -753,6 +767,7 @@ public:
         actionSearch_Booking->setText(QApplication::translate("MainWindow", "Search Booking", 0));
         actionSearch_Booking->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", 0));
         actionInformation->setText(QApplication::translate("MainWindow", "Information", 0));
+        actionBookings->setText(QApplication::translate("MainWindow", "Bookings", 0));
         label_movies->setText(QApplication::translate("MainWindow", "Movies:", 0));
         pushButton_movies_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_movies_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
@@ -765,13 +780,14 @@ public:
         );
         label_shows->setText(QApplication::translate("MainWindow", "Shows:", 0));
         pushButton_show_add->setText(QApplication::translate("MainWindow", "Add", 0));
+        pushButton_show_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         pushButton_show_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         label_movieinfo->setText(QApplication::translate("MainWindow", "Information:", 0));
         movie_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'.Helvetica Neue DeskInterface'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:13pt;\"><br /></p></body></html>", 0));
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt;\"><br /></p></body></html>", 0));
         pushButton_info_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         label_hallinfo_title->setText(QString());
         label_hallinfo->setText(QString());

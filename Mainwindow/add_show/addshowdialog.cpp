@@ -2,55 +2,92 @@
 #include "ui_addshowdialog.h"
 #include <QDateTime>
 
-addShowDialog::addShowDialog(MovieModel *movieModel, HallModel *hallModel, QWidget *parent) :
+//Add show constructor
+addShowDialog::addShowDialog(MovieModel *movieModel, HallModel *hallModel, int selMovieIndex, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addShowDialog)
 {
     ui->setupUi(this);
-    /*
-     * Get the movies/halls and insert them into the movieCBB and hallCBB here
-     */
-    ui->movieCBB->setModel(movieModel);
-    ui->movieCBB->setModelColumn(1);
-    ui->hallCBB->setModel(hallModel);
-    ui->hallCBB->setModelColumn(1);
+
+    role = Add;
 
     this->movieModel = movieModel;
     this->hallModel = hallModel;
 
+    initComboBoxes(selMovieIndex, 0);
+
     //init radiobuttons (DDD = 3D...)
     ui->DDDNoRB->setChecked(true);
     ui->subNoRB->setChecked(true);
+}
 
+//Edit role constructor
+addShowDialog::addShowDialog(MovieModel *movieModel, HallModel *hallModel, int showID, QDateTime dateTime, double price,
+                           QString lang, bool DDD, bool subs, int movieID, int hallID, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::addShowDialog)
+{
+    ui->setupUi(this);
+
+    role = Edit;
+
+    this->showID = showID;
+
+    this->movieModel = movieModel;
+    this->hallModel = hallModel;
+
+    //set combo boxes
+    initComboBoxes(movieModel->getRowByPrimaryKeyValue(movieID), hallModel->getRowByPrimaryKeyValue(hallID));
+
+    qDebug() << dateTime.toString();
+    qDebug() << dateTime.time().toString();
+    qDebug() << dateTime.date().toString();
+
+    //Date
+    ui->calendarWidget->setSelectedDate(dateTime.date());
+
+    //Time
+    ui->timeEdit->setTime(dateTime.time());
+
+    qDebug() << DDD;
+    qDebug() << subs;
+
+    //3D
+    if(DDD)
+        ui->DDDYesRB->setChecked(true);
+    else
+        ui->DDDNoRB->setChecked(true);
+
+    //Subs
+    if(subs)
+        ui->subYesRB->setChecked(true);
+    else
+        ui->subNoRB->setChecked(true);
+
+    //Language
+    ui->languageCBB->setCurrentText(lang);
+
+    //Price
+    ui->priceSpinBox->setValue(price);
+
+}
+
+void addShowDialog::initComboBoxes(int movieIndex, int hallIndex)
+{
+    //init combo boxes
+    ui->movieCBB->setModel(movieModel);
+    ui->movieCBB->setCurrentIndex(movieIndex);
+    ui->movieCBB->setModelColumn(1);
+    ui->hallCBB->setModel(hallModel);
+    ui->hallCBB->setModelColumn(1);
+    ui->hallCBB->setCurrentIndex(hallIndex);
 }
 
 addShowDialog::~addShowDialog()
 {
     delete ui;
 }
-/*
- *
- * Fucked up with the name of the buttons, should be fixed but saving this for now, just in case...
-void addShowDialog::on_addHallButton_clicked()
-{
-    QDate date;
-    QTime time;
-    date = ui->calendarWidget->selectedDate();
-    time = ui->timeEdit->time();
 
-    QDateTime dateTime(date, time);
-
-    emit add_Show(dateTime);
-
-    close();
-
-}
-
-void addShowDialog::on_cancelHallButton_clicked()
-{
-    close();
-}
-*/
 void addShowDialog::on_addShowButton_clicked()
 {
     //Get the date and time
@@ -81,7 +118,10 @@ void addShowDialog::on_addShowButton_clicked()
     double price = ui->priceSpinBox->value();
 
     //set sail! wohoo
-    emit add_Show(dateTime, price, lang, DDD, subs, movieID, hallID);
+    if(role == Add)
+        emit add_Show(dateTime, price, lang, DDD, subs, movieID, hallID);
+    if(role == Edit)
+        emit edit_show(showID, dateTime, price, lang, DDD, subs, movieID, hallID);
 
     close();
 }

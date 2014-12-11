@@ -35,10 +35,10 @@ public:
                     int movieID, int hallID);
 
     int getShowID(int row) const { return data(index(row, ShowID)).toInt(); }
-    QDateTime getDateTime(int row) const { return data(index(row, DateTime)).toDateTime(); }
+    QDateTime getDateTime(int row) const { return QSqlQueryModel::data(index(row, DateTime)).toDateTime(); }
     float getPrice(int row) const { return data(index(row, Price)).toFloat(); }
-    bool get3D(int row) const { return data(index(row, ThreeD)).toBool(); }
-    bool getSubtitles(int row) const { return data(index(row, Subtitles)).toBool(); }
+    bool get3D(int row) const { return QSqlQueryModel::data(index(row, ThreeD)).toBool(); }
+    bool getSubtitles(int row) const { return QSqlQueryModel::data(index(row, Subtitles)).toBool(); }
     QString getLanguage(int row) const { return data(index(row, Language)).toString(); }
     int getMovieID(int row) const { return data(index(row, MovieID)).toInt(); }
     int getHallID(int row) const { return data(index(row, HallID)).toInt(); }
