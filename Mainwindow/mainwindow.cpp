@@ -527,6 +527,7 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
     seatModel->setHall(showModel->getHallID(selIndex));
     seatModel->setShow(showModel->getShowID(selIndex));
     seatModel->refresh();
+    hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
 
     //set hall info labels
     if(selIndex == -1)
@@ -550,8 +551,6 @@ void MainWindow::showSelectionChanged(const QItemSelection &selected, const QIte
         );
         ui->pushButton_show_delete->setEnabled(true);
         ui->actionDelete_show->setEnabled(true);
-
-        hallView->setHall(seatModel->getSeatStateMatrix(), hallModel->getRows(hallIndex), hallModel->getColumns(hallIndex));
     }
 }
 
