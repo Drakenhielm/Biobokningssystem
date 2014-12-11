@@ -187,9 +187,15 @@ void MainWindow::enableBookButton()
     ui->lineEdit_phone->text().toInt(&isInt);
 
     if(hallView->getSelectedSeats().size() > 0 && ui->lineEdit_phone->text().size() >= 5 && isInt == true)
+    {
         ui->pushButton_hallview_info_book->setEnabled(true);
+        ui->actionBook->setEnabled(true);
+    }
     else
+    {
         ui->pushButton_hallview_info_book->setEnabled(false);
+        ui->actionBook->setEnabled(false);
+    }
 }
 
 void MainWindow::setComboBox(bool seperate)
@@ -488,6 +494,8 @@ void MainWindow::filterBookings()
 
 void MainWindow::on_comboBox_search_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
+
     filterBookings();
 }
 

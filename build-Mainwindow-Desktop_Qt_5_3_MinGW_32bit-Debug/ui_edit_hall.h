@@ -30,11 +30,11 @@ public:
     QFrame *frame_hall;
     QLabel *label_number_of_seats;
     QTableView *tableView_edit_hall;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *CloseButton;
     QPushButton *EditButton;
     QPushButton *DeleteButton;
+    QPushButton *CloseButton;
 
     void setupUi(QWidget *edit_hall)
     {
@@ -85,26 +85,26 @@ public:
         tableView_edit_hall->setSelectionBehavior(QAbstractItemView::SelectRows);
         tableView_edit_hall->verticalHeader()->setVisible(false);
         tableView_edit_hall->verticalHeader()->setDefaultSectionSize(20);
-        widget = new QWidget(edit_hall);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(620, 430, 231, 32));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(edit_hall);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(620, 430, 239, 32));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        CloseButton = new QPushButton(widget);
-        CloseButton->setObjectName(QStringLiteral("CloseButton"));
-
-        horizontalLayout->addWidget(CloseButton);
-
-        EditButton = new QPushButton(widget);
+        EditButton = new QPushButton(layoutWidget);
         EditButton->setObjectName(QStringLiteral("EditButton"));
 
         horizontalLayout->addWidget(EditButton);
 
-        DeleteButton = new QPushButton(widget);
+        DeleteButton = new QPushButton(layoutWidget);
         DeleteButton->setObjectName(QStringLiteral("DeleteButton"));
 
         horizontalLayout->addWidget(DeleteButton);
+
+        CloseButton = new QPushButton(layoutWidget);
+        CloseButton->setObjectName(QStringLiteral("CloseButton"));
+
+        horizontalLayout->addWidget(CloseButton);
 
 
         retranslateUi(edit_hall);
@@ -116,9 +116,9 @@ public:
     {
         edit_hall->setWindowTitle(QApplication::translate("edit_hall", "Hall List", 0));
         label_number_of_seats->setText(QApplication::translate("edit_hall", "Seats:", 0));
-        CloseButton->setText(QApplication::translate("edit_hall", "Close", 0));
         EditButton->setText(QApplication::translate("edit_hall", "Edit", 0));
         DeleteButton->setText(QApplication::translate("edit_hall", "Delete", 0));
+        CloseButton->setText(QApplication::translate("edit_hall", "Close", 0));
     } // retranslateUi
 
 };

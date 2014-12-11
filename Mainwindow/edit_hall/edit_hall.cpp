@@ -50,6 +50,8 @@ edit_hall::edit_hall(HallModel *hallModel, QWidget *parent) :
 
 void edit_hall::hallSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
+    Q_UNUSED(deselected);
+
     int selIndex = getSelected(selected);
 
     //set seatModel to selected show

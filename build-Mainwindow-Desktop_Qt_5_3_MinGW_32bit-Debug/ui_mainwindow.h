@@ -53,7 +53,7 @@ public:
     QAction *actionHall_List;
     QAction *actionEdit_Show;
     QAction *actionSearch_Booking;
-    QAction *actionTest1;
+    QAction *actionInformation;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
     QWidget *widget;
@@ -130,7 +130,7 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QMenuBar *menuBar;
     QMenu *menuAdd_movie;
-    QMenu *menuTest;
+    QMenu *menuViews;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -175,8 +175,10 @@ public:
         actionEdit_Show->setEnabled(false);
         actionSearch_Booking = new QAction(MainWindow);
         actionSearch_Booking->setObjectName(QStringLiteral("actionSearch_Booking"));
-        actionTest1 = new QAction(MainWindow);
-        actionTest1->setObjectName(QStringLiteral("actionTest1"));
+        actionInformation = new QAction(MainWindow);
+        actionInformation->setObjectName(QStringLiteral("actionInformation"));
+        actionInformation->setCheckable(true);
+        actionInformation->setChecked(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout_2 = new QVBoxLayout(centralWidget);
@@ -689,15 +691,15 @@ public:
         menuBar->setGeometry(QRect(0, 0, 892, 22));
         menuAdd_movie = new QMenu(menuBar);
         menuAdd_movie->setObjectName(QStringLiteral("menuAdd_movie"));
-        menuTest = new QMenu(menuBar);
-        menuTest->setObjectName(QStringLiteral("menuTest"));
+        menuViews = new QMenu(menuBar);
+        menuViews->setObjectName(QStringLiteral("menuViews"));
         MainWindow->setMenuBar(menuBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menuAdd_movie->menuAction());
-        menuBar->addAction(menuTest->menuAction());
+        menuBar->addAction(menuViews->menuAction());
         menuAdd_movie->addAction(actionAdd_movie);
         menuAdd_movie->addAction(actionAdd_show);
         menuAdd_movie->addAction(actionAdd_hall);
@@ -716,7 +718,7 @@ public:
         menuAdd_movie->addAction(actionSearch_Booking);
         menuAdd_movie->addSeparator();
         menuAdd_movie->addAction(actionQuit);
-        menuTest->addAction(actionTest1);
+        menuViews->addAction(actionInformation);
 
         retranslateUi(MainWindow);
 
@@ -750,7 +752,7 @@ public:
         actionEdit_Show->setText(QApplication::translate("MainWindow", "Edit Show", 0));
         actionSearch_Booking->setText(QApplication::translate("MainWindow", "Search Booking", 0));
         actionSearch_Booking->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", 0));
-        actionTest1->setText(QApplication::translate("MainWindow", "test1", 0));
+        actionInformation->setText(QApplication::translate("MainWindow", "Information", 0));
         label_movies->setText(QApplication::translate("MainWindow", "Movies:", 0));
         pushButton_movies_add->setText(QApplication::translate("MainWindow", "Add", 0));
         pushButton_movies_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
@@ -805,7 +807,7 @@ public:
         pushButton_bookings_edit->setText(QApplication::translate("MainWindow", "Edit", 0));
         pushButton_bookings_delete->setText(QApplication::translate("MainWindow", "Delete", 0));
         menuAdd_movie->setTitle(QApplication::translate("MainWindow", "Manage", 0));
-        menuTest->setTitle(QApplication::translate("MainWindow", "test", 0));
+        menuViews->setTitle(QApplication::translate("MainWindow", "Views", 0));
     } // retranslateUi
 
 };

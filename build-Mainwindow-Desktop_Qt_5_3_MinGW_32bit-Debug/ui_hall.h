@@ -59,7 +59,7 @@ public:
         hall->setMaximumSize(QSize(858, 16777215));
         AddButton = new QPushButton(hall);
         AddButton->setObjectName(QStringLiteral("AddButton"));
-        AddButton->setGeometry(QRect(749, 420, 81, 31));
+        AddButton->setGeometry(QRect(650, 420, 81, 31));
         frame_rows_columns = new QFrame(hall);
         frame_rows_columns->setObjectName(QStringLiteral("frame_rows_columns"));
         frame_rows_columns->setGeometry(QRect(20, 20, 501, 431));
@@ -151,7 +151,7 @@ public:
         label_6->setFont(font);
         cancel_Button = new QPushButton(hall);
         cancel_Button->setObjectName(QStringLiteral("cancel_Button"));
-        cancel_Button->setGeometry(QRect(660, 420, 81, 31));
+        cancel_Button->setGeometry(QRect(740, 420, 81, 31));
 
         retranslateUi(hall);
 

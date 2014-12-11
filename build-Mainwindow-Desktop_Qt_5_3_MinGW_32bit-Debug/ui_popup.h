@@ -32,8 +32,8 @@ class Ui_popup
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_8;
-    QPushButton *CancelButton;
     QPushButton *AddButton;
+    QPushButton *CancelButton;
     QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
@@ -81,15 +81,15 @@ public:
         horizontalLayout_8 = new QHBoxLayout(layoutWidget);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        CancelButton = new QPushButton(layoutWidget);
-        CancelButton->setObjectName(QStringLiteral("CancelButton"));
-
-        horizontalLayout_8->addWidget(CancelButton);
-
         AddButton = new QPushButton(layoutWidget);
         AddButton->setObjectName(QStringLiteral("AddButton"));
 
         horizontalLayout_8->addWidget(AddButton);
+
+        CancelButton = new QPushButton(layoutWidget);
+        CancelButton->setObjectName(QStringLiteral("CancelButton"));
+
+        horizontalLayout_8->addWidget(CancelButton);
 
         layoutWidget1 = new QWidget(popup);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
@@ -248,8 +248,8 @@ public:
     void retranslateUi(QDialog *popup)
     {
         popup->setWindowTitle(QApplication::translate("popup", "Dialog", 0));
-        CancelButton->setText(QApplication::translate("popup", "Cancel", 0));
         AddButton->setText(QApplication::translate("popup", "Submit", 0));
+        CancelButton->setText(QApplication::translate("popup", "Cancel", 0));
         TitleLabel->setText(QApplication::translate("popup", "Title", 0));
         PlaytimeLabel->setText(QApplication::translate("popup", "Playtime", 0));
         AgeLabel->setText(QApplication::translate("popup", "Age", 0));

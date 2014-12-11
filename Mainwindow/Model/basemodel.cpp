@@ -104,8 +104,14 @@ void BaseModel::clearFilter()
 int BaseModel::getRowByPrimaryKeyValue(const QVariant &pkValue) const
 {
     int col = record().indexOf(primaryKey);
-    QModelIndexList list = match(index(0, col), Qt::DisplayRole, pkValue, 1, Qt::MatchExactly);
-    if(list.empty())
+    QModelIndexList list;
+    do
+    {
+        list = match(index(0, col), Qt::DisplayRole, pkValue, 1, Qt::MatchExactly);
+
+    } while(list.isEmpty() && canFetchMore());
+
+    if(list.isEmpty())
         return -1;
 
     return list.first().row();
