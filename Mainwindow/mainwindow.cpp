@@ -445,7 +445,7 @@ void MainWindow::on_pushButton_hallview_info_book_clicked()
     {
         seatIDs[i] = seatModel->getSeatID(seatIDs.at(i)-1);
     }
-    if(!phone.isEmpty())// && showID > 0 && !seatIDs.isEmpty()) //check if valid booking
+    if(!phone.isEmpty() && showID > 0 && !seatIDs.isEmpty()) //check if valid booking
     {
         bookingModel->insertBookings(showID, seatIDs, phone);
         bookingModel->refresh();

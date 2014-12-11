@@ -6,8 +6,8 @@ BookingModel::BookingModel(QObject *parent)
     setQuery("SELECT b.BookingID, b.ShowID, s.MovieID, b.Phone, m.Title, s.DateTime, "
              "COUNT(b.BookingID) AS Tickets, GROUP_CONCAT(sb.SeatID) AS SeatIDs "
              "FROM booking AS b "
-             "LEFT JOIN movie AS m ON m.MovieID = b.ShowID "
              "LEFT JOIN show AS s ON s.ShowID = b.ShowID "
+             "LEFT JOIN movie AS m ON m.MovieID = s.MovieID "
              "LEFT JOIN seatbooking AS sb ON sb.BookingID = b.BookingID "
              "GROUP BY b.BookingID "
              "ORDER BY b.BookingID DESC");
