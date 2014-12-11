@@ -50,7 +50,7 @@ bool ImageHandler::replaceImage(const QString &oldFileName, const QString &newFi
     //check if they are the same file. If they are the same fil we dont need to replace anything
     if(dir.path()+'/'+oldFileName == newFilePath)
     {
-        lastInserted = newFilePath;
+        lastInserted = oldFileName;
         return true;
     }
 
