@@ -52,7 +52,8 @@ private:
     int seatSelector;
     int squareSize;
     int spacing;
-    int offset;
+    int leftOffset;
+    int topOffset;
     bool editMode;
     bool seperateSeats;
     int NoSeat = 0;
