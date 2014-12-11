@@ -52,16 +52,19 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
                  const QString & genre, int year, const QString &imagePath)
 {
     int row = getRowByPrimaryKeyValue(movieID);
-    if(!imgHandler.fileNameExists(getMoviePoster(row)))
+
+    QString oldImage = data(index(row, MoviePoster)).toString();
+
+    if(!imgHandler.fileNameExists(oldImage))
     {
         imgHandler.copyImage(imagePath);
     }
     else
     {
-        imgHandler.replaceImage(getMoviePoster(row), imagePath);
+        imgHandler.replaceImage(oldImage, imagePath);
     }
 
-    QString image = imgHandler.lastInsertedFileName();
+    QString newImage = imgHandler.lastInsertedFileName();
 
     QMap<QString, QVariant> values;
     values.insert(QString("MovieID"), movieID);
@@ -71,7 +74,7 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
     values.insert(QString("Description"), description);
     values.insert(QString("Genre"), genre);
     values.insert(QString("Year"), year);
-    values.insert(QString("MoviePoster"), image);
+    values.insert(QString("MoviePoster"), newImage);
 
     return dh.edit("movie", values, "MovieID = ?", movieID);
 }

@@ -42,13 +42,17 @@ bool ImageHandler::copyImage(const QString & fromPath)
     return false;
 }
 
-bool ImageHandler::replaceImage(const QString &oldFileName, const QString &newFileName)
+bool ImageHandler::replaceImage(const QString &oldFileName, const QString &newFilePath)
 {
     if(!fileNameExists(oldFileName))
         return false;
 
+    //check if they are the same file. If they are the same fil we dont need to replace anything
+    if(dir.path()+'/'+oldFileName == newFilePath)
+        return true;
+
     if(removeImage(oldFileName))
-        return copyImage(newFileName);
+        return copyImage(newFilePath);
 
     return false;
 }
@@ -110,5 +114,5 @@ void ImageHandler::generateUniqueFileName(QString & fileName)
 
 bool ImageHandler::fileNameExists(const QString &fileName) const
 {
-    return QFileInfo::exists(dir.path()+'/'+fileName);
+    return fileName != "" && QFileInfo::exists(dir.path()+'/'+fileName);
 }
