@@ -107,6 +107,7 @@ private:
     int getSelected(const QItemSelection &selection);
     int getSelected(QItemSelectionModel *selectionModel);
 
+
 };
 
 #endif // MAINWINDOW_H

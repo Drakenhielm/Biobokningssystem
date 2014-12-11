@@ -155,15 +155,19 @@ void MainWindow::initConnections()
     //press enter for book instead of book-button
     connect(ui->lineEdit_phone, SIGNAL(returnPressed()),ui->pushButton_hallview_info_book,SIGNAL(clicked()));
 
-    connect(ui->actionTest1, SIGNAL(triggered()), this, SLOT(hideShow()));
+    connect(ui->actionInformation, SIGNAL(triggered()), this, SLOT(hideShow()));
 
 
 }
 
 void MainWindow::hideShow()
 {
-    ;
+    if(ui->actionInformation->isChecked())
+        ui->widget_info->show();
+    else
+        ui->widget_info->hide();
 }
+
 
 void MainWindow::on_actionQuit_triggered()
 {

@@ -1116,14 +1116,14 @@ p, li { white-space: pre-wrap; }
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuTest">
+   <widget class="QMenu" name="menuViews">
     <property name="title">
-     <string>test</string>
+     <string>Views</string>
     </property>
-    <addaction name="actionTest1"/>
+    <addaction name="actionInformation"/>
    </widget>
    <addaction name="menuAdd_movie"/>
-   <addaction name="menuTest"/>
+   <addaction name="menuViews"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_movie">
@@ -1230,9 +1230,15 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+F</string>
    </property>
   </action>
-  <action name="actionTest1">
+  <action name="actionInformation">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>test1</string>
+    <string>Information</string>
    </property>
   </action>
  </widget>
