@@ -39,18 +39,11 @@ addShowDialog::addShowDialog(MovieModel *movieModel, HallModel *hallModel, int s
     //set combo boxes
     initComboBoxes(movieModel->getRowByPrimaryKeyValue(movieID), hallModel->getRowByPrimaryKeyValue(hallID));
 
-    qDebug() << dateTime.toString();
-    qDebug() << dateTime.time().toString();
-    qDebug() << dateTime.date().toString();
-
     //Date
     ui->calendarWidget->setSelectedDate(dateTime.date());
 
     //Time
     ui->timeEdit->setTime(dateTime.time());
-
-    qDebug() << DDD;
-    qDebug() << subs;
 
     //3D
     if(DDD)

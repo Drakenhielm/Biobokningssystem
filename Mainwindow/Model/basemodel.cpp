@@ -7,23 +7,6 @@ BaseModel::BaseModel(const QString &tableName, const QString &primaryKey, QObjec
     this->primaryKey = primaryKey;
 }
 
-/*Everywhere a column header contains "DateTime" the value will be converted to QDateTime. */
-QVariant BaseModel::data(const QModelIndex &item, int role) const
-{
-    QVariant value = QSqlQueryModel::data(item, role);
-    if (value.isValid() && role == Qt::DisplayRole) {
-        if(record().fieldName(item.column()).contains("DateTime", Qt::CaseInsensitive))
-        {
-            if(value.toDate() == QDate::currentDate())
-                return value.toDateTime().toString("'Today' H:mm");
-            if(value.toDate() == QDate::currentDate().addDays(1))
-                return value.toDateTime().toString("'Tomorrow' H:mm");
-            return value.toDateTime().toString("d/M/yy H:mm");
-        }
-    }
-    return QSqlQueryModel::data(item, role);
-}
-
 bool BaseModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     Q_UNUSED(parent);
@@ -115,4 +98,13 @@ int BaseModel::getRowByPrimaryKeyValue(const QVariant &pkValue) const
         return -1;
 
     return list.first().row();
+}
+
+QString BaseModel::dateTimeString(QDateTime dateTime) const
+{
+    if(dateTime.date() == QDate::currentDate())
+        return dateTime.toString("'Today' H:mm");
+    if(dateTime.date() == QDate::currentDate().addDays(1))
+        return dateTime.toString("'Tomorrow' H:mm");
+    return dateTime.toString("d/M/yy H:mm");
 }

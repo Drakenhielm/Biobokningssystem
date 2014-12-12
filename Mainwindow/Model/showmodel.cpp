@@ -28,6 +28,10 @@ QVariant ShowModel::data(const QModelIndex &item, int role) const
             else
                 return QString("No");
         }
+        if(item.column() == DateTime)
+        {
+            return dateTimeString(value.toDateTime());
+        }
     }
     return BaseModel::data(item, role);
 }
@@ -66,11 +70,14 @@ bool ShowModel::editShow(int showID, const QDateTime &dateTime, float price, boo
 bool ShowModel::remove(const QVariant &pkValue)
 {
     bool ok = true;
+
     dh.transaction();
+
     ok = ok && dh.remove("show", "ShowID = ?", pkValue);
     ok = ok && dh.remove("booking", "ShowID IN (SELECT ShowID FROM show WHERE MovieID = ?)", pkValue);
     ok = ok && dh.remove("seatbooking",
                          "BookingID IN (SELECT BookingID FROM booking JOIN show ON booking.ShowID = show.ShowID WHERE MovieID = ?)",
                          pkValue);
+
     return ok && dh.endTransaction(ok);
 }

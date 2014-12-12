@@ -45,6 +45,7 @@ QString SeatModel::sqlStatement(int hallID, int showID)
                    " ORDER BY seat.Row, seat.Column");
 }
 
+/*Returns a pair with the number of rows and columns in the hall. */
 QPair<int, int> SeatModel::getHallSize(int hallID)
 {
     QString queryStr = QString("SELECT Max(Row), MAX(Column) FROM seat WHERE HallID = %1").arg(hallID);
@@ -57,6 +58,7 @@ QPair<int, int> SeatModel::getHallSize(int hallID)
     return qMakePair(0, 0);
 }
 
+/*Get the SeatState for all the seats in the hall. */
 QVector<QVector<int> > SeatModel::getSeatStateMatrix() const
 {
     QVector<QVector<int> > matrix(rowMax, QVector<int>(colMax, NoSeat));

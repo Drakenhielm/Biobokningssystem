@@ -348,7 +348,7 @@ void MainWindow::setHTML()
     {
         QString img;
         if(!movieModel->getMoviePoster(selIndex).isEmpty()
-                && ui->movie_info->width() > 300)
+                && ui->movie_info->width() > 280)
         {
             img = "<img src='" + movieModel->getMoviePoster(selIndex) + "' width='150'/>";
         }
@@ -385,7 +385,6 @@ void MainWindow::setHTML()
         );
     }
 }
-
 
 void MainWindow::openAddShowDialog()
 {
@@ -639,12 +638,10 @@ void MainWindow::bookingSelectionChanged(const QItemSelection &selected, const Q
     if(selIndex == -1)
     {
         ui->pushButton_bookings_delete->setDisabled(true);
-        ui->pushButton_bookings_edit->setDisabled(true);
     }
     else
     {
         ui->pushButton_bookings_delete->setEnabled(true);
-        ui->pushButton_bookings_edit->setEnabled(true);
     }
 }
 

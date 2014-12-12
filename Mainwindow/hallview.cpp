@@ -325,7 +325,7 @@ void HallView::paintEvent(QPaintEvent *event)
         painter.setBrush(QBrush(QColor(0, 0, 0))); //black
         painter.drawText ( widgetWidth/2-20, topOffset/2, "Screen");
     }else{
-        painter.drawText ( widgetWidth/2-50, widgetHeight/2, "No show selected");
+        painter.drawText ( widgetWidth/2-50, widgetHeight/2, "Nothing to display");
     }
 
     //Emit a signal that a change in the HallView has happened

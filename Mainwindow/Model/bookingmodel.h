@@ -19,6 +19,8 @@ public:
         Seats = 6
     };
 
+    virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
+
     int insertBookings(int ShowID, const QList<int> &seatIDs, const QString &phone);
     bool editBookings(int bookingID, int showID, const QList<int> &seatIDs, const QString &phone);
 

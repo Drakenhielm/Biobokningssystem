@@ -16,12 +16,12 @@
 #include <QtWidgets/QCalendarWidget>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -35,7 +35,7 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QPushButton *addShowButton;
     QPushButton *cancelShowButton;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QLabel *movieLabel;
@@ -62,7 +62,7 @@ public:
     QComboBox *languageCBB;
     QHBoxLayout *horizontalLayout_8;
     QLabel *priceLabel;
-    QSpinBox *priceSpinBox;
+    QDoubleSpinBox *priceSpinBox;
     QButtonGroup *buttonGroup;
     QButtonGroup *buttonGroup_2;
 
@@ -89,20 +89,20 @@ public:
 
         horizontalLayout_7->addWidget(cancelShowButton);
 
-        widget = new QWidget(addShowDialog);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(40, 21, 351, 511));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget1 = new QWidget(addShowDialog);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(40, 21, 351, 511));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        movieLabel = new QLabel(widget);
+        movieLabel = new QLabel(layoutWidget1);
         movieLabel->setObjectName(QStringLiteral("movieLabel"));
 
         horizontalLayout->addWidget(movieLabel);
 
-        movieCBB = new QComboBox(widget);
+        movieCBB = new QComboBox(layoutWidget1);
         movieCBB->setObjectName(QStringLiteral("movieCBB"));
 
         horizontalLayout->addWidget(movieCBB);
@@ -112,12 +112,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        hallLabel = new QLabel(widget);
+        hallLabel = new QLabel(layoutWidget1);
         hallLabel->setObjectName(QStringLiteral("hallLabel"));
 
         horizontalLayout_2->addWidget(hallLabel);
 
-        hallCBB = new QComboBox(widget);
+        hallCBB = new QComboBox(layoutWidget1);
         hallCBB->setObjectName(QStringLiteral("hallCBB"));
 
         horizontalLayout_2->addWidget(hallCBB);
@@ -127,12 +127,12 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        dateLabel = new QLabel(widget);
+        dateLabel = new QLabel(layoutWidget1);
         dateLabel->setObjectName(QStringLiteral("dateLabel"));
 
         verticalLayout->addWidget(dateLabel);
 
-        calendarWidget = new QCalendarWidget(widget);
+        calendarWidget = new QCalendarWidget(layoutWidget1);
         calendarWidget->setObjectName(QStringLiteral("calendarWidget"));
         calendarWidget->setFirstDayOfWeek(Qt::Monday);
 
@@ -143,12 +143,12 @@ public:
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        timeLabel = new QLabel(widget);
+        timeLabel = new QLabel(layoutWidget1);
         timeLabel->setObjectName(QStringLiteral("timeLabel"));
 
         horizontalLayout_6->addWidget(timeLabel);
 
-        timeEdit = new QTimeEdit(widget);
+        timeEdit = new QTimeEdit(layoutWidget1);
         timeEdit->setObjectName(QStringLiteral("timeEdit"));
 
         horizontalLayout_6->addWidget(timeEdit);
@@ -158,12 +158,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        DDDLabel = new QLabel(widget);
+        DDDLabel = new QLabel(layoutWidget1);
         DDDLabel->setObjectName(QStringLiteral("DDDLabel"));
 
         horizontalLayout_3->addWidget(DDDLabel);
 
-        DDDYesRB = new QRadioButton(widget);
+        DDDYesRB = new QRadioButton(layoutWidget1);
         buttonGroup = new QButtonGroup(addShowDialog);
         buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
         buttonGroup->addButton(DDDYesRB);
@@ -171,7 +171,7 @@ public:
 
         horizontalLayout_3->addWidget(DDDYesRB);
 
-        DDDNoRB = new QRadioButton(widget);
+        DDDNoRB = new QRadioButton(layoutWidget1);
         buttonGroup->addButton(DDDNoRB);
         DDDNoRB->setObjectName(QStringLiteral("DDDNoRB"));
 
@@ -182,12 +182,12 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        subLabel = new QLabel(widget);
+        subLabel = new QLabel(layoutWidget1);
         subLabel->setObjectName(QStringLiteral("subLabel"));
 
         horizontalLayout_4->addWidget(subLabel);
 
-        subYesRB = new QRadioButton(widget);
+        subYesRB = new QRadioButton(layoutWidget1);
         buttonGroup_2 = new QButtonGroup(addShowDialog);
         buttonGroup_2->setObjectName(QStringLiteral("buttonGroup_2"));
         buttonGroup_2->addButton(subYesRB);
@@ -195,7 +195,7 @@ public:
 
         horizontalLayout_4->addWidget(subYesRB);
 
-        subNoRB = new QRadioButton(widget);
+        subNoRB = new QRadioButton(layoutWidget1);
         buttonGroup_2->addButton(subNoRB);
         subNoRB->setObjectName(QStringLiteral("subNoRB"));
 
@@ -206,12 +206,12 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        languageLabel = new QLabel(widget);
+        languageLabel = new QLabel(layoutWidget1);
         languageLabel->setObjectName(QStringLiteral("languageLabel"));
 
         horizontalLayout_5->addWidget(languageLabel);
 
-        languageCBB = new QComboBox(widget);
+        languageCBB = new QComboBox(layoutWidget1);
         languageCBB->setObjectName(QStringLiteral("languageCBB"));
 
         horizontalLayout_5->addWidget(languageCBB);
@@ -221,14 +221,13 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        priceLabel = new QLabel(widget);
+        priceLabel = new QLabel(layoutWidget1);
         priceLabel->setObjectName(QStringLiteral("priceLabel"));
 
         horizontalLayout_8->addWidget(priceLabel);
 
-        priceSpinBox = new QSpinBox(widget);
+        priceSpinBox = new QDoubleSpinBox(layoutWidget1);
         priceSpinBox->setObjectName(QStringLiteral("priceSpinBox"));
-        priceSpinBox->setMaximum(999);
 
         horizontalLayout_8->addWidget(priceSpinBox);
 

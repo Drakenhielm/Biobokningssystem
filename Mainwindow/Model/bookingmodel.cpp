@@ -3,15 +3,29 @@
 BookingModel::BookingModel(QObject *parent)
     : BaseModel("booking", "BookingID", parent)
 {
-    setQuery("SELECT b.BookingID, b.ShowID, s.MovieID, b.Phone, m.Title AS Movie, s.DateTime, "
-             "GROUP_CONCAT(seat.SeatNr) AS Seats "
+    setQuery("SELECT b.BookingID, b.ShowID, s.MovieID, b.Phone, m.Title AS Movie, s.DateTime AS Showtime, "
+             "hall.Name AS Hall, GROUP_CONCAT(seat.SeatNr) AS Seats "
              "FROM booking AS b "
              "LEFT JOIN show AS s ON s.ShowID = b.ShowID "
              "LEFT JOIN movie AS m ON m.MovieID = s.MovieID "
              "LEFT JOIN seatbooking AS sb ON sb.BookingID = b.BookingID "
              "LEFT JOIN seat ON seat.SeatID = sb.SeatID "
+             "LEFT JOIN hall ON hall.HallID = seat.HallID "
              "GROUP BY b.BookingID "
              "ORDER BY b.BookingID DESC");
+}
+
+QVariant BookingModel::data(const QModelIndex &item, int role) const
+{
+    QVariant value = BaseModel::data(item, role);
+    if (value.isValid() && role == Qt::DisplayRole)
+    {
+        if(item.column() == DateTime)
+        {
+            return dateTimeString(value.toDateTime());
+        }
+    }
+    return BaseModel::data(item, role);
 }
 
 QList<int> BookingModel::getSeats(int row) const

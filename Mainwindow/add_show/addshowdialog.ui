@@ -51,7 +51,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -233,11 +233,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="priceSpinBox">
-        <property name="maximum">
-         <number>999</number>
-        </property>
-       </widget>
+       <widget class="QDoubleSpinBox" name="priceSpinBox"/>
       </item>
      </layout>
     </item>

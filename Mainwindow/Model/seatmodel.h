@@ -20,7 +20,7 @@ public:
         BookingID = 6
     };
 
-    enum SeatType
+    enum SeatState
     {
         NoSeat = 0,
         Seat = 1,

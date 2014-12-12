@@ -15,9 +15,9 @@ bool ImageHandler::createFolder()
     return dir.cd(folder);
 }
 
-/*Copy an image file to img folder. Returns the filename in the new folder.
+/*Copy an image file to img folder.
  * The filename will be changed if there already exists a image with that filename.
- * If the copy fails an empty string will be returned */
+ * Returns true if it copied successful */
 bool ImageHandler::copyImage(const QString & fromPath)
 {
     if(!dir.exists())
@@ -115,6 +115,7 @@ void ImageHandler::generateUniqueFileName(QString & fileName)
     }
 }
 
+/*Check if the fileName already exists in the folder. */
 bool ImageHandler::fileNameExists(const QString &fileName) const
 {
     return fileName != "" && QFileInfo::exists(dir.path()+'/'+fileName);

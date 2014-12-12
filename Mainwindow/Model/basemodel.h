@@ -16,13 +16,10 @@ public:
     BaseModel(const QString &tableName, const QString &primaryKey, QObject *parent = 0);
 
     //reimplemented public functions
-    virtual QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const;
     virtual bool removeRows(int row, int count, const QModelIndex &parent);
-    //virtual void sort(int column, Qt::SortOrder order);
 
     //public functions
     virtual void refresh();
-    //virtual bool removeWhere(const QString &column, const QVariant &value);
     void setFilter(const QString &filter, QVariant placeholder);
     void setFilter(const QString &filter, const QList<QVariant> &placeholderList  = QList<QVariant>());
     void clearFilter();
@@ -36,10 +33,11 @@ protected:
 
     //functions
     virtual bool remove(const QVariant &pkValue);
+    QString dateTimeString(QDateTime dateTime) const;
 
 private:
     //variables
-    QString lastFilterQuery; //last sql statement executed by setFilter() or clearFilter()
+    QString lastFilterQuery; //last sql statement executed from setFilter() or clearFilter()
 };
 
 #endif // BASEMODEL_H

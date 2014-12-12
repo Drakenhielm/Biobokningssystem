@@ -83,24 +83,28 @@ void DatabaseHandler::createDatabase()
 
 }
 
-
+//Starts a database transaction
 bool DatabaseHandler::transaction()
 {
     return db.transaction();
 }
 
+//End a database transaction.
 bool DatabaseHandler::endTransaction(bool ok)
 {
-    if(ok)
+    if(ok == true)
     {
+        //commit all changes to the database
         return db.commit();
     }
     else
     {
+        //remove all changes to the database since the transaction started
         return db.rollback();
     }
 }
 
+/*Remove rows from a database table*/
 bool DatabaseHandler::remove(const QString &tableName, const QString &where, const QVariant &placeholder)
 {
     QList<QVariant> list;
@@ -109,7 +113,7 @@ bool DatabaseHandler::remove(const QString &tableName, const QString &where, con
     return remove(tableName, where, list);
 }
 
-/*Remove rows from the database*/
+/*Remove rows from a database table*/
 bool DatabaseHandler::remove(const QString &tableName, const QString &where, const QList<QVariant> &parameterList)
 {
     QSqlQuery query(db);
@@ -207,13 +211,8 @@ bool DatabaseHandler::edit(const QString &tableName, const QMap<QString, QVarian
     return true;
 }
 
-void DatabaseHandler::addFilter(QSqlQuery &query, const QString &filter, const QVariant &filterPlaceholder)
-{
-    QList<QVariant> list;
-    list.append(filterPlaceholder);
-    addFilter(query, filter, list);
-}
-
+/*filter is the where part in a sql statement.
+ * The output sql statement will be like this: "SELECT * FROM (original query) WHERE filter". */
 void DatabaseHandler::addFilter(QSqlQuery &query, const QString &filter, const QList<QVariant> &filterPlaceholders)
 {
     QString sql = query.lastQuery();
@@ -232,6 +231,14 @@ void DatabaseHandler::addFilter(QSqlQuery &query, const QString &filter, const Q
     prepareQuery(query, sql, placeholderList);
 }
 
+void DatabaseHandler::addFilter(QSqlQuery &query, const QString &filter, const QVariant &filterPlaceholder)
+{
+    QList<QVariant> list;
+    list.append(filterPlaceholder);
+    addFilter(query, filter, list);
+}
+
+/*Remove the last filter that was added by addFilter. */
 void DatabaseHandler::removeLastFilter(QSqlQuery &query)
 {
     QString sql = query.lastQuery();
