@@ -410,11 +410,24 @@ void MainWindow::setHTML()
 
 void MainWindow::openAddShowDialog()
 {
-    int selMovieIndex = ui->listView_movies->currentIndex().row();
-    addShowDialog showDialog(movieModel, hallModel, selMovieIndex);
-    connect(&showDialog, SIGNAL(add_Show(QDateTime,double,QString,bool,bool,int,int)), this, SLOT(addShow(QDateTime,double,QString,bool,bool,int,int)));
-    showDialog.setWindowTitle("Add Show");
-    showDialog.exec();
+
+    if(movieModel->rowCount() < 1 || hallModel->rowCount() < 1)
+    {
+        QMessageBox msgBox(QMessageBox::Information,
+                           "Wrong",
+                           "You need to add movies and halls before adding a show.",
+                           QMessageBox::Ok
+                           );
+        msgBox.exec();
+    }
+    else
+    {
+        int selMovieIndex = ui->listView_movies->currentIndex().row();
+        addShowDialog showDialog(movieModel, hallModel, selMovieIndex);
+        connect(&showDialog, SIGNAL(add_Show(QDateTime,double,QString,bool,bool,int,int)), this, SLOT(addShow(QDateTime,double,QString,bool,bool,int,int)));
+        showDialog.setWindowTitle("Add Show");
+        showDialog.exec();
+    }
 }
 
 

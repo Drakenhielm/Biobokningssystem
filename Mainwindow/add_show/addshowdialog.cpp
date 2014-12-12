@@ -14,6 +14,9 @@ addShowDialog::addShowDialog(MovieModel *movieModel, HallModel *hallModel, int s
     this->movieModel = movieModel;
     this->hallModel = hallModel;
 
+    if(selMovieIndex < 0)
+        selMovieIndex = 0;
+
     initComboBoxes(selMovieIndex, 0);
 
     //init radiobuttons (DDD = 3D...)
