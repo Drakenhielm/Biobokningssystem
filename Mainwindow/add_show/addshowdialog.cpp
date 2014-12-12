@@ -114,7 +114,22 @@ void addShowDialog::on_addShowButton_clicked()
     if(role == Add)
         emit add_Show(dateTime, price, lang, DDD, subs, movieID, hallID);
     if(role == Edit)
-        emit edit_show(showID, dateTime, price, lang, DDD, subs, movieID, hallID);
+    {
+        QMessageBox msgBox(QMessageBox::Question,
+                           "Edit Show",
+                           "Are you sure you want to edit this show?"
+                           "\n\nWarning: All bookings connected to this show will be deleted.",
+                           QMessageBox::Yes | QMessageBox::No
+                           );
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            emit edit_show(showID, dateTime, price, lang, DDD, subs, movieID, hallID);
+        }
+        else
+        {
+            return;
+        }
+    }
 
     close();
 }

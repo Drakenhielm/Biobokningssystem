@@ -78,7 +78,22 @@ void hall::on_AddButton_clicked()
     if(role == Add)
         emit addHall(hallName, screenSize, soundSystem, seats);
     if(role == Edit)
-        emit editHall(hallID, hallName, screenSize, soundSystem, seats);
+    {
+        QMessageBox msgBox(QMessageBox::Question,
+                           "Edit Hall",
+                           "Are you sure you want to edit this show?"
+                           "\n\nWarning: All connected bookings will be deleted.",
+                           QMessageBox::Yes | QMessageBox::No
+                           );
+        if(msgBox.exec() == QMessageBox::Yes)
+        {
+            emit editHall(hallID, hallName, screenSize, soundSystem, seats);
+        }
+        else
+        {
+            return;
+        }
+    }
     close();
 }
 

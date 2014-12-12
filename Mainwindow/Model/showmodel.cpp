@@ -39,6 +39,7 @@ QVariant ShowModel::data(const QModelIndex &item, int role) const
 int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, bool subtitles, const QString &language,
                 int movieID, int hallID)
 {
+    //database values
     QMap<QString, QVariant> values;
     values.insert(QString("DateTime"), dateTime);
     values.insert(QString("Price"), price);
@@ -47,13 +48,25 @@ int ShowModel::insertShow(const QDateTime & dateTime, float price, bool threeD, 
     values.insert(QString("Language"), language);
     values.insert(QString("MovieID"), movieID);
     values.insert(QString("HallID"), hallID);
-    dh.insert("show", values);
-    return true;
+
+    //insert show
+    return dh.insert("show", values);
 }
 
 bool ShowModel::editShow(int showID, const QDateTime &dateTime, float price, bool threeD, bool subtitles, const QString &language,
                 int movieID, int hallID)
 {
+    dh.transaction();
+
+    bool ok = true;
+
+    //remove bookings
+    ok = ok && dh.remove("booking", "ShowID = ?", showID);
+    ok = ok && dh.remove("seatbooking",
+                         "BookingID IN (SELECT BookingID FROM booking WHERE ShowID = ?)",
+                         showID);
+
+    //database values
     QMap<QString, QVariant> values;
     values.insert(QString("ShowID"), showID);
     values.insert(QString("DateTime"), dateTime);
@@ -63,8 +76,11 @@ bool ShowModel::editShow(int showID, const QDateTime &dateTime, float price, boo
     values.insert(QString("Language"), language);
     values.insert(QString("MovieID"), movieID);
     values.insert(QString("HallID"), hallID);
-    dh.edit("show", values, "ShowID = ?", showID);
-    return true;
+
+    //edit show
+    ok = ok && dh.edit("show", values, "ShowID = ?", showID);
+
+    return ok && dh.endTransaction(ok);
 }
 
 bool ShowModel::remove(const QVariant &pkValue)
@@ -73,10 +89,15 @@ bool ShowModel::remove(const QVariant &pkValue)
 
     dh.transaction();
 
+    //remove from show
     ok = ok && dh.remove("show", "ShowID = ?", pkValue);
-    ok = ok && dh.remove("booking", "ShowID IN (SELECT ShowID FROM show WHERE MovieID = ?)", pkValue);
+
+    //remove from booking
+    ok = ok && dh.remove("booking", "ShowID = ?", pkValue);
+
+    //remove from seatbooking
     ok = ok && dh.remove("seatbooking",
-                         "BookingID IN (SELECT BookingID FROM booking JOIN show ON booking.ShowID = show.ShowID WHERE MovieID = ?)",
+                         "BookingID IN (SELECT BookingID FROM booking WHERE ShowID = ?)",
                          pkValue);
 
     return ok && dh.endTransaction(ok);

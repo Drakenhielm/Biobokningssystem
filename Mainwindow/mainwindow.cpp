@@ -3,9 +3,9 @@
 #include <QAbstractItemView>
 #include "hallview.h"
 #include "add_hall/hall.h"
-#include "add_movie/popup.h"
+#include "add_movie/add_Movie.h"
 #include "add_show/addshowdialog.h"
-#include "edit_hall/edit_hall.h"
+#include "hall_list/hall_list.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -132,7 +132,7 @@ void MainWindow::initConnections()
     connect(ui->actionAdd_hall, SIGNAL(triggered()), this, SLOT(openAddHallDialogue()));
 
     //Hall List
-     connect(ui->actionHall_List, SIGNAL(triggered()), this, SLOT(openEditHallDialogue()));
+     connect(ui->actionHall_List, SIGNAL(triggered()), this, SLOT(openHallListDialogue()));
 
     //Booking Form
     connect(ui->checkBox_separateSeats, SIGNAL(clicked(bool)), hallView, SLOT(setSeperateSeats(bool)));
@@ -245,28 +245,30 @@ void MainWindow::openAddHallDialogue()
     hallPopup.exec();
 }
 
-void MainWindow::openEditHallDialogue()
+void MainWindow::openHallListDialogue()
 {
-    edit_hall hallPopup(hallModel);
+    hall_list hallPopup(hallModel);
     hallPopup.setModal(true);
     hallPopup.exec();
     seatModel->refresh();
+    showModel->refresh();
+    bookingModel->refresh();
     hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
 }
 
 void MainWindow::openAddMovieDialogue()
 {
     //declare the popup window
-    popup popuper;
+    add_Movie am;
 
     //connect it with the add_Movie signal from the popup
-    QObject::connect(&popuper, SIGNAL(add_Movie(QString, int, int, QString, QString, int, QString)),this, SLOT(addMovie(QString, int, int, QString, QString, int, QString)));
+    QObject::connect(&am, SIGNAL(addMovie(QString, int, int, QString, QString, int, QString)),this, SLOT(addMovie(QString, int, int, QString, QString, int, QString)));
 
-    popuper.setWindowTitle("Add Movie");
-    popuper.setModal(true);
+    am.setWindowTitle("Add Movie");
+    am.setModal(true);
 
-    //launch the popup
-    popuper.exec();
+    //launch the add_Movie
+    am.exec();
 }
 
 void MainWindow::addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter)
@@ -287,33 +289,47 @@ void MainWindow::openEditMovieDialogue()
     int selIndex = getSelected(ui->listView_movies->selectionModel());
     if(selIndex != -1)
     {
-        //declare the popup window
-        popup popuper(movieModel->getMovieID(selIndex), movieModel->getTitle(selIndex),
+        //declare the add_Movie window
+        add_Movie am(movieModel->getMovieID(selIndex), movieModel->getTitle(selIndex),
                       movieModel->getPlayTime(selIndex), movieModel->getAgeLimit(selIndex),
                       movieModel->getDescription(selIndex), movieModel->getGenre(selIndex),
                       movieModel->getYear(selIndex), movieModel->getMoviePoster(selIndex));
 
-        //connect it with the add_Movie signal from the popup
-        QObject::connect(&popuper, SIGNAL(edit_Movie(int, QString, int, int, QString, QString, int, QString)),
+        //connect it with the add_Movie signal from the add_Movie
+        QObject::connect(&am, SIGNAL(editMovie(int, QString, int, int, QString, QString, int, QString)),
                          this, SLOT(editMovie(int, QString, int, int, QString, QString, int, QString)));
 
-        popuper.setModal(true);
-        popuper.setWindowTitle("Edit Movie");
+        am.setModal(true);
+        am.setWindowTitle("Edit Movie");
 
-        //launch the popup
-        popuper.exec();
+        //launch the add_Movie
+        am.exec();
     }
 }
 
 void MainWindow::editMovie(int movieID, QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter)
 {
-    int selIndex = getSelected(ui->listView_movies->selectionModel());
+    int selMovieIndex = getSelected(ui->listView_movies->selectionModel());
+    int selShowIndex = getSelected(ui->tableView_show->selectionModel());
+
+    //edit movie
     movieModel->editMovie(movieID, title, playtime, age, desc, genre, year, movieposter);
+
+    //refresh views
     movieModel->refresh();
-    if(selIndex != -1)
+    bookingModel->refresh();
+
+    //select the items
+    QModelIndex index = movieModel->index(selMovieIndex, MovieModel::Title);
+    if(index.isValid())
     {
-        QModelIndex index = movieModel->index(selIndex, 0);
-        ui->listView_movies->setCurrentIndex(index);
+        ui->listView_movies->selectionModel()->select(index, QItemSelectionModel::Select);
+    }
+
+    index = showModel->index(selShowIndex, ShowModel::DateTime);
+    if(index.isValid())
+    {
+        ui->tableView_show->selectionModel()->select(index, QItemSelectionModel::Select);
     }
 }
 
@@ -323,13 +339,19 @@ void MainWindow::deleteMovie()
     {
         QMessageBox msgBox(QMessageBox::Question,
                            "Delete Movie",
-                           "Are you sure?",
+                           "Are you sure you want to delete this movie?"
+                           "\n\nWarning: All shows and bookings connected to this movie will also be deleted.",
                            QMessageBox::Yes | QMessageBox::No
                            );
         if(msgBox.exec() == QMessageBox::Yes)
         {
             movieModel->removeRow(getSelected(ui->listView_movies->selectionModel()));
             movieModel->refresh();
+            showModel->refresh();
+            bookingModel->refresh();
+            seatModel->refresh();
+            hallModel->refresh();
+            hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
             setHTML();
         }
     }
@@ -410,13 +432,18 @@ void MainWindow::deleteShow()
     {
         QMessageBox msgBox(QMessageBox::Question,
                            "Delete Show",
-                           "Are you sure?",
+                           "Are you sure you want to delete this show?"
+                           "\n\nWarning: All bookings connected to this show will also be deleted.",
                            QMessageBox::Yes | QMessageBox::No
                            );
         if(msgBox.exec() == QMessageBox::Yes)
         {
             showModel->removeRow(select);
             showModel->refresh();
+            bookingModel->refresh();
+            seatModel->refresh();
+            hallModel->refresh();
+            hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
         }
     }
 }
@@ -619,13 +646,16 @@ void MainWindow::deleteBooking()
     {
         QMessageBox msgBox(QMessageBox::Question,
                            "Delete Booking",
-                           "Are you sure?",
+                           "Are you sure you want to delete this booking?",
                            QMessageBox::Yes | QMessageBox::No
                            );
         if(msgBox.exec() == QMessageBox::Yes)
         {
             bookingModel->removeRow(selIndex);
             bookingModel->refresh();
+            seatModel->refresh();
+            hallModel->refresh();
+            hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
         }
     }
 }

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.2. It"
+#error "This file was generated using the moc from 5.3.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -83,9 +83,9 @@ QT_MOC_LITERAL(49, 636, 10),
 QT_MOC_LITERAL(50, 647, 11),
 QT_MOC_LITERAL(51, 659, 16),
 QT_MOC_LITERAL(52, 676, 41),
-QT_MOC_LITERAL(53, 718, 23),
-QT_MOC_LITERAL(54, 742, 17),
-QT_MOC_LITERAL(55, 760, 7)
+QT_MOC_LITERAL(53, 718, 17),
+QT_MOC_LITERAL(54, 736, 7),
+QT_MOC_LITERAL(55, 744, 23)
     },
     "MainWindow\0movieSelectionChanged\0\0"
     "QItemSelection\0selected\0deselected\0"
@@ -103,11 +103,11 @@ QT_MOC_LITERAL(55, 760, 7)
     "highlightSearchBooking\0openAddHallDialogue\0"
     "addHall\0name\0soundSystem\0screenSize\0"
     "QList<QList<bool> >\0seats\0"
-    "openEditHallDialogue\0updateSelectedSeats\0"
+    "openHallListDialogue\0updateSelectedSeats\0"
     "QList<int>\0setComboBox\0enableBookButton\0"
     "on_pushButton_hallview_info_clear_clicked\0"
-    "on_actionQuit_triggered\0setWidgetsVisible\0"
-    "visible"
+    "setWidgetsVisible\0visible\0"
+    "on_actionQuit_triggered"
 };
 #undef QT_MOC_LITERAL
 
@@ -151,8 +151,8 @@ static const uint qt_meta_data_MainWindow[] = {
       50,    1,  263,    2, 0x08 /* Private */,
       51,    0,  266,    2, 0x08 /* Private */,
       52,    0,  267,    2, 0x08 /* Private */,
-      53,    0,  268,    2, 0x08 /* Private */,
-      54,    1,  269,    2, 0x08 /* Private */,
+      53,    1,  268,    2, 0x08 /* Private */,
+      55,    0,  271,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
@@ -181,8 +181,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   54,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   55,
 
        0        // eod
 };
@@ -213,13 +213,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 18: _t->highlightSearchBooking(); break;
         case 19: _t->openAddHallDialogue(); break;
         case 20: _t->addHall((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QList<QList<bool> >(*)>(_a[4]))); break;
-        case 21: _t->openEditHallDialogue(); break;
+        case 21: _t->openHallListDialogue(); break;
         case 22: _t->updateSelectedSeats((*reinterpret_cast< QList<int>(*)>(_a[1]))); break;
         case 23: _t->setComboBox((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 24: _t->enableBookButton(); break;
         case 25: _t->on_pushButton_hallview_info_clear_clicked(); break;
-        case 26: _t->on_actionQuit_triggered(); break;
-        case 27: _t->setWidgetsVisible((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 26: _t->setWidgetsVisible((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 27: _t->on_actionQuit_triggered(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {

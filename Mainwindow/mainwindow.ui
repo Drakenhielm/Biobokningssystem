@@ -58,7 +58,7 @@
          <widget class="QWidget" name="widget_movies" native="true">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>2</horstretch>
+            <horstretch>1</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
@@ -110,6 +110,9 @@
                <width>10</width>
                <height>0</height>
               </size>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectItems</enum>
              </property>
             </widget>
            </item>
@@ -174,7 +177,7 @@
          <widget class="QWidget" name="widget_shows" native="true">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>4</horstretch>
+            <horstretch>5</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>

@@ -233,7 +233,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="priceSpinBox"/>
+       <widget class="QDoubleSpinBox" name="priceSpinBox">
+        <property name="decimals">
+         <number>2</number>
+        </property>
+        <property name="maximum">
+         <double>999.990000000000009</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -243,7 +250,7 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

@@ -170,7 +170,7 @@ public:
         label_screen_size->setText(QApplication::translate("hall", "Screen Size:", 0));
         comboBox_sound->clear();
         comboBox_sound->insertItems(0, QStringList()
-         << QApplication::translate("hall", "Select Sound System", 0)
+         << QString()
          << QApplication::translate("hall", "Dolby", 0)
          << QApplication::translate("hall", "Dolby Atmos", 0)
          << QApplication::translate("hall", "Dolby Digital", 0)

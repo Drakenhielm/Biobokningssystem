@@ -26,10 +26,15 @@ int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, c
 {
     dh.transaction();
 
-    bool ok = imgHandler.copyImage(imagePath); //copy image
+    QString image;
 
-    QString image = imgHandler.lastInsertedFileName();
+    if(imgHandler.copyImage(imagePath)) //copy image
+    {
+        //if success - save the file name
+        image = imgHandler.lastInsertedFileName();
+    }
 
+    //database values
     QMap<QString, QVariant> values;
     values.insert(QString("Title"), title);
     values.insert(QString("PlayTime"), playTime);
@@ -40,32 +45,35 @@ int MovieModel::insertMovie(const QString & title, int playTime, int ageLimit, c
     values.insert(QString("MoviePoster"), image);
 
     int id = dh.insert("movie", values); // insert values to the database
-    ok = ok && id != -1;
 
-    if(ok && dh.endTransaction(ok))
-        return id;
-    else
-        return -1;
+    return id;
 }
 
 bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int ageLimit, const QString & description,
                  const QString & genre, int year, const QString &imagePath)
 {
+    bool ok;
+
     int row = getRowByPrimaryKeyValue(movieID);
 
     QString oldImage = data(index(row, MoviePoster)).toString();
 
     if(!imgHandler.fileNameExists(oldImage))
     {
-        imgHandler.copyImage(imagePath);
+        ok = imgHandler.copyImage(imagePath);
     }
     else
     {
-        imgHandler.replaceImage(oldImage, imagePath);
+        ok = imgHandler.replaceImage(oldImage, imagePath);
     }
 
-    QString newImage = imgHandler.lastInsertedFileName();
+    QString newImage;
+    if(ok == true)
+    {
+        newImage = imgHandler.lastInsertedFileName();
+    }
 
+    //database values
     QMap<QString, QVariant> values;
     values.insert(QString("MovieID"), movieID);
     values.insert(QString("Title"), title);
@@ -76,18 +84,29 @@ bool MovieModel::editMovie(int movieID, const QString & title, int playTime, int
     values.insert(QString("Year"), year);
     values.insert(QString("MoviePoster"), newImage);
 
+    //edit movie
     return dh.edit("movie", values, "MovieID = ?", movieID);
 }
 
 bool MovieModel::remove(const QVariant &pkValue)
 {
     bool ok = true;
+
     dh.transaction();
+
+    //remove from movie
     ok = ok && dh.remove("movie", "MovieID = ?", pkValue);
+
+    //remove from booking
     ok = ok && dh.remove("booking", "ShowID IN (SELECT ShowID FROM show WHERE MovieID = ?)", pkValue);
+
+    //remove from seatbooking
     ok = ok && dh.remove("seatbooking",
                          "BookingID IN (SELECT BookingID FROM booking JOIN show ON booking.ShowID = show.ShowID WHERE MovieID = ?)",
                          pkValue);
+
+    //remove from show
     ok = ok && dh.remove("show", "MovieID = ?", pkValue);
+
     return ok && dh.endTransaction(ok);
 }

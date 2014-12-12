@@ -63,8 +63,8 @@ public:
     QHBoxLayout *horizontalLayout_8;
     QLabel *priceLabel;
     QDoubleSpinBox *priceSpinBox;
-    QButtonGroup *buttonGroup;
     QButtonGroup *buttonGroup_2;
+    QButtonGroup *buttonGroup;
 
     void setupUi(QDialog *addShowDialog)
     {
@@ -228,6 +228,8 @@ public:
 
         priceSpinBox = new QDoubleSpinBox(layoutWidget1);
         priceSpinBox->setObjectName(QStringLiteral("priceSpinBox"));
+        priceSpinBox->setDecimals(2);
+        priceSpinBox->setMaximum(999.99);
 
         horizontalLayout_8->addWidget(priceSpinBox);
 

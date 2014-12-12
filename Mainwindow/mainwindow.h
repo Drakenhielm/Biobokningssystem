@@ -10,7 +10,7 @@
 #include <QItemSelection>
 #include "hallview.h"
 #include "add_hall/hall.h"
-#include "add_movie/popup.h"
+#include "add_movie/add_Movie.h"
 #include "add_show/addshowdialog.h"
 #include <QKeyEvent>
 #include <QDebug>
@@ -39,8 +39,10 @@ private slots:
     //Add Movie
     void openAddMovieDialogue();
     void addMovie(QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
+
     //Delete Movie
     void deleteMovie();
+
     //Edit Movie
     void openEditMovieDialogue();
     void editMovie(int movieID, QString title, int playtime, int age, QString desc, QString genre, int year, QString movieposter);
@@ -48,11 +50,14 @@ private slots:
     //Add Show
     void openAddShowDialog();
     void addShow(QDateTime dateTime, double price, QString lang, bool DDD, bool subs, int movieID, int hallID);
+
     //Delete Show
     void deleteShow();
+
     //Edit Show
     void openEditShowDialogue();
     void editShow(int showID, QDateTime dateTime, double price, QString lang, bool DDD, bool subs, int movieID, int hallID);
+
     //Filter shows
     void on_comboBox_shows_currentIndexChanged(int index);
 
@@ -70,7 +75,9 @@ private slots:
     //Add Hall
     void openAddHallDialogue();
     void addHall(QString name,QString soundSystem,QString screenSize,QList<QList<bool> > seats);
-    void openEditHallDialogue();
+
+    //Hall List
+    void openHallListDialogue();
 
     void updateSelectedSeats(QList<int> seats);
 
@@ -80,10 +87,10 @@ private slots:
 
     void on_pushButton_hallview_info_clear_clicked();
 
+    void setWidgetsVisible(bool visible);
+
     //Quit
     void on_actionQuit_triggered();
-
-    void setWidgetsVisible(bool visible);
 
 private:
     Ui::MainWindow *ui;

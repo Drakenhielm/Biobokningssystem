@@ -210,7 +210,7 @@ public:
         widget_movies = new QWidget(splitter);
         widget_movies->setObjectName(QStringLiteral("widget_movies"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(2);
+        sizePolicy1.setHorizontalStretch(1);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(widget_movies->sizePolicy().hasHeightForWidth());
         widget_movies->setSizePolicy(sizePolicy1);
@@ -235,6 +235,7 @@ public:
         sizePolicy2.setHeightForWidth(listView_movies->sizePolicy().hasHeightForWidth());
         listView_movies->setSizePolicy(sizePolicy2);
         listView_movies->setMinimumSize(QSize(10, 0));
+        listView_movies->setSelectionBehavior(QAbstractItemView::SelectItems);
 
         verticalLayout_6->addWidget(listView_movies);
 
@@ -270,7 +271,7 @@ public:
         widget_shows = new QWidget(splitter);
         widget_shows->setObjectName(QStringLiteral("widget_shows"));
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy3.setHorizontalStretch(4);
+        sizePolicy3.setHorizontalStretch(5);
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(widget_shows->sizePolicy().hasHeightForWidth());
         widget_shows->setSizePolicy(sizePolicy3);

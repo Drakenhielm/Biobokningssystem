@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QDateTime>
+#include <QMessageBox>
 #include "../Model/moviemodel.h"
 #include "../Model/hallmodel.h"
 

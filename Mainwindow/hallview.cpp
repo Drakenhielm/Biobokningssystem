@@ -215,7 +215,7 @@ void HallView::mouseMoveEvent(QMouseEvent *event)
 
     if(HallSquare(mouseX, mouseY)){
         int seatNr = getSeatNr(rowIndex, columnIndex);
-        QString toolTipText = "Row: " + QString::number(rowIndex+1) + " Column: " + QString::number(columnIndex+1) + " SeatNr: " + QString::number(seatNr);
+        QString toolTipText = "Row: " + QString::number(rowIndex+1) + " Column: " + QString::number(columnIndex+1) + " Seat: " + QString::number(seatNr);
 
         if(seats[columnIndex][rowIndex].first != NoSeat)
             QToolTip::showText(event->globalPos(), toolTipText);

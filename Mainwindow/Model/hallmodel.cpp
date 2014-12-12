@@ -54,6 +54,10 @@ bool HallModel::editHall(int hallID, const QString &name, const QString &screenS
 
    //Edit seats
    ok = ok && editSeats(hallID, seats);
+   //remove from booking
+   ok = ok && dh.remove("booking", "ShowID IN (SELECT ShowID FROM show WHERE HallID = ?)", hallID);
+   //remove from seatbooking
+   ok = ok && dh.remove("seatbooking", "SeatID IN (SELECT SeatID FROM seat WHERE HallID = ?)", hallID);
 
    return ok && dh.endTransaction(ok);
 }
@@ -108,10 +112,19 @@ bool HallModel::remove(const QVariant &pkValue)
 
     dh.transaction();
 
+    //remove from hall
     ok = ok && dh.remove("hall", "HallID = ?", pkValue);
+
+    //remove from booking
     ok = ok && dh.remove("booking", "ShowID IN (SELECT ShowID FROM show WHERE HallID = ?)", pkValue);
+
+    //remove from seatbooking
     ok = ok && dh.remove("seatbooking", "SeatID IN (SELECT SeatID FROM seat WHERE HallID = ?)", pkValue);
+
+    //remove from show
     ok = ok && dh.remove("show", "HallID = ?", pkValue);
+
+    //remove from seat
     ok = ok && dh.remove("seat", "HallID = ?", pkValue);
 
     return ok && dh.endTransaction(ok);
