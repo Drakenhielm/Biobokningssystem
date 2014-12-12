@@ -1,4 +1,3 @@
-#include <QtWidgets>
 #include "hallview.h"
 
 HallView::HallView(QWidget *parent)
@@ -17,30 +16,7 @@ HallView::HallView(QWidget *parent)
     loadDefaultSeatValues();
 }
 
-void HallView::loadDefaultSeatValues()
-{
-    for (int row = 0; row < 25; ++row) {
-        for (int column = 0; column < 25; ++column) {
-            seats[column][row].first = Available;
-            seats[column][row].second = false;
-        }
-    }
-}
-
-int HallView::getSeatNr(int rowIndex, int columnIndex)
-{
-    int seatNr = 1;
-    for (int row = 0; row < row_count; ++row) {
-        for (int column = 0; column < column_count; ++column) {
-            if(row == rowIndex && column == columnIndex)
-                return seatNr;
-            else if(seats[column][row].first != NoSeat)
-                seatNr++;
-        }
-    }
-    return -1;
-}
-
+//public slots:
 QList<int> HallView::getSelectedSeats()
 {
     QList<int> selectedSeats;
@@ -69,34 +45,6 @@ QList<QList<bool>> HallView::getSeats()
     return hall;
 }
 
-void HallView::setHall(QVector<QVector<int>> hall, int rows, int columns)
-{
-    setRows(rows);
-    setColumns(columns);
-
-    for (int row = 0; row < row_count; ++row) {
-        for (int column = 0; column < column_count; ++column)
-            seats[column][row].first = hall.at(row).at(column);
-    }
-}
-
-void HallView::setSeperateSeats(bool seperate)
-{
-    seperateSeats = seperate;
-    clearSelectedSeats();
-}
-
-void HallView::clearSelectedSeats()
-{
-    for (int row = 0; row < row_count; ++row) {
-        for (int column = 0; column < column_count; ++column) {
-            if(seats[column][row].first == Selected)
-                seats[column][row].first = Available;
-         }
-    }
-    update();
-}
-
 int HallView::getTotalNumberOfSeats()
 {
     int numberOfSeats = 0;
@@ -110,26 +58,29 @@ int HallView::getTotalNumberOfSeats()
     return numberOfSeats;
 }
 
-void HallView::comfirmSelectedSeats()
+int HallView::getSeatNr(int rowIndex, int columnIndex)
 {
+    int seatNr = 1;
     for (int row = 0; row < row_count; ++row) {
         for (int column = 0; column < column_count; ++column) {
-            if(seats[column][row].first == Selected)
-                seats[column][row].first = Booked;
-         }
+            if(row == rowIndex && column == columnIndex)
+                return seatNr;
+            else if(seats[column][row].first != NoSeat)
+                seatNr++;
+        }
     }
-    update();
-}
-
-void HallView::setColumns(int columns)
-{
-    column_count = columns;
-    update(); //Update graphics
+    return -1;
 }
 
 void HallView::setRows(int rows)
 {
     row_count = rows;
+    update(); //Update graphics
+}
+
+void HallView::setColumns(int columns)
+{
+    column_count = columns;
     update(); //Update graphics
 }
 
@@ -145,6 +96,52 @@ void HallView::setMode(bool mode)
 {
     editMode = mode;
 }
+
+void HallView::setSeperateSeats(bool seperate)
+{
+    seperateSeats = seperate;
+    clearSelectedSeats();
+}
+
+void HallView::setHall(QVector<QVector<int>> hall, int rows, int columns)
+{
+    setRows(rows);
+    setColumns(columns);
+
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column)
+            seats[column][row].first = hall.at(row).at(column);
+    }
+}
+
+void HallView::setEnabled(bool enabled)
+{
+    this->enabled = enabled;
+}
+
+void HallView::comfirmSelectedSeats()
+{
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column) {
+            if(seats[column][row].first == Selected)
+                seats[column][row].first = Booked;
+         }
+    }
+    update();
+}
+
+void HallView::clearSelectedSeats()
+{
+    for (int row = 0; row < row_count; ++row) {
+        for (int column = 0; column < column_count; ++column) {
+            if(seats[column][row].first == Selected)
+                seats[column][row].first = Available;
+         }
+    }
+    update();
+}
+
+//protected:
 
 void HallView::mousePressEvent(QMouseEvent *event)
 {
@@ -198,25 +195,12 @@ void HallView::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void HallView::leaveEvent(QEvent * event)
-{
-    if(!enabled)
-        return;
-
-    for(auto& rows : seats){
-        for(auto& seat : rows){
-            seat.second = false;
-        }
-    }
-    update();
-    QWidget::leaveEvent(event);
-}
-
 void HallView::mouseMoveEvent(QMouseEvent *event)
 {
     if(!enabled)
         return;
 
+    //Remove highlight from seats
     for(auto& rows : seats){
         for(auto& seat : rows){
             seat.second = false;
@@ -255,12 +239,19 @@ void HallView::mouseMoveEvent(QMouseEvent *event)
     update();
 }
 
-bool HallView::HallSquare(int mouseX, int mouseY)
+void HallView::leaveEvent(QEvent * event)
 {
-    int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
-    int hallViewHieght = row_count*squareSize+spacing*(column_count-1)+topOffset;
+    if(!enabled)
+        return;
 
-    return mouseX <= hallViewWidth+leftOffset && mouseX >= leftOffset && mouseY >= topOffset && mouseY <= hallViewHieght;
+    //Remove highlight from seats
+    for(auto& rows : seats){
+        for(auto& seat : rows){
+            seat.second = false;
+        }
+    }
+    update();
+    QWidget::leaveEvent(event);
 }
 
 void HallView::paintEvent(QPaintEvent *event)
@@ -268,10 +259,12 @@ void HallView::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(event->rect(), QBrush(Qt::white)); //Background color
 
+        //Get the size of the widget
         QRect widget = event->rect();
         int widgetHeight = widget.bottom();
         int widgetWidth = widget.right();
 
+        //Add a topOffset so a screen will fit in the front of the hall
         topOffset = widgetHeight/10;
 
         //Calculate the needed size for the seats so that they use as much of the width and height as possible
@@ -310,27 +303,49 @@ void HallView::paintEvent(QPaintEvent *event)
                         painter.setBrush(QBrush(QColor(200, 200, 200))); //White
                 }
 
+                //Do not paint a square if seat is a NoSeat and editMode is false
                 if(seats[column][row].first != NoSeat || editMode != false)
                     painter.drawRect(column*(squareSize+spacing)+leftOffset, row*(squareSize+spacing)+topOffset, squareSize, squareSize);
 
+                //Paint a cross if a selected seat is Booked or NoSeat
                 if((seats[column][row].first == Booked && seats[column][row].second == true) || (seats[column][row].first == NoSeat && seats[column][row].second == true)){
                     painter.setBrush(QBrush(QColor(0, 0, 0))); //black
                     painter.drawLine(column*(squareSize+spacing)+leftOffset, row*(squareSize+spacing)+topOffset, column*(squareSize+spacing)+leftOffset+squareSize, row*(squareSize+spacing)+squareSize+topOffset);
                     painter.drawLine(column*(squareSize+spacing)+leftOffset, row*(squareSize+spacing)+squareSize+1+topOffset, column*(squareSize+spacing)+leftOffset+squareSize, row*(squareSize+spacing)+1+topOffset);
                 }
-
-                painter.setBrush(QBrush(QColor(200, 200, 200)));
-                int screenWidth = (widgetWidth/10)*6;
-                int screenHeight = topOffset-topOffset/3;
-                painter.drawRect((widgetWidth-screenWidth)/2, 0, screenWidth, screenHeight);
-                painter.setBrush(QBrush(QColor(0, 0, 0))); //black
-                painter.drawText ( widgetWidth/2-20, topOffset/2, "Screen");
             }
         }
-    emit selectedSeatsChanged(getSelectedSeats()); //ska kanske bytas ut
+
+    if(row_count > 0 && column_count > 0){
+        //Paint a screen in the front of the hall
+        painter.setBrush(QBrush(QColor(200, 200, 200)));
+        int screenWidth = (widgetWidth/10)*6;
+        int screenHeight = topOffset-topOffset/3;
+        painter.drawRect((widgetWidth-screenWidth)/2, 0, screenWidth, screenHeight);
+        painter.setBrush(QBrush(QColor(0, 0, 0))); //black
+        painter.drawText ( widgetWidth/2-20, topOffset/2, "Screen");
+    }else{
+        painter.drawText ( widgetWidth/2-50, widgetHeight/2, "No show selected");
+    }
+
+    //Emit a signal that a change in the HallView has happened
+    emit selectedSeatsChanged(getSelectedSeats());
 }
 
-void HallView::setEnabled(bool enabled)
+bool HallView::HallSquare(int mouseX, int mouseY)
 {
-    this->enabled = enabled;
+    int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
+    int hallViewHieght = row_count*squareSize+spacing*(column_count-1)+topOffset;
+
+    return mouseX <= hallViewWidth+leftOffset && mouseX >= leftOffset && mouseY >= topOffset && mouseY <= hallViewHieght;
+}
+
+void HallView::loadDefaultSeatValues()
+{
+    for (int row = 0; row < 25; ++row) {
+        for (int column = 0; column < 25; ++column) {
+            seats[column][row].first = Available;
+            seats[column][row].second = false;
+        }
+    }
 }

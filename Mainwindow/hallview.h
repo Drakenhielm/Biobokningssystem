@@ -4,6 +4,7 @@
 #include <QSize>
 #include <QWidget>
 #include <vector>
+#include <QtWidgets>
 
 QT_BEGIN_NAMESPACE
 class QMouseEvent;
@@ -20,31 +21,27 @@ public:
 public slots:
     QList<int> getSelectedSeats();
     QList<QList<bool>> getSeats();
-    //void setSelectedSeats(vector<int> seats);
+    int getTotalNumberOfSeats();
+    int getSeatNr(int rowIndex, int columnIndex);
     void setRows(int rows);
     void setColumns(int columns);
-    //void toggleSeats();
-    //void setModel(SeatModel, int hallID);
     void setNumberOfSelected(int);
-    void setMode(bool);
-    void comfirmSelectedSeats();
+    void setMode(bool); //Set to true if in editmode
     void setSeperateSeats(bool seperate);
-    int getTotalNumberOfSeats();
-    void clearSelectedSeats();
     void setHall(QVector<QVector<int>>, int rows, int columns);
     void setEnabled(bool enabled);
+    void comfirmSelectedSeats();
+    void clearSelectedSeats();
 signals:
     void selectedSeatsChanged(QList<int>);
 
 protected:
+    void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void leaveEvent(QEvent *event);
-    void mousePressEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
-    void reSizeSeats();
     bool HallSquare(int, int);
     void loadDefaultSeatValues();
-    int getSeatNr(int rowIndex, int columnIndex);
 private:
     bool enabled;
     int row_count;
