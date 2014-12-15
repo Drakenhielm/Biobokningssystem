@@ -175,9 +175,9 @@ void MainWindow::setWidgetsVisible(bool visible)
     QAction *action = dynamic_cast<QAction*>(this->sender());
     QList<QWidget *> widgetList = action->associatedWidgets();
 
-    if(widgetList.isEmpty() == false)
+    if(widgetList.size() > 1) //first index in the list is the menu item
     {
-        for(int i = 0; i < widgetList.size(); i++)
+        for(int i = 1; i < widgetList.size(); i++)
         {
             widgetList.at(i)->setVisible(visible);
         }
