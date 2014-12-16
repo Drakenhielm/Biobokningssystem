@@ -249,11 +249,20 @@ void MainWindow::openHallListDialogue()
 {
     hall_list hallPopup(hallModel);
     hallPopup.setModal(true);
+
+    int selShowIndex = getSelected(ui->tableView_show->selectionModel());
+
     hallPopup.exec();
-    seatModel->refresh();
+
     showModel->refresh();
     bookingModel->refresh();
-    hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
+
+    QItemSelection selShowItem(QModelIndex(showModel->index(selShowIndex, ShowModel::DateTime)),
+                               QModelIndex(showModel->index(selShowIndex, ShowModel::AvailableSeats)));
+
+    ui->tableView_show->setCurrentIndex(QModelIndex(showModel->index(selShowIndex, ShowModel::DateTime)));
+
+    showSelectionChanged(selShowItem, QItemSelection());
 }
 
 void MainWindow::openAddMovieDialogue()
@@ -347,11 +356,7 @@ void MainWindow::deleteMovie()
         {
             movieModel->removeRow(getSelected(ui->listView_movies->selectionModel()));
             movieModel->refresh();
-            showModel->refresh();
-            bookingModel->refresh();
-            seatModel->refresh();
-            hallModel->refresh();
-            hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
+            showSelectionChanged(QItemSelection(), QItemSelection());
             setHTML();
         }
     }
@@ -453,10 +458,7 @@ void MainWindow::deleteShow()
         {
             showModel->removeRow(select);
             showModel->refresh();
-            bookingModel->refresh();
-            seatModel->refresh();
-            hallModel->refresh();
-            hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
+            showSelectionChanged(QItemSelection(), QItemSelection());
         }
     }
 }
@@ -667,7 +669,7 @@ void MainWindow::deleteBooking()
             bookingModel->removeRow(selIndex);
             bookingModel->refresh();
             seatModel->refresh();
-            hallModel->refresh();
+            showModel->refresh();
             hallView->setHall(seatModel->getSeatStateMatrix(), seatModel->getMaxRow(), seatModel->getMaxColumn());
         }
     }

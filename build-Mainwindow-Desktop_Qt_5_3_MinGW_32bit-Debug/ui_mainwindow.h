@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.2
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -560,6 +560,7 @@ public:
         label_hallinfo_selectedSeats_display = new QLabel(groupBox);
         label_hallinfo_selectedSeats_display->setObjectName(QStringLiteral("label_hallinfo_selectedSeats_display"));
         label_hallinfo_selectedSeats_display->setLineWidth(0);
+        label_hallinfo_selectedSeats_display->setWordWrap(true);
 
         verticalLayout_4->addWidget(label_hallinfo_selectedSeats_display);
 
