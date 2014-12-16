@@ -335,7 +335,7 @@ void HallView::paintEvent(QPaintEvent *event)
 bool HallView::HallSquare(int mouseX, int mouseY)
 {
     int hallViewWidth = column_count*squareSize+spacing*(column_count-1);
-    int hallViewHieght = row_count*squareSize+spacing*(column_count-1)+topOffset;
+    int hallViewHieght = row_count*squareSize+spacing*(row_count-1)+topOffset;
 
     return mouseX <= hallViewWidth+leftOffset && mouseX >= leftOffset && mouseY >= topOffset && mouseY <= hallViewHieght;
 }
