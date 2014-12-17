@@ -338,6 +338,9 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_show_edit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>Edit</string>
                </property>

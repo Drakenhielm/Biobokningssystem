@@ -346,6 +346,7 @@ public:
 
         pushButton_show_edit = new QPushButton(widget_shows);
         pushButton_show_edit->setObjectName(QStringLiteral("pushButton_show_edit"));
+        pushButton_show_edit->setEnabled(false);
 
         horizontalLayout_6->addWidget(pushButton_show_edit);
 
