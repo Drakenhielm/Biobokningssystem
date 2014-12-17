@@ -42,7 +42,7 @@ private:
     QDir directory;
     enum Role { Add, Edit } role;
     int movieID; //used in edit mode
-
+    QVector<QString> genres;
     void removeGenresFromCbb(const QString &genreStr);
 };
 

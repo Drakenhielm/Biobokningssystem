@@ -256,10 +256,25 @@ public:
         GenreLabel->setText(QApplication::translate("add_Movie", "Genre", 0));
         GenreCbb->clear();
         GenreCbb->insertItems(0, QStringList()
-         << QApplication::translate("add_Movie", "Drama", 0)
-         << QApplication::translate("add_Movie", "Comedy", 0)
-         << QApplication::translate("add_Movie", "Thriller", 0)
          << QApplication::translate("add_Movie", "Action", 0)
+         << QApplication::translate("add_Movie", "Adventure", 0)
+         << QApplication::translate("add_Movie", "Animation", 0)
+         << QApplication::translate("add_Movie", "Biography", 0)
+         << QApplication::translate("add_Movie", "Crime", 0)
+         << QApplication::translate("add_Movie", "Comedy", 0)
+         << QApplication::translate("add_Movie", "Drama", 0)
+         << QApplication::translate("add_Movie", "History", 0)
+         << QApplication::translate("add_Movie", "Family", 0)
+         << QApplication::translate("add_Movie", "Fantasy", 0)
+         << QApplication::translate("add_Movie", "Horror", 0)
+         << QApplication::translate("add_Movie", "Musical", 0)
+         << QApplication::translate("add_Movie", "Mystery", 0)
+         << QApplication::translate("add_Movie", "Romance", 0)
+         << QApplication::translate("add_Movie", "Science fiction", 0)
+         << QApplication::translate("add_Movie", "Sport", 0)
+         << QApplication::translate("add_Movie", "Thriller", 0)
+         << QApplication::translate("add_Movie", "War", 0)
+         << QApplication::translate("add_Movie", "Western", 0)
         );
         AddGenreButton->setText(QApplication::translate("add_Movie", "+", 0));
         CurrGenreLabel->setText(QString());

@@ -43,8 +43,9 @@ void add_Movie::on_CancelButton_clicked()
 void add_Movie::on_AddGenreButton_clicked()
 {
     //adds a new genre to the movie
-    if(ui->GenreCbb->currentText() != ""){
+    if(ui->GenreCbb->currentText() != "" && genres.size() < 3){
         QString tmp = ui->GenreCbb->currentText();
+        genres.push_back(tmp);
         ui->GenreCbb->removeItem(ui->GenreCbb->currentIndex());
         updateCurrentGenre(tmp);    //updates the current genre of the movie
     }
@@ -52,28 +53,14 @@ void add_Movie::on_AddGenreButton_clicked()
 
 void add_Movie::on_RemoveGenreButton_clicked()
 {
-    bool Drama = false, Action = false, Comedy = false, Thriller = false;
-
-    //check for genres in the menu
-    for(int i = 0; i<=3; ++i){
-        if(ui->GenreCbb->itemText(i) == "Drama")
-            Drama = true;
-        if(ui->GenreCbb->itemText(i) == "Action")
-            Action = true;
-        if(ui->GenreCbb->itemText(i) == "Komedi")
-            Comedy = true;
-        if(ui->GenreCbb->itemText(i) == "Thriller")
-            Thriller = true;
+    //Re-add genres to combobox
+    for(int i = 0; i<genres.size(); ++i){
+      ui->GenreCbb->addItem(genres[i]);
     }
-    //add the missing ones
-    if(!Drama)
-        ui->GenreCbb->addItem("Drama");
-    if(!Action)
-        ui->GenreCbb->addItem("Action");
-    if(!Comedy)
-        ui->GenreCbb->addItem("Komedi");
-    if(!Thriller)
-        ui->GenreCbb->addItem("Thriller");
+
+    genres.clear();
+    //Alphabetical order
+    ui->GenreCbb->model()->sort(0);
 
     //remove all text
     ui->CurrGenreLabel->setText("");

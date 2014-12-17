@@ -139,7 +139,27 @@
         </property>
         <item>
          <property name="text">
-          <string>Drama</string>
+          <string>Action</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Adventure</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Animation</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Biography</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Crime</string>
          </property>
         </item>
         <item>
@@ -149,12 +169,67 @@
         </item>
         <item>
          <property name="text">
+          <string>Drama</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>History</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Family</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Fantasy</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Horror</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Musical</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mystery</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Romance</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Science fiction</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sport</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Thriller</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Action</string>
+          <string>War</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Western</string>
          </property>
         </item>
        </widget>
