@@ -94,6 +94,11 @@ bool MovieModel::remove(const QVariant &pkValue)
 
     dh.transaction();
 
+    int row = getRowByPrimaryKeyValue(pkValue);
+
+    //remove image
+    imgHandler.removeImage(BaseModel::data(index(row, MovieModel::MoviePoster)).toString());
+
     //remove from movie
     ok = ok && dh.remove("movie", "MovieID = ?", pkValue);
 
